@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { BookOpen, CircleCheck as CheckCircle, Crown, Book, ChevronDown } from 'lucide-react-native';
+import { BookOpen, CircleCheck as CheckCircle, Crown, Book, ChevronDown, Info } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import { router } from 'expo-router';
+import { ChallengeInfoModal } from './ChallengeInfoModal';
 
 const TOTAL_DAYS = 28;
 const LESSONS_PER_DAY = 4;
@@ -28,6 +29,7 @@ const ICON_CONFIG = {
 
 export default function LearningChallenge() {
   const [selectedDay, setSelectedDay] = useState(1);
+  const [showInfoModal, setShowInfoModal] = useState(false);
   const [expandedDays, setExpandedDays] = useState<Set<number>>(new Set());
 
   const handleLessonPress = (dayNumber: number, lessonId: number) => {
@@ -204,7 +206,18 @@ export default function LearningChallenge() {
 
       <View style={styles.challengeHeader}>
         <Text style={styles.challengeTitle}>28 day Skill challenge</Text>
+        <TouchableOpacity
+          style={styles.infoButton}
+          onPress={() => setShowInfoModal(true)}
+        >
+          <Info size={20} color="#60a5fa" strokeWidth={2} />
+        </TouchableOpacity>
       </View>
+
+      <ChallengeInfoModal
+        visible={showInfoModal}
+        onClose={() => setShowInfoModal(false)}
+      />
 
       <ScrollView style={styles.daysScroll} showsVerticalScrollIndicator={false}>
         {days.map((dayData) => (
@@ -371,6 +384,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#5b5fff',
   },
   challengeHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingTop: 8,
   },
@@ -378,6 +394,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     color: '#fff',
+    marginBottom: 16,
+    flex: 1,
+  },
+  infoButton: {
+    padding: 8,
     marginBottom: 16,
   },
   daysScroll: {

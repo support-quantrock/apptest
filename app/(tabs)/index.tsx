@@ -9,7 +9,6 @@ export default function HomeScreen() {
   const [isFirstCardExpanded, setIsFirstCardExpanded] = useState(false);
   const [isSecondCardExpanded, setIsSecondCardExpanded] = useState(false);
   const [isThirdCardExpanded, setIsThirdCardExpanded] = useState(false);
-  const [isSkillCardExpanded, setIsSkillCardExpanded] = useState(false);
 
   const firstCardAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -35,14 +34,6 @@ export default function HomeScreen() {
     };
   });
 
-  const skillCardAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      maxHeight: withTiming(isSkillCardExpanded ? 2000 : 0, { duration: 300 }),
-      opacity: withTiming(isSkillCardExpanded ? 1 : 0, { duration: 300 }),
-      overflow: 'hidden',
-    };
-  });
-
   const firstArrowAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ rotate: withTiming(isFirstCardExpanded ? '180deg' : '0deg', { duration: 300 }) }],
@@ -58,12 +49,6 @@ export default function HomeScreen() {
   const thirdArrowAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ rotate: withTiming(isThirdCardExpanded ? '180deg' : '0deg', { duration: 300 }) }],
-    };
-  });
-
-  const skillArrowAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ rotate: withTiming(isSkillCardExpanded ? '180deg' : '0deg', { duration: 300 }) }],
     };
   });
 
@@ -103,33 +88,40 @@ export default function HomeScreen() {
             <Timer size={28} color="#22c55e" strokeWidth={2} />
           </View>
 
-          <Text style={styles.cardTitle}>Skills challenge</Text>
-          <Text style={[styles.cardSubtitle, styles.cardSubtitleGreen]}>Master Your Skills</Text>
+          <Text style={styles.cardTitle}>Learn Challenge</Text>
+          <Text style={[styles.cardSubtitle, styles.cardSubtitleGreen]}>Beginners – Free Simulator Training</Text>
 
           <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
-            Start investing risk-free with a free demo account designed specifically for beginners, university, and high-school students to practice trading in a professional simulation environment, and become eligible to move up to the Challenge Stage and upgrade to Premium Pro Membership.
+            Start practicing trading with zero risk through a free virtual portfolio designed specifically for beginners, as well as university and high-school students, to help them acquire basic trading skills.
+            {'\n\n'}
+            The challenge lasts for 28 days of hands-on trading practice, in addition to daily interactive lessons that sharpen your skills and prepare you to move on to the Investment Challenge stage, giving you the opportunity to upgrade to the professional premium membership.
+            {'\n\n'}
+            All participants will be automatically evaluated monthly, and only one winner will be selected based on the best performance of the virtual portfolio.
           </Text>
 
           <View style={[styles.highlightBox, styles.highlightBoxGreen]}>
-            <Text style={styles.highlightTitle}>Start Now:</Text>
+            <Text style={styles.highlightTitle}>🎁 Monthly Prizes</Text>
+            <Text style={[styles.highlightText, { marginBottom: 12 }]}>
+              The winner is announced on the first day of every month and receives:
+            </Text>
             <View style={styles.highlightItem}>
               <Check size={16} color="#22c55e" strokeWidth={3} />
-              <Text style={styles.highlightText}>Trade anytime</Text>
+              <Text style={styles.highlightText}>Their name listed on the monthly Leaderboard</Text>
             </View>
             <View style={styles.highlightItem}>
               <Check size={16} color="#22c55e" strokeWidth={3} />
-              <Text style={styles.highlightText}>Choose the portfolio size that suits you</Text>
+              <Text style={styles.highlightText}>One month of free Premium subscription</Text>
             </View>
             <View style={styles.highlightItem}>
               <Check size={16} color="#22c55e" strokeWidth={3} />
-              <Text style={styles.highlightText}>Enjoy a 30-day intensive hands-on experience</Text>
+              <Text style={styles.highlightText}>Direct nomination to the next stage: the Investment Challenge</Text>
             </View>
           </View>
 
           <TouchableOpacity
             style={styles.expandButton}
             onPress={() => setIsFirstCardExpanded(!isFirstCardExpanded)}>
-            <Text style={styles.expandButtonText}>Stage Requirements:</Text>
+            <Text style={styles.expandButtonText}>📚Challenge Rules:</Text>
             <Animated.View style={firstArrowAnimatedStyle}>
               <ChevronDown size={24} color="#22c55e" strokeWidth={2} />
             </Animated.View>
@@ -139,42 +131,62 @@ export default function HomeScreen() {
             <View style={styles.featuresList}>
               <View style={styles.featureItem}>
                 <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Begin trading at any time (no fixed start date)</Text>
+                <Text style={styles.featureText}>Start anytime</Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Select portfolio size: $10,000 – $50,000 – $100,000</Text>
+                <Text style={styles.featureText}>28-day duration (can continue indefinitely)
+                </Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Daily loss limit: 5%</Text>
+                <Text style={styles.featureText}>Complete 28 days of daily skill lessons
+                </Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Total loss limit: 10%</Text>
+                <Text style={styles.featureText}>70%+ success rate in daily exercises
+                </Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Profit threshold: 6% → victory to the top performer</Text>
+                <Text style={styles.featureText}>Daily loss limit: 5%
+                </Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Maximum symbol weight: 10% of total portfolio.</Text>
+                <Text style={styles.featureText}>Total loss limit: 10%
+                </Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Minimum of 30 executed trades</Text>
+                <Text style={styles.featureText}>Target profit threshold: 6%
+                </Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Required instruments: S&P 500 / Gold / Major Currencies / Bitcoin</Text>
+                <Text style={styles.featureText}>Maximum asset weight: 10%
+
+                </Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#22c55e" strokeWidth={3} />
+                <Text style={styles.featureText}>Minimum trades: 30
+                </Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#22c55e" strokeWidth={3} />
+                <Text style={styles.featureText}>Allowed assets: S&P 500 stocks / Gold / EUR/USD / Bitcoin
+                </Text>
               </View>
 
               <View style={styles.featureItem}>
@@ -200,115 +212,131 @@ export default function HomeScreen() {
             <Zap size={28} color="#a78bfa" strokeWidth={2} />
           </View>
 
-          <Text style={styles.cardTitle}>Quantrock Trading Challenge</Text>
-          <Text style={[styles.cardSubtitle, styles.cardSubtitlePurple]}>Exclusively for Premium Pro members</Text>
+          <Text style={styles.cardTitle}>Quantrock Investment Challenge</Text>
+          <Text style={[styles.cardSubtitle, styles.cardSubtitlePurple]}>Eligibility: Exclusively for Premium Pro Members</Text>
 
           <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
-            Start your journey with a $100,000 simulated account to showcase your trading skills, pass the evaluation, and qualify to manage a $10,000 live funded account while keeping 50% of the profits — all without risking your own capital.
+            Begin your investment journey with zero risk through a free virtual portfolio worth $100,000 USD inside a fully simulated market that mirrors real-world conditions. This challenge is designed specifically for professionals seeking to develop investment skills in an advanced environment that replicates the workflow of expert investors.
+            {'\n\n'}
+            The challenge lasts 28 days of hands-on trading practice, along with daily interactive lessons and exercises that refine your discipline, risk-management skills, and prepare you to compete for first place in the Investment Challenge.
+            {'\n\n'}
+            At the end of each month, all participants are automatically evaluated, and only one winner is selected based on the best investment performance.
           </Text>
 
           <View style={[styles.benefitsBox, styles.benefitsBoxPurple]}>
-            <Text style={styles.benefitsTitle}>Premium Pro Membership Benefits:</Text>
+            <Text style={styles.benefitsTitle}>🎁 Monthly Prizes:</Text>
+            <Text style={[styles.benefitText, { marginBottom: 12 }]}>
+              The winner is announced on the first day of each month and receives:
+            </Text>
             <View style={styles.benefitItem}>
               <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>A $100,000 simulated account that qualifies you for managing a $10,000 live funded account</Text>
+              <Text style={styles.benefitText}>A $1,000 cash prize</Text>
             </View>
             <View style={styles.benefitItem}>
               <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Real-time updates from top global bank analyses</Text>
+              <Text style={styles.benefitText}>Their name listed on the Leaderboard</Text>
             </View>
             <View style={styles.benefitItem}>
               <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Live tracking of hedge fund trades and U.S. Congress members' portfolios</Text>
+              <Text style={styles.benefitText}>One month of free Premium subscription</Text>
             </View>
             <View style={styles.benefitItem}>
               <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Two progressive challenge rounds to sharpen your trading skills</Text>
+              <Text style={styles.benefitText}>One year of free access to a professional course from Capital Academy</Text>
+            </View>
+
+            <Text style={[styles.benefitsTitle, { marginTop: 16 }]}>📌 Premium Pro Membership Benefits</Text>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>Direct access to the Investment Challenge</Text>
             </View>
             <View style={styles.benefitItem}>
               <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Comprehensive performance analysis to support your growth step by step</Text>
+              <Text style={styles.benefitText}>Real-time analysis of global banks' recommendations</Text>
+            </View>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>Tracking of hedge funds' and top politicians' trades</Text>
+            </View>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>Smart Money Flow – Insight into institutional money movements</Text>
+            </View>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>Comprehensive performance analytics highlighting your strengths and weaknesses</Text>
             </View>
           </View>
 
           <TouchableOpacity
             style={styles.expandButton}
             onPress={() => setIsThirdCardExpanded(!isThirdCardExpanded)}>
-            <Text style={styles.expandButtonText}>Challenge Details</Text>
+            <Text style={styles.expandButtonText}>📚 Challenge Rules:</Text>
             <Animated.View style={thirdArrowAnimatedStyle}>
               <ChevronDown size={24} color="#a78bfa" strokeWidth={2} />
             </Animated.View>
           </TouchableOpacity>
 
           <Animated.View style={thirdCardAnimatedStyle}>
-            <View style={styles.roundsContainer}>
-              <Text style={styles.roundsTitle}>Round One: Performance Test</Text>
-              <View style={styles.roundItem}>
-                <Check size={16} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.roundText}>Daily loss limit: 5%</Text>
-              </View>
-              <View style={styles.roundItem}>
-                <Check size={16} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.roundText}>Total loss limit: 10%</Text>
-              </View>
-              <View style={styles.roundItem}>
-                <Check size={16} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.roundText}>Profit threshold: 10%</Text>
-              </View>
-              <View style={styles.roundItem}>
-                <Check size={16} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.roundText}>Two weeks period</Text>
-              </View>
-
-              <Text style={[styles.roundsTitle, { marginTop: 16 }]}>Round Two: Final Evaluation</Text>
-              <View style={styles.roundItem}>
-                <Check size={16} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.roundText}>Daily loss limit: 3%</Text>
-              </View>
-              <View style={styles.roundItem}>
-                <Check size={16} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.roundText}>Total loss limit: 6%</Text>
-              </View>
-              <View style={styles.roundItem}>
-                <Check size={16} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.roundText}>Profit threshold: 6%</Text>
-              </View>
-              <View style={styles.roundItem}>
-                <Check size={16} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.roundText}>Two weeks period</Text>
-              </View>
-            </View>
-
             <View style={styles.featuresList}>
-              <Text style={[styles.roundsTitle, { marginBottom: 10 }]}>Challenge Rules</Text>
               <View style={styles.featureItem}>
                 <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Begin trading at any time (no fixed start date)</Text>
+                <Text style={styles.featureText}>You can start at any time.</Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Select portfolio size: $10,000 – $50,000 – $100,000</Text>
+                <Text style={styles.featureText}>Challenge duration: 28 days, and it continues for an unlimited period.</Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Maximum symbol weight: 10% of total portfolio.</Text>
+                <Text style={styles.featureText}>Complete 28 days of daily skill lessons.</Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Minimum of 30 executed trades</Text>
+                <Text style={styles.featureText}>Achieve a 70% or higher success rate in the daily exercises.</Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Required instruments: S&P 500 / Gold / Major Currencies / Bitcoin</Text>
+                <Text style={styles.featureText}>Daily loss limit: 5%</Text>
               </View>
 
               <View style={styles.featureItem}>
                 <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Account leverage: 1:1</Text>
+                <Text style={styles.featureText}>Total loss limit: 10%</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Target profit threshold: Exceed 6%</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Maximum weight of any single asset: 10%</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Minimum number of trades: 30 trades</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Allowed Assets: S&P 500 stocks / Gold / EUR/USD / Bitcoin</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Account Leverage: 1:1</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Everyone can participate multiple times, while the winner is allowed to rejoin after 90 days.</Text>
               </View>
             </View>
           </Animated.View>
@@ -319,91 +347,7 @@ export default function HomeScreen() {
         </LinearGradient>
       </View>
 
-      <View style={styles.card}>
-        <LinearGradient
-          colors={['#1e40af', '#1e3a8a']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={styles.gradientCard}>
-          <View style={[styles.iconContainer, styles.iconContainerBlue]}>
-            <GraduationCap size={28} color="#60a5fa" strokeWidth={2} />
-          </View>
-
-          <Text style={styles.cardTitle}>Quantrock Skill Challenge</Text>
-          <Text style={[styles.cardSubtitle, styles.cardSubtitleBlue]}>Build Your Trading Foundation</Text>
-
-          <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
-            Master the fundamentals of trading through our comprehensive 20-day skill challenge. Learn essential trading concepts, develop critical analytical skills, and build confidence in a structured, step-by-step learning environment designed to transform beginners into knowledgeable traders.
-          </Text>
-
-          <View style={[styles.highlightBox, styles.highlightBoxBlue]}>
-            <Text style={styles.highlightTitle}>What You'll Learn:</Text>
-            <View style={styles.highlightItem}>
-              <Check size={16} color="#60a5fa" strokeWidth={3} />
-              <Text style={styles.highlightText}>20 progressive daily lessons covering all trading essentials</Text>
-            </View>
-            <View style={styles.highlightItem}>
-              <Check size={16} color="#60a5fa" strokeWidth={3} />
-              <Text style={styles.highlightText}>Interactive challenges to reinforce your knowledge</Text>
-            </View>
-            <View style={styles.highlightItem}>
-              <Check size={16} color="#60a5fa" strokeWidth={3} />
-              <Text style={styles.highlightText}>Real-world trading scenarios and decision-making practice</Text>
-            </View>
-            <View style={styles.highlightItem}>
-              <Check size={16} color="#60a5fa" strokeWidth={3} />
-              <Text style={styles.highlightText}>Track your progress and earn achievement badges</Text>
-            </View>
-          </View>
-
-          <TouchableOpacity
-            style={styles.expandButton}
-            onPress={() => setIsSkillCardExpanded(!isSkillCardExpanded)}>
-            <Text style={styles.expandButtonText}>Challenge Details</Text>
-            <Animated.View style={skillArrowAnimatedStyle}>
-              <ChevronDown size={24} color="#60a5fa" strokeWidth={2} />
-            </Animated.View>
-          </TouchableOpacity>
-
-          <Animated.View style={skillCardAnimatedStyle}>
-            <View style={styles.featuresList}>
-              <View style={styles.featureItem}>
-                <Check size={20} color="#60a5fa" strokeWidth={3} />
-                <Text style={styles.featureText}>Complete 4 lessons each day at your own pace</Text>
-              </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#60a5fa" strokeWidth={3} />
-                <Text style={styles.featureText}>Learn market analysis, risk management, and trading psychology</Text>
-              </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#60a5fa" strokeWidth={3} />
-                <Text style={styles.featureText}>Access to interactive quizzes and practical exercises</Text>
-              </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#60a5fa" strokeWidth={3} />
-                <Text style={styles.featureText}>Build a solid foundation before live trading</Text>
-              </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#60a5fa" strokeWidth={3} />
-                <Text style={styles.featureText}>Earn certificates upon completion of each module</Text>
-              </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#60a5fa" strokeWidth={3} />
-                <Text style={styles.featureText}>Unlock advanced trading strategies as you progress</Text>
-              </View>
-            </View>
-          </Animated.View>
-
-          <TouchableOpacity style={[styles.button, styles.buttonBlue]} onPress={() => router.push('/(tabs)/qchat')}>
-            <Text style={styles.buttonText}>Start Learning</Text>
-          </TouchableOpacity>
-        </LinearGradient>
-      </View>
+      {/* Third card (Quantrock Skill Challenge) is now accessible via info icon in qchat page */}
 
       <View style={styles.aboutSection}>
         <Text style={styles.aboutTitle}>About the Challenge</Text>
