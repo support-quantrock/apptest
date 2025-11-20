@@ -8,6 +8,7 @@ import { router } from 'expo-router';
 export default function HomeScreen() {
   const [isFirstCardExpanded, setIsFirstCardExpanded] = useState(false);
   const [isSecondCardExpanded, setIsSecondCardExpanded] = useState(false);
+  const [isThirdCardExpanded, setIsThirdCardExpanded] = useState(false);
   const [isSkillCardExpanded, setIsSkillCardExpanded] = useState(false);
 
   const firstCardAnimatedStyle = useAnimatedStyle(() => {
@@ -22,6 +23,14 @@ export default function HomeScreen() {
     return {
       maxHeight: withTiming(isSecondCardExpanded ? 2000 : 0, { duration: 300 }),
       opacity: withTiming(isSecondCardExpanded ? 1 : 0, { duration: 300 }),
+      overflow: 'hidden',
+    };
+  });
+
+  const thirdCardAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      maxHeight: withTiming(isThirdCardExpanded ? 2000 : 0, { duration: 300 }),
+      opacity: withTiming(isThirdCardExpanded ? 1 : 0, { duration: 300 }),
       overflow: 'hidden',
     };
   });
@@ -43,6 +52,12 @@ export default function HomeScreen() {
   const secondArrowAnimatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ rotate: withTiming(isSecondCardExpanded ? '180deg' : '0deg', { duration: 300 }) }],
+    };
+  });
+
+  const thirdArrowAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ rotate: withTiming(isThirdCardExpanded ? '180deg' : '0deg', { duration: 300 }) }],
     };
   });
 
@@ -88,7 +103,7 @@ export default function HomeScreen() {
             <Timer size={28} color="#22c55e" strokeWidth={2} />
           </View>
 
-          <Text style={styles.cardTitle}>Invest challenge</Text>
+          <Text style={styles.cardTitle}>Skills challenge</Text>
           <Text style={[styles.cardSubtitle, styles.cardSubtitleGreen]}>Master Your Skills</Text>
 
           <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
@@ -171,6 +186,135 @@ export default function HomeScreen() {
 
           <TouchableOpacity style={[styles.button, styles.buttonGreen]} onPress={() => router.push('/challenge-signup?mode=free')}>
             <Text style={styles.buttonText}>Start Investing</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+      </View>
+
+      <View style={styles.card}>
+        <LinearGradient
+          colors={['#7c3aed', '#4c1d95']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.gradientCard}>
+          <View style={[styles.iconContainer, styles.iconContainerPurple]}>
+            <Zap size={28} color="#a78bfa" strokeWidth={2} />
+          </View>
+
+          <Text style={styles.cardTitle}>Quantrock Trading Challenge</Text>
+          <Text style={[styles.cardSubtitle, styles.cardSubtitlePurple]}>Exclusively for Premium Pro members</Text>
+
+          <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
+            Start your journey with a $100,000 simulated account to showcase your trading skills, pass the evaluation, and qualify to manage a $10,000 live funded account while keeping 50% of the profits — all without risking your own capital.
+          </Text>
+
+          <View style={[styles.benefitsBox, styles.benefitsBoxPurple]}>
+            <Text style={styles.benefitsTitle}>Premium Pro Membership Benefits:</Text>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>A $100,000 simulated account that qualifies you for managing a $10,000 live funded account</Text>
+            </View>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>Real-time updates from top global bank analyses</Text>
+            </View>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>Live tracking of hedge fund trades and U.S. Congress members' portfolios</Text>
+            </View>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>Two progressive challenge rounds to sharpen your trading skills</Text>
+            </View>
+            <View style={styles.benefitItem}>
+              <Check size={16} color="#a78bfa" strokeWidth={3} />
+              <Text style={styles.benefitText}>Comprehensive performance analysis to support your growth step by step</Text>
+            </View>
+          </View>
+
+          <TouchableOpacity
+            style={styles.expandButton}
+            onPress={() => setIsThirdCardExpanded(!isThirdCardExpanded)}>
+            <Text style={styles.expandButtonText}>Challenge Details</Text>
+            <Animated.View style={thirdArrowAnimatedStyle}>
+              <ChevronDown size={24} color="#a78bfa" strokeWidth={2} />
+            </Animated.View>
+          </TouchableOpacity>
+
+          <Animated.View style={thirdCardAnimatedStyle}>
+            <View style={styles.roundsContainer}>
+              <Text style={styles.roundsTitle}>Round One: Performance Test</Text>
+              <View style={styles.roundItem}>
+                <Check size={16} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.roundText}>Daily loss limit: 5%</Text>
+              </View>
+              <View style={styles.roundItem}>
+                <Check size={16} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.roundText}>Total loss limit: 10%</Text>
+              </View>
+              <View style={styles.roundItem}>
+                <Check size={16} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.roundText}>Profit threshold: 10%</Text>
+              </View>
+              <View style={styles.roundItem}>
+                <Check size={16} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.roundText}>Two weeks period</Text>
+              </View>
+
+              <Text style={[styles.roundsTitle, { marginTop: 16 }]}>Round Two: Final Evaluation</Text>
+              <View style={styles.roundItem}>
+                <Check size={16} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.roundText}>Daily loss limit: 3%</Text>
+              </View>
+              <View style={styles.roundItem}>
+                <Check size={16} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.roundText}>Total loss limit: 6%</Text>
+              </View>
+              <View style={styles.roundItem}>
+                <Check size={16} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.roundText}>Profit threshold: 6%</Text>
+              </View>
+              <View style={styles.roundItem}>
+                <Check size={16} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.roundText}>Two weeks period</Text>
+              </View>
+            </View>
+
+            <View style={styles.featuresList}>
+              <Text style={[styles.roundsTitle, { marginBottom: 10 }]}>Challenge Rules</Text>
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Begin trading at any time (no fixed start date)</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Select portfolio size: $10,000 – $50,000 – $100,000</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Maximum symbol weight: 10% of total portfolio.</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Minimum of 30 executed trades</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Required instruments: S&P 500 / Gold / Major Currencies / Bitcoin</Text>
+              </View>
+
+              <View style={styles.featureItem}>
+                <Check size={20} color="#a78bfa" strokeWidth={3} />
+                <Text style={styles.featureText}>Account leverage: 1:1</Text>
+              </View>
+            </View>
+          </Animated.View>
+
+          <TouchableOpacity style={[styles.button, styles.buttonPurple]} onPress={() => router.push('/challenge-signup')}>
+            <Text style={styles.buttonText}>Start Quantrock Challenge</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>

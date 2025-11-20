@@ -292,10 +292,10 @@ export default function Portfolio() {
       <View style={styles.aboutSection}>
         <Text style={styles.aboutTitle}>About the Challenge</Text>
         <Text style={styles.aboutSubtitle}>
-          The Largest Investment Challenge Combining Training, Competition, and Real Rewards
+          The Largest Skills Challenge Combining Training, Competition, and Real Rewards
         </Text>
         <Text style={styles.aboutDescription}>
-          The Quantrock Investment Simulation Challenge was created to bridge the gap between academic knowledge and real-world trading practice, offering professionals, beginners, university and high school students a realistic and risk-free experience. You will step into the role of a Portfolio Manager and Executive Trader in a professional simulation environment that combines practical training, real challenges, and tangible rewards, giving you an authentic feel for the financial markets.
+          The Quantrock Skills Simulation Challenge was created to bridge the gap between academic knowledge and real-world trading practice, offering professionals, beginners, university and high school students a realistic and risk-free experience. You will step into the role of a Portfolio Manager and Executive Trader in a professional simulation environment that combines practical training, real challenges, and tangible rewards, giving you an authentic feel for the financial markets.
         </Text>
       </View>
     </ScrollView>
