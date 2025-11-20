@@ -197,7 +197,7 @@ export default function HomeScreen() {
           </Animated.View>
 
           <TouchableOpacity style={[styles.button, styles.buttonGreen]} onPress={() => router.push('/challenge-signup?mode=free')}>
-            <Text style={styles.buttonText}>Start Investing</Text>
+            <Text style={styles.buttonText}>Start Learning Challenge</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>
@@ -342,7 +342,7 @@ export default function HomeScreen() {
           </Animated.View>
 
           <TouchableOpacity style={[styles.button, styles.buttonPurple]} onPress={() => router.push('/challenge-signup')}>
-            <Text style={styles.buttonText}>Start Quantrock Challenge</Text>
+            <Text style={styles.buttonText}>Start Investment Challenge</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>
