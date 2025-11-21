@@ -123,15 +123,15 @@ export default function ChallengeSignup() {
           </Text>
 
           <View style={styles.legalDisclaimerContainer}>
-            <Text style={styles.legalDisclaimerTitle}>⚠️ تنويه قانوني مهم</Text>
+            <Text style={styles.legalDisclaimerTitle}>⚠️ Important Legal Disclaimer</Text>
             <Text style={styles.legalDisclaimerText}>
-              تعتمد جميع التحديات والأنشطة المتاحة عبر منصة كوانتروك على بيئة محاكاة تعليمية ولا تمثل بأي شكل من الأشكال تداولًا حقيقيًا أو استثمارًا فعليًا. ولا يجب اعتبار المعلومات أو النتائج أو الأداء الذي يظهر داخل التحديات توصية استثمارية أو ضمانًا لأي عوائد مستقبلية.
+              All challenges and activities offered through the Quantrock platform are based on an educational simulation environment and do not represent real trading or actual investment in any form. The information, results, or performance displayed within the challenges should not be considered investment advice or a guarantee of future returns.
               {'\n\n'}
-              تهدف المشاركة في التحديات إلى تنمية المعرفة، وتطوير المهارات الاستثمارية، وتقييم الأداء التعليمي فقط، ولا ينبغي الاعتماد على أي محتوى داخل المنصة لاتخاذ قرارات تداول أو استثمار حقيقية.
+              Participation in the challenges is intended solely to enhance knowledge, develop investment skills, and evaluate educational performance. No content on the platform should be relied upon when making real trading or investment decisions.
               {'\n\n'}
-              تقدم كوانتروك خدمات التعليم والتدريب ومحاكاة التداول حصريًا، ولا تعمل كوسيط مالي، ولا تدير محافظ حقيقية، ولا تقبل إيداعات مالية، ولا تقدم أي منتجات استثمارية فعلية. وتعتمد بيانات الأسعار وتقنيات المحاكاة على مزودي بيانات وساطة مرخّصين.
+              Quantrock provides education, training, and trading simulation services only. It does not operate as a financial broker, does not manage real portfolios, does not accept financial deposits, and does not offer any actual investment products. Price data and simulation technology are sourced from licensed market-data providers.
               {'\n\n'}
-              كما أن المحتوى والخدمات المقدمة عبر كوانتروك غير موجّهة للمستخدمين المقيمين في أي دولة أو ولاية قضائية يكون فيها هذا الاستخدام مخالفًا للقوانين أو اللوائح المحلية المعمول بها.
+              Furthermore, the content and services provided through Quantrock are not directed to users residing in any country or jurisdiction where such use would violate local laws or regulations.
             </Text>
           </View>
         </LinearGradient>

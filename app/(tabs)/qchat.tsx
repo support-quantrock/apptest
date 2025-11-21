@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 import { router } from 'expo-router';
 import Arrow from '@/components/Arrow';
 import LearningChallenge from '@/components/LearningChallenge';
+import { useChallengeContext } from '@/context/ChallengeContext';
 
 const getCountryFlag = (countryCode: string) => {
   const flags: { [key: string]: string } = {
@@ -24,6 +25,7 @@ const getCountryFlag = (countryCode: string) => {
 };
 
 export default function QChat() {
+  const { st } = useChallengeContext();
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [activeSponsorIndex, setActiveSponsorIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<'Learning' | 'training' | 'challenge' | 'trading'>('Learning');
@@ -572,32 +574,33 @@ export default function QChat() {
         </View>
 
         <View style={styles.tabContainer}>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'Learning' && styles.activeTab]}
-            onPress={() => setActiveTab('Learning')}>
-            <Text style={[styles.tabText, activeTab === 'Learning' && styles.activeTabText]}>Skill Challenge
-</Text>
-          </TouchableOpacity>
+          {st !== 0 && (
+            <TouchableOpacity
+              style={[styles.tab, activeTab === 'Learning' && styles.activeTab]}
+              onPress={() => setActiveTab('Learning')}>
+              <Text style={[styles.tabText, activeTab === 'Learning' && styles.activeTabText]}>
+                {st === 1 ? 'Learn Challenge' : 'Skill Challenge'}
+              </Text>
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             style={[styles.tab, activeTab === 'training' && styles.activeTab]}
             onPress={() => setActiveTab('training')}>
-            <Text style={[styles.tabText, activeTab === 'training' && styles.activeTabText]}>Invest Challenge
-</Text>
+            <Text style={[styles.tabText, activeTab === 'training' && styles.activeTabText]}>
+              {st === 1 ? 'Invest Challenge' : st === 0 ? 'Learn Challenge' : 'Invest Challenge'}
+            </Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            style={[styles.tab, activeTab === 'challenge' && styles.activeTab]}
-            onPress={() => setActiveTab('challenge')}>
-            <Text style={[styles.tabText, activeTab === 'challenge' && styles.activeTabText]}>Challenge</Text>
-          </TouchableOpacity> */}
-          {/* <TouchableOpacity
-            style={[styles.tab, activeTab === 'trading' && styles.activeTab]}
-            onPress={() => setActiveTab('trading')}>
-            <Text style={[styles.tabText, activeTab === 'trading' && styles.activeTabText]}>Trading</Text>
-          </TouchableOpacity> */}
+          {st === 0 && (
+            <TouchableOpacity
+              style={[styles.tab, activeTab === 'challenge' && styles.activeTab]}
+              onPress={() => setActiveTab('challenge')}>
+              <Text style={[styles.tabText, activeTab === 'challenge' && styles.activeTabText]}>Invest Challenge</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         <View style={styles.contentContainer}>
-          {activeTab === 'Learning' && (
+          {activeTab === 'Learning' && st !== 0 && (
             <LearningChallenge />
           )}
 
@@ -859,7 +862,7 @@ export default function QChat() {
             </>
           )}
 
-          {activeTab === 'challenge' && (
+          {activeTab === 'challenge' && st === 0 && (
             <View style={styles.card}>
               <LinearGradient
                 colors={['#7c3aed', '#4c1d95']}
