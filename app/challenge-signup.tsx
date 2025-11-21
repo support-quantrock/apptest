@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Linking } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { ArrowLeft, User, Mail, Phone, DollarSign } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,17 +10,17 @@ export default function ChallengeSignup() {
   const isAddFund = mode === 'addfund';
 
   const freeTrialSizes = [
-    { value: '100000', label: '$100,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
-    { value: '75000', label: '$75,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
-    { value: '50000', label: '$50,000', popular: true, priceMain: 'Free', priceSub: 'without risking' },
+    { value: '50000', label: '$50,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
     { value: '25000', label: '$25,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
-    { value: '10000', label: '$10,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
+    { value: '10000', label: '$10,000', popular: true, priceMain: 'Free', priceSub: 'without risking' },
+    { value: '5000', label: '$5,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
+    { value: '1000', label: '$1,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
   ];
 
   const premiumSizes = [
-    { value: '100000', label: '$100,000', popular: true, priceMain: 'Free', priceSub: 'without risking' },
+    { value: '100000', label: '$100,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
     { value: '75000', label: '$75,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
-    { value: '50000', label: '$50,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
+    { value: '50000', label: '$50,000', popular: true, priceMain: 'Free', priceSub: 'without risking' },
     { value: '25000', label: '$25,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
     { value: '10000', label: '$10,000', popular: false, priceMain: 'Free', priceSub: 'without risking' },
   ];
@@ -93,15 +93,22 @@ export default function ChallengeSignup() {
             ))}
           </View>
 
-          <TouchableOpacity
-            style={styles.checkboxContainer}
-            onPress={() => setAcceptedTerms(!acceptedTerms)}
-          >
-            <View style={[styles.checkbox, acceptedTerms && styles.checkboxChecked]}>
-              {acceptedTerms && <Text style={styles.checkmark}>✓</Text>}
-            </View>
-            <Text style={styles.checkboxLabel}>I accept the general terms and conditions of use</Text>
-          </TouchableOpacity>
+          <View style={styles.checkboxContainer}>
+            <TouchableOpacity onPress={() => setAcceptedTerms(!acceptedTerms)}>
+              <View style={[styles.checkbox, acceptedTerms && styles.checkboxChecked]}>
+                {acceptedTerms && <Text style={styles.checkmark}>✓</Text>}
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.checkboxLabel}>
+              I accept the{' '}
+              <Text
+                style={styles.termsLink}
+                onPress={() => Linking.openURL('https://www.quantrock.com')}
+              >
+                general terms and conditions of use
+              </Text>
+            </Text>
+          </View>
 
           <TouchableOpacity
             style={[styles.submitButton, !acceptedTerms && styles.submitButtonDisabled]}
@@ -114,6 +121,19 @@ export default function ChallengeSignup() {
           <Text style={styles.disclaimer}>
             By submitting, you agree to our Terms of Service and Privacy Policy. You will receive a confirmation email with next steps.
           </Text>
+
+          <View style={styles.legalDisclaimerContainer}>
+            <Text style={styles.legalDisclaimerTitle}>⚠️ تنويه قانوني مهم</Text>
+            <Text style={styles.legalDisclaimerText}>
+              تعتمد جميع التحديات والأنشطة المتاحة عبر منصة كوانتروك على بيئة محاكاة تعليمية ولا تمثل بأي شكل من الأشكال تداولًا حقيقيًا أو استثمارًا فعليًا. ولا يجب اعتبار المعلومات أو النتائج أو الأداء الذي يظهر داخل التحديات توصية استثمارية أو ضمانًا لأي عوائد مستقبلية.
+              {'\n\n'}
+              تهدف المشاركة في التحديات إلى تنمية المعرفة، وتطوير المهارات الاستثمارية، وتقييم الأداء التعليمي فقط، ولا ينبغي الاعتماد على أي محتوى داخل المنصة لاتخاذ قرارات تداول أو استثمار حقيقية.
+              {'\n\n'}
+              تقدم كوانتروك خدمات التعليم والتدريب ومحاكاة التداول حصريًا، ولا تعمل كوسيط مالي، ولا تدير محافظ حقيقية، ولا تقبل إيداعات مالية، ولا تقدم أي منتجات استثمارية فعلية. وتعتمد بيانات الأسعار وتقنيات المحاكاة على مزودي بيانات وساطة مرخّصين.
+              {'\n\n'}
+              كما أن المحتوى والخدمات المقدمة عبر كوانتروك غير موجّهة للمستخدمين المقيمين في أي دولة أو ولاية قضائية يكون فيها هذا الاستخدام مخالفًا للقوانين أو اللوائح المحلية المعمول بها.
+            </Text>
+          </View>
         </LinearGradient>
       </ScrollView>
     </View>
@@ -328,6 +348,10 @@ const styles = StyleSheet.create({
     color: '#cbd5e1',
     lineHeight: 20,
   },
+  termsLink: {
+    color: '#3b82f6',
+    textDecorationLine: 'underline',
+  },
   submitButton: {
     backgroundColor: '#3b82f6',
     borderRadius: 12,
@@ -350,6 +374,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 16,
     lineHeight: 18,
+  },
+  legalDisclaimerContainer: {
+    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+    borderRadius: 12,
+    padding: 16,
+    marginTop: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(239, 68, 68, 0.3)',
+  },
+  legalDisclaimerTitle: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#ef4444',
+    marginBottom: 12,
+    textAlign: 'right',
+  },
+  legalDisclaimerText: {
+    fontSize: 12,
+    color: '#94a3b8',
+    lineHeight: 20,
+    textAlign: 'right',
   },
   infoCard: {
     backgroundColor: 'rgba(30, 41, 59, 0.4)',

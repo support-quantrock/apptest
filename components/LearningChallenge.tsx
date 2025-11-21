@@ -205,13 +205,15 @@ export default function LearningChallenge() {
       </View>
 
       <View style={styles.challengeHeader}>
-        <Text style={styles.challengeTitle}>28 day Skill challenge</Text>
-        <TouchableOpacity
-          style={styles.infoButton}
-          onPress={() => setShowInfoModal(true)}
-        >
-          <Info size={20} color="#60a5fa" strokeWidth={2} />
-        </TouchableOpacity>
+        <View style={styles.titleRow}>
+          <Text style={styles.challengeTitle}>[Active Day Number] / 28 day Skill challenge</Text>
+          <TouchableOpacity
+            style={styles.infoButton}
+            onPress={() => setShowInfoModal(true)}
+          >
+            <Info size={20} color="#60a5fa" strokeWidth={2} />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ChallengeInfoModal
@@ -384,11 +386,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#5b5fff',
   },
   challengeHeader: {
+    paddingHorizontal: 20,
+    paddingTop: 8,
+  },
+  titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingTop: 8,
   },
   challengeTitle: {
     fontSize: 24,

@@ -4,8 +4,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { router } from 'expo-router';
+import { useChallengeContext } from '@/context/ChallengeContext';
 
 export default function HomeScreen() {
+  const { st, setSt } = useChallengeContext();
   const [isFirstCardExpanded, setIsFirstCardExpanded] = useState(false);
   const [isSecondCardExpanded, setIsSecondCardExpanded] = useState(false);
   const [isThirdCardExpanded, setIsThirdCardExpanded] = useState(false);
@@ -88,15 +90,15 @@ export default function HomeScreen() {
             <Timer size={28} color="#22c55e" strokeWidth={2} />
           </View>
 
-          <Text style={styles.cardTitle}>Learn Challenge</Text>
+          <Text style={styles.cardTitle}>🔵 Learn Challenge</Text>
           <Text style={[styles.cardSubtitle, styles.cardSubtitleGreen]}>Beginners – Free Simulator Training</Text>
 
           <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
-            Start practicing trading with zero risk through a free virtual portfolio designed specifically for beginners, as well as university and high-school students, to help them acquire basic trading skills.
+            The Learn Challenge is an optional program designed specifically for new users who want to understand the fundamentals of trading and develop essential investment skills step by step. It is ideal for beginners, university students, and high-school learners who wish to practice trading with zero financial risk through a free virtual simulation account.
             {'\n\n'}
-            The challenge lasts for 28 days of hands-on trading practice, in addition to daily interactive lessons that sharpen your skills and prepare you to move on to the Investment Challenge stage, giving you the opportunity to upgrade to the professional premium membership.
+            The challenge runs for 28 days of hands-on trading practice and includes daily interactive lessons and exercises that help you strengthen your skills and build a solid investment foundation — all within a safe training environment that closely mirrors real market behavior.
             {'\n\n'}
-            All participants will be automatically evaluated monthly, and only one winner will be selected based on the best performance of the virtual portfolio.
+            This challenge is the perfect starting point for beginners, with the flexibility to move directly to the Invest Challenge at any time.
           </Text>
 
           <View style={[styles.highlightBox, styles.highlightBoxGreen]}>
@@ -196,7 +198,7 @@ export default function HomeScreen() {
             </View>
           </Animated.View>
 
-          <TouchableOpacity style={[styles.button, styles.buttonGreen]} onPress={() => router.push('/challenge-signup?mode=free')}>
+          <TouchableOpacity style={[styles.button, styles.buttonGreen]} onPress={() => { setSt(1); router.push('/challenge-signup?mode=free'); }}>
             <Text style={styles.buttonText}>Start Learning Challenge</Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -212,15 +214,13 @@ export default function HomeScreen() {
             <Zap size={28} color="#a78bfa" strokeWidth={2} />
           </View>
 
-          <Text style={styles.cardTitle}>Quantrock Investment Challenge</Text>
-          <Text style={[styles.cardSubtitle, styles.cardSubtitlePurple]}>Eligibility: Exclusively for Premium Pro Members</Text>
+          <Text style={styles.cardTitle}>🟣 Invest Challenge</Text>
+          <Text style={[styles.cardSubtitle, styles.cardSubtitlePurple]}>Qualified & Exclusively for Premium Pro Members</Text>
 
           <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
-            Begin your investment journey with zero risk through a free virtual portfolio worth $100,000 USD inside a fully simulated market that mirrors real-world conditions. This challenge is designed specifically for professionals seeking to develop investment skills in an advanced environment that replicates the workflow of expert investors.
+            The Invest Challenge is an advanced, professional-level competition designed for qualified users and Premium Pro members, featuring real monetary rewards. It is tailored for experienced traders who want to enhance their investment capabilities through a high-fidelity simulation that replicates the strategies and workflows of professional investors and hedge funds — without any actual financial risk.
             {'\n\n'}
-            The challenge lasts 28 days of hands-on trading practice, along with daily interactive lessons and exercises that refine your discipline, risk-management skills, and prepare you to compete for first place in the Investment Challenge.
-            {'\n\n'}
-            At the end of each month, all participants are automatically evaluated, and only one winner is selected based on the best investment performance.
+            Participants manage a $100,000 virtual portfolio in a market environment that mimics real-world conditions 100%, over a 28-day period. Performance is evaluated across several key criteria, including risk management, execution quality, trading discipline, and practical investment skills.
           </Text>
 
           <View style={[styles.benefitsBox, styles.benefitsBoxPurple]}>
@@ -341,7 +341,7 @@ export default function HomeScreen() {
             </View>
           </Animated.View>
 
-          <TouchableOpacity style={[styles.button, styles.buttonPurple]} onPress={() => router.push('/challenge-signup')}>
+          <TouchableOpacity style={[styles.button, styles.buttonPurple]} onPress={() => { setSt(2); router.push('/challenge-signup'); }}>
             <Text style={styles.buttonText}>Start Investment Challenge</Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -352,10 +352,14 @@ export default function HomeScreen() {
       <View style={styles.aboutSection}>
         <Text style={styles.aboutTitle}>About the Challenge</Text>
         <Text style={styles.aboutSubtitle}>
-          The Largest Investment Challenge Combining Training, Competition, and Real Rewards
+          The largest investment challenge that combines training, competition, and real rewards.
         </Text>
         <Text style={styles.aboutDescription}>
-          The Quantrock Investment Simulation Challenge was created to bridge the gap between academic knowledge and real-world trading practice, offering professionals, beginners, university and high school students a realistic and risk-free experience. You will step into the role of a Portfolio Manager and Executive Trader in a professional simulation environment that combines practical training, real challenges, and tangible rewards, giving you an authentic feel for the financial markets.
+          Quantrock's Investment Simulation Challenge is designed to bridge the gap between academic knowledge and real-world trading practice. It takes you on a 28-day investment journey filled with practical learning, where participants receive daily interactive lessons and exercises aimed at enhancing their trading and investment skills step by step.
+          {'\n\n'}
+          The challenge offers professionals, beginners, university students, and high-school students a realistic and risk-free experience. You will take on the role of a portfolio manager and executive trader inside a professional simulation environment that reflects the workflow of expert investors and replicates the markets with 100% accuracy.
+          {'\n\n'}
+          This experience blends hands-on training, real competitive challenges, and tangible rewards—providing a realistic simulation that helps you develop your investment skills, strengthen your practical abilities, and progressively advance toward higher levels of professionalism.
         </Text>
       </View>
     </ScrollView>
