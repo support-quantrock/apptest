@@ -8,8 +8,8 @@ import {
   ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
-import { challengeService } from '../services/challengeService';
-import { API_CONFIG } from '../config/api.config';
+import { challengeService } from '../../services/challengeService';
+import { API_CONFIG } from '../../config/api.config';
 
 export const TestConnectionScreen = () => {
   const [result, setResult] = useState<string>('');

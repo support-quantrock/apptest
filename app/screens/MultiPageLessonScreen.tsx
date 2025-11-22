@@ -10,9 +10,9 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
-import { challengeService } from '../services/challengeService';
-import { useAuth } from '../context/AuthContext';
-import { Lesson, LessonPage } from '../types/challenge';
+import { challengeService } from '../../services/challengeService';
+import { useAuth } from '../../context/AuthContext';
+import { Lesson, LessonPage } from '../../types/challenge';
 
 interface Props {
   route: {

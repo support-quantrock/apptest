@@ -9,8 +9,8 @@ import {
   RefreshControl,
   SafeAreaView,
 } from 'react-native';
-import { challengeService } from '../services/challengeService';
-import { Program } from '../types/challenge';
+import { challengeService } from '../../services/challengeService';
+import { Program } from '../../types/challenge';
 
 export const ProgramsListScreen = ({ navigation }: any) => {
   const [programs, setPrograms] = useState<Program[]>([]);

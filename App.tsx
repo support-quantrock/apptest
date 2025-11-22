@@ -4,9 +4,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthProvider } from './context/AuthContext';
 
 // Import screens
-import { TestConnectionScreen } from './screens/TestConnectionScreen';
-import { ProgramsListScreen } from './screens/ProgramsListScreen';
-import { MultiPageLessonScreen } from './screens/MultiPageLessonScreen';
+import { TestConnectionScreen } from './app/screens/TestConnectionScreen';
+import { ProgramsListScreen } from './app/screens/ProgramsListScreen';
+import { MultiPageLessonScreen } from './app/screens/MultiPageLessonScreen';
 
 const Stack = createNativeStackNavigator();
 
