@@ -744,6 +744,18 @@ export default function Dashboard() {
                 <Text style={styles.statLabel}>AVG Profit</Text>
                 <Text style={styles.statValue}>$215.30</Text>
               </View>
+              <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
+                <Text style={styles.statLabel}>AVG Loss</Text>
+                <Text style={styles.statValue}>$187.45</Text>
+              </View>
+              <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
+                <Text style={styles.statLabel}>Profit Factor</Text>
+                <Text style={styles.statValue}>1.08</Text>
+              </View>
+              <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
+                <Text style={styles.statLabel}>Expectancy</Text>
+                <Text style={styles.statValue}>$5.92</Text>
+              </View>
             </View>
           </View>
             </>
