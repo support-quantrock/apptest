@@ -522,29 +522,29 @@ export default function Dashboard() {
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 8 }}>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
-                  <Svg width={90} height={90} viewBox="0 0 90 90">
+                  <Svg width={120} height={120} viewBox="0 0 120 120">
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#e5e7eb"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
                     />
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#10b981"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
-                      strokeDasharray={`${238 * (12/30)} ${238 * (1 - 12/30)}`}
+                      strokeDasharray={`${314 * (12/30)} ${314 * (1 - 12/30)}`}
                       strokeLinecap="round"
-                      transform="rotate(-90 45 45)"
+                      transform="rotate(-90 60 60)"
                     />
                   </Svg>
-                  <View style={{ position: 'absolute', top: 0, left: 0, width: 90, height: 90, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 24, fontWeight: '700' }}>30</Text>
+                  <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>30</Text>
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Number of trades</Text>
@@ -552,29 +552,29 @@ export default function Dashboard() {
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
-                  <Svg width={90} height={90} viewBox="0 0 90 90">
+                  <Svg width={120} height={120} viewBox="0 0 120 120">
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#e5e7eb"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
                     />
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#3b82f6"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
-                      strokeDasharray={`${238 * (15/28)} ${238 * (1 - 15/28)}`}
+                      strokeDasharray={`${314 * (15/28)} ${314 * (1 - 15/28)}`}
                       strokeLinecap="round"
-                      transform="rotate(-90 45 45)"
+                      transform="rotate(-90 60 60)"
                     />
                   </Svg>
-                  <View style={{ position: 'absolute', top: 0, left: 0, width: 90, height: 90, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 24, fontWeight: '700' }}>28</Text>
+                  <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>28</Text>
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Challenge Days</Text>
@@ -582,29 +582,29 @@ export default function Dashboard() {
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
-                  <Svg width={90} height={90} viewBox="0 0 90 90">
+                  <Svg width={120} height={120} viewBox="0 0 120 120">
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#e5e7eb"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
                     />
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#10b981"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
-                      strokeDasharray={`${238 * 0.75} ${238 * 0.25}`}
+                      strokeDasharray={`${314 * 0.75} ${314 * 0.25}`}
                       strokeLinecap="round"
-                      transform="rotate(-90 45 45)"
+                      transform="rotate(-90 60 60)"
                     />
                   </Svg>
-                  <View style={{ position: 'absolute', top: 0, left: 0, width: 90, height: 90, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '700' }}>$1200</Text>
+                  <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ color: '#fff', fontSize: 26, fontWeight: '700' }}>$1200</Text>
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Profit Target</Text>
@@ -612,29 +612,29 @@ export default function Dashboard() {
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
-                  <Svg width={90} height={90} viewBox="0 0 90 90">
+                  <Svg width={120} height={120} viewBox="0 0 120 120">
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#e5e7eb"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
                     />
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#ef4444"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
-                      strokeDasharray={`${238 * 0.5} ${238 * 0.5}`}
+                      strokeDasharray={`${314 * 0.5} ${314 * 0.5}`}
                       strokeLinecap="round"
-                      transform="rotate(-90 45 45)"
+                      transform="rotate(-90 60 60)"
                     />
                   </Svg>
-                  <View style={{ position: 'absolute', top: 0, left: 0, width: 90, height: 90, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 24, fontWeight: '700' }}>$500</Text>
+                  <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>$500</Text>
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
@@ -642,29 +642,29 @@ export default function Dashboard() {
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
-                  <Svg width={90} height={90} viewBox="0 0 90 90">
+                  <Svg width={120} height={120} viewBox="0 0 120 120">
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#e5e7eb"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
                     />
                     <Circle
-                      cx={45}
-                      cy={45}
-                      r={38}
+                      cx={60}
+                      cy={60}
+                      r={50}
                       stroke="#ef4444"
-                      strokeWidth={6}
+                      strokeWidth={8}
                       fill="none"
-                      strokeDasharray={`${238 * 0.93} ${238 * 0.07}`}
+                      strokeDasharray={`${314 * 0.93} ${314 * 0.07}`}
                       strokeLinecap="round"
-                      transform="rotate(-90 45 45)"
+                      transform="rotate(-90 60 60)"
                     />
                   </Svg>
-                  <View style={{ position: 'absolute', top: 0, left: 0, width: 90, height: 90, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '700' }}>$1500</Text>
+                  <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ color: '#fff', fontSize: 26, fontWeight: '700' }}>$1500</Text>
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
