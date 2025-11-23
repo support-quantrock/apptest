@@ -583,12 +583,40 @@ export default function Dashboard() {
 
             <View style={styles.statsGrid}>
               <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Max Loss Limit</Text>
-                <Text style={styles.statValue}>3000$ (10%)</Text>
+                <Text style={styles.statLabel}>Win Rate</Text>
+                <Text style={styles.statValue}>0%</Text>
               </View>
               <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Minimum Challenge Days</Text>
-                <Text style={styles.statValue}>0/28 Day</Text>
+                <Text style={styles.statLabel}>Loss Rate</Text>
+                <Text style={styles.statValue}>0%</Text>
+              </View>
+              <View style={styles.statCard}>
+                <Text style={styles.statLabel}>AVG Profit</Text>
+                <Text style={styles.statValue}>0</Text>
+              </View>
+              <View style={styles.statCard}>
+                <Text style={styles.statLabel}>AVG Loss</Text>
+                <Text style={styles.statValue}>0</Text>
+              </View>
+              <View style={styles.statCard}>
+                <Text style={styles.statLabel}>Profit Factor</Text>
+                <Text style={styles.statValue}>0</Text>
+              </View>
+              <View style={styles.statCard}>
+                <Text style={styles.statLabel}>Expectancy</Text>
+                <Text style={styles.statValue}>0</Text>
+              </View>
+              <View style={styles.statCard}>
+                <Text style={styles.statLabel}>Average RRR</Text>
+                <Text style={styles.statValue}>0</Text>
+              </View>
+              <View style={styles.statCard}>
+                <Text style={styles.statLabel}>Sharpe Ratio</Text>
+                <Text style={styles.statValue}>0</Text>
+              </View>
+              <View style={styles.statCard}>
+                <Text style={styles.statLabel}>Max Drawdown</Text>
+                <Text style={styles.statValue}>0</Text>
               </View>
             </View>
           </View>
