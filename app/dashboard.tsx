@@ -453,8 +453,8 @@ export default function Dashboard() {
               </TouchableOpacity>
             </View>
 
-            <View style={[styles.performanceMetrics, isMobile && { flexDirection: 'column', gap: 16 }]}>
-              <View style={[styles.returnCircle, { width: returnCircleSize, height: returnCircleSize }, isMobile && { alignSelf: 'center' }]}>
+            <View style={[styles.performanceMetrics, isMobile && { flexDirection: 'column', gap: 16 }, { alignItems: 'center', justifyContent: 'center' }]}>
+              <View style={[styles.returnCircle, { width: returnCircleSize, height: returnCircleSize, alignSelf: 'center' }]}>
                 <Svg width={returnCircleSize} height={returnCircleSize} viewBox="0 0 140 140">
                   <Circle
                     cx="70"
@@ -477,9 +477,10 @@ export default function Dashboard() {
                   />
                 </Svg>
                 <View style={styles.returnContent}>
-                  <Text style={styles.returnLabel}>Return</Text>
+                  <Text style={styles.returnLabel}>Net Profit</Text>
                   <Text style={styles.returnValue}>15 <Text style={styles.returnPercent}>%</Text></Text>
-                  <Text style={styles.returnStatus}>$1500</Text>
+                  <Text style={[styles.returnStatus, { color: '#22c55e' }]}>$1500</Text>
+                  <Text style={[styles.returnStatus, { color: '#f97316' }]}>Not qualified</Text>
                 </View>
               </View>
 
@@ -520,60 +521,12 @@ export default function Dashboard() {
             <View style={styles.lossLimitsCard}>
               <View style={styles.riskStatsRow}>
                 <View style={styles.riskStatItem}>
-                  <View style={styles.circularProgress}>
-                    <Svg width={48} height={48} viewBox="0 0 48 48">
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#e5e7eb"
-                        strokeWidth={4}
-                        fill="none"
-                      />
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#10b981"
-                        strokeWidth={4}
-                        fill="none"
-                        strokeDasharray={`${125.6 * 0.4} ${125.6 * 0.6}`}
-                        strokeLinecap="round"
-                        transform="rotate(-90 24 24)"
-                      />
-                    </Svg>
-                    <View style={styles.circularProgressTriangle} />
-                  </View>
                   <View>
                     <Text style={styles.riskStatLabel}>Number of trades</Text>
                     <Text style={styles.riskStatValue}>12/30</Text>
                   </View>
                 </View>
                 <View style={styles.riskStatItem}>
-                  <View style={styles.circularProgress}>
-                    <Svg width={48} height={48} viewBox="0 0 48 48">
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#e5e7eb"
-                        strokeWidth={4}
-                        fill="none"
-                      />
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#3b82f6"
-                        strokeWidth={4}
-                        fill="none"
-                        strokeDasharray={`${125.6 * 0.54} ${125.6 * 0.46}`}
-                        strokeLinecap="round"
-                        transform="rotate(-90 24 24)"
-                      />
-                    </Svg>
-                    <View style={styles.circularProgressTriangle} />
-                  </View>
                   <View>
                     <Text style={styles.riskStatLabel}>Challenge Days</Text>
                     <Text style={styles.riskStatValue}>15/28</Text>
@@ -582,90 +535,18 @@ export default function Dashboard() {
               </View>
               <View style={styles.riskStatsRow}>
                 <View style={[styles.riskStatItem, { width: '32%' }]}>
-                  <View style={styles.circularProgress}>
-                    <Svg width={48} height={48} viewBox="0 0 48 48">
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#e5e7eb"
-                        strokeWidth={4}
-                        fill="none"
-                      />
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#10b981"
-                        strokeWidth={4}
-                        fill="none"
-                        strokeDasharray={`${125.6 * 0.75} ${125.6 * 0.25}`}
-                        strokeLinecap="round"
-                        transform="rotate(-90 24 24)"
-                      />
-                    </Svg>
-                    <View style={styles.circularProgressTriangle} />
-                  </View>
                   <View>
                     <Text style={styles.riskStatLabel}>Profit Target</Text>
                     <Text style={styles.riskStatValue}>(8%) $1600 / 1200</Text>
                   </View>
                 </View>
                 <View style={[styles.riskStatItem, { width: '32%' }]}>
-                  <View style={styles.circularProgress}>
-                    <Svg width={48} height={48} viewBox="0 0 48 48">
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#e5e7eb"
-                        strokeWidth={4}
-                        fill="none"
-                      />
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#ef4444"
-                        strokeWidth={4}
-                        fill="none"
-                        strokeDasharray={`${125.6 * 0.5} ${125.6 * 0.5}`}
-                        strokeLinecap="round"
-                        transform="rotate(-90 24 24)"
-                      />
-                    </Svg>
-                    <View style={styles.circularProgressTriangleDown} />
-                  </View>
                   <View>
                     <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
                     <Text style={styles.riskStatValue}>(5%) $1000 /500</Text>
                   </View>
                 </View>
                 <View style={[styles.riskStatItem, { width: '32%' }]}>
-                  <View style={styles.circularProgress}>
-                    <Svg width={48} height={48} viewBox="0 0 48 48">
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#e5e7eb"
-                        strokeWidth={4}
-                        fill="none"
-                      />
-                      <Circle
-                        cx={24}
-                        cy={24}
-                        r={20}
-                        stroke="#ef4444"
-                        strokeWidth={4}
-                        fill="none"
-                        strokeDasharray={`${125.6 * 0.94} ${125.6 * 0.06}`}
-                        strokeLinecap="round"
-                        transform="rotate(-90 24 24)"
-                      />
-                    </Svg>
-                    <View style={styles.circularProgressTriangleDown} />
-                  </View>
                   <View>
                     <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
                     <Text style={styles.riskStatValue}>(10%) $1600 /1500</Text>
@@ -2853,8 +2734,7 @@ const styles = StyleSheet.create({
   },
   returnStatus: {
     fontSize: 13,
-    color: '#f97316',
-    marginTop: 4,
+    marginTop: 2,
   },
   statsGrid: {
     flexDirection: 'row',
