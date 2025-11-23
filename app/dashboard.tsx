@@ -506,7 +506,7 @@ export default function Dashboard() {
                 </View>
               </View>
 
-              <View style={[styles.returnCircle, { width: returnCircleSize, height: returnCircleSize }]}>
+              <View style={[styles.returnCircle, { width: returnCircleSize, height: returnCircleSize }, isMobile && { alignSelf: 'center' }]}>
                 <Svg width={returnCircleSize} height={returnCircleSize} viewBox="0 0 140 140">
                   <Circle
                     cx="70"
@@ -732,39 +732,39 @@ export default function Dashboard() {
           <View style={styles.assetsSection}>
             <Text style={[styles.riskLevelTitle, { fontSize: sectionTitleFontSize }]}>Statistics</Text>
             <View style={[styles.statsGrid, { flexWrap: 'wrap' }]}>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>Win Rate</Text>
                 <Text style={styles.statValue}>45.5%</Text>
               </View>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>Loss Rate</Text>
                 <Text style={styles.statValue}>54.5%</Text>
               </View>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>AVG Profit</Text>
                 <Text style={styles.statValue}>$215.30</Text>
               </View>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>AVG Loss</Text>
                 <Text style={styles.statValue}>$187.45</Text>
               </View>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>Profit Factor</Text>
                 <Text style={styles.statValue}>1.08</Text>
               </View>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>Expectancy</Text>
                 <Text style={styles.statValue}>$5.92</Text>
               </View>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>Average RRR</Text>
                 <Text style={styles.statValue}>1.15</Text>
               </View>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>Sharpe Ratio</Text>
                 <Text style={styles.statValue}>0.42</Text>
               </View>
-              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%', flex: 0 }]}>
                 <Text style={styles.statLabel}>Max Drawdown</Text>
                 <Text style={styles.statValue}>$625.00</Text>
               </View>
