@@ -632,8 +632,8 @@ export default function Dashboard() {
                 <Text style={styles.statValue}>54.5%</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>AVG Profit</Text>
-                <Text style={styles.statValue}>$215.30</Text>
+                <Text style={styles.statLabel}>Max Drawdown</Text>
+                <Text style={styles.statValue}>$625.00</Text>
               </View>
               </View>
               <View style={[styles.statsGrid, {  flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }]}>
@@ -642,17 +642,17 @@ export default function Dashboard() {
                 <Text style={styles.statValue}>$187.45</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Profit Factor</Text>
-                <Text style={styles.statValue}>1.08</Text>
+                <Text style={styles.statLabel}>AVG Profit</Text>
+                <Text style={styles.statValue}>$215.30</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Expectancy</Text>
-                <Text style={styles.statValue}>$5.92</Text>
+                <Text style={styles.statLabel}>Profit Factor</Text>
+                <Text style={styles.statValue}>1.08</Text>
               </View>
               </View>
               <View style={[styles.statsGrid, {  flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }]}>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Average RRR</Text>
+                <Text style={styles.statLabel}>AVG RRR</Text>
                 <Text style={styles.statValue}>1.15</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
@@ -660,8 +660,8 @@ export default function Dashboard() {
                 <Text style={styles.statValue}>0.42</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Max Drawdown</Text>
-                <Text style={styles.statValue}>$625.00</Text>
+                <Text style={styles.statLabel}>Expectancy</Text>
+                <Text style={styles.statValue}>$5.92</Text>
               </View>
             </View>
           </View>
