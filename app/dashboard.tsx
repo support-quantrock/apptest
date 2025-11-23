@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Image, Modal, TextInput, Switch, PanResponder } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Animated, Image, Modal, TextInput, Switch, PanResponder, Dimensions, useWindowDimensions } from 'react-native';
 import { router } from 'expo-router';
 import { ArrowLeft, Search, Star, Bell, Eye, ChevronDown, Flag, X, Info, Calendar } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -6,6 +6,11 @@ import { useState, useRef } from 'react';
 import Svg, { Circle } from 'react-native-svg';
 
 export default function Dashboard() {
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+  const isSmallScreen = screenWidth < 375;
+  const isMobile = screenWidth < 768;
+  const isTablet = screenWidth >= 768 && screenWidth < 1024;
+
   const [selectedTab, setSelectedTab] = useState('Overview');
   const [selectedStage, setSelectedStage] = useState('Skills');
   const [selectedOrderTab, setSelectedOrderTab] = useState('Open');
@@ -47,6 +52,21 @@ export default function Dashboard() {
   const sliderWidth = useRef(0);
   const tpSliderWidth = useRef(0);
   const slSliderWidth = useRef(0);
+
+  // Responsive dimensions
+  const donutSize = Math.min(screenWidth * 0.5, 200);
+  const returnCircleSize = Math.min(screenWidth * 0.35, 140);
+  const statsIconSize = isSmallScreen ? 40 : 48;
+  const backButtonSize = isSmallScreen ? 36 : 40;
+  const iconSize = isSmallScreen ? 20 : 24;
+  const timePeriodButtonSize = isSmallScreen ? 28 : 32;
+
+  // Responsive typography
+  const scale = screenWidth / 375; // Base scale on iPhone SE width
+  const responsiveFontSize = (size: number) => Math.round(size * Math.min(scale, 1.2));
+  const titleFontSize = responsiveFontSize(28);
+  const netAssetsFontSize = responsiveFontSize(36);
+  const sectionTitleFontSize = responsiveFontSize(20);
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -224,21 +244,21 @@ export default function Dashboard() {
   ).current;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingHorizontal: isMobile ? (isSmallScreen ? 12 : 16) : 20 }]}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-          <ArrowLeft size={24} color="#fff" strokeWidth={2} />
+        <TouchableOpacity style={[styles.backButton, { width: backButtonSize, height: backButtonSize }]} onPress={() => router.back()}>
+          <ArrowLeft size={iconSize} color="#fff" strokeWidth={2} />
         </TouchableOpacity>
 
         <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.iconButton}>
-            <Search size={24} color="#fff" strokeWidth={2} />
+          <TouchableOpacity style={[styles.iconButton, { width: iconSize, height: iconSize }]}>
+            <Search size={iconSize} color="#fff" strokeWidth={2} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <Star size={24} color="#fff" strokeWidth={2} />
+          <TouchableOpacity style={[styles.iconButton, { width: iconSize, height: iconSize }]}>
+            <Star size={iconSize} color="#fff" strokeWidth={2} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <Bell size={24} color="#fff" strokeWidth={2} />
+          <TouchableOpacity style={[styles.iconButton, { width: iconSize, height: iconSize }]}>
+            <Bell size={iconSize} color="#fff" strokeWidth={2} />
           </TouchableOpacity>
         </View>
       </View>
@@ -276,7 +296,7 @@ export default function Dashboard() {
           </View>
 
           <View style={styles.netAssetsValueRow}>
-            <Text style={styles.netAssetsValue}>10,500.00 <Text style={styles.currency}>USD</Text></Text>
+            <Text style={[styles.netAssetsValue, { fontSize: netAssetsFontSize }]}>10,500.00 <Text style={styles.currency}>USD</Text></Text>
             <TouchableOpacity onPress={() => setInfoModalVisible(true)} style={styles.infoIconContainer}>
               <Info size={16} color="#9ca3af" strokeWidth={2} />
             </TouchableOpacity>
@@ -398,62 +418,62 @@ export default function Dashboard() {
 
               <View style={styles.performanceSection}>
 
-            <Text style={styles.sectionTitle}>Portfolio Performance</Text>
+            <Text style={[styles.sectionTitle, { fontSize: sectionTitleFontSize }]}>Portfolio Performance</Text>
 
-            <View style={styles.timePeriods}>
+            <View style={[styles.timePeriods, isMobile && { gap: isSmallScreen ? 4 : 8 }]}>
               <TouchableOpacity
-                style={selectedTimePeriod === 'All' ? styles.timePeriodActive : styles.timePeriod}
+                style={[selectedTimePeriod === 'All' ? styles.timePeriodActive : styles.timePeriod, { width: timePeriodButtonSize, height: timePeriodButtonSize }]}
                 onPress={() => setSelectedTimePeriod('All')}>
-                <Text style={selectedTimePeriod === 'All' ? styles.timePeriodTextActive : styles.timePeriodText}>All</Text>
+                <Text style={[selectedTimePeriod === 'All' ? styles.timePeriodTextActive : styles.timePeriodText, isSmallScreen && { fontSize: 11 }]}>All</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={selectedTimePeriod === 'D' ? styles.timePeriodActive : styles.timePeriod}
+                style={[selectedTimePeriod === 'D' ? styles.timePeriodActive : styles.timePeriod, { width: timePeriodButtonSize, height: timePeriodButtonSize }]}
                 onPress={() => setSelectedTimePeriod('D')}>
                 <Text style={selectedTimePeriod === 'D' ? styles.timePeriodTextActive : styles.timePeriodText}>D</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={selectedTimePeriod === 'W' ? styles.timePeriodActive : styles.timePeriod}
+                style={[selectedTimePeriod === 'W' ? styles.timePeriodActive : styles.timePeriod, { width: timePeriodButtonSize, height: timePeriodButtonSize }]}
                 onPress={() => setSelectedTimePeriod('W')}>
                 <Text style={selectedTimePeriod === 'W' ? styles.timePeriodTextActive : styles.timePeriodText}>W</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={selectedTimePeriod === 'M' ? styles.timePeriodActive : styles.timePeriod}
+                style={[selectedTimePeriod === 'M' ? styles.timePeriodActive : styles.timePeriod, { width: timePeriodButtonSize, height: timePeriodButtonSize }]}
                 onPress={() => setSelectedTimePeriod('M')}>
                 <Text style={selectedTimePeriod === 'M' ? styles.timePeriodTextActive : styles.timePeriodText}>M</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={selectedTimePeriod === 'Y' ? styles.timePeriodActive : styles.timePeriod}
+                style={[selectedTimePeriod === 'Y' ? styles.timePeriodActive : styles.timePeriod, { width: timePeriodButtonSize, height: timePeriodButtonSize }]}
                 onPress={() => setSelectedTimePeriod('Y')}>
                 <Text style={selectedTimePeriod === 'Y' ? styles.timePeriodTextActive : styles.timePeriodText}>Y</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.timePeriod}
+                style={[styles.timePeriod, { width: timePeriodButtonSize, height: timePeriodButtonSize }]}
                 onPress={() => setDatePickerVisible(true)}>
-                <Calendar size={18} color="#94a3b8" strokeWidth={2} />
+                <Calendar size={isSmallScreen ? 14 : 18} color="#94a3b8" strokeWidth={2} />
               </TouchableOpacity>
             </View>
 
-            <View style={styles.totalCardsContainer}>
-              <View style={styles.totalLossCard}>
+            <View style={[styles.totalCardsContainer, isMobile && { flexDirection: 'column', gap: 12 }]}>
+              <View style={[styles.totalLossCard, isMobile && { width: '100%' }]}>
                 <Text style={styles.totalLossLabel}>Total Loss</Text>
                 <Text style={styles.totalLossAmount}>$1,500</Text>
                 <Text style={styles.totalLossPercentage}>15%</Text>
               </View>
 
-              <View style={styles.totalWonCard}>
+              <View style={[styles.totalWonCard, isMobile && { width: '100%' }]}>
                 <Text style={styles.totalWonLabel}>Total Won</Text>
                 <Text style={styles.totalWonAmount}>$3,000</Text>
                 <Text style={styles.totalWonPercentage}>30%</Text>
               </View>
 
-              <View style={styles.netProfitCard}>
+              <View style={[styles.netProfitCard, isMobile && { width: '100%' }]}>
                 <Text style={styles.netProfitLabel}>Net Profit</Text>
                 <Text style={styles.netProfitAmount}>$1,500</Text>
                 <Text style={styles.netProfitPercentage}>15%</Text>
               </View>
             </View>
 
-            <View style={styles.performanceMetrics}>
+            <View style={[styles.performanceMetrics, isMobile && { flexDirection: 'column', gap: 16 }]}>
               <View style={styles.riskLevelCard}>
                 <Text style={styles.riskLevelTitle}>Risk Level</Text>
                 <View style={styles.riskScaleContainer}>
@@ -486,8 +506,8 @@ export default function Dashboard() {
                 </View>
               </View>
 
-              <View style={styles.returnCircle}>
-                <Svg width={140} height={140} viewBox="0 0 140 140">
+              <View style={[styles.returnCircle, { width: returnCircleSize, height: returnCircleSize }]}>
+                <Svg width={returnCircleSize} height={returnCircleSize} viewBox="0 0 140 140">
                   <Circle
                     cx="70"
                     cy="70"
@@ -643,54 +663,14 @@ export default function Dashboard() {
                 </View>
               </View>
             </View>
-
-            <Text style={styles.riskLevelTitle}>Statistics</Text>
-            <View style={styles.statsGrid}>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Win Rate</Text>
-                <Text style={styles.statValue}>45.5%</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Loss Rate</Text>
-                <Text style={styles.statValue}>54.5%</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>AVG Profit</Text>
-                <Text style={styles.statValue}>$215.30</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>AVG Loss</Text>
-                <Text style={styles.statValue}>$187.45</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Profit Factor</Text>
-                <Text style={styles.statValue}>1.08</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Expectancy</Text>
-                <Text style={styles.statValue}>$5.92</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Average RRR</Text>
-                <Text style={styles.statValue}>1.15</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Sharpe Ratio</Text>
-                <Text style={styles.statValue}>0.42</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Max Drawdown</Text>
-                <Text style={styles.statValue}>$625.00</Text>
-              </View>
-            </View>
           </View>
 
           <View style={styles.assetsSection}>
-            <Text style={styles.assetsTitle}>Assets Allocation</Text>
+            <Text style={[styles.assetsTitle, { fontSize: titleFontSize }]}>Assets Allocation</Text>
 
-            <View style={styles.allocationContainer}>
-              <View style={styles.donutContainer}>
-                <Svg width={200} height={200} viewBox="0 0 200 200">
+            <View style={[styles.allocationContainer, isMobile && { flexDirection: 'column' }]}>
+              <View style={[styles.donutContainer, { width: donutSize, height: donutSize }]}>
+                <Svg width={donutSize} height={donutSize} viewBox="0 0 200 200">
                   <Circle
                     cx="100"
                     cy="100"
@@ -745,6 +725,48 @@ export default function Dashboard() {
                   <View style={[styles.legendColor, { backgroundColor: '#eab308' }]} />
                   <Text style={styles.legendText}>STOCK (76.18%)</Text>
                 </View>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.assetsSection}>
+            <Text style={[styles.riskLevelTitle, { fontSize: sectionTitleFontSize }]}>Statistics</Text>
+            <View style={[styles.statsGrid, { flexWrap: 'wrap' }]}>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>Win Rate</Text>
+                <Text style={styles.statValue}>45.5%</Text>
+              </View>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>Loss Rate</Text>
+                <Text style={styles.statValue}>54.5%</Text>
+              </View>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>AVG Profit</Text>
+                <Text style={styles.statValue}>$215.30</Text>
+              </View>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>AVG Loss</Text>
+                <Text style={styles.statValue}>$187.45</Text>
+              </View>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>Profit Factor</Text>
+                <Text style={styles.statValue}>1.08</Text>
+              </View>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>Expectancy</Text>
+                <Text style={styles.statValue}>$5.92</Text>
+              </View>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>Average RRR</Text>
+                <Text style={styles.statValue}>1.15</Text>
+              </View>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>Sharpe Ratio</Text>
+                <Text style={styles.statValue}>0.42</Text>
+              </View>
+              <View style={[styles.statCard, { width: isSmallScreen ? '100%' : '48%' }]}>
+                <Text style={styles.statLabel}>Max Drawdown</Text>
+                <Text style={styles.statValue}>$625.00</Text>
               </View>
             </View>
           </View>
