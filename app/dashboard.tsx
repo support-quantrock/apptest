@@ -2767,7 +2767,7 @@ const styles = StyleSheet.create({
   lossLimitsCard: {
     backgroundColor: 'rgba(15, 23, 42, 0.8)',
     borderRadius: 16,
-    padding: 16,
+    padding: 0,
     borderWidth: 1,
     borderColor: 'rgba(59, 130, 246, 0.2)',
     marginTop: 16,
