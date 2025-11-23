@@ -596,19 +596,19 @@ export default function Dashboard() {
                         cx={24}
                         cy={24}
                         r={20}
-                        stroke="#ef4444"
+                        stroke="#3b82f6"
                         strokeWidth={4}
                         fill="none"
-                        strokeDasharray={`${125.6 * 0.05} ${125.6 * 0.95}`}
+                        strokeDasharray={`${125.6 * 0} ${125.6 * 1}`}
                         strokeLinecap="round"
                         transform="rotate(-90 24 24)"
                       />
                     </Svg>
-                    <View style={styles.circularProgressTriangleDown} />
+                    <View style={styles.circularProgressTriangle} />
                   </View>
                   <View>
-                    <Text style={styles.riskStatLabel}>Max Daily Loss :</Text>
-                    <Text style={styles.riskStatValue}>981.18 (-5%)</Text>
+                    <Text style={styles.riskStatLabel}>Minimum Challenge Days :</Text>
+                    <Text style={styles.riskStatValue}>0/28 Day</Text>
                   </View>
                 </View>
                 <View style={styles.riskStatItem}>
@@ -626,19 +626,19 @@ export default function Dashboard() {
                         cx={24}
                         cy={24}
                         r={20}
-                        stroke="#3b82f6"
+                        stroke="#ef4444"
                         strokeWidth={4}
                         fill="none"
-                        strokeDasharray={`${125.6 * 0} ${125.6 * 1}`}
+                        strokeDasharray={`${125.6 * 0.05} ${125.6 * 0.95}`}
                         strokeLinecap="round"
                         transform="rotate(-90 24 24)"
                       />
                     </Svg>
-                    <View style={styles.circularProgressTriangle} />
+                    <View style={styles.circularProgressTriangleDown} />
                   </View>
                   <View>
-                    <Text style={styles.riskStatLabel}>Minimum Challenge Days :</Text>
-                    <Text style={styles.riskStatValue}>0/28 Day</Text>
+                    <Text style={styles.riskStatLabel}>Max Daily Loss :</Text>
+                    <Text style={styles.riskStatValue}>981.18 (-5%)</Text>
                   </View>
                 </View>
               </View>
