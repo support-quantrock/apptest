@@ -521,40 +521,26 @@ export default function Dashboard() {
               </View>
 
             <Text style={styles.riskLevelTitle}>Objectives</Text>
-            <View style={styles.lossLimitsCard}>
-              <View style={styles.riskStatsRow}>
-                <View style={styles.riskStatItem}>
-                  <View>
-                    <Text style={styles.riskStatLabel}>Number of trades</Text>
-                    <Text style={styles.riskStatValue}>12/30</Text>
-                  </View>
-                </View>
-                <View style={styles.riskStatItem}>
-                  <View>
-                    <Text style={styles.riskStatLabel}>Challenge Days</Text>
-                    <Text style={styles.riskStatValue}>15/28</Text>
-                  </View>
-                </View>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 16 }}>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%' }]}>
+                <Text style={styles.riskStatLabel}>Number of trades</Text>
+                <Text style={styles.riskStatValue}>12/30</Text>
               </View>
-              <View style={styles.riskStatsRow}>
-                <View style={[styles.riskStatItem, { width: '32%' }]}>
-                  <View>
-                    <Text style={styles.riskStatLabel}>Profit Target</Text>
-                    <Text style={styles.riskStatValue}>(8%) $1600 / 1200</Text>
-                  </View>
-                </View>
-                <View style={[styles.riskStatItem, { width: '32%' }]}>
-                  <View>
-                    <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
-                    <Text style={styles.riskStatValue}>(5%) $1000 /500</Text>
-                  </View>
-                </View>
-                <View style={[styles.riskStatItem, { width: '32%' }]}>
-                  <View>
-                    <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
-                    <Text style={styles.riskStatValue}>(10%) $1600 /1500</Text>
-                  </View>
-                </View>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%' }]}>
+                <Text style={styles.riskStatLabel}>Challenge Days</Text>
+                <Text style={styles.riskStatValue}>15/28</Text>
+              </View>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%' }]}>
+                <Text style={styles.riskStatLabel}>Profit Target</Text>
+                <Text style={styles.riskStatValue}>(8%) $1600 / 1200</Text>
+              </View>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%' }]}>
+                <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
+                <Text style={styles.riskStatValue}>(5%) $1000 /500</Text>
+              </View>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%' }]}>
+                <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
+                <Text style={styles.riskStatValue}>(10%) $1600 /1500</Text>
               </View>
             </View>
           </View>
