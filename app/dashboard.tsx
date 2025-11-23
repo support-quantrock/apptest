@@ -516,6 +516,7 @@ export default function Dashboard() {
               </View>
             </View>
 
+            <Text style={styles.riskLevelTitle}>Objectives</Text>
             <View style={styles.lossLimitsCard}>
               <View style={styles.riskStatsRow}>
                 <View style={styles.riskStatItem}>
@@ -544,7 +545,7 @@ export default function Dashboard() {
                     <View style={styles.circularProgressTriangle} />
                   </View>
                   <View>
-                    <Text style={styles.riskStatLabel}>Profit Target</Text>
+                    <Text style={styles.riskStatLabel}>Profit Target :</Text>
                     <Text style={styles.riskStatValue}>(8%) 1600$</Text>
                   </View>
                 </View>
@@ -574,49 +575,112 @@ export default function Dashboard() {
                     <View style={styles.circularProgressTriangleDown} />
                   </View>
                   <View>
-                    <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
+                    <Text style={styles.riskStatLabel}>Max Daily Loss :</Text>
                     <Text style={styles.riskStatValue}>981.18 (-5%)</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.riskStatsRow}>
+                <View style={styles.riskStatItem}>
+                  <View style={styles.circularProgress}>
+                    <Svg width={48} height={48} viewBox="0 0 48 48">
+                      <Circle
+                        cx={24}
+                        cy={24}
+                        r={20}
+                        stroke="#e5e7eb"
+                        strokeWidth={4}
+                        fill="none"
+                      />
+                      <Circle
+                        cx={24}
+                        cy={24}
+                        r={20}
+                        stroke="#ef4444"
+                        strokeWidth={4}
+                        fill="none"
+                        strokeDasharray={`${125.6 * 0.1} ${125.6 * 0.9}`}
+                        strokeLinecap="round"
+                        transform="rotate(-90 24 24)"
+                      />
+                    </Svg>
+                    <View style={styles.circularProgressTriangleDown} />
+                  </View>
+                  <View>
+                    <Text style={styles.riskStatLabel}>Max Loss Limit :</Text>
+                    <Text style={styles.riskStatValue}>3000$ (10%)</Text>
+                  </View>
+                </View>
+                <View style={styles.riskStatItem}>
+                  <View style={styles.circularProgress}>
+                    <Svg width={48} height={48} viewBox="0 0 48 48">
+                      <Circle
+                        cx={24}
+                        cy={24}
+                        r={20}
+                        stroke="#e5e7eb"
+                        strokeWidth={4}
+                        fill="none"
+                      />
+                      <Circle
+                        cx={24}
+                        cy={24}
+                        r={20}
+                        stroke="#3b82f6"
+                        strokeWidth={4}
+                        fill="none"
+                        strokeDasharray={`${125.6 * 0} ${125.6 * 1}`}
+                        strokeLinecap="round"
+                        transform="rotate(-90 24 24)"
+                      />
+                    </Svg>
+                    <View style={styles.circularProgressTriangle} />
+                  </View>
+                  <View>
+                    <Text style={styles.riskStatLabel}>Minimum Challenge Days :</Text>
+                    <Text style={styles.riskStatValue}>0/28 Day</Text>
                   </View>
                 </View>
               </View>
             </View>
 
+            <Text style={styles.riskLevelTitle}>Statistics</Text>
             <View style={styles.statsGrid}>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>Win Rate</Text>
-                <Text style={styles.statValue}>0%</Text>
+                <Text style={styles.statValue}>45.5%</Text>
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>Loss Rate</Text>
-                <Text style={styles.statValue}>0%</Text>
+                <Text style={styles.statValue}>54.5%</Text>
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>AVG Profit</Text>
-                <Text style={styles.statValue}>0</Text>
+                <Text style={styles.statValue}>$215.30</Text>
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>AVG Loss</Text>
-                <Text style={styles.statValue}>0</Text>
+                <Text style={styles.statValue}>$187.45</Text>
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>Profit Factor</Text>
-                <Text style={styles.statValue}>0</Text>
+                <Text style={styles.statValue}>1.08</Text>
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>Expectancy</Text>
-                <Text style={styles.statValue}>0</Text>
+                <Text style={styles.statValue}>$5.92</Text>
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>Average RRR</Text>
-                <Text style={styles.statValue}>0</Text>
+                <Text style={styles.statValue}>1.15</Text>
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>Sharpe Ratio</Text>
-                <Text style={styles.statValue}>0</Text>
+                <Text style={styles.statValue}>0.42</Text>
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statLabel}>Max Drawdown</Text>
-                <Text style={styles.statValue}>0</Text>
+                <Text style={styles.statValue}>$625.00</Text>
               </View>
             </View>
           </View>
