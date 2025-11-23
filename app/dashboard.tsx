@@ -567,7 +567,7 @@ export default function Dashboard() {
                         stroke="#ef4444"
                         strokeWidth={4}
                         fill="none"
-                        strokeDasharray={`${125.6 * 0.05} ${125.6 * 0.95}`}
+                        strokeDasharray={`${125.6 * 0.1} ${125.6 * 0.9}`}
                         strokeLinecap="round"
                         transform="rotate(-90 24 24)"
                       />
@@ -575,8 +575,8 @@ export default function Dashboard() {
                     <View style={styles.circularProgressTriangleDown} />
                   </View>
                   <View>
-                    <Text style={styles.riskStatLabel}>Max Daily Loss :</Text>
-                    <Text style={styles.riskStatValue}>981.18 (-5%)</Text>
+                    <Text style={styles.riskStatLabel}>Max Loss Limit :</Text>
+                    <Text style={styles.riskStatValue}>3000$ (10%)</Text>
                   </View>
                 </View>
               </View>
@@ -599,7 +599,7 @@ export default function Dashboard() {
                         stroke="#ef4444"
                         strokeWidth={4}
                         fill="none"
-                        strokeDasharray={`${125.6 * 0.1} ${125.6 * 0.9}`}
+                        strokeDasharray={`${125.6 * 0.05} ${125.6 * 0.95}`}
                         strokeLinecap="round"
                         transform="rotate(-90 24 24)"
                       />
@@ -607,8 +607,8 @@ export default function Dashboard() {
                     <View style={styles.circularProgressTriangleDown} />
                   </View>
                   <View>
-                    <Text style={styles.riskStatLabel}>Max Loss Limit :</Text>
-                    <Text style={styles.riskStatValue}>3000$ (10%)</Text>
+                    <Text style={styles.riskStatLabel}>Max Daily Loss :</Text>
+                    <Text style={styles.riskStatValue}>981.18 (-5%)</Text>
                   </View>
                 </View>
                 <View style={styles.riskStatItem}>
