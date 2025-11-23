@@ -746,7 +746,9 @@ export default function Dashboard() {
               </View>
              
             </View>
-            <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
+
+          </View>
+          <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <Text style={styles.statLabel}>AVG Loss</Text>
                 <Text style={styles.statValue}>$187.45</Text>
               </View>
@@ -758,7 +760,6 @@ export default function Dashboard() {
                 <Text style={styles.statLabel}>Expectancy</Text>
                 <Text style={styles.statValue}>$5.92</Text>
               </View>
-          </View>
             </>
           )}
         </LinearGradient>
