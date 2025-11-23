@@ -731,7 +731,7 @@ export default function Dashboard() {
 
           <View style={styles.assetsSection}>
             <Text style={[styles.riskLevelTitle, { fontSize: sectionTitleFontSize }]}>Statistics</Text>
-           
+            <View style={[styles.statsGrid, {  flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }]}>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <Text style={styles.statLabel}>Win Rate</Text>
                 <Text style={styles.statValue}>45.5%</Text>
@@ -769,7 +769,7 @@ export default function Dashboard() {
                 <Text style={styles.statValue}>$625.00</Text>
               </View>
             </View>
-          
+          </View>
             </>
           )}
         </LinearGradient>
