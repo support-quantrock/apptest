@@ -536,7 +536,7 @@ export default function Dashboard() {
                         stroke="#10b981"
                         strokeWidth={4}
                         fill="none"
-                        strokeDasharray={`${125.6 * 0.25} ${125.6 * 0.75}`}
+                        strokeDasharray={`${125.6 * 0.8} ${125.6 * 0.2}`}
                         strokeLinecap="round"
                         transform="rotate(-90 24 24)"
                       />
@@ -544,8 +544,8 @@ export default function Dashboard() {
                     <View style={styles.circularProgressTriangle} />
                   </View>
                   <View>
-                    <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
-                    <Text style={styles.riskStatValue}>5.0% $ 500</Text>
+                    <Text style={styles.riskStatLabel}>Profit Target</Text>
+                    <Text style={styles.riskStatValue}>(8%) 1600$</Text>
                   </View>
                 </View>
                 <View style={styles.riskStatItem}>
@@ -566,7 +566,7 @@ export default function Dashboard() {
                         stroke="#ef4444"
                         strokeWidth={4}
                         fill="none"
-                        strokeDasharray={`${125.6 * 0.4} ${125.6 * 0.6}`}
+                        strokeDasharray={`${125.6 * 0.05} ${125.6 * 0.95}`}
                         strokeLinecap="round"
                         transform="rotate(-90 24 24)"
                       />
@@ -574,8 +574,8 @@ export default function Dashboard() {
                     <View style={styles.circularProgressTriangleDown} />
                   </View>
                   <View>
-                    <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
-                    <Text style={styles.riskStatValue}>10 % $ 1000</Text>
+                    <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
+                    <Text style={styles.riskStatValue}>981.18 (-5%)</Text>
                   </View>
                 </View>
               </View>
@@ -583,16 +583,12 @@ export default function Dashboard() {
 
             <View style={styles.statsGrid}>
               <View style={styles.statCard}>
-                <Text style={styles.statLabel}>AVG Profit</Text>
-                <Text style={styles.statValue}>-6.80 %</Text>
+                <Text style={styles.statLabel}>Max Loss Limit</Text>
+                <Text style={styles.statValue}>3000$ (10%)</Text>
               </View>
               <View style={styles.statCard}>
-                <Text style={styles.statLabel}>AVG Loss</Text>
-                <Text style={styles.statValue}>6</Text>
-              </View>
-              <View style={styles.statCard}>
-                <Text style={styles.statLabel}>Profit Factor</Text>
-                <Text style={styles.statValue}>0</Text>
+                <Text style={styles.statLabel}>Minimum Challenge Days</Text>
+                <Text style={styles.statValue}>0/28 Day</Text>
               </View>
             </View>
           </View>
