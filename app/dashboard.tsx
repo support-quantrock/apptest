@@ -389,8 +389,6 @@ export default function Dashboard() {
                           styles.sliderBlock,
                           {
                             backgroundColor: `rgba(249, 115, 22, ${0.3 + (i * 0.07)})`,
-                            borderRightWidth: i === 4 ? 2 : 0,
-                            borderRightColor: i === 4 ? '#000000' : 'transparent',
                           },
                         ]}
                       />
@@ -521,7 +519,7 @@ export default function Dashboard() {
               </View>
 
             <Text style={[styles.riskLevelTitle, { marginTop: 24 }]}>Objectives</Text>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 16 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 8 }}>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
                   <Svg width={60} height={60} viewBox="0 0 60 60">
@@ -550,7 +548,7 @@ export default function Dashboard() {
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Number of trades</Text>
-                <Text style={styles.riskStatValue}>12/30</Text>
+                <Text style={styles.riskStatValue}>30</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
@@ -580,7 +578,7 @@ export default function Dashboard() {
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Challenge Days</Text>
-                <Text style={styles.riskStatValue}>15/28</Text>
+                <Text style={styles.riskStatValue}>28</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
@@ -610,7 +608,7 @@ export default function Dashboard() {
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Profit Target</Text>
-                <Text style={styles.riskStatValue}>(8%) $1600 / 1200</Text>
+                <Text style={styles.riskStatValue}>(8%) $1600</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
@@ -640,7 +638,7 @@ export default function Dashboard() {
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
-                <Text style={styles.riskStatValue}>(5%) $1000 /500</Text>
+                <Text style={styles.riskStatValue}>(5%) $1000</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
@@ -670,7 +668,7 @@ export default function Dashboard() {
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
-                <Text style={styles.riskStatValue}>(10%) $1600 /1500</Text>
+                <Text style={styles.riskStatValue}>(10%) $1600</Text>
               </View>
             </View>
           </View>
