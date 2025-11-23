@@ -522,23 +522,38 @@ export default function Dashboard() {
 
             <Text style={styles.riskLevelTitle}>Objectives</Text>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 16 }}>
-              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%' }]}>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
+                <View style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: '#10b981', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                  <Text style={{ color: '#fff', fontSize: 18, fontWeight: '700' }}>30</Text>
+                </View>
                 <Text style={styles.riskStatLabel}>Number of trades</Text>
                 <Text style={styles.riskStatValue}>12/30</Text>
               </View>
-              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%' }]}>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
+                <View style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: '#3b82f6', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                  <Text style={{ color: '#fff', fontSize: 18, fontWeight: '700' }}>28</Text>
+                </View>
                 <Text style={styles.riskStatLabel}>Challenge Days</Text>
                 <Text style={styles.riskStatValue}>15/28</Text>
               </View>
-              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%' }]}>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
+                <View style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: '#10b981', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                  <Text style={{ color: '#fff', fontSize: 16, fontWeight: '700' }}>1200</Text>
+                </View>
                 <Text style={styles.riskStatLabel}>Profit Target</Text>
                 <Text style={styles.riskStatValue}>(8%) $1600 / 1200</Text>
               </View>
-              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%' }]}>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
+                <View style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: '#ef4444', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                  <Text style={{ color: '#fff', fontSize: 18, fontWeight: '700' }}>500</Text>
+                </View>
                 <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
                 <Text style={styles.riskStatValue}>(5%) $1000 /500</Text>
               </View>
-              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%' }]}>
+              <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
+                <View style={{ width: 50, height: 50, borderRadius: 25, backgroundColor: '#ef4444', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                  <Text style={{ color: '#fff', fontSize: 16, fontWeight: '700' }}>1500</Text>
+                </View>
                 <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
                 <Text style={styles.riskStatValue}>(10%) $1600 /1500</Text>
               </View>
