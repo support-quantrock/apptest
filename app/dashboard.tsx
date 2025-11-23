@@ -55,7 +55,7 @@ export default function Dashboard() {
 
   // Responsive dimensions
   const donutSize = Math.min(screenWidth * 0.5, 200);
-  const returnCircleSize = Math.min(screenWidth * 0.35, 140);
+  const returnCircleSize = Math.min(screenWidth * 0.5, 200);
   const statsIconSize = isSmallScreen ? 40 : 48;
   const backButtonSize = isSmallScreen ? 36 : 40;
   const iconSize = isSmallScreen ? 20 : 24;
