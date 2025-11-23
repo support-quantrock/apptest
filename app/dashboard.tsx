@@ -478,8 +478,8 @@ export default function Dashboard() {
                 </Svg>
                 <View style={styles.returnContent}>
                   <Text style={styles.returnLabel}>Net Profit</Text>
-                  <Text style={styles.returnValue}>15 <Text style={styles.returnPercent}>%</Text></Text>
-                  <Text style={[styles.returnStatus, { color: '#22c55e' }]}>$1500</Text>
+                  <Text style={styles.returnValue}>$1500</Text>
+                  <Text style={[styles.returnStatus, { color: '#22c55e' }]}>15%</Text>
                   <Text style={[styles.returnStatus, { color: '#f97316' }]}>Not qualified</Text>
                 </View>
               </View>
@@ -520,7 +520,7 @@ export default function Dashboard() {
                 </View>
               </View>
 
-            <Text style={styles.riskLevelTitle}>Objectives</Text>
+            <Text style={[styles.riskLevelTitle, { marginTop: 24 }]}>Objectives</Text>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12, marginTop: 16 }}>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
@@ -600,7 +600,7 @@ export default function Dashboard() {
                       stroke="#10b981"
                       strokeWidth={4}
                       fill="none"
-                      strokeDasharray={`${157 * Math.min(1600/1200, 1)} ${157 * Math.max(0, 1 - 1600/1200)}`}
+                      strokeDasharray={`${157 * 0.75} ${157 * 0.25}`}
                       strokeLinecap="round"
                       transform="rotate(-90 30 30)"
                     />
@@ -630,7 +630,7 @@ export default function Dashboard() {
                       stroke="#ef4444"
                       strokeWidth={4}
                       fill="none"
-                      strokeDasharray={`${157 * Math.min(1000/500, 1)} ${157 * Math.max(0, 1 - 1000/500)}`}
+                      strokeDasharray={`${157 * 0.5} ${157 * 0.5}`}
                       strokeLinecap="round"
                       transform="rotate(-90 30 30)"
                     />
@@ -660,7 +660,7 @@ export default function Dashboard() {
                       stroke="#ef4444"
                       strokeWidth={4}
                       fill="none"
-                      strokeDasharray={`${157 * Math.min(1600/1500, 1)} ${157 * Math.max(0, 1 - 1600/1500)}`}
+                      strokeDasharray={`${157 * 0.93} ${157 * 0.07}`}
                       strokeLinecap="round"
                       transform="rotate(-90 30 30)"
                     />
