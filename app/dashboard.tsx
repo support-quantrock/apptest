@@ -621,7 +621,7 @@ export default function Dashboard() {
                 <Text style={styles.statValue}>54.5%</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Max Drawdown</Text>
+                <Text style={styles.statLabel}>Max DD</Text>
                 <Text style={styles.statValue}>$625.00</Text>
               </View>
               </View>
@@ -635,14 +635,14 @@ export default function Dashboard() {
                 <Text style={styles.statValue}>$215.30</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Profit Factor</Text>
-                <Text style={styles.statValue}>1.08</Text>
+                <Text style={styles.statLabel}>AVG RRR</Text>
+                <Text style={styles.statValue}>1.15</Text>
               </View>
               </View>
               <View style={[styles.statsGrid, {  flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }]}>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>AVG RRR</Text>
-                <Text style={styles.statValue}>1.15</Text>
+                <Text style={styles.statLabel}>Profit Factor</Text>
+                <Text style={styles.statValue}>1.08</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <Text style={styles.statLabel}>Sharpe Ratio</Text>
