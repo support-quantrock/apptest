@@ -484,7 +484,11 @@ export default function Dashboard() {
                 </View>
               </View>
 
-              <View style={styles.riskLevelCard}>
+             
+            </View>
+
+            
+            <View style={styles.riskLevelCard}>
                 <Text style={styles.riskLevelTitle}>Risk Level</Text>
                 <View style={styles.riskScaleContainer}>
                   <View style={styles.riskScale}>
@@ -515,7 +519,6 @@ export default function Dashboard() {
                   </View>
                 </View>
               </View>
-            </View>
 
             <Text style={styles.riskLevelTitle}>Objectives</Text>
             <View style={styles.lossLimitsCard}>
