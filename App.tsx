@@ -8,6 +8,11 @@ import { TestConnectionScreen } from './app/screens/TestConnectionScreen';
 import { ProgramsListScreen } from './app/screens/ProgramsListScreen';
 import { MultiPageLessonScreen } from './app/screens/MultiPageLessonScreen';
 
+// Import admin screens
+import { AdminDashboardScreen } from './app/screens/admin/AdminDashboardScreen';
+import { ProgramDetailsScreen } from './app/screens/admin/ProgramDetailsScreen';
+import { DayDetailsScreen } from './app/screens/admin/DayDetailsScreen';
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -15,7 +20,7 @@ export default function App() {
     <AuthProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="TestConnection"
+          initialRouteName="AdminDashboard"
           screenOptions={{
             headerStyle: {
               backgroundColor: '#141b2d',
@@ -26,6 +31,24 @@ export default function App() {
             },
           }}
         >
+          {/* Admin Routes */}
+          <Stack.Screen
+            name="AdminDashboard"
+            component={AdminDashboardScreen}
+            options={{ title: 'Admin Dashboard' }}
+          />
+          <Stack.Screen
+            name="ProgramDetails"
+            component={ProgramDetailsScreen}
+            options={{ title: 'Program Details' }}
+          />
+          <Stack.Screen
+            name="DayDetails"
+            component={DayDetailsScreen}
+            options={{ title: 'Day Details' }}
+          />
+
+          {/* API Test & User Routes */}
           <Stack.Screen
             name="TestConnection"
             component={TestConnectionScreen}
