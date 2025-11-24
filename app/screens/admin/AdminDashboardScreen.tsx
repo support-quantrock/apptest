@@ -17,6 +17,8 @@ export const AdminDashboardScreen = ({ navigation }: any) => {
   const [programs, setPrograms] = useState<Program[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [setupNeeded, setSetupNeeded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     loadPrograms();
@@ -25,11 +27,21 @@ export const AdminDashboardScreen = ({ navigation }: any) => {
   const loadPrograms = async () => {
     try {
       setLoading(true);
+      setSetupNeeded(false);
+      setErrorMessage('');
       const data = await adminService.getPrograms();
       setPrograms(data);
     } catch (error: any) {
       console.error('Error loading programs:', error);
-      Alert.alert('Error', 'Failed to load programs');
+      const errorMsg = error.message || String(error);
+
+      // Check if it's a Supabase configuration issue
+      if (errorMsg.includes('supabase') || errorMsg.includes('YOUR_SUPABASE') || errorMsg.includes('Invalid API key')) {
+        setSetupNeeded(true);
+        setErrorMessage('Supabase not configured');
+      } else {
+        setErrorMessage(errorMsg);
+      }
     } finally {
       setLoading(false);
     }
@@ -146,6 +158,45 @@ export const AdminDashboardScreen = ({ navigation }: any) => {
     );
   }
 
+  if (setupNeeded) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.setupContainer}>
+          <Text style={styles.setupIcon}>⚙️</Text>
+          <Text style={styles.setupTitle}>Setup Required</Text>
+          <Text style={styles.setupMessage}>
+            Supabase database not configured yet.
+          </Text>
+
+          <View style={styles.setupSteps}>
+            <Text style={styles.stepTitle}>📋 Quick Setup (5 minutes):</Text>
+            <Text style={styles.stepText}>1. Go to supabase.com/dashboard</Text>
+            <Text style={styles.stepText}>2. Create a new project</Text>
+            <Text style={styles.stepText}>3. Run supabase-schema.sql in SQL Editor</Text>
+            <Text style={styles.stepText}>4. Get API keys from Project Settings</Text>
+            <Text style={styles.stepText}>5. Update .env file with your keys</Text>
+            <Text style={styles.stepText}>6. Restart the app</Text>
+          </View>
+
+          <TouchableOpacity style={styles.setupButton} onPress={loadPrograms}>
+            <Text style={styles.setupButtonText}>🔄 Retry Connection</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.setupButton, styles.secondarySetupButton]}
+            onPress={() => navigation.navigate('TestConnection')}
+          >
+            <Text style={styles.setupButtonText}>Test API Connection</Text>
+          </TouchableOpacity>
+
+          <View style={styles.docsBox}>
+            <Text style={styles.docsText}>📖 See QUICKSTART_ADMIN.md for details</Text>
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -192,6 +243,77 @@ const styles = StyleSheet.create({
     color: '#9ca3af',
     marginTop: 16,
     fontSize: 16,
+  },
+  setupContainer: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+  },
+  setupIcon: {
+    fontSize: 64,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  setupTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  setupMessage: {
+    fontSize: 16,
+    color: '#9ca3af',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+  setupSteps: {
+    backgroundColor: '#141b2d',
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 24,
+    borderWidth: 1,
+    borderColor: '#1a2235',
+  },
+  stepTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#4f46e5',
+    marginBottom: 16,
+  },
+  stepText: {
+    fontSize: 14,
+    color: '#e5e7eb',
+    marginBottom: 10,
+    lineHeight: 20,
+  },
+  setupButton: {
+    backgroundColor: '#4f46e5',
+    paddingVertical: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  secondarySetupButton: {
+    backgroundColor: '#374151',
+  },
+  setupButtonText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 16,
+  },
+  docsBox: {
+    backgroundColor: '#0f172a',
+    borderRadius: 8,
+    padding: 16,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: '#334155',
+  },
+  docsText: {
+    color: '#94a3b8',
+    fontSize: 14,
+    textAlign: 'center',
   },
   header: {
     flexDirection: 'row',

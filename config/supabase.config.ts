@@ -6,10 +6,10 @@ import { createClient } from '@supabase/supabase-js';
 
 export const SUPABASE_CONFIG = {
   // Replace with your Supabase project URL
-  SUPABASE_URL: process.env.EXPO_PUBLIC_SUPABASE_URL || 'YOUR_SUPABASE_URL',
+  SUPABASE_URL: process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://jznsoularrfbcndftbqu.supabase.co',
 
   // Replace with your Supabase anon/public key
-  SUPABASE_ANON_KEY: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'YOUR_SUPABASE_ANON_KEY',
+  SUPABASE_ANON_KEY: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6bnNvdWxhcnJmYmNuZGZ0YnF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTc2OTIsImV4cCI6MjA3OTU3MzY5Mn0.5PEMCZ9weFALOUbv20v87qXmrXpcve8KKd81J7jpDUI',
 };
 
 // Create Supabase client
