@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, useWindowDimensions, Linking } from 'react-native';
-import { Trophy, Medal, Award, MapPin, Users, TrendingUp, Calendar, Target, ChartBar as BarChart3, TrendingUp as TrendingUpIcon, Info, Search, Star, Bell, User, ChevronDown, CircleUser as UserCircle } from 'lucide-react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, useWindowDimensions, Linking, Modal } from 'react-native';
+import { Trophy, Medal, Award, MapPin, Users, TrendingUp, Calendar, Target, ChartBar as BarChart3, TrendingUp as TrendingUpIcon, Info, Search, Star, Bell, User, ChevronDown, CircleUser as UserCircle, X } from 'lucide-react-native';
+import Svg, { Circle } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image } from 'expo-image';
 import { useState, useRef, useEffect } from 'react';
@@ -38,6 +39,19 @@ export default function QChat() {
   const [trainingViewMode, setTrainingViewMode] = useState<'group' | 'global'>('global');
   const [challengeViewMode, setChallengeViewMode] = useState<'group' | 'global'>('global');
   const [tradingViewMode, setTradingViewMode] = useState<'group' | 'global'>('global');
+  const [participantModalVisible, setParticipantModalVisible] = useState(false);
+  const [selectedParticipant, setSelectedParticipant] = useState<{
+    rank: number;
+    name: string;
+    profit: string;
+    trades: number;
+    country: string;
+    profitAmount: string;
+    equity: string;
+    gain: string;
+    accountSize: string;
+    imageUrl?: string;
+  } | null>(null);
   const carouselRef = useRef<ScrollView>(null);
   const sponsorCarouselRef = useRef<ScrollView>(null);
   const { width } = useWindowDimensions();
@@ -683,14 +697,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#2</Text>
                       </View>
-                      <View style={styles.roundAvatar}>
+                      <TouchableOpacity
+                        style={styles.roundAvatar}
+                        onPress={() => {
+                          const data = (trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[1];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[1].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -715,14 +735,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#1</Text>
                       </View>
-                      <View style={[styles.roundAvatar, styles.firstAvatar]}>
+                      <TouchableOpacity
+                        style={[styles.roundAvatar, styles.firstAvatar]}
+                        onPress={() => {
+                          const data = (trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[0];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[0].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -747,14 +773,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#3</Text>
                       </View>
-                      <View style={styles.roundAvatar}>
+                      <TouchableOpacity
+                        style={styles.roundAvatar}
+                        onPress={() => {
+                          const data = (trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[2];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[2].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -955,14 +987,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#2</Text>
                       </View>
-                      <View style={styles.roundAvatar}>
+                      <TouchableOpacity
+                        style={styles.roundAvatar}
+                        onPress={() => {
+                          const data = (challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[1];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[1].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -987,14 +1025,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#1</Text>
                       </View>
-                      <View style={[styles.roundAvatar, styles.firstAvatar]}>
+                      <TouchableOpacity
+                        style={[styles.roundAvatar, styles.firstAvatar]}
+                        onPress={() => {
+                          const data = (challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[0];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[0].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -1019,14 +1063,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#3</Text>
                       </View>
-                      <View style={styles.roundAvatar}>
+                      <TouchableOpacity
+                        style={styles.roundAvatar}
+                        onPress={() => {
+                          const data = (challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[2];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[2].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -1227,14 +1277,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#2</Text>
                       </View>
-                      <View style={styles.roundAvatar}>
+                      <TouchableOpacity
+                        style={styles.roundAvatar}
+                        onPress={() => {
+                          const data = (tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[1];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[1].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -1259,14 +1315,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#1</Text>
                       </View>
-                      <View style={[styles.roundAvatar, styles.firstAvatar]}>
+                      <TouchableOpacity
+                        style={[styles.roundAvatar, styles.firstAvatar]}
+                        onPress={() => {
+                          const data = (tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[0];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[0].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -1291,14 +1353,20 @@ export default function QChat() {
                       <View style={styles.rankBadge}>
                         <Text style={styles.rankBadgeText}>#3</Text>
                       </View>
-                      <View style={styles.roundAvatar}>
+                      <TouchableOpacity
+                        style={styles.roundAvatar}
+                        onPress={() => {
+                          const data = (tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[2];
+                          setSelectedParticipant({ ...data, imageUrl: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg' });
+                          setParticipantModalVisible(true);
+                        }}>
                         <Image
                           source="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg"
                           style={styles.avatarImage}
                           contentFit="cover"
                           transition={200}
                         />
-                      </View>
+                      </TouchableOpacity>
                       <Text style={styles.podiumFlag}>{getCountryFlag((tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[2].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
@@ -1377,6 +1445,130 @@ export default function QChat() {
         </View>
 
       </ScrollView>
+
+      {/* Participant Overview Modal */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={participantModalVisible}
+        onRequestClose={() => setParticipantModalVisible(false)}>
+        <TouchableOpacity
+          style={styles.modalOverlay}
+          activeOpacity={1}
+          onPress={() => setParticipantModalVisible(false)}>
+          <View style={styles.participantModalContainer}>
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={(e) => e.stopPropagation()}>
+
+              {/* Modal Header */}
+              <View style={styles.participantModalHeader}>
+                <View style={styles.participantModalHeaderLeft}>
+                  {selectedParticipant?.imageUrl && (
+                    <Image
+                      source={selectedParticipant.imageUrl}
+                      style={styles.participantModalAvatar}
+                      contentFit="cover"
+                    />
+                  )}
+                  <View>
+                    <Text style={styles.participantModalName}>{selectedParticipant?.name}</Text>
+                    <View style={styles.participantModalRankRow}>
+                      <Text style={styles.participantModalRankText}>Rank #{selectedParticipant?.rank}</Text>
+                      <Text style={styles.participantModalFlag}>{selectedParticipant ? getCountryFlag(selectedParticipant.country) : ''}</Text>
+                    </View>
+                  </View>
+                </View>
+                <TouchableOpacity onPress={() => setParticipantModalVisible(false)}>
+                  <X size={24} color="#9ca3af" strokeWidth={2} />
+                </TouchableOpacity>
+              </View>
+
+              {/* Portfolio Performance Circle */}
+              <View style={styles.participantModalSection}>
+                <Text style={styles.participantModalSectionTitle}>Portfolio Performance</Text>
+                <View style={styles.participantModalPerformanceContainer}>
+                  <View style={styles.participantModalCircle}>
+                    <Svg width={140} height={140} viewBox="0 0 140 140">
+                      <Circle
+                        cx="70"
+                        cy="70"
+                        r="60"
+                        stroke="#1e293b"
+                        strokeWidth="12"
+                        fill="none"
+                      />
+                      <Circle
+                        cx="70"
+                        cy="70"
+                        r="60"
+                        stroke="#22c55e"
+                        strokeWidth="12"
+                        fill="none"
+                        strokeDasharray="377"
+                        strokeDashoffset={377 - (377 * (parseFloat(selectedParticipant?.gain || '0') / 100))}
+                        strokeLinecap="round"
+                      />
+                    </Svg>
+                    <View style={styles.participantModalCircleContent}>
+                      <Text style={styles.participantModalCircleLabel}>Net Profit</Text>
+                      <Text style={styles.participantModalCircleValue}>{selectedParticipant?.profitAmount}</Text>
+                      <Text style={styles.participantModalCirclePercent}>{selectedParticipant?.profit}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+
+              {/* Stats Grid */}
+              <View style={styles.participantModalStatsGrid}>
+                <View style={styles.participantModalStatItem}>
+                  <Text style={styles.participantModalStatLabel}>Account Size</Text>
+                  <Text style={styles.participantModalStatValue}>{selectedParticipant?.accountSize}</Text>
+                </View>
+                <View style={styles.participantModalStatItem}>
+                  <Text style={styles.participantModalStatLabel}>Equity</Text>
+                  <Text style={styles.participantModalStatValue}>{selectedParticipant?.equity}</Text>
+                </View>
+                <View style={styles.participantModalStatItem}>
+                  <Text style={styles.participantModalStatLabel}>Total Trades</Text>
+                  <Text style={styles.participantModalStatValue}>{selectedParticipant?.trades}</Text>
+                </View>
+                <View style={styles.participantModalStatItem}>
+                  <Text style={styles.participantModalStatLabel}>Gain</Text>
+                  <Text style={[styles.participantModalStatValue, { color: '#22c55e' }]}>{selectedParticipant?.gain}%</Text>
+                </View>
+              </View>
+
+              {/* Risk Level */}
+              <View style={styles.participantModalSection}>
+                <Text style={styles.participantModalSectionTitle}>Risk Level</Text>
+                <View style={styles.participantModalRiskScale}>
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num, index) => {
+                    const colors = [
+                      '#2d5016', '#5a9129', '#7ba83e', '#b8d568', '#e8d75f',
+                      '#f4a84f', '#f78d47', '#e85555', '#c74444', '#4a4a4a'
+                    ];
+                    return (
+                      <View
+                        key={num}
+                        style={[
+                          styles.participantModalRiskBox,
+                          { backgroundColor: colors[index] },
+                          index === 0 && { borderTopLeftRadius: 4, borderBottomLeftRadius: 4 },
+                          index === 9 && { borderTopRightRadius: 4, borderBottomRightRadius: 4 },
+                        ]}>
+                        <Text style={styles.participantModalRiskNumber}>{num}</Text>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
+
+            </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
+      </Modal>
+
     </View>
   );
 }
@@ -2420,5 +2612,139 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#10b981',
     opacity: 0.8,
+  },
+  // Participant Modal Styles
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  participantModalContainer: {
+    backgroundColor: '#1e1e2e',
+    borderRadius: 20,
+    padding: 20,
+    width: '100%',
+    maxWidth: 400,
+    borderWidth: 1,
+    borderColor: 'rgba(139, 92, 246, 0.3)',
+  },
+  participantModalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  participantModalHeaderLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  participantModalAvatar: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    borderWidth: 2,
+    borderColor: '#8b5cf6',
+  },
+  participantModalName: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  participantModalRankRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 4,
+  },
+  participantModalRankText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#8b5cf6',
+  },
+  participantModalFlag: {
+    fontSize: 16,
+  },
+  participantModalSection: {
+    marginBottom: 20,
+  },
+  participantModalSectionTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#94a3b8',
+    marginBottom: 12,
+  },
+  participantModalPerformanceContainer: {
+    alignItems: 'center',
+  },
+  participantModalCircle: {
+    width: 140,
+    height: 140,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  participantModalCircleContent: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  participantModalCircleLabel: {
+    fontSize: 11,
+    fontWeight: '500',
+    color: '#94a3b8',
+  },
+  participantModalCircleValue: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#fff',
+    marginTop: 2,
+  },
+  participantModalCirclePercent: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#22c55e',
+    marginTop: 2,
+  },
+  participantModalStatsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 12,
+    marginBottom: 20,
+  },
+  participantModalStatItem: {
+    flex: 1,
+    minWidth: '45%',
+    backgroundColor: 'rgba(30, 41, 59, 0.8)',
+    borderRadius: 12,
+    padding: 12,
+    alignItems: 'center',
+  },
+  participantModalStatLabel: {
+    fontSize: 11,
+    fontWeight: '500',
+    color: '#94a3b8',
+    marginBottom: 4,
+  },
+  participantModalStatValue: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  participantModalRiskScale: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  participantModalRiskBox: {
+    flex: 1,
+    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  participantModalRiskNumber: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#fff',
   },
 });
