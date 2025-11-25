@@ -1564,6 +1564,157 @@ export default function QChat() {
                 </View>
               </View>
 
+              {/* Objectives */}
+              <View style={styles.participantModalSection}>
+                <Text style={styles.participantModalSectionTitle}>Objectives</Text>
+                <View style={styles.participantModalObjectivesRow}>
+                  <View style={styles.participantModalObjectiveItem}>
+                    <View style={styles.participantModalObjectiveCircle}>
+                      <Svg width={80} height={80} viewBox="0 0 80 80">
+                        <Circle cx={40} cy={40} r={32} stroke="#1e293b" strokeWidth={6} fill="none" />
+                        <Circle
+                          cx={40}
+                          cy={40}
+                          r={32}
+                          stroke="#10b981"
+                          strokeWidth={6}
+                          fill="none"
+                          strokeDasharray={`${201 * ((selectedParticipant?.trades || 0) / 30)} ${201 * (1 - (selectedParticipant?.trades || 0) / 30)}`}
+                          strokeLinecap="round"
+                          transform="rotate(-90 40 40)"
+                        />
+                      </Svg>
+                      <View style={styles.participantModalObjectiveCircleContent}>
+                        <Text style={styles.participantModalObjectiveValue}>{selectedParticipant?.trades}</Text>
+                      </View>
+                    </View>
+                    <Text style={styles.participantModalObjectiveLabel}>Trades</Text>
+                    <Text style={styles.participantModalObjectiveTarget}>/ 30</Text>
+                  </View>
+                  <View style={styles.participantModalObjectiveItem}>
+                    <View style={styles.participantModalObjectiveCircle}>
+                      <Svg width={80} height={80} viewBox="0 0 80 80">
+                        <Circle cx={40} cy={40} r={32} stroke="#1e293b" strokeWidth={6} fill="none" />
+                        <Circle
+                          cx={40}
+                          cy={40}
+                          r={32}
+                          stroke="#3b82f6"
+                          strokeWidth={6}
+                          fill="none"
+                          strokeDasharray={`${201 * 0.8} ${201 * 0.2}`}
+                          strokeLinecap="round"
+                          transform="rotate(-90 40 40)"
+                        />
+                      </Svg>
+                      <View style={styles.participantModalObjectiveCircleContent}>
+                        <Text style={styles.participantModalObjectiveValue}>24</Text>
+                      </View>
+                    </View>
+                    <Text style={styles.participantModalObjectiveLabel}>Days</Text>
+                    <Text style={styles.participantModalObjectiveTarget}>/ 30</Text>
+                  </View>
+                  <View style={styles.participantModalObjectiveItem}>
+                    <View style={styles.participantModalObjectiveCircle}>
+                      <Svg width={80} height={80} viewBox="0 0 80 80">
+                        <Circle cx={40} cy={40} r={32} stroke="#1e293b" strokeWidth={6} fill="none" />
+                        <Circle
+                          cx={40}
+                          cy={40}
+                          r={32}
+                          stroke="#f59e0b"
+                          strokeWidth={6}
+                          fill="none"
+                          strokeDasharray={`${201 * (parseFloat(selectedParticipant?.gain || '0') / 8)} ${201 * (1 - parseFloat(selectedParticipant?.gain || '0') / 8)}`}
+                          strokeLinecap="round"
+                          transform="rotate(-90 40 40)"
+                        />
+                      </Svg>
+                      <View style={styles.participantModalObjectiveCircleContent}>
+                        <Text style={styles.participantModalObjectiveValueSmall}>{selectedParticipant?.gain}%</Text>
+                      </View>
+                    </View>
+                    <Text style={styles.participantModalObjectiveLabel}>Profit</Text>
+                    <Text style={styles.participantModalObjectiveTarget}>/ 8%</Text>
+                  </View>
+                </View>
+              </View>
+
+              {/* Assets Allocation */}
+              <View style={styles.participantModalSection}>
+                <Text style={styles.participantModalSectionTitle}>Assets Allocation</Text>
+                <View style={styles.participantModalAllocationContainer}>
+                  <View style={styles.participantModalDonutContainer}>
+                    <Svg width={120} height={120} viewBox="0 0 120 120">
+                      <Circle cx="60" cy="60" r="45" stroke="#ef4444" strokeWidth="18" fill="none" strokeDasharray="283" strokeDashoffset="70" />
+                      <Circle cx="60" cy="60" r="45" stroke="#3b82f6" strokeWidth="18" fill="none" strokeDasharray="283" strokeDashoffset="140" />
+                      <Circle cx="60" cy="60" r="45" stroke="#eab308" strokeWidth="18" fill="none" strokeDasharray="283" strokeDashoffset="220" />
+                    </Svg>
+                    <View style={styles.participantModalDonutCenter}>
+                      <Text style={styles.participantModalDonutLabel}>Invested</Text>
+                      <Text style={styles.participantModalDonutValue}>40%</Text>
+                    </View>
+                  </View>
+                  <View style={styles.participantModalAllocationLegend}>
+                    <View style={styles.participantModalLegendItem}>
+                      <View style={[styles.participantModalLegendColor, { backgroundColor: '#ef4444' }]} />
+                      <Text style={styles.participantModalLegendText}>Commodities (35%)</Text>
+                    </View>
+                    <View style={styles.participantModalLegendItem}>
+                      <View style={[styles.participantModalLegendColor, { backgroundColor: '#3b82f6' }]} />
+                      <Text style={styles.participantModalLegendText}>Forex (25%)</Text>
+                    </View>
+                    <View style={styles.participantModalLegendItem}>
+                      <View style={[styles.participantModalLegendColor, { backgroundColor: '#eab308' }]} />
+                      <Text style={styles.participantModalLegendText}>Stocks (40%)</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+
+              {/* Statistics */}
+              <View style={styles.participantModalSection}>
+                <Text style={styles.participantModalSectionTitle}>Statistics</Text>
+                <View style={styles.participantModalStatisticsGrid}>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>Win Rate</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#10b981' }]}>45.5%</Text>
+                  </View>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>Loss Rate</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#ef4444' }]}>54.5%</Text>
+                  </View>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>Max DD</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#ef4444' }]}>$625</Text>
+                  </View>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>AVG Loss</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#ef4444' }]}>$187</Text>
+                  </View>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>AVG Profit</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#10b981' }]}>$215</Text>
+                  </View>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>AVG RRR</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#10b981' }]}>1.15</Text>
+                  </View>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>Profit Factor</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#10b981' }]}>1.08</Text>
+                  </View>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>Sharpe Ratio</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#10b981' }]}>0.42</Text>
+                  </View>
+                  <View style={styles.participantModalStatisticItem}>
+                    <Text style={styles.participantModalStatisticLabel}>Expectancy</Text>
+                    <Text style={[styles.participantModalStatisticValue, { color: '#10b981' }]}>$5.92</Text>
+                  </View>
+                </View>
+              </View>
+
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
@@ -2745,6 +2896,121 @@ const styles = StyleSheet.create({
   participantModalRiskNumber: {
     fontSize: 10,
     fontWeight: '600',
+    color: '#fff',
+  },
+  // Objectives styles
+  participantModalObjectivesRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  participantModalObjectiveItem: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  participantModalObjectiveCircle: {
+    width: 80,
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  participantModalObjectiveCircleContent: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  participantModalObjectiveValue: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  participantModalObjectiveValueSmall: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#94a3b8',
+  },
+  participantModalObjectiveLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#fff',
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  participantModalObjectiveTarget: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: '#94a3b8',
+    marginTop: 2,
+  },
+  // Assets Allocation styles
+  participantModalAllocationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
+  },
+  participantModalDonutContainer: {
+    width: 120,
+    height: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  participantModalDonutCenter: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  participantModalDonutLabel: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: '#94a3b8',
+  },
+  participantModalDonutValue: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  participantModalAllocationLegend: {
+    flex: 1,
+    gap: 8,
+  },
+  participantModalLegendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  participantModalLegendColor: {
+    width: 12,
+    height: 12,
+    borderRadius: 3,
+  },
+  participantModalLegendText: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: '#94a3b8',
+  },
+  // Statistics styles
+  participantModalStatisticsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  participantModalStatisticItem: {
+    width: '31%',
+    backgroundColor: 'rgba(30, 41, 59, 0.8)',
+    borderRadius: 10,
+    padding: 10,
+    alignItems: 'center',
+  },
+  participantModalStatisticLabel: {
+    fontSize: 9,
+    fontWeight: '500',
+    color: '#94a3b8',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  participantModalStatisticValue: {
+    fontSize: 13,
+    fontWeight: '700',
     color: '#fff',
   },
 });
