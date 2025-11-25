@@ -182,7 +182,7 @@ export default function LessonContent() {
         case 2:
           return <Lesson1Screen2 />;
         case 3:
-          return <Lesson1Screen3 />;
+          return <Lesson1Screen3 onFlip={() => setStep(4)} />;
         case 4:
           return <Lesson1Screen4 />;
         case 5:
@@ -824,6 +824,8 @@ export default function LessonContent() {
           (day === 1 && lesson === 1 && step === 10) ||
           // Disable tap on step 8 (slider interaction)
           (day === 1 && lesson === 1 && step === 8) ||
+          // Disable tap on step 3 (coin flip interaction)
+          (day === 1 && lesson === 1 && step === 3) ||
           // Legacy: disable on step 7 for other lessons
           (day !== 1 || lesson !== 1) && step === 7
         }
