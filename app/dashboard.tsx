@@ -560,13 +560,13 @@ export default function Dashboard() {
                       stroke="#10b981"
                       strokeWidth={8}
                       fill="none"
-                      strokeDasharray={`${314 * (12/30)} ${314 * (1 - 12/30)}`}
+                      strokeDasharray={`${314 * (12/10)} ${314 * (1 - 12/10)}`}
                       strokeLinecap="round"
                       transform="rotate(-90 60 60)"
                     />
                   </Svg>
                   <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>30</Text>
+                    <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>10</Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
@@ -575,7 +575,7 @@ export default function Dashboard() {
                     <Info size={12} color="#64748b" />
                   </TouchableOpacity>
                 </View>
-                <Text style={styles.riskStatValue}>30</Text>
+                <Text style={styles.riskStatValue}>10</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
@@ -595,13 +595,13 @@ export default function Dashboard() {
                       stroke="#3b82f6"
                       strokeWidth={8}
                       fill="none"
-                      strokeDasharray={`${314 * (15/28)} ${314 * (1 - 15/28)}`}
+                      strokeDasharray={`${314 * (15/15)} ${314 * (1 - 15/15)}`}
                       strokeLinecap="round"
                       transform="rotate(-90 60 60)"
                     />
                   </Svg>
                   <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>28</Text>
+                    <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>15</Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
@@ -610,7 +610,7 @@ export default function Dashboard() {
                     <Info size={12} color="#64748b" />
                   </TouchableOpacity>
                 </View>
-                <Text style={styles.riskStatValue}>28</Text>
+                <Text style={styles.riskStatValue}>15</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
                 <View style={{ position: 'relative', marginBottom: 8 }}>
