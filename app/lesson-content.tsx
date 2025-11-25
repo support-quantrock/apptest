@@ -192,7 +192,7 @@ export default function LessonContent() {
         case 7:
           return <Lesson1Screen7 />;
         case 8:
-          return <Lesson1Screen8 />;
+          return <Lesson1Screen8 onNext={() => setStep(9)} />;
         case 9:
           return <Lesson1Screen9 />;
         case 10:

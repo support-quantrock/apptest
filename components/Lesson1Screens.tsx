@@ -149,7 +149,7 @@ export const Lesson1Screen7 = () => (
 /* ─────────────────────────────
  * Screen 8 (Slider)
  * ────────────────────────────*/
-export const Lesson1Screen8 = () => {
+export const Lesson1Screen8 = ({ onNext }: { onNext?: () => void }) => {
   const [value, setValue] = useState(100);
 
   return (
@@ -168,6 +168,12 @@ export const Lesson1Screen8 = () => {
         thumbTintColor="#2f80ed"
       />
       <Text style={styles.sliderHint}>(Slider showing ${value} selected)</Text>
+
+      {onNext && (
+        <TouchableOpacity style={styles.continueButton} onPress={onNext}>
+          <Text style={styles.continueButtonText}>CONTINUE</Text>
+        </TouchableOpacity>
+      )}
     </LessonScreen>
   );
 };
@@ -322,6 +328,20 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   finishButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "700",
+    letterSpacing: 1,
+  },
+  continueButton: {
+    backgroundColor: "#5b5fff",
+    paddingVertical: 16,
+    paddingHorizontal: 32,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 24,
+  },
+  continueButtonText: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "700",
