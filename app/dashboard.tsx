@@ -46,6 +46,28 @@ export default function Dashboard() {
   const [slPrice, setSlPrice] = useState('99.00');
   const [slSliderPercent, setSlSliderPercent] = useState(1);
   const [infoModalVisible, setInfoModalVisible] = useState(false);
+  const [infoTooltip, setInfoTooltip] = useState<{ visible: boolean; title: string; description: string }>({ visible: false, title: '', description: '' });
+
+  const infoDescriptions: { [key: string]: string } = {
+    'Number of trades': 'The minimum number of trades required to complete the challenge successfully.',
+    'Challenge Days': 'The total number of days allowed to complete the trading challenge.',
+    'Profit Target': 'The profit percentage you need to achieve to pass the challenge.',
+    'Max Daily Loss': 'The maximum loss allowed in a single trading day before failing the challenge.',
+    'Max Loss Limit': 'The maximum total loss allowed during the entire challenge period.',
+    'Win Rate': 'The percentage of trades that resulted in a profit.',
+    'Loss Rate': 'The percentage of trades that resulted in a loss.',
+    'Max DD': 'Maximum Drawdown - the largest peak-to-trough decline in your portfolio value.',
+    'AVG Loss': 'The average dollar amount lost per losing trade.',
+    'AVG Profit': 'The average dollar amount gained per winning trade.',
+    'AVG RRR': 'Average Risk-Reward Ratio - the average profit per trade compared to the average loss.',
+    'Profit Factor': 'Total gross profit divided by total gross loss. A value above 1 indicates profitability.',
+    'Sharpe Ratio': 'A measure of risk-adjusted return. Higher values indicate better risk-adjusted performance.',
+    'Expectancy': 'The average amount you can expect to win or lose per trade.',
+  };
+
+  const showInfoTooltip = (title: string) => {
+    setInfoTooltip({ visible: true, title, description: infoDescriptions[title] || 'No description available.' });
+  };
   const [datePickerVisible, setDatePickerVisible] = useState(false);
   const [selectedTimePeriod, setSelectedTimePeriod] = useState('All');
   const rotateAnim = useRef(new Animated.Value(0)).current;
@@ -549,7 +571,9 @@ export default function Dashboard() {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.riskStatLabel}>Number of trades</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Number of trades')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.riskStatValue}>30</Text>
               </View>
@@ -582,7 +606,9 @@ export default function Dashboard() {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.riskStatLabel}>Challenge Days</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Challenge Days')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.riskStatValue}>28</Text>
               </View>
@@ -616,7 +642,9 @@ export default function Dashboard() {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.riskStatLabel}>Profit Target</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Profit Target')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.riskStatValue}>(8%) $1600</Text>
               </View>
@@ -650,7 +678,9 @@ export default function Dashboard() {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Max Daily Loss')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.riskStatValue}>(5%) $1000</Text>
               </View>
@@ -684,7 +714,9 @@ export default function Dashboard() {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Max Loss Limit')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.riskStatValue}>(10%) $1600</Text>
               </View>
@@ -761,21 +793,27 @@ export default function Dashboard() {
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>Win Rate</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Win Rate')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>45.5%</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>Loss Rate</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Loss Rate')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#ef4444' }]}>54.5%</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>Max DD</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Max DD')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#ef4444' }]}>$625.00</Text>
               </View>
@@ -784,21 +822,27 @@ export default function Dashboard() {
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>AVG Loss</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('AVG Loss')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#ef4444' }]}>$187.45</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>AVG Profit</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('AVG Profit')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>$215.30</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>AVG RRR</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('AVG RRR')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>1.15</Text>
               </View>
@@ -807,21 +851,27 @@ export default function Dashboard() {
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>Profit Factor</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Profit Factor')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>1.08</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>Sharpe Ratio</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Sharpe Ratio')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>0.42</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                   <Text style={styles.statLabel}>Expectancy</Text>
-                  <Info size={12} color="#64748b" />
+                  <TouchableOpacity onPress={() => showInfoTooltip('Expectancy')}>
+                    <Info size={12} color="#64748b" />
+                  </TouchableOpacity>
                 </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>$5.92</Text>
               </View>
@@ -2285,6 +2335,27 @@ export default function Dashboard() {
             </View>
           </View>
         </View>
+      </Modal>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={infoTooltip.visible}
+        onRequestClose={() => setInfoTooltip({ ...infoTooltip, visible: false })}>
+        <TouchableOpacity
+          style={styles.infoTooltipOverlay}
+          activeOpacity={1}
+          onPress={() => setInfoTooltip({ ...infoTooltip, visible: false })}>
+          <View style={styles.infoTooltipContainer}>
+            <View style={styles.infoTooltipHeader}>
+              <Text style={styles.infoTooltipTitle}>{infoTooltip.title}</Text>
+              <TouchableOpacity onPress={() => setInfoTooltip({ ...infoTooltip, visible: false })}>
+                <X size={20} color="#9ca3af" strokeWidth={2} />
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.infoTooltipDescription}>{infoTooltip.description}</Text>
+          </View>
+        </TouchableOpacity>
       </Modal>
     </View>
   );
@@ -4333,5 +4404,37 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     color: '#fff',
+  },
+  infoTooltipOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  infoTooltipContainer: {
+    backgroundColor: '#1e293b',
+    borderRadius: 16,
+    padding: 20,
+    maxWidth: 320,
+    width: '100%',
+    borderWidth: 1,
+    borderColor: 'rgba(59, 130, 246, 0.3)',
+  },
+  infoTooltipHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  infoTooltipTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  infoTooltipDescription: {
+    fontSize: 14,
+    color: '#94a3b8',
+    lineHeight: 20,
   },
 });
