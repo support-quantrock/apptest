@@ -387,8 +387,16 @@ export const Lesson1Screen3 = ({ onFlip }: { onFlip?: () => void }) => {
 /* ─────────────────────────────
  * Screen 4 - Probability Question
  * ────────────────────────────*/
-export const Lesson1Screen4 = () => {
+export const Lesson1Screen4 = ({ onNext }: { onNext?: () => void }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<'yes' | 'no' | null>(null);
+
+  const handleAnswer = (answer: 'yes' | 'no') => {
+    setSelectedAnswer(answer);
+    // Auto-advance after a short delay to show the selection
+    if (onNext) {
+      setTimeout(onNext, 600);
+    }
+  };
 
   return (
     <LessonScreen>
@@ -421,7 +429,8 @@ export const Lesson1Screen4 = () => {
             styles.answerButton,
             selectedAnswer === 'yes' && styles.answerButtonSelected
           ]}
-          onPress={() => setSelectedAnswer('yes')}
+          onPress={() => handleAnswer('yes')}
+          disabled={selectedAnswer !== null}
         >
           <Text style={[
             styles.answerButtonText,
@@ -434,7 +443,8 @@ export const Lesson1Screen4 = () => {
             styles.answerButtonNo,
             selectedAnswer === 'no' && styles.answerButtonSelectedNo
           ]}
-          onPress={() => setSelectedAnswer('no')}
+          onPress={() => handleAnswer('no')}
+          disabled={selectedAnswer !== null}
         >
           <Text style={[
             styles.answerButtonText,

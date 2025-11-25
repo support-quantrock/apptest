@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated, Dimensions, PanResponder } from 'react-native';
-import { X, TextAlignJustify as AlignJustify, Headphones, Gamepad2, Sparkles, ChevronLeft, Lightbulb } from 'lucide-react-native';
+import { X, TextAlignJustify as AlignJustify, Headphones, Volume2, VolumeX, Gamepad2, Sparkles, ChevronLeft, Lightbulb } from 'lucide-react-native';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState, useRef, useEffect } from 'react';
+import * as Speech from 'expo-speech';
 import {
   Lesson1Screen1,
   Lesson1Screen2,
@@ -15,6 +16,46 @@ import {
   Lesson1Screen9,
   Lesson1Screen10,
 } from '../components/Lesson1Screens';
+import {
+  Lesson2Screen1,
+  Lesson2Screen2,
+  Lesson2Screen3,
+  Lesson2Screen4,
+  Lesson2Screen5,
+  Lesson2Screen6,
+  Lesson2Screen7,
+  Lesson2Screen8,
+  Lesson2Screen9,
+  Lesson2Screen10,
+} from '../components/Lesson2Screens';
+
+// Content text for each screen (Day 1, Lesson 1)
+const lesson1ScreenTexts: { [key: number]: string } = {
+  1: "Hey, future trader! I'm Ben. Over the next 28 days, I'll guide you through the trading challenge. You'll learn how to think like a trader – one decision at a time.",
+  2: "But first, the big question – what is trading? Trading is the buying and selling of assets like stocks, currencies, or crypto. But really, it's about one thing: using price movement to make a profit.",
+  3: "Game time! Your first task: Flip a coin. If it lands on Tails, you win. Heads, you lose.",
+  4: "Nice, you won this time! Now imagine the coin lands on Heads 60% of the time. That gives you just a 40% chance to win. Would you still play?",
+  5: "That's the mindset shift. If you rely on luck, you'll lose. Traders don't gamble – they look for favorable odds and manage risk. You'll use charts, patterns, and tools to stack the probabilities in your favor.",
+  6: "Over the next 28 days, you'll learn how to: Read charts, Spot setups, and Build your strategy.",
+  7: "Quick check. Most traders start by losing money before they learn. How much do you think you need to start trading?",
+  8: "Set an amount using the slider. Choose how much you think you need to start trading.",
+  9: "You don't need real money to learn how to trade. You can earn 1,000 coins by completing each lesson – and more if you keep up your streak. Use these coins in our simulator. It runs on real market data, and updates live as prices change.",
+  10: "That's it for Lesson 1! Let's recap: Trading is NOT gambling, Trading is about stacking probabilities, You don't need to risk real money to learn – use the simulator. Next up: the 3 core trading decisions every trader makes daily. See you there!",
+};
+
+// Content text for each screen (Day 1, Lesson 2)
+const lesson2ScreenTexts: { [key: number]: string } = {
+  1: "It may sound obvious: Buy when you believe the price will rise, Sell to lock profit or limit loss, Hold if you're uncertain – or expect recovery. But in trading, timing defines the outcome.",
+  2: "So, when do you act? Prices move constantly. To make a decision, traders use analysis, which can be either technical or fundamental. But today, you'll skip the theory and jump right into practice – with me.",
+  3: "Game time! Your first trade. Coca-Cola is trading at $60. Analysts predict a move to $72. Do you take the setup?",
+  4: "The price is moving. Watch the chart to see what happens next.",
+  5: "Game time! What now? The stock dipped, then bounced. You're up $2 per share. Many traders exit here. But will you stick to the plan?",
+  6: "The price is rising towards your target of $72. Keep holding!",
+  7: "Target reached! The price hit $72. Time to lock in your profits!",
+  8: "Great job! You made a $12 profit in under 3 minutes. If only trading were always that simple. But what matters is what you just practiced: Buy equals you expect upside, Sell equals you lock the result, Hold equals you stay exposed.",
+  9: "Practice time! Match each trading action with what it actually does. Sell means exit to secure profit or limit loss. Hold means stay in the trade, accepting current risk. Buy means enter the trade with upside expectation.",
+  10: "Today, you made your first trade decision. You saw a setup, handled the dip, and learned why profits aren't real until they're booked. Next up: the difference between trading and investing.",
+};
 
 export default function LessonContent() {
   const params = useLocalSearchParams();
@@ -25,12 +66,56 @@ export default function LessonContent() {
   const [isFlipping, setIsFlipping] = useState(false);
   const [showTails, setShowTails] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const flipAnimation = useRef(new Animated.Value(0)).current;
   const sliderPosition = useRef(new Animated.Value(0)).current;
   const sliderContainerRef = useRef<View>(null);
   const [sliderWidth, setSliderWidth] = useState(0);
 
   const sliderStartPosition = useRef(0);
+
+  // Stop speech when step changes or component unmounts
+  useEffect(() => {
+    return () => {
+      Speech.stop();
+    };
+  }, []);
+
+  useEffect(() => {
+    // Stop speech when moving to a new step
+    Speech.stop();
+    setIsSpeaking(false);
+  }, [step]);
+
+  // Handle text-to-speech
+  const handleSpeak = async () => {
+    if (isSpeaking) {
+      // Stop speaking
+      await Speech.stop();
+      setIsSpeaking(false);
+    } else {
+      // Start speaking
+      let textToSpeak = '';
+
+      if (day === 1 && lesson === 1) {
+        textToSpeak = lesson1ScreenTexts[step] || '';
+      } else if (day === 1 && lesson === 2) {
+        textToSpeak = lesson2ScreenTexts[step] || '';
+      }
+
+      if (textToSpeak) {
+        setIsSpeaking(true);
+        Speech.speak(textToSpeak, {
+          language: 'en-US',
+          pitch: 1.0,
+          rate: 0.9,
+          onDone: () => setIsSpeaking(false),
+          onError: () => setIsSpeaking(false),
+          onStopped: () => setIsSpeaking(false),
+        });
+      }
+    }
+  };
 
   const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
@@ -55,6 +140,14 @@ export default function LessonContent() {
   const handleTap = () => {
     // Day 1, Lesson 1: 10 screens flow
     if (day === 1 && lesson === 1) {
+      if (step < 10) {
+        setStep(step + 1);
+      }
+      return;
+    }
+
+    // Day 1, Lesson 2: 10 screens flow
+    if (day === 1 && lesson === 2) {
       if (step < 10) {
         setStep(step + 1);
       }
@@ -102,8 +195,8 @@ export default function LessonContent() {
   };
 
   const renderProgressIndicator = () => {
-    // Day 1, Lesson 1: 10-step progress
-    if (day === 1 && lesson === 1) {
+    // Day 1, Lesson 1 and 2: 10-step progress
+    if (day === 1 && (lesson === 1 || lesson === 2)) {
       const progress = (step / 10) * 100;
       return (
         <View style={styles.progressBar}>
@@ -184,7 +277,7 @@ export default function LessonContent() {
         case 3:
           return <Lesson1Screen3 onFlip={() => setStep(4)} />;
         case 4:
-          return <Lesson1Screen4 />;
+          return <Lesson1Screen4 onNext={() => setStep(5)} />;
         case 5:
           return <Lesson1Screen5 />;
         case 6:
@@ -202,237 +295,32 @@ export default function LessonContent() {
       }
     }
 
-    if (day === 1 && lesson === 2 && step === 1) {
-      return (
-        <>
-          <Text style={styles.mainTitle}>Buy, sell, or hold?</Text>
-
-          <Text style={styles.description}>
-            Every trader does it. It's always a choice: Buy, Sell, or Hold. In this lesson, you'll learn what to do - and why it matters.
-          </Text>
-
-          <View style={styles.icon2ImageContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-1.jpeg' }}
-              style={styles.icon2Image}
-              contentFit="contain"
-            />
-          </View>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 2) {
-      return (
-        <>
-          <Text style={styles.description}>
-            It may sound obvious:{'\n'}
-            - <Text style={styles.buyText}>Buy</Text> when you believe the price will rise,{'\n'}
-            - <Text style={styles.sellText}>Sell</Text> to lock profit or limit loss,{'\n'}
-            - <Text style={styles.holdText}>Hold</Text> if you're uncertain - or expect recovery.{'\n'}
-            But in trading, timing defines the outcome.
-          </Text>
-
-          <View style={styles.icon2ImageContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-2.jpeg' }}
-              style={styles.icon2Image}
-              contentFit="contain"
-            />
-          </View>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 3) {
-      return (
-        <>
-          <Text style={styles.description}>
-            So, when do you act? Prices move constantly. To make a decision, traders use analysis, which can be either technical or fundamental. But today, you'll skip the theory and jump right into practice - with me.
-          </Text>
-
-          <View style={styles.icon2ImageContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-3.jpeg' }}
-              style={styles.icon2Image}
-              contentFit="contain"
-            />
-          </View>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 4) {
-      return (
-        <>
-          <View style={styles.gameTimeHeader}>
-            <Text style={styles.gameTimeIcon}>🎲</Text>
-            <Text style={styles.gameTimeText}>GAME TIME</Text>
-          </View>
-
-          <Text style={styles.firstTradeTitle}>Your first trade</Text>
-
-          <Text style={styles.description}>
-            Coca-Cola is trading at $60. Analysts predict a move to $72. Do you take the setup?
-          </Text>
-
-          <View style={styles.chartContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-4.svg' }}
-              style={styles.chartImage}
-              contentFit="contain"
-            />
-          </View>
-
-          <TouchableOpacity style={styles.buyButton}>
-            <Text style={styles.buyButtonText}>BUY</Text>
-          </TouchableOpacity>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 5) {
-      return (
-        <>
-          <View style={styles.chartContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-5.jpeg' }}
-              style={styles.volatileChartImage}
-              contentFit="contain"
-            />
-          </View>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 6) {
-      return (
-        <>
-          <View style={styles.gameTimeHeader}>
-            <Gamepad2 size={20} color="#5b5fff" strokeWidth={2} />
-            <Text style={styles.gameTimeText}>GAME TIME</Text>
-          </View>
-
-          <Text style={styles.whatNowTitle}>What now?</Text>
-
-          <Text style={styles.description}>
-            The stock dipped, then bounced. You're up $2 per share. Many traders exit here. But will you stick to the plan?
-          </Text>
-
-          <View style={styles.traderDecisionContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-6.jpeg' }}
-              style={styles.traderDecisionImage}
-              contentFit="contain"
-            />
-          </View>
-
-          <TouchableOpacity style={styles.holdButton}>
-            <Text style={styles.holdButtonText}>HOLD</Text>
-          </TouchableOpacity>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 7) {
-      return (
-        <>
-          <View style={styles.finalChartContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-7.jpeg' }}
-              style={styles.finalChartImage}
-              contentFit="contain"
-            />
-          </View>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 8) {
-      return (
-        <>
-          <Text style={styles.description}>
-            Great job! You made a $12 profit in under 3 minutes. If only trading were always that simple. But what matters is what you just practiced:
-          </Text>
-
-          <View style={styles.tradingActionsContainer}>
-            <View style={styles.tradingActionRow}>
-              <Text style={styles.actionLabel}>-</Text>
-              <Text style={styles.actionText}>
-                <Text style={styles.buyText}>Buy</Text> = you expect upside
-              </Text>
-            </View>
-
-            <View style={styles.tradingActionRow}>
-              <Text style={styles.actionLabel}>-</Text>
-              <Text style={styles.actionText}>
-                <Text style={styles.sellText}>Sell</Text> = you lock the result
-              </Text>
-            </View>
-
-            <View style={styles.tradingActionRow}>
-              <Text style={styles.actionLabel}>-</Text>
-              <Text style={styles.actionText}>
-                <Text style={styles.holdText}>Hold</Text> = you stay exposed
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.tradingIconsContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-8.jpeg' }}
-              style={styles.tradingIconsImage}
-              contentFit="contain"
-            />
-          </View>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 9) {
-      return (
-        <>
-          <View style={styles.selectMatchHeader}>
-            <Sparkles size={20} color="#5b5fff" strokeWidth={2} />
-            <Text style={styles.selectMatchText}>SELECT THE MATCH</Text>
-          </View>
-
-          <Text style={styles.step9Title}>Practice time!</Text>
-
-          <Text style={styles.description}>
-            Match each trading action with what it actually does.
-          </Text>
-
-          <View style={styles.matchingGameContainer}>
-            <Image
-              source={{ uri: '/assets/d1-2-9.jpeg' }}
-              style={styles.matchingGameImage}
-              contentFit="contain"
-            />
-          </View>
-
-          <View style={styles.hintContainer}>
-            <Lightbulb size={16} color="#5b5fff" strokeWidth={2} />
-            <Text style={styles.hintText}>
-              Stuck? <Text style={styles.hintLink}>Use a hint</Text>
-            </Text>
-          </View>
-        </>
-      );
-    }
-
-    if (day === 1 && lesson === 2 && step === 10) {
-      return (
-        <>
-          <Text style={styles.description}>
-            Today, you made your first trade decision. You saw a setup, handled the dip, and learned why profits aren't real until they're booked. Next up: the difference between trading and investing.
-          </Text>
-
-          <TouchableOpacity style={styles.finishLessonButton}>
-            <Text style={styles.finishLessonButtonText}>FINISH LESSON</Text>
-          </TouchableOpacity>
-        </>
-      );
+    // Day 1, Lesson 2: Use new Lesson2Screens component flow
+    if (day === 1 && lesson === 2) {
+      switch (step) {
+        case 1:
+          return <Lesson2Screen1 />;
+        case 2:
+          return <Lesson2Screen2 />;
+        case 3:
+          return <Lesson2Screen3 onBuy={() => setStep(4)} />;
+        case 4:
+          return <Lesson2Screen4 />;
+        case 5:
+          return <Lesson2Screen5 onHold={() => setStep(6)} />;
+        case 6:
+          return <Lesson2Screen6 />;
+        case 7:
+          return <Lesson2Screen7 onSell={() => setStep(8)} />;
+        case 8:
+          return <Lesson2Screen8 />;
+        case 9:
+          return <Lesson2Screen9 onNext={() => setStep(10)} />;
+        case 10:
+          return <Lesson2Screen10 onFinish={() => router.push('/qchat')} />;
+        default:
+          return <Lesson2Screen1 />;
+      }
     }
 
     if (step === 1) {
@@ -795,7 +683,8 @@ export default function LessonContent() {
   };
 
   // Determine if using dark theme (Day 1 Lesson 1)
-  const isDarkTheme = day === 1 && lesson === 1;
+  // Use dark theme for Day 1 Lesson 1 and Lesson 2
+  const isDarkTheme = day === 1 && (lesson === 1 || lesson === 2);
 
   return (
     <View style={[styles.container, isDarkTheme && styles.containerDark]}>
@@ -809,8 +698,12 @@ export default function LessonContent() {
           <TouchableOpacity style={styles.iconButton}>
             <AlignJustify size={24} color="#fff" strokeWidth={2} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <Headphones size={24} color={isDarkTheme ? "#fff" : "#1f2937"} strokeWidth={2} />
+          <TouchableOpacity style={[styles.iconButton, isSpeaking && styles.iconButtonActive]} onPress={handleSpeak}>
+            {isSpeaking ? (
+              <VolumeX size={24} color="#fff" strokeWidth={2} />
+            ) : (
+              <Headphones size={24} color={isDarkTheme ? "#fff" : "#1f2937"} strokeWidth={2} />
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -824,42 +717,50 @@ export default function LessonContent() {
           (day === 1 && lesson === 1 && step === 10) ||
           // Disable tap on step 8 (slider interaction)
           (day === 1 && lesson === 1 && step === 8) ||
+          // Disable tap on step 4 (yes/no interaction)
+          (day === 1 && lesson === 1 && step === 4) ||
           // Disable tap on step 3 (coin flip interaction)
           (day === 1 && lesson === 1 && step === 3) ||
+          // Lesson 2 interactive screens
+          (day === 1 && lesson === 2 && step === 3) || // BUY button
+          (day === 1 && lesson === 2 && step === 5) || // HOLD button
+          (day === 1 && lesson === 2 && step === 7) || // SELL button
+          (day === 1 && lesson === 2 && step === 9) || // Matching game
+          (day === 1 && lesson === 2 && step === 10) || // Finish button
           // Legacy: disable on step 7 for other lessons
-          (day !== 1 || lesson !== 1) && step === 7
+          (day !== 1 || (lesson !== 1 && lesson !== 2)) && step === 7
         }
       >
         <ScrollView
           style={[
             styles.content,
-            // For Day 1 Lesson 1, use dark background
-            day === 1 && lesson === 1 && { backgroundColor: '#0b1020' }
+            // For Day 1 Lesson 1 and 2, use dark background
+            day === 1 && (lesson === 1 || lesson === 2) && { backgroundColor: '#0b1020' }
           ]}
           showsVerticalScrollIndicator={false}
-          scrollEnabled={day === 1 && lesson === 1 ? true : step === 7}
+          scrollEnabled={day === 1 && (lesson === 1 || lesson === 2) ? true : step === 7}
         >
-          {/* Progress indicator for Day 1 Lesson 1 */}
-          {day === 1 && lesson === 1 && renderProgressIndicator()}
+          {/* Progress indicator for Day 1 Lesson 1 and 2 */}
+          {day === 1 && (lesson === 1 || lesson === 2) && renderProgressIndicator()}
 
           {/* Progress indicator for other lessons */}
-          {(day !== 1 || lesson !== 1) && step === 1 && renderProgressIndicator()}
-          {(day !== 1 || lesson !== 1) && step === 4 && renderProgressIndicator()}
-          {(day !== 1 || lesson !== 1) && step === 5 && renderProgressIndicator()}
-          {(day !== 1 || lesson !== 1) && step === 6 && renderProgressIndicator()}
-          {(day !== 1 || lesson !== 1) && step === 7 && renderProgressIndicator()}
+          {(day !== 1 || (lesson !== 1 && lesson !== 2)) && step === 1 && renderProgressIndicator()}
+          {(day !== 1 || (lesson !== 1 && lesson !== 2)) && step === 4 && renderProgressIndicator()}
+          {(day !== 1 || (lesson !== 1 && lesson !== 2)) && step === 5 && renderProgressIndicator()}
+          {(day !== 1 || (lesson !== 1 && lesson !== 2)) && step === 6 && renderProgressIndicator()}
+          {(day !== 1 || (lesson !== 1 && lesson !== 2)) && step === 7 && renderProgressIndicator()}
 
           {renderContent()}
 
           {/* Legacy: Flip coin button for old implementation (not used for new screens) */}
-          {day === 1 && lesson !== 1 && step === 3 && (
+          {day === 1 && lesson !== 1 && lesson !== 2 && step === 3 && (
             <TouchableOpacity style={styles.flipButton} onPress={handleFlipCoin} disabled={isFlipping}>
               <Text style={styles.flipButtonText}>FLIP COIN</Text>
             </TouchableOpacity>
           )}
 
-          {/* Bottom nav for non-lesson-1 content */}
-          {(day !== 1 || lesson !== 1) && step !== 3 && step !== 4 && step !== 5 && step !== 6 && step !== 7 && step !== 9 && (
+          {/* Bottom nav for non-lesson-1 and non-lesson-2 content */}
+          {(day !== 1 || (lesson !== 1 && lesson !== 2)) && step !== 3 && step !== 4 && step !== 5 && step !== 6 && step !== 7 && step !== 9 && (
             <View style={styles.bottomNav}>
               <TouchableOpacity style={styles.navButton}>
                 <View style={styles.navButtonInner} />
@@ -935,6 +836,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#5b5fff',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  iconButtonActive: {
+    backgroundColor: '#ef4444',
   },
   tappableArea: {
     flex: 1,

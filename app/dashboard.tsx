@@ -605,6 +605,7 @@ export default function Dashboard() {
                   </Svg>
                   <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ color: '#fff', fontSize: 26, fontWeight: '700' }}>$1200</Text>
+                    <Text style={{ color: '#10b981', fontSize: 12, fontWeight: '600' }}>6%</Text>
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Profit Target</Text>
@@ -635,6 +636,7 @@ export default function Dashboard() {
                   </Svg>
                   <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>$500</Text>
+                    <Text style={{ color: '#ef4444', fontSize: 12, fontWeight: '600' }}>2.5%</Text>
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
@@ -665,6 +667,7 @@ export default function Dashboard() {
                   </Svg>
                   <View style={{ position: 'absolute', top: 0, left: 0, width: 120, height: 120, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ color: '#fff', fontSize: 26, fontWeight: '700' }}>$1500</Text>
+                    <Text style={{ color: '#ef4444', fontSize: 12, fontWeight: '600' }}>9.4%</Text>
                   </View>
                 </View>
                 <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
