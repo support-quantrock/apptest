@@ -1457,9 +1457,13 @@ export default function QChat() {
           activeOpacity={1}
           onPress={() => setParticipantModalVisible(false)}>
           <View style={styles.participantModalContainer}>
-            <TouchableOpacity
-              activeOpacity={1}
-              onPress={(e) => e.stopPropagation()}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              bounces={false}
+              style={{ maxHeight: '90%' }}>
+              <TouchableOpacity
+                activeOpacity={1}
+                onPress={(e) => e.stopPropagation()}>
 
               {/* Modal Header */}
               <View style={styles.participantModalHeader}>
@@ -1638,6 +1642,54 @@ export default function QChat() {
                     <Text style={styles.participantModalObjectiveTarget}>/ 8%</Text>
                   </View>
                 </View>
+                <View style={[styles.participantModalObjectivesRow, { marginTop: 16, justifyContent: 'center', gap: 24 }]}>
+                  <View style={styles.participantModalObjectiveItem}>
+                    <View style={styles.participantModalObjectiveCircle}>
+                      <Svg width={80} height={80} viewBox="0 0 80 80">
+                        <Circle cx={40} cy={40} r={32} stroke="#1e293b" strokeWidth={6} fill="none" />
+                        <Circle
+                          cx={40}
+                          cy={40}
+                          r={32}
+                          stroke="#ef4444"
+                          strokeWidth={6}
+                          fill="none"
+                          strokeDasharray={`${201 * 0.35} ${201 * 0.65}`}
+                          strokeLinecap="round"
+                          transform="rotate(-90 40 40)"
+                        />
+                      </Svg>
+                      <View style={styles.participantModalObjectiveCircleContent}>
+                        <Text style={styles.participantModalObjectiveValueSmall}>1.8%</Text>
+                      </View>
+                    </View>
+                    <Text style={styles.participantModalObjectiveLabel}>Max Daily Loss</Text>
+                    <Text style={styles.participantModalObjectiveTarget}>/ 5%</Text>
+                  </View>
+                  <View style={styles.participantModalObjectiveItem}>
+                    <View style={styles.participantModalObjectiveCircle}>
+                      <Svg width={80} height={80} viewBox="0 0 80 80">
+                        <Circle cx={40} cy={40} r={32} stroke="#1e293b" strokeWidth={6} fill="none" />
+                        <Circle
+                          cx={40}
+                          cy={40}
+                          r={32}
+                          stroke="#ef4444"
+                          strokeWidth={6}
+                          fill="none"
+                          strokeDasharray={`${201 * 0.45} ${201 * 0.55}`}
+                          strokeLinecap="round"
+                          transform="rotate(-90 40 40)"
+                        />
+                      </Svg>
+                      <View style={styles.participantModalObjectiveCircleContent}>
+                        <Text style={styles.participantModalObjectiveValueSmall}>4.5%</Text>
+                      </View>
+                    </View>
+                    <Text style={styles.participantModalObjectiveLabel}>Max Loss Limit</Text>
+                    <Text style={styles.participantModalObjectiveTarget}>/ 10%</Text>
+                  </View>
+                </View>
               </View>
 
               {/* Assets Allocation */}
@@ -1715,7 +1767,8 @@ export default function QChat() {
                 </View>
               </View>
 
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </ScrollView>
           </View>
         </TouchableOpacity>
       </Modal>
@@ -2778,6 +2831,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '100%',
     maxWidth: 400,
+    maxHeight: '85%',
     borderWidth: 1,
     borderColor: 'rgba(139, 92, 246, 0.3)',
   },
