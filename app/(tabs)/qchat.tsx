@@ -35,6 +35,9 @@ export default function QChat() {
   const [expandedTrading, setExpandedTrading] = useState(false);
   const [expandedCard1, setExpandedCard1] = useState(false);
   const [expandedCard4, setExpandedCard4] = useState(false);
+  const [trainingViewMode, setTrainingViewMode] = useState<'group' | 'global'>('global');
+  const [challengeViewMode, setChallengeViewMode] = useState<'group' | 'global'>('global');
+  const [tradingViewMode, setTradingViewMode] = useState<'group' | 'global'>('global');
   const carouselRef = useRef<ScrollView>(null);
   const sponsorCarouselRef = useRef<ScrollView>(null);
   const { width } = useWindowDimensions();
@@ -144,6 +147,46 @@ export default function QChat() {
     { rank: 8, name: 'Mark Johnson', profit: '+18.9%', trades: 58, country: 'US', profitAmount: '$56,700', equity: '$356,700', gain: '19%', accountSize: '$300,000.00' },
     { rank: 9, name: 'Emily Zhang', profit: '+17.6%', trades: 49, country: 'CN', profitAmount: '$52,800', equity: '$352,800', gain: '18%', accountSize: '$300,000.00' },
     { rank: 10, name: 'Alex Rivera', profit: '+16.8%', trades: 51, country: 'US', profitAmount: '$50,400', equity: '$350,400', gain: '17%', accountSize: '$300,000.00' },
+  ];
+
+  // Group leaderboard data (different participants for group mode)
+  const groupLeaderboardData = [
+    { rank: 1, name: 'Marcus Webb', profit: '+19.2%', trades: 38, country: 'CA', profitAmount: '$57,600', equity: '$357,600', gain: '19%', accountSize: '$300,000.00' },
+    { rank: 2, name: 'Yuki Tanaka', profit: '+17.5%', trades: 42, country: 'JP', profitAmount: '$52,500', equity: '$352,500', gain: '18%', accountSize: '$300,000.00' },
+    { rank: 3, name: 'Hans Mueller', profit: '+15.3%', trades: 35, country: 'DE', profitAmount: '$45,900', equity: '$345,900', gain: '15%', accountSize: '$300,000.00' },
+    { rank: 4, name: 'Pierre Dubois', profit: '+14.6%', trades: 31, country: 'FR', profitAmount: '$43,800', equity: '$343,800', gain: '15%', accountSize: '$300,000.00' },
+    { rank: 5, name: 'Rosa Martinez', profit: '+13.8%', trades: 29, country: 'ES', profitAmount: '$41,400', equity: '$341,400', gain: '14%', accountSize: '$300,000.00' },
+    { rank: 6, name: 'Liam O\'Connor', profit: '+12.9%', trades: 33, country: 'GB', profitAmount: '$38,700', equity: '$338,700', gain: '13%', accountSize: '$300,000.00' },
+    { rank: 7, name: 'Chen Wei', profit: '+12.1%', trades: 27, country: 'CN', profitAmount: '$36,300', equity: '$336,300', gain: '12%', accountSize: '$300,000.00' },
+    { rank: 8, name: 'Anna Kowalski', profit: '+11.4%', trades: 25, country: 'DE', profitAmount: '$34,200', equity: '$334,200', gain: '11%', accountSize: '$300,000.00' },
+    { rank: 9, name: 'Carlos Santos', profit: '+10.8%', trades: 28, country: 'ES', profitAmount: '$32,400', equity: '$332,400', gain: '11%', accountSize: '$300,000.00' },
+    { rank: 10, name: 'Mia Anderson', profit: '+10.1%', trades: 24, country: 'AU', profitAmount: '$30,300', equity: '$330,300', gain: '10%', accountSize: '$300,000.00' },
+  ];
+
+  const groupTrainingLeaderboardData = [
+    { rank: 1, name: 'Jake Thompson', profit: '+20.1%', trades: 40, country: 'US', profitAmount: '$60,300', equity: '$360,300', gain: '20%', accountSize: '$300,000.00' },
+    { rank: 2, name: 'Aiko Yamamoto', profit: '+18.4%', trades: 36, country: 'JP', profitAmount: '$55,200', equity: '$355,200', gain: '18%', accountSize: '$300,000.00' },
+    { rank: 3, name: 'Felix Schmidt', profit: '+16.7%', trades: 32, country: 'DE', profitAmount: '$50,100', equity: '$350,100', gain: '17%', accountSize: '$300,000.00' },
+    { rank: 4, name: 'Isabella Rossi', profit: '+15.2%', trades: 30, country: 'IT', profitAmount: '$45,600', equity: '$345,600', gain: '15%', accountSize: '$300,000.00' },
+    { rank: 5, name: 'Noah Williams', profit: '+14.5%', trades: 28, country: 'GB', profitAmount: '$43,500', equity: '$343,500', gain: '15%', accountSize: '$300,000.00' },
+    { rank: 6, name: 'Sophie Laurent', profit: '+13.7%', trades: 26, country: 'FR', profitAmount: '$41,100', equity: '$341,100', gain: '14%', accountSize: '$300,000.00' },
+    { rank: 7, name: 'Lucas Silva', profit: '+12.8%', trades: 24, country: 'ES', profitAmount: '$38,400', equity: '$338,400', gain: '13%', accountSize: '$300,000.00' },
+    { rank: 8, name: 'Emma Nguyen', profit: '+11.9%', trades: 22, country: 'AU', profitAmount: '$35,700', equity: '$335,700', gain: '12%', accountSize: '$300,000.00' },
+    { rank: 9, name: 'Oliver Park', profit: '+11.2%', trades: 20, country: 'CA', profitAmount: '$33,600', equity: '$333,600', gain: '11%', accountSize: '$300,000.00' },
+    { rank: 10, name: 'Chloe Kim', profit: '+10.5%', trades: 18, country: 'US', profitAmount: '$31,500', equity: '$331,500', gain: '11%', accountSize: '$300,000.00' },
+  ];
+
+  const groupTradingLeaderboardData = [
+    { rank: 1, name: 'Ryan Mitchell', profit: '+32.4%', trades: 65, country: 'US', profitAmount: '$97,200', equity: '$397,200', gain: '32%', accountSize: '$300,000.00' },
+    { rank: 2, name: 'Sakura Ito', profit: '+26.8%', trades: 58, country: 'JP', profitAmount: '$80,400', equity: '$380,400', gain: '27%', accountSize: '$300,000.00' },
+    { rank: 3, name: 'Max Weber', profit: '+22.9%', trades: 52, country: 'DE', profitAmount: '$68,700', equity: '$368,700', gain: '23%', accountSize: '$300,000.00' },
+    { rank: 4, name: 'Elena Popov', profit: '+21.1%', trades: 48, country: 'FR', profitAmount: '$63,300', equity: '$363,300', gain: '21%', accountSize: '$300,000.00' },
+    { rank: 5, name: 'James Lee', profit: '+19.7%', trades: 55, country: 'GB', profitAmount: '$59,100', equity: '$359,100', gain: '20%', accountSize: '$300,000.00' },
+    { rank: 6, name: 'Luna Garcia', profit: '+18.3%', trades: 46, country: 'ES', profitAmount: '$54,900', equity: '$354,900', gain: '18%', accountSize: '$300,000.00' },
+    { rank: 7, name: 'Ethan Brown', profit: '+17.1%', trades: 50, country: 'AU', profitAmount: '$51,300', equity: '$351,300', gain: '17%', accountSize: '$300,000.00' },
+    { rank: 8, name: 'Aria Chen', profit: '+16.2%', trades: 44, country: 'CN', profitAmount: '$48,600', equity: '$348,600', gain: '16%', accountSize: '$300,000.00' },
+    { rank: 9, name: 'Leo Martin', profit: '+15.4%', trades: 42, country: 'CA', profitAmount: '$46,200', equity: '$346,200', gain: '15%', accountSize: '$300,000.00' },
+    { rank: 10, name: 'Zoe Adams', profit: '+14.7%', trades: 40, country: 'US', profitAmount: '$44,100', equity: '$344,100', gain: '15%', accountSize: '$300,000.00' },
   ];
 
   const bankingSponsors = [
@@ -614,10 +657,24 @@ export default function QChat() {
 
                 <View style={styles.cardTitle}>
                   <View style={styles.cardTitleLeft}>
-                    <Trophy size={28} color="#fbbf24" strokeWidth={2} />
+                    <View style={styles.trophyRankColumn}>
+                      <Trophy size={28} color="#fbbf24" strokeWidth={2} />
+                      <Text style={styles.yourRankText}>Rank: 15</Text>
+                    </View>
                     <Text style={styles.titleText}>{st === 0 ? 'Learning Leaderboard' : 'Training Leaderboard'}</Text>
                   </View>
-                  <Text style={styles.yourRankText}>Your rank: 15</Text>
+                  <View style={styles.pillToggleContainer}>
+                    <TouchableOpacity
+                      style={[styles.pillToggleOption, trainingViewMode === 'group' && styles.pillToggleOptionActive]}
+                      onPress={() => setTrainingViewMode('group')}>
+                      <Text style={[styles.pillToggleText, trainingViewMode === 'group' && styles.pillToggleTextActive]}>Group</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[styles.pillToggleOption, trainingViewMode === 'global' && styles.pillToggleOptionActive]}
+                      onPress={() => setTrainingViewMode('global')}>
+                      <Text style={[styles.pillToggleText, trainingViewMode === 'global' && styles.pillToggleTextActive]}>Global</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
 
                 <View style={styles.podiumContainer}>
@@ -634,10 +691,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(trainingLeaderboardData[1].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[1].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{trainingLeaderboardData[1].name}</Text>
+                      <Text style={styles.userName}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[1].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -647,8 +704,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.168).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{trainingLeaderboardData[1].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{trainingLeaderboardData[1].profit}</Text>
+                        <Text style={styles.profitAmount}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[1].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[1].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -666,10 +723,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(trainingLeaderboardData[0].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[0].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{trainingLeaderboardData[0].name}</Text>
+                      <Text style={styles.userName}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[0].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -679,8 +736,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.223).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{trainingLeaderboardData[0].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{trainingLeaderboardData[0].profit}</Text>
+                        <Text style={styles.profitAmount}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[0].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[0].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -698,10 +755,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(trainingLeaderboardData[2].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[2].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{trainingLeaderboardData[2].name}</Text>
+                      <Text style={styles.userName}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[2].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -711,8 +768,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.142).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{trainingLeaderboardData[2].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{trainingLeaderboardData[2].profit}</Text>
+                        <Text style={styles.profitAmount}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[2].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData)[2].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -731,7 +788,7 @@ export default function QChat() {
 
                 {expandedTraining && (
                   <View style={styles.expandedList}>
-                    {trainingLeaderboardData.slice(3).map((item) => (
+                    {(trainingViewMode === 'global' ? trainingLeaderboardData : groupTrainingLeaderboardData).slice(3).map((item) => (
                       <View key={item.rank} style={styles.detailedLeaderboardCard}>
                         <View style={styles.rankCircle}>
                           <Text style={styles.rankCircleText}>{item.rank}</Text>
@@ -872,10 +929,24 @@ export default function QChat() {
 
                 <View style={styles.cardTitle}>
                   <View style={styles.cardTitleLeft}>
-                    <Trophy size={28} color="#fbbf24" strokeWidth={2} />
+                    <View style={styles.trophyRankColumn}>
+                      <Trophy size={28} color="#fbbf24" strokeWidth={2} />
+                      <Text style={styles.yourRankText}>Rank: 15</Text>
+                    </View>
                     <Text style={styles.titleText}>Challenge Leaderboard</Text>
                   </View>
-                  <Text style={styles.yourRankText}>Your rank: 15</Text>
+                  <View style={styles.pillToggleContainer}>
+                    <TouchableOpacity
+                      style={[styles.pillToggleOption, challengeViewMode === 'group' && styles.pillToggleOptionActive]}
+                      onPress={() => setChallengeViewMode('group')}>
+                      <Text style={[styles.pillToggleText, challengeViewMode === 'group' && styles.pillToggleTextActive]}>Group</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[styles.pillToggleOption, challengeViewMode === 'global' && styles.pillToggleOptionActive]}
+                      onPress={() => setChallengeViewMode('global')}>
+                      <Text style={[styles.pillToggleText, challengeViewMode === 'global' && styles.pillToggleTextActive]}>Global</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
 
                 <View style={styles.podiumContainer}>
@@ -892,10 +963,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(leaderboardData[1].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[1].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{leaderboardData[1].name}</Text>
+                      <Text style={styles.userName}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[1].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -905,8 +976,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.182).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{leaderboardData[1].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{leaderboardData[1].profit}</Text>
+                        <Text style={styles.profitAmount}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[1].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[1].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -924,10 +995,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(leaderboardData[0].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[0].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{leaderboardData[0].name}</Text>
+                      <Text style={styles.userName}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[0].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -937,8 +1008,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.245).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{leaderboardData[0].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{leaderboardData[0].profit}</Text>
+                        <Text style={styles.profitAmount}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[0].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[0].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -956,10 +1027,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(leaderboardData[2].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[2].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{leaderboardData[2].name}</Text>
+                      <Text style={styles.userName}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[2].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -969,8 +1040,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.158).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{leaderboardData[2].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{leaderboardData[2].profit}</Text>
+                        <Text style={styles.profitAmount}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[2].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData)[2].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -989,7 +1060,7 @@ export default function QChat() {
 
                 {expandedChallenge && (
                   <View style={styles.expandedList}>
-                    {leaderboardData.slice(3).map((item) => (
+                    {(challengeViewMode === 'global' ? leaderboardData : groupLeaderboardData).slice(3).map((item) => (
                       <View key={item.rank} style={styles.detailedLeaderboardCard}>
                         <View style={styles.rankCircle}>
                           <Text style={styles.rankCircleText}>{item.rank}</Text>
@@ -1129,8 +1200,25 @@ export default function QChat() {
                 style={styles.gradientCard}>
 
                 <View style={styles.cardTitle}>
-                  <Trophy size={28} color="#fbbf24" strokeWidth={2} />
-                  <Text style={styles.titleText}>Trading Leaderboard</Text>
+                  <View style={styles.cardTitleLeft}>
+                    <View style={styles.trophyRankColumn}>
+                      <Trophy size={28} color="#fbbf24" strokeWidth={2} />
+                      <Text style={styles.yourRankText}>Rank: 15</Text>
+                    </View>
+                    <Text style={styles.titleText}>Trading Leaderboard</Text>
+                  </View>
+                  <View style={styles.pillToggleContainer}>
+                    <TouchableOpacity
+                      style={[styles.pillToggleOption, tradingViewMode === 'group' && styles.pillToggleOptionActive]}
+                      onPress={() => setTradingViewMode('group')}>
+                      <Text style={[styles.pillToggleText, tradingViewMode === 'group' && styles.pillToggleTextActive]}>Group</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={[styles.pillToggleOption, tradingViewMode === 'global' && styles.pillToggleOptionActive]}
+                      onPress={() => setTradingViewMode('global')}>
+                      <Text style={[styles.pillToggleText, tradingViewMode === 'global' && styles.pillToggleTextActive]}>Global</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
 
                 <View style={styles.podiumContainer}>
@@ -1147,10 +1235,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(tradingLeaderboardData[1].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[1].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{tradingLeaderboardData[1].name}</Text>
+                      <Text style={styles.userName}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[1].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -1160,8 +1248,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.287).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{tradingLeaderboardData[1].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{tradingLeaderboardData[1].profit}</Text>
+                        <Text style={styles.profitAmount}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[1].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[1].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -1179,10 +1267,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(tradingLeaderboardData[0].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[0].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{tradingLeaderboardData[0].name}</Text>
+                      <Text style={styles.userName}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[0].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -1192,8 +1280,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.359).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{tradingLeaderboardData[0].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{tradingLeaderboardData[0].profit}</Text>
+                        <Text style={styles.profitAmount}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[0].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[0].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -1211,10 +1299,10 @@ export default function QChat() {
                           transition={200}
                         />
                       </View>
-                      <Text style={styles.podiumFlag}>{getCountryFlag(tradingLeaderboardData[2].country)}</Text>
+                      <Text style={styles.podiumFlag}>{getCountryFlag((tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[2].country)}</Text>
                     </View>
                     <View style={styles.podiumContent}>
-                      <Text style={styles.userName}>{tradingLeaderboardData[2].name}</Text>
+                      <Text style={styles.userName}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[2].name}</Text>
                       <View style={styles.portfolioRow}>
                         <Text style={styles.portfolioLabel}>Portfolio:</Text>
                       </View>
@@ -1224,8 +1312,8 @@ export default function QChat() {
                         <Text style={styles.portfolioValueAfter}>${(300 * 1.241).toFixed(0)}K</Text>
                       </View>
                       <View style={styles.profitBox}>
-                        <Text style={styles.profitAmount}>{tradingLeaderboardData[2].profitAmount}</Text>
-                        <Text style={styles.profitPercent}>{tradingLeaderboardData[2].profit}</Text>
+                        <Text style={styles.profitAmount}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[2].profitAmount}</Text>
+                        <Text style={styles.profitPercent}>{(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData)[2].profit}</Text>
                       </View>
                     </View>
                   </View>
@@ -1244,7 +1332,7 @@ export default function QChat() {
 
                 {expandedTrading && (
                   <View style={styles.expandedList}>
-                    {tradingLeaderboardData.slice(3).map((item) => (
+                    {(tradingViewMode === 'global' ? tradingLeaderboardData : groupTradingLeaderboardData).slice(3).map((item) => (
                       <View key={item.rank} style={styles.detailedLeaderboardCard}>
                         <View style={styles.rankCircle}>
                           <Text style={styles.rankCircleText}>{item.rank}</Text>
@@ -1533,11 +1621,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
+  trophyRankColumn: {
+    alignItems: 'center',
+    gap: 4,
+  },
   yourRankText: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '600',
     color: '#fff',
     opacity: 0.9,
+  },
+  pillToggleContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderRadius: 20,
+    padding: 3,
+  },
+  pillToggleOption: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 17,
+  },
+  pillToggleOptionActive: {
+    backgroundColor: '#fff',
+  },
+  pillToggleText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: 'rgba(255,255,255,0.7)',
+  },
+  pillToggleTextActive: {
+    color: '#1e293b',
   },
   titleText: {
     fontSize: 18,
