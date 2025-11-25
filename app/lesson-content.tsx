@@ -3,6 +3,18 @@ import { X, TextAlignJustify as AlignJustify, Headphones, Gamepad2, Sparkles, Ch
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState, useRef, useEffect } from 'react';
+import {
+  Lesson1Screen1,
+  Lesson1Screen2,
+  Lesson1Screen3,
+  Lesson1Screen4,
+  Lesson1Screen5,
+  Lesson1Screen6,
+  Lesson1Screen7,
+  Lesson1Screen8,
+  Lesson1Screen9,
+  Lesson1Screen10,
+} from '../components/Lesson1Screens';
 
 export default function LessonContent() {
   const params = useLocalSearchParams();
@@ -41,6 +53,15 @@ export default function LessonContent() {
   });
 
   const handleTap = () => {
+    // Day 1, Lesson 1: 10 screens flow
+    if (day === 1 && lesson === 1) {
+      if (step < 10) {
+        setStep(step + 1);
+      }
+      return;
+    }
+
+    // Default behavior for other lessons
     if (step === 1) {
       setStep(2);
     } else if (step === 2) {
@@ -81,6 +102,17 @@ export default function LessonContent() {
   };
 
   const renderProgressIndicator = () => {
+    // Day 1, Lesson 1: 10-step progress
+    if (day === 1 && lesson === 1) {
+      const progress = (step / 10) * 100;
+      return (
+        <View style={styles.progressBar}>
+          <View style={[styles.progressFill, { width: `${progress}%` }]} />
+        </View>
+      );
+    }
+
+    // Default progress indicators for other lessons
     if (step === 1) {
       return (
         <View style={styles.progressBar}>
@@ -142,6 +174,34 @@ export default function LessonContent() {
   };
 
   const renderContent = () => {
+    // Day 1, Lesson 1: Use new Lesson1Screens component flow
+    if (day === 1 && lesson === 1) {
+      switch (step) {
+        case 1:
+          return <Lesson1Screen1 />;
+        case 2:
+          return <Lesson1Screen2 />;
+        case 3:
+          return <Lesson1Screen3 />;
+        case 4:
+          return <Lesson1Screen4 />;
+        case 5:
+          return <Lesson1Screen5 />;
+        case 6:
+          return <Lesson1Screen6 />;
+        case 7:
+          return <Lesson1Screen7 />;
+        case 8:
+          return <Lesson1Screen8 />;
+        case 9:
+          return <Lesson1Screen9 />;
+        case 10:
+          return <Lesson1Screen10 onFinish={() => router.push('/qchat')} />;
+        default:
+          return <Lesson1Screen1 />;
+      }
+    }
+
     if (day === 1 && lesson === 2 && step === 1) {
       return (
         <>
@@ -734,40 +794,70 @@ export default function LessonContent() {
     return null;
   };
 
+  // Determine if using dark theme (Day 1 Lesson 1)
+  const isDarkTheme = day === 1 && lesson === 1;
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
+    <View style={[styles.container, isDarkTheme && styles.containerDark]}>
+      <View style={[styles.header, isDarkTheme && styles.headerDark]}>
         <TouchableOpacity onPress={() => router.back()}>
-          <X size={28} color="#1f2937" strokeWidth={2} />
+          <X size={28} color={isDarkTheme ? "#f5f7ff" : "#1f2937"} strokeWidth={2} />
         </TouchableOpacity>
 
         <View style={styles.headerRight}>
-          {(step === 2 || step === 3) && renderProgressIndicator()}
+          {!isDarkTheme && (step === 2 || step === 3) && renderProgressIndicator()}
           <TouchableOpacity style={styles.iconButton}>
             <AlignJustify size={24} color="#fff" strokeWidth={2} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
-            <Headphones size={24} color="#1f2937" strokeWidth={2} />
+            <Headphones size={24} color={isDarkTheme ? "#fff" : "#1f2937"} strokeWidth={2} />
           </TouchableOpacity>
         </View>
       </View>
 
-      <TouchableOpacity activeOpacity={1} onPress={handleTap} style={styles.tappableArea} disabled={(day === 1 && lesson === 1 && step === 3) || step === 7}>
-        <ScrollView style={styles.content} showsVerticalScrollIndicator={false} scrollEnabled={step === 7}>
-          {step === 1 && renderProgressIndicator()}
-          {step === 4 && renderProgressIndicator()}
-          {step === 5 && renderProgressIndicator()}
-          {step === 6 && renderProgressIndicator()}
-          {step === 7 && renderProgressIndicator()}
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={handleTap}
+        style={styles.tappableArea}
+        disabled={
+          // Disable tap on step 10 of lesson 1 (finish button handles it)
+          (day === 1 && lesson === 1 && step === 10) ||
+          // Disable tap on step 8 (slider interaction)
+          (day === 1 && lesson === 1 && step === 8) ||
+          // Legacy: disable on step 7 for other lessons
+          (day !== 1 || lesson !== 1) && step === 7
+        }
+      >
+        <ScrollView
+          style={[
+            styles.content,
+            // For Day 1 Lesson 1, use dark background
+            day === 1 && lesson === 1 && { backgroundColor: '#0b1020' }
+          ]}
+          showsVerticalScrollIndicator={false}
+          scrollEnabled={day === 1 && lesson === 1 ? true : step === 7}
+        >
+          {/* Progress indicator for Day 1 Lesson 1 */}
+          {day === 1 && lesson === 1 && renderProgressIndicator()}
+
+          {/* Progress indicator for other lessons */}
+          {(day !== 1 || lesson !== 1) && step === 1 && renderProgressIndicator()}
+          {(day !== 1 || lesson !== 1) && step === 4 && renderProgressIndicator()}
+          {(day !== 1 || lesson !== 1) && step === 5 && renderProgressIndicator()}
+          {(day !== 1 || lesson !== 1) && step === 6 && renderProgressIndicator()}
+          {(day !== 1 || lesson !== 1) && step === 7 && renderProgressIndicator()}
+
           {renderContent()}
 
-          {day === 1 && lesson === 1 && step === 3 && (
+          {/* Legacy: Flip coin button for old implementation (not used for new screens) */}
+          {day === 1 && lesson !== 1 && step === 3 && (
             <TouchableOpacity style={styles.flipButton} onPress={handleFlipCoin} disabled={isFlipping}>
               <Text style={styles.flipButtonText}>FLIP COIN</Text>
             </TouchableOpacity>
           )}
 
-          {step !== 3 && step !== 4 && step !== 5 && step !== 6 && step !== 7 && step !== 9 && (
+          {/* Bottom nav for non-lesson-1 content */}
+          {(day !== 1 || lesson !== 1) && step !== 3 && step !== 4 && step !== 5 && step !== 6 && step !== 7 && step !== 9 && (
             <View style={styles.bottomNav}>
               <TouchableOpacity style={styles.navButton}>
                 <View style={styles.navButtonInner} />
@@ -793,6 +883,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f3f4f6',
   },
+  containerDark: {
+    backgroundColor: '#0b1020',
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -801,6 +894,9 @@ const styles = StyleSheet.create({
     paddingTop: 60,
     paddingBottom: 16,
     backgroundColor: '#f3f4f6',
+  },
+  headerDark: {
+    backgroundColor: '#0b1020',
   },
   headerRight: {
     flexDirection: 'row',
