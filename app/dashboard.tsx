@@ -547,7 +547,10 @@ export default function Dashboard() {
                     <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>30</Text>
                   </View>
                 </View>
-                <Text style={styles.riskStatLabel}>Number of trades</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.riskStatLabel}>Number of trades</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={styles.riskStatValue}>30</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '45%', alignItems: 'center' }]}>
@@ -577,7 +580,10 @@ export default function Dashboard() {
                     <Text style={{ color: '#fff', fontSize: 32, fontWeight: '700' }}>28</Text>
                   </View>
                 </View>
-                <Text style={styles.riskStatLabel}>Challenge Days</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.riskStatLabel}>Challenge Days</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={styles.riskStatValue}>28</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
@@ -608,7 +614,10 @@ export default function Dashboard() {
                     <Text style={{ color: '#10b981', fontSize: 12, fontWeight: '600' }}>6%</Text>
                   </View>
                 </View>
-                <Text style={styles.riskStatLabel}>Profit Target</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.riskStatLabel}>Profit Target</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={styles.riskStatValue}>(8%) $1600</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
@@ -639,7 +648,10 @@ export default function Dashboard() {
                     <Text style={{ color: '#ef4444', fontSize: 12, fontWeight: '600' }}>2.5%</Text>
                   </View>
                 </View>
-                <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.riskStatLabel}>Max Daily Loss</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={styles.riskStatValue}>(5%) $1000</Text>
               </View>
               <View style={[styles.lossLimitsCard, { flex: 1, minWidth: '30%', alignItems: 'center' }]}>
@@ -670,7 +682,10 @@ export default function Dashboard() {
                     <Text style={{ color: '#ef4444', fontSize: 12, fontWeight: '600' }}>9.4%</Text>
                   </View>
                 </View>
-                <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.riskStatLabel}>Max Loss Limit</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={styles.riskStatValue}>(10%) $1600</Text>
               </View>
             </View>
@@ -744,43 +759,70 @@ export default function Dashboard() {
             <Text style={[styles.riskLevelTitle, { fontSize: sectionTitleFontSize }]}>Statistics</Text>
             <View style={[styles.statsGrid, {  flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }]}>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Win Rate</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>Win Rate</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>45.5%</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Loss Rate</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>Loss Rate</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#ef4444' }]}>54.5%</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Max DD</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>Max DD</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#ef4444' }]}>$625.00</Text>
               </View>
               </View>
               <View style={[styles.statsGrid, {  flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }]}>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>AVG Loss</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>AVG Loss</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#ef4444' }]}>$187.45</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>AVG Profit</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>AVG Profit</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>$215.30</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>AVG RRR</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>AVG RRR</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>1.15</Text>
               </View>
               </View>
               <View style={[styles.statsGrid, {  flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }]}>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Profit Factor</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>Profit Factor</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>1.08</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Sharpe Ratio</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>Sharpe Ratio</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>0.42</Text>
               </View>
               <View style={[styles.statCard, { width: '32%', marginBottom: 12 }]}>
-                <Text style={styles.statLabel}>Expectancy</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <Text style={styles.statLabel}>Expectancy</Text>
+                  <Info size={12} color="#64748b" />
+                </View>
                 <Text style={[styles.statValue, { color: '#10b981' }]}>$5.92</Text>
               </View>
             </View>
