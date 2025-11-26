@@ -913,7 +913,7 @@ export default function Dashboard() {
                 <Text style={styles.watchlistHeaderText}>PRICE/% CHANGE</Text>
               </View>
 
-              <TouchableOpacity style={styles.assetRow} onPress={() => router.push('/trading-plan')}>
+              <TouchableOpacity style={styles.assetRow} onPress={() => router.push({ pathname: '/investor-profile', params: { symbol: 'MSFT', name: 'Microsoft Corp' } })}>
                 <View style={styles.assetLeft}>
                   <View style={[styles.assetIcon, { backgroundColor: '#00a4ef' }]}>
                     <Text style={styles.assetIconText}>M</Text>
@@ -929,7 +929,7 @@ export default function Dashboard() {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.assetRow} onPress={() => router.push('/trading-plan')}>
+              <TouchableOpacity style={styles.assetRow} onPress={() => router.push({ pathname: '/investor-profile', params: { symbol: 'AAPL', name: 'Apple Inc' } })}>
                 <View style={styles.assetLeft}>
                   <View style={[styles.assetIcon, { backgroundColor: '#555555' }]}>
                     <Text style={styles.assetIconText}>A</Text>
@@ -945,7 +945,7 @@ export default function Dashboard() {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.assetRow} onPress={() => router.push('/trading-plan')}>
+              <TouchableOpacity style={styles.assetRow} onPress={() => router.push({ pathname: '/investor-profile', params: { symbol: 'NVDA', name: 'NVIDIA Corp' } })}>
                 <View style={styles.assetLeft}>
                   <View style={[styles.assetIcon, { backgroundColor: '#76b900' }]}>
                     <Text style={styles.assetIconText}>N</Text>
@@ -961,7 +961,7 @@ export default function Dashboard() {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.assetRow} onPress={() => router.push('/trading-plan')}>
+              <TouchableOpacity style={styles.assetRow} onPress={() => router.push({ pathname: '/investor-profile', params: { symbol: 'AMZN', name: 'Amazon.com Inc' } })}>
                 <View style={styles.assetLeft}>
                   <View style={[styles.assetIcon, { backgroundColor: '#555555' }]}>
                     <Text style={styles.assetIconText}>A</Text>
@@ -977,7 +977,7 @@ export default function Dashboard() {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.assetRow} onPress={() => router.push('/trading-plan')}>
+              <TouchableOpacity style={styles.assetRow} onPress={() => router.push({ pathname: '/investor-profile', params: { symbol: 'META', name: 'Meta Platforms Inc' } })}>
                 <View style={styles.assetLeft}>
                   <View style={[styles.assetIcon, { backgroundColor: '#0668e1' }]}>
                     <Text style={styles.assetIconText}>M</Text>
@@ -993,7 +993,7 @@ export default function Dashboard() {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.assetRow} onPress={() => router.push('/trading-plan')}>
+              <TouchableOpacity style={styles.assetRow} onPress={() => router.push({ pathname: '/investor-profile', params: { symbol: 'BTC', name: 'Bitcoin' } })}>
                 <View style={styles.assetLeft}>
                   <View style={[styles.assetIcon, { backgroundColor: '#f7931a' }]}>
                     <Text style={styles.assetIconText}>₿</Text>
@@ -1009,7 +1009,7 @@ export default function Dashboard() {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.assetRow} onPress={() => router.push('/trading-plan')}>
+              <TouchableOpacity style={styles.assetRow} onPress={() => router.push({ pathname: '/investor-profile', params: { symbol: 'NFLX', name: 'Netflix Inc' } })}>
                 <View style={styles.assetLeft}>
                   <View style={[styles.assetIcon, { backgroundColor: '#e50914' }]}>
                     <Text style={styles.assetIconText}>N</Text>
@@ -1025,7 +1025,7 @@ export default function Dashboard() {
                 </View>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.assetRow} onPress={() => router.push('/trading-plan')}>
+              <TouchableOpacity style={styles.assetRow} onPress={() => router.push({ pathname: '/investor-profile', params: { symbol: 'TSLA', name: 'Tesla Inc' } })}>
                 <View style={styles.assetLeft}>
                   <View style={[styles.assetIcon, { backgroundColor: '#00a4e4' }]}>
                     <Text style={styles.assetIconText}>T</Text>
