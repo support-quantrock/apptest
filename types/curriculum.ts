@@ -177,6 +177,26 @@ export interface DayReward {
   unlocks: string[];
 }
 
+// ==================== DAILY TEST TYPES ====================
+
+export interface TestQuestion {
+  id: string;
+  type: TaskType;
+  config: TaskConfig;
+  feedback: TaskFeedback;
+  points: number;
+}
+
+export interface DailyTest {
+  id: string;
+  dayNumber: number;
+  title: string;
+  description?: string;
+  questions: TestQuestion[];
+  passingScore: number; // percentage needed to pass
+  estimatedMinutes: number;
+}
+
 export interface CurriculumDay {
   dayNumber: number;
   title: string;
@@ -184,6 +204,7 @@ export interface CurriculumDay {
   missionRank: string;
   theme: 'basics' | 'indicators' | 'multi_market' | 'advanced';
   lessons: [CurriculumLesson, CurriculumLesson, CurriculumLesson]; // Always exactly 3
+  test?: DailyTest; // Daily test/challenge (optional - auto-generated if not provided)
   rewards: DayReward;
 }
 
@@ -195,6 +216,7 @@ export interface TradingCurriculum {
   version: string;
   totalDays: 28;
   lessonsPerDay: 3;
+  testsPerDay: 1;
   objectivesPerLesson: 3;
   days: CurriculumDay[];
 }

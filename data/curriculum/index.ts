@@ -7,6 +7,7 @@ import type {
   Objective,
   ScreenConfig,
   ScreenType,
+  DailyTest,
 } from '../../types/curriculum';
 
 import { week1Days } from './week1';
@@ -22,6 +23,7 @@ export const tradingCurriculum: TradingCurriculum = {
   version: '1.0.0',
   totalDays: 28,
   lessonsPerDay: 3,
+  testsPerDay: 1,
   objectivesPerLesson: 3,
   days: [...week1Days, ...week2Days, ...week3Days, ...week4Days],
 };
@@ -143,6 +145,40 @@ export function getEarnedBadges(completedDays: number[]): string[] {
     .filter((id): id is string => id !== undefined);
 }
 
+/**
+ * Get the daily test for a specific day
+ * If no test is defined, generates a default one from the lesson objectives
+ */
+export function getDailyTest(dayNumber: number): DailyTest | undefined {
+  const day = getCurriculumDay(dayNumber);
+  if (!day) return undefined;
+
+  // If test exists, return it
+  if (day.test) return day.test;
+
+  // Generate a default test from lesson objectives (one question per lesson)
+  const questions = day.lessons.map((lesson, lessonIdx) => {
+    const obj = lesson.objectives[0]; // Use first objective from each lesson
+    return {
+      id: `day${dayNumber}_auto_q${lessonIdx + 1}`,
+      type: obj.task.type,
+      config: obj.task.config,
+      feedback: obj.task.feedback,
+      points: Math.floor(100 / 3)
+    };
+  });
+
+  return {
+    id: `day${dayNumber}_auto_test`,
+    dayNumber,
+    title: `Day ${dayNumber} Challenge`,
+    description: `Test your knowledge from Day ${dayNumber}: ${day.title}`,
+    questions: questions as DailyTest['questions'],
+    passingScore: 70,
+    estimatedMinutes: 5
+  };
+}
+
 // Re-export types
 export type {
   TradingCurriculum,
@@ -150,4 +186,5 @@ export type {
   CurriculumLesson,
   Objective,
   ScreenConfig,
+  DailyTest,
 } from '../../types/curriculum';

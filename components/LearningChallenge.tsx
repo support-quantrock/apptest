@@ -7,7 +7,7 @@ import { ChallengeInfoModal } from './ChallengeInfoModal';
 import { tradingCurriculum, getCurriculumDay } from '../data/curriculum';
 
 const TOTAL_DAYS = 28;
-const LESSONS_PER_DAY = 3;
+const LESSONS_PER_DAY = 4; // 3 lessons + 1 daily test
 
 const ICON_CONFIG = {
   completedIcon: {
@@ -55,15 +55,16 @@ export default function LearningChallenge() {
       const curriculumDay = getCurriculumDay(day);
       const lessons = [];
       for (let lesson = 1; lesson <= LESSONS_PER_DAY; lesson++) {
+        const isTest = lesson === 4; // 4th item is the daily test
         if (day === 1) {
-          // Day 1: first 2 lessons completed, third is active
-          if (lesson <= 2) {
-            lessons.push({ id: lesson, completed: true, locked: false });
+          // Day 1: first 3 lessons completed, test is active
+          if (lesson <= 3) {
+            lessons.push({ id: lesson, completed: true, locked: false, isTest: false });
           } else {
-            lessons.push({ id: lesson, completed: false, locked: false, isDaily: true });
+            lessons.push({ id: lesson, completed: false, locked: false, isDaily: true, isTest: true });
           }
         } else {
-          lessons.push({ id: lesson, completed: false, locked: true });
+          lessons.push({ id: lesson, completed: false, locked: true, isTest });
         }
       }
       generatedDays.push({
@@ -84,14 +85,18 @@ export default function LearningChallenge() {
     const isOddDay = dayNumber % 2 === 1;
     const isSecondIcon = lessonIndex === 1;
     const isThirdIcon = lessonIndex === 2;
+    const isFourthIcon = lessonIndex === 3;
     const isLastLesson = lessonIndex === LESSONS_PER_DAY - 1;
+    const isTest = lessonData.isTest;
 
-    // Adjusted padding for 3 lessons per day (zigzag pattern)
+    // Adjusted padding for 4 items per day (3 lessons + 1 test) with zigzag pattern
     let extraPadding = {};
     if (isSecondIcon) {
-      extraPadding = isOddDay ? { paddingRight: '25%' } : { paddingLeft: '25%' };
+      extraPadding = isOddDay ? { paddingRight: '15%' } : { paddingLeft: '15%' };
     } else if (isThirdIcon) {
-      extraPadding = isOddDay ? { paddingRight: '50%' } : { paddingLeft: '50%' };
+      extraPadding = isOddDay ? { paddingRight: '35%' } : { paddingLeft: '35%' };
+    } else if (isFourthIcon) {
+      extraPadding = isOddDay ? { paddingRight: '55%' } : { paddingLeft: '55%' };
     }
 
     const lesson = lessonData;

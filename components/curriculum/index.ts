@@ -41,3 +41,6 @@ export {
 
 // Main orchestrator
 export { DynamicLessonScreen } from './DynamicLessonScreen';
+
+// Daily test screen
+export { DailyTestScreen } from './DailyTestScreen';

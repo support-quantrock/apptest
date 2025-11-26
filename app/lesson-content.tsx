@@ -28,7 +28,7 @@ import {
   Lesson2Screen9,
   Lesson2Screen10,
 } from '../components/Lesson2Screens';
-import { DynamicLessonScreen } from '../components/curriculum';
+import { DynamicLessonScreen, DailyTestScreen } from '../components/curriculum';
 
 // Content text for each screen (Day 1, Lesson 1)
 const lesson1ScreenTexts: { [key: number]: string } = {
@@ -63,8 +63,24 @@ export default function LessonContent() {
   const day = params.day ? parseInt(params.day as string) : 1;
   const lesson = params.lesson ? parseInt(params.lesson as string) : 1;
 
+  // Lesson 4 is the daily test/challenge
+  const isTest = lesson === 4;
+
   // Use DynamicLessonScreen for all lessons except Day 1 Lessons 1 and 2 (legacy screens)
   const useDynamicScreen = !(day === 1 && (lesson === 1 || lesson === 2));
+
+  // If this is the daily test, render DailyTestScreen
+  if (isTest) {
+    return (
+      <DailyTestScreen
+        dayNumber={day}
+        onFinish={(score, passed) => {
+          // Navigate back to qchat after completing the test
+          router.push('/qchat');
+        }}
+      />
+    );
+  }
 
   // If using dynamic screen, render it directly
   if (useDynamicScreen) {

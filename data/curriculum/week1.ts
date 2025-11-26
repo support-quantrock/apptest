@@ -204,6 +204,60 @@ const day1: CurriculumDay = {
       estimatedMinutes: 5
     }
   ],
+  test: {
+    id: 'day1_test',
+    dayNumber: 1,
+    title: 'Day 1 Challenge',
+    description: 'Test your knowledge of trading basics',
+    questions: [
+      {
+        id: 'day1_q1',
+        type: 'multiple_choice',
+        config: {
+          question: 'What is the profit formula in trading?',
+          options: ['Entry Price - Exit Price', 'Exit Price - Entry Price', 'Entry Price × Exit Price', 'Entry Price + Exit Price'],
+          correctIndex: 1
+        },
+        feedback: { correct: 'Profit = Exit Price - Entry Price', incorrect: 'Remember: Profit = Exit Price - Entry Price' },
+        points: 25
+      },
+      {
+        id: 'day1_q2',
+        type: 'true_false',
+        config: {
+          statement: 'Traders focus on long-term value while investors focus on short-term price movements.',
+          correctAnswer: false,
+          explanation: 'It\'s the opposite: Traders focus on short-term, Investors on long-term.'
+        },
+        feedback: { correct: 'Correct! Traders = short-term, Investors = long-term', incorrect: 'Traders = short-term, Investors = long-term' },
+        points: 25
+      },
+      {
+        id: 'day1_q3',
+        type: 'multiple_choice',
+        config: {
+          question: 'Which market is considered the HIGHEST risk?',
+          options: ['Gold', 'Government Bonds', 'Crypto', 'Forex'],
+          correctIndex: 2
+        },
+        feedback: { correct: 'Crypto is the most volatile market!', incorrect: 'Crypto has the highest volatility and risk.' },
+        points: 25
+      },
+      {
+        id: 'day1_q4',
+        type: 'multiple_choice',
+        config: {
+          question: 'What causes prices to move in markets?',
+          options: ['Only news events', 'Supply and demand', 'Only institutional traders', 'Random chance'],
+          correctIndex: 1
+        },
+        feedback: { correct: 'Supply and demand is the fundamental driver!', incorrect: 'Supply and demand drives all price movement.' },
+        points: 25
+      }
+    ],
+    passingScore: 75,
+    estimatedMinutes: 5
+  },
   rewards: {
     badge: { id: 'rookie_trader', name: 'Rookie Trader', icon: '🎖️', description: 'Completed Day 1 of the Trading Challenge' },
     xp: 100,
@@ -399,6 +453,60 @@ const day2: CurriculumDay = {
       estimatedMinutes: 5
     }
   ],
+  test: {
+    id: 'day2_test',
+    dayNumber: 2,
+    title: 'Day 2 Challenge',
+    description: 'Test your knowledge of trading platforms and tools',
+    questions: [
+      {
+        id: 'day2_q1',
+        type: 'multiple_choice',
+        config: {
+          question: 'Which chart type shows the most detailed price information?',
+          options: ['Line chart', 'Candlestick chart', 'Bar chart', 'Area chart'],
+          correctIndex: 1
+        },
+        feedback: { correct: 'Candlesticks show OHLC plus buyer/seller control!', incorrect: 'Candlesticks show open, high, low, close and sentiment.' },
+        points: 25
+      },
+      {
+        id: 'day2_q2',
+        type: 'true_false',
+        config: {
+          statement: 'Higher timeframes give stronger and more reliable trading signals.',
+          correctAnswer: true,
+          explanation: 'Higher timeframes filter out noise and show clearer trends.'
+        },
+        feedback: { correct: 'Higher TF = stronger signals!', incorrect: 'Higher timeframes are more reliable than lower ones.' },
+        points: 25
+      },
+      {
+        id: 'day2_q3',
+        type: 'multiple_choice',
+        config: {
+          question: 'What is a stop loss order used for?',
+          options: ['To maximize profits', 'To limit potential losses', 'To increase position size', 'To delay trade execution'],
+          correctIndex: 1
+        },
+        feedback: { correct: 'Stop loss protects your capital!', incorrect: 'Stop loss limits your potential losses.' },
+        points: 25
+      },
+      {
+        id: 'day2_q4',
+        type: 'multiple_choice',
+        config: {
+          question: 'Which timeframe is best for scalping?',
+          options: ['1 week', '1 day', '4 hours', '1-5 minutes'],
+          correctIndex: 3
+        },
+        feedback: { correct: '1-5 minute charts are used for scalping!', incorrect: 'Scalping uses very short timeframes like 1-5 minutes.' },
+        points: 25
+      }
+    ],
+    passingScore: 75,
+    estimatedMinutes: 5
+  },
   rewards: {
     badge: { id: 'chart_explorer', name: 'Chart Explorer', icon: '📊', description: 'Mastered trading platforms and tools' },
     xp: 100,
