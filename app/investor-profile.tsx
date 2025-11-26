@@ -45,7 +45,7 @@ export default function InvestorProfile() {
     } else {
       // Complete questionnaire
       setAnswer('completedAt', new Date().toISOString());
-      router.push('/trading-plan');
+      router.push('/investor-results');
     }
   };
 
