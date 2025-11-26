@@ -4,9 +4,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import { router } from 'expo-router';
 import { ChallengeInfoModal } from './ChallengeInfoModal';
+import { tradingCurriculum, getCurriculumDay } from '../data/curriculum';
 
 const TOTAL_DAYS = 28;
-const LESSONS_PER_DAY = 4;
+const LESSONS_PER_DAY = 3;
 
 const ICON_CONFIG = {
   completedIcon: {
@@ -51,21 +52,27 @@ export default function LearningChallenge() {
   const generateDays = () => {
     const generatedDays = [];
     for (let day = 1; day <= TOTAL_DAYS; day++) {
+      const curriculumDay = getCurriculumDay(day);
       const lessons = [];
       for (let lesson = 1; lesson <= LESSONS_PER_DAY; lesson++) {
         if (day === 1) {
-          if (lesson <= 3) {
+          // Day 1: first 2 lessons completed, third is active
+          if (lesson <= 2) {
             lessons.push({ id: lesson, completed: true, locked: false });
-          } else if (lesson === 4) {
-            lessons.push({ id: lesson, completed: false, locked: false, isDaily: true });
           } else {
-            lessons.push({ id: lesson, completed: false, locked: true });
+            lessons.push({ id: lesson, completed: false, locked: false, isDaily: true });
           }
         } else {
           lessons.push({ id: lesson, completed: false, locked: true });
         }
       }
-      generatedDays.push({ day, lessons });
+      generatedDays.push({
+        day,
+        lessons,
+        title: curriculumDay?.title || `Day ${day}`,
+        emoji: curriculumDay?.emoji || '📚',
+        theme: curriculumDay?.theme || 'basics',
+      });
     }
     return generatedDays;
   };
@@ -77,16 +84,14 @@ export default function LearningChallenge() {
     const isOddDay = dayNumber % 2 === 1;
     const isSecondIcon = lessonIndex === 1;
     const isThirdIcon = lessonIndex === 2;
-    const isFourthIcon = lessonIndex === 3;
     const isLastLesson = lessonIndex === LESSONS_PER_DAY - 1;
 
+    // Adjusted padding for 3 lessons per day (zigzag pattern)
     let extraPadding = {};
     if (isSecondIcon) {
-      extraPadding = isOddDay ? { paddingRight: '10%' } : { paddingLeft: '20%' };
+      extraPadding = isOddDay ? { paddingRight: '25%' } : { paddingLeft: '25%' };
     } else if (isThirdIcon) {
-      extraPadding = isOddDay ? { paddingRight: '30%' } : { paddingLeft: '30%' };
-    } else if (isFourthIcon) {
-      extraPadding = isOddDay ? { paddingRight: '60%' } : { paddingLeft: '60%' };
+      extraPadding = isOddDay ? { paddingRight: '50%' } : { paddingLeft: '50%' };
     }
 
     const lesson = lessonData;
@@ -229,9 +234,12 @@ export default function LearningChallenge() {
         {days.map((dayData) => (
           <View key={dayData.day} style={styles.daySection}>
             <View style={styles.dayHeaderContainer}>
-              <Text style={styles.dayLabel}>Day {String(dayData.day).padStart(2, '0')}</Text>
+              <View style={styles.dayLabelContainer}>
+                <Text style={styles.dayEmoji}>{dayData.emoji}</Text>
+                <Text style={styles.dayLabel}>Day {String(dayData.day).padStart(2, '0')}</Text>
+              </View>
               <View style={styles.dayObjectiveContainer}>
-                <Text style={styles.dayObjective}>Learn the basics</Text>
+                <Text style={styles.dayObjective} numberOfLines={1}>{dayData.title}</Text>
                 <TouchableOpacity
                   style={styles.arrowButton}
                   onPress={() => toggleDayExpansion(dayData.day)}
@@ -251,10 +259,7 @@ export default function LearningChallenge() {
             {expandedDays.has(dayData.day) && (
               <View style={styles.dayDetailsContainer}>
                 <Text style={styles.dayDetailsText}>
-                  Master the fundamentals of trading including buy, sell, and hold decisions.
-                </Text>
-                <Text style={styles.dayDetailsText}>
-                  Understand risk management and develop your trading strategy.
+                  {getCurriculumDay(dayData.day)?.lessons.map(l => l.title).join(' • ')}
                 </Text>
               </View>
             )}
@@ -436,6 +441,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  dayLabelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  dayEmoji: {
+    fontSize: 20,
   },
   dayLabel: {
     fontSize: 18,
