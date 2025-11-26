@@ -302,7 +302,7 @@ Start your investment journey with Quantrock!
   };
 
   const handleContinue = () => {
-    router.push('/trading-plan');
+    router.push('/dashboard');
   };
 
   return (
