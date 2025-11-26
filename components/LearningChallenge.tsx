@@ -56,16 +56,14 @@ export default function LearningChallenge() {
       const lessons = [];
       for (let lesson = 1; lesson <= LESSONS_PER_DAY; lesson++) {
         const isTest = lesson === 4; // 4th item is the daily test
-        if (day === 1) {
-          // Day 1: first 3 lessons completed, test is active
-          if (lesson <= 3) {
-            lessons.push({ id: lesson, completed: true, locked: false, isTest: false });
-          } else {
-            lessons.push({ id: lesson, completed: false, locked: false, isDaily: true, isTest: true });
-          }
-        } else {
-          lessons.push({ id: lesson, completed: false, locked: true, isTest });
-        }
+        // All lessons and tests are unlocked for testing
+        lessons.push({
+          id: lesson,
+          completed: false,
+          locked: false,
+          isTest,
+          isDaily: isTest,
+        });
       }
       generatedDays.push({
         day,
