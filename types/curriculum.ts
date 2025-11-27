@@ -158,7 +158,7 @@ export interface CurriculumLesson {
   lessonNumber: number;
   title: string;
   description?: string;
-  objectives: Objective[]; // Variable number of objectives
+  objectives: [Objective, Objective, Objective]; // Always exactly 3
   estimatedMinutes: number;
 }
 
@@ -203,7 +203,7 @@ export interface CurriculumDay {
   emoji: string;
   missionRank: string;
   theme: 'basics' | 'indicators' | 'multi_market' | 'advanced';
-  lessons: CurriculumLesson[]; // Variable number of lessons per day
+  lessons: [CurriculumLesson, CurriculumLesson, CurriculumLesson]; // Always exactly 3
   test?: DailyTest; // Daily test/challenge (optional - auto-generated if not provided)
   rewards: DayReward;
 }
@@ -215,9 +215,9 @@ export interface TradingCurriculum {
   name: string;
   version: string;
   totalDays: 28;
-  defaultLessonsPerDay: number; // Default, but days can have variable lessons
+  lessonsPerDay: 3;
   testsPerDay: 1;
-  defaultObjectivesPerLesson: number; // Default, but lessons can have variable objectives
+  objectivesPerLesson: 3;
   days: CurriculumDay[];
 }
 

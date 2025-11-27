@@ -265,353 +265,251 @@ const day1: CurriculumDay = {
   }
 };
 
-// ==================== DAY 2: THE MINDSET DAY ====================
+// ==================== DAY 2 ====================
 const day2: CurriculumDay = {
   dayNumber: 2,
-  title: 'The Mindset Day',
-  emoji: '🧠',
-  missionRank: 'Level 2 – Mind Master',
+  title: 'Trading Platforms & Tools',
+  emoji: '🛠️',
+  missionRank: 'Level 2 – Chart Explorer',
   theme: 'basics',
   lessons: [
-    // Lesson 1: The Gate of Mental Transformation
     {
       id: 'day2_lesson1',
       dayNumber: 2,
       lessonNumber: 1,
-      title: 'The Gate of Mental Transformation',
-      description: 'Enter the temple of success through mental preparation.',
+      title: 'Understanding Charts',
+      description: 'Learn to read the visual language of trading.',
       objectives: [
         {
           id: 'day2_l1_obj1',
-          title: 'The Guardian\'s First Test',
-          content: 'At the Temple of Success, a gate rises before you. The Guardian says: "Before you enter, you must know: Those who chase money lose it. Those who master their minds find it." Success in investing isn\'t about getting rich quick. It\'s about the long journey, patience, and wisdom. The mindset is the true gateway.',
-          keyPoints: ['Chase money = lose it', 'Master your mind = find success', 'Investing is a long journey'],
-          image: { icon: 'Brain', animation: 'pulse', color: '#5b5fff' },
+          title: 'Learn Candlesticks, Line Charts & Bar Charts',
+          content: 'Charts visualize price movement. Line charts show only closing prices (simple). Bar charts show open, high, low, close. Candlestick charts are most detailed and popular - they show who\'s winning: buyers or sellers.',
+          keyPoints: ['Line: Simple, closing prices only', 'Bar: OHLC data', 'Candlestick: Most detailed, shows sentiment'],
+          image: { icon: 'CandlestickChart', animation: 'none', color: '#5b5fff' },
           task: {
             type: 'multiple_choice',
             config: {
-              question: 'What is the key to the gate of success in investing?',
-              options: ['Quick profits', 'Daily trading', 'The right mindset', 'Following tips'],
+              question: 'Which chart type shows the most information about price action?',
+              options: ['Line chart', 'Bar chart', 'Candlestick chart', 'Pie chart'],
               correctIndex: 2
             },
-            feedback: { correct: '🔓 The gate opens! You understand that mindset is everything.', incorrect: 'The Guardian shakes his head. Success starts with the right mindset, not shortcuts.' }
+            feedback: { correct: 'Candlesticks show open, high, low, close AND buyer/seller control!', incorrect: 'Candlestick charts are the most informative for traders.' }
+          }
+        },
+        {
+          id: 'day2_l1_obj2',
+          title: 'Understand Chart Timeframes',
+          content: 'Timeframes define how much time each candle represents. 1m/5m/15m for scalping, 1H/4H for swing trading, 1D/1W for long-term. Rule: Higher timeframe = stronger signal.',
+          keyPoints: ['1m-15m: Scalping', '1H-4H: Swing trading', '1D-1W: Position trading', 'Higher TF = Stronger signals'],
+          image: { icon: 'Clock', animation: 'float', color: '#22c55e' },
+          task: {
+            type: 'sorting',
+            config: {
+              items: ['1 minute', '4 hours', '1 day', '1 week'],
+              instruction: 'Sort timeframes from WEAKEST to STRONGEST signals',
+              correctOrder: ['1 minute', '4 hours', '1 day', '1 week']
+            },
+            feedback: { correct: 'Higher timeframes give more reliable signals!', incorrect: 'Lower timeframes = more noise, Higher = stronger signals.' }
+          }
+        },
+        {
+          id: 'day2_l1_obj3',
+          title: 'Master Chart Navigation',
+          content: 'You must learn to: Zoom in/out, Scroll back in time, Toggle indicators, Change chart type, Switch between assets. This is your "battlefield navigation" for trading.',
+          keyPoints: ['Zoom to see detail vs big picture', 'Scroll to see history', 'Switch assets to find opportunities'],
+          image: { icon: 'Move', animation: 'none', color: '#f59e0b' },
+          task: {
+            type: 'true_false',
+            config: {
+              statement: 'Looking at historical price data can help you understand how an asset typically behaves.',
+              correctAnswer: true,
+              explanation: 'History often rhymes - patterns tend to repeat.'
+            },
+            feedback: { correct: 'Historical analysis is crucial for trading!', incorrect: 'History helps identify patterns and typical behavior.' }
           }
         }
       ],
-      estimatedMinutes: 3
+      estimatedMinutes: 5
     },
-    // Lesson 2: The Value Mindset
     {
       id: 'day2_lesson2',
       dayNumber: 2,
       lessonNumber: 2,
-      title: 'The Value Mindset',
-      description: 'Learn to see true value, not just price.',
+      title: 'Brokers & Exchanges',
+      description: 'Understand how to access the markets.',
       objectives: [
         {
           id: 'day2_l2_obj1',
-          title: 'The Archer\'s Wisdom',
-          content: 'An expert archer stands before targets. Some are shiny but worthless. Others seem plain but contain gold. He says: "The average eye sees the price. The investor\'s eye sees the value." Value is not what something costs today. It\'s what it will be worth tomorrow. Train your eye to see what others miss.',
-          keyPoints: ['Price ≠ Value', 'See what others miss', 'Focus on future worth'],
-          image: { icon: 'Target', animation: 'float', color: '#22c55e' },
+          title: 'Understand How Brokers Work',
+          content: 'A broker is your gateway to financial markets. They provide: Platform, Charts, Order execution, Leverage, and Deposit/withdrawal systems. Check for: Regulation, Spreads, Execution speed.',
+          keyPoints: ['Brokers connect you to markets', 'Regulation = safety', 'Spreads = your trading cost'],
+          image: { icon: 'Building2', animation: 'none', color: '#5b5fff' },
           task: {
             type: 'multiple_choice',
             config: {
-              question: 'What does the investor\'s eye focus on?',
-              options: ['The current price', 'The company logo', 'The underlying value', 'The trading volume'],
-              correctIndex: 2
+              question: 'What is the MOST important feature to check when choosing a broker?',
+              options: ['Colorful interface', 'Regulation and safety', 'Free gifts', 'Lowest deposit'],
+              correctIndex: 1
             },
-            feedback: { correct: '🎯 Arrow hits the golden target! You see true value.', incorrect: 'The archer says: Look deeper. Value hides beneath the surface price.' }
+            feedback: { correct: 'Regulation protects your funds!', incorrect: 'Always check if a broker is regulated - your money\'s safety comes first.' }
+          }
+        },
+        {
+          id: 'day2_l2_obj2',
+          title: 'Learn About Spreads, Leverage & Fees',
+          content: 'Spread: difference between buy & sell price (your cost). Leverage: multiplies your buying power (2x, 10x, 100x). Fees: commissions, overnight swaps. Trading without understanding these = guaranteed losses.',
+          keyPoints: ['Spread = cost per trade', 'Leverage = borrowed power (risky!)', 'Fees eat into profits'],
+          image: { icon: 'Percent', animation: 'pulse', color: '#ef4444' },
+          task: {
+            type: 'true_false',
+            config: {
+              statement: 'Higher leverage always means better trading results.',
+              correctAnswer: false,
+              explanation: 'Higher leverage = higher risk. It amplifies both gains AND losses.'
+            },
+            feedback: { correct: 'Leverage is a double-edged sword!', incorrect: 'Wrong! Leverage amplifies losses too - very dangerous for beginners.' }
+          }
+        },
+        {
+          id: 'day2_l2_obj3',
+          title: 'Choose the Right Account Type',
+          content: 'Account types include: Standard, ECN (lower spreads), Islamic (swap-free), and Demo. Always start with Demo account - practice before risking real money.',
+          keyPoints: ['Demo = practice with fake money', 'Standard = normal trading', 'ECN = lower spreads, commission-based'],
+          image: { icon: 'Wallet', animation: 'none', color: '#22c55e' },
+          task: {
+            type: 'multiple_choice',
+            config: {
+              question: 'Which account type should a beginner start with?',
+              options: ['ECN account', 'Demo account', 'VIP account', 'Margin account'],
+              correctIndex: 1
+            },
+            feedback: { correct: 'Demo accounts let you learn risk-free!', incorrect: 'Always start with Demo - practice without risking real money.' }
           }
         }
       ],
-      estimatedMinutes: 3
+      estimatedMinutes: 5
     },
-    // Lesson 3: The Investor Sees the Big Picture
     {
       id: 'day2_lesson3',
       dayNumber: 2,
       lessonNumber: 3,
-      title: 'The Big Picture Vision',
-      description: 'Zoom out to see what really matters.',
+      title: 'Order Types',
+      description: 'Master the different ways to enter and exit trades.',
       objectives: [
         {
           id: 'day2_l3_obj1',
-          title: 'The Puzzle Master\'s Lesson',
-          content: 'A mysterious room with scattered puzzle pieces. Each piece is one small event: a news headline, a quarterly report, a price drop. The Puzzle Master says: "Amateurs panic at one piece. Masters see the full picture." One bad day doesn\'t break a company. One good day doesn\'t make it great. Zoom out. See the whole puzzle.',
-          keyPoints: ['Don\'t panic at single events', 'Zoom out for perspective', 'See patterns, not noise'],
-          image: { icon: 'Puzzle', animation: 'pulse', color: '#a855f7' },
+          title: 'Learn Market, Limit & Stop Orders',
+          content: 'Market order: instant execution at current price. Limit order: execute at your chosen price or better. Stop order: triggers when price reaches your level. Each has its use case.',
+          keyPoints: ['Market = instant, current price', 'Limit = your price or better', 'Stop = triggers at your level'],
+          image: { icon: 'ListOrdered', animation: 'float', color: '#5b5fff' },
           task: {
-            type: 'multiple_choice',
+            type: 'matching',
             config: {
-              question: 'What does a wise investor do when seeing a single negative news headline?',
-              options: ['Sell everything immediately', 'Panic and call their broker', 'Look at the bigger picture first', 'Stop investing forever'],
-              correctIndex: 2
+              pairs: [
+                { left: 'Market Order', right: 'Buy/sell immediately at current price' },
+                { left: 'Limit Order', right: 'Buy/sell at a specific price or better' },
+                { left: 'Stop Order', right: 'Triggers when price reaches a level' }
+              ],
+              instruction: 'Match each order type to its description'
             },
-            feedback: { correct: '🧩 Puzzle piece placed! You understand the big picture matters.', incorrect: 'The Puzzle Master sighs. One piece doesn\'t show the whole image.' }
+            feedback: { correct: 'You understand order types!', incorrect: 'Market=instant, Limit=specific price, Stop=triggers at level.' }
           }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 4: Emotional Control
-    {
-      id: 'day2_lesson4',
-      dayNumber: 2,
-      lessonNumber: 4,
-      title: 'Emotional Control',
-      description: 'Master your emotions before they master you.',
-      objectives: [
+        },
         {
-          id: 'day2_l4_obj1',
-          title: 'The Time Pressure Test',
-          content: 'A countdown appears: "Make a decision NOW!" Markets flash red and green. Everyone is screaming buy or sell. But a calm voice cuts through: "The market rewards the patient, not the panicked." When emotions run high, profits run low. The best investors make decisions from logic, not fear or greed.',
-          keyPoints: ['Patience beats panic', 'Logic over emotion', 'Calm under pressure wins'],
-          image: { icon: 'Timer', animation: 'pulse', color: '#ef4444' },
+          id: 'day2_l3_obj2',
+          title: 'Understand Buy vs Sell Orders',
+          content: 'Buy = expecting price to rise (going "long"). Sell = expecting price to fall (going "short"). Traders can profit in BOTH directions - up AND down markets.',
+          keyPoints: ['Buy (Long) = profit when price rises', 'Sell (Short) = profit when price falls', 'You can make money in any direction'],
+          image: { icon: 'ArrowUpDown', animation: 'pulse', color: '#22c55e' },
           task: {
-            type: 'multiple_choice',
+            type: 'price_prediction',
             config: {
-              question: 'When markets are crashing and everyone is panicking, what should you do?',
-              options: ['Join the panic selling', 'Buy more immediately', 'Step back and think calmly', 'Check social media for tips'],
-              correctIndex: 2
+              scenario: 'You believe Tesla stock will drop after bad earnings news.',
+              question: 'What order should you place to profit?',
+              options: ['UP', 'DOWN', 'SIDEWAYS'],
+              correctAnswer: 'DOWN',
+              explanation: 'Selling (shorting) profits when price falls.'
             },
-            feedback: { correct: '⏱️ Time\'s up but you stayed calm! Emotional control mastered.', incorrect: 'Panic decisions destroy portfolios. Step back, breathe, think.' }
+            feedback: { correct: 'Sell to profit from falling prices!', incorrect: 'To profit from falling prices, you SELL (go short).' }
           }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 5: The Power of Compounding
-    {
-      id: 'day2_lesson5',
-      dayNumber: 2,
-      lessonNumber: 5,
-      title: 'The Power of Compounding',
-      description: 'Watch small gains build into mountains.',
-      objectives: [
+        },
         {
-          id: 'day2_l5_obj1',
-          title: 'The Tower Builder',
-          content: 'You stand before an empty lot. The Builder says: "Place one brick. Then another. And another." Day 1: 1 brick. Day 30: 30 bricks. Day 365: A tower. Compounding is the 8th wonder of the world. Small, consistent gains stack into massive wealth over time. The patient builder wins.',
-          keyPoints: ['Small gains compound', 'Consistency beats intensity', 'Time is your greatest ally'],
-          image: { icon: 'Building', animation: 'float', color: '#f59e0b' },
+          id: 'day2_l3_obj3',
+          title: 'Learn Stop Loss & Take Profit',
+          content: 'SL (Stop Loss): automatically closes trade to limit losses. TP (Take Profit): automatically closes trade to lock in gains. You are NOT a real trader until you always use stop loss.',
+          keyPoints: ['Stop Loss = protection', 'Take Profit = lock gains', 'NEVER trade without SL'],
+          image: { icon: 'Shield', animation: 'pulse', color: '#ef4444' },
           task: {
-            type: 'multiple_choice',
+            type: 'true_false',
             config: {
-              question: 'What builds true wealth over time?',
-              options: ['One big lucky bet', 'Consistent small gains', 'Day trading every hour', 'Following hot tips'],
-              correctIndex: 1
+              statement: 'Professional traders always use stop loss orders to protect their capital.',
+              correctAnswer: true,
+              explanation: 'Stop loss is non-negotiable for professionals.'
             },
-            feedback: { correct: '🏗️ Another brick placed! Your tower grows through compounding.', incorrect: 'The Builder shakes his head. Towers are built one brick at a time, not all at once.' }
+            feedback: { correct: 'Stop loss is essential - never trade without it!', incorrect: 'All pros use stop loss - it\'s rule #1 of risk management.' }
           }
         }
       ],
-      estimatedMinutes: 3
-    },
-    // Lesson 6: Don't Chase Opportunities
-    {
-      id: 'day2_lesson6',
-      dayNumber: 2,
-      lessonNumber: 6,
-      title: 'The Patience Principle',
-      description: 'Learn why the best investors wait.',
-      objectives: [
-        {
-          id: 'day2_l6_obj1',
-          title: 'The Mystery Box Challenge',
-          content: 'Three boxes appear. One glows and buzzes with excitement. One is plain and quiet. One is hidden in shadow. The crowd rushes to the glowing box. But the Wise One whispers: "The loudest opportunity is often the emptiest. Real value hides in plain sight." FOMO (Fear of Missing Out) destroys portfolios.',
-          keyPoints: ['Loud ≠ Good', 'Avoid FOMO', 'Real value is quiet'],
-          image: { icon: 'Gift', animation: 'pulse', color: '#ec4899' },
-          task: {
-            type: 'multiple_choice',
-            config: {
-              question: 'A stock is all over the news and everyone is buying it. What should you do?',
-              options: ['Buy immediately before it\'s too late', 'Research it carefully first', 'Take out a loan to buy more', 'Tell all your friends to buy'],
-              correctIndex: 1
-            },
-            feedback: { correct: '🎁 You chose wisely! The quiet box held the real treasure.', incorrect: 'The crowd chased the shiny box and found nothing. Research before you rush.' }
-          }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 7: Discipline Before Intelligence
-    {
-      id: 'day2_lesson7',
-      dayNumber: 2,
-      lessonNumber: 7,
-      title: 'Discipline Over Intelligence',
-      description: 'Why disciplined investors beat smart ones.',
-      objectives: [
-        {
-          id: 'day2_l7_obj1',
-          title: 'The Shooting Range',
-          content: 'Two shooters stand at the range. One is brilliant but impulsive, firing randomly. The other is average but disciplined, following a strict process. The Instructor says: "The disciplined shooter hits 8/10. The genius hits 3/10." In investing, following your rules beats being clever. Discipline compounds. Impulse destroys.',
-          keyPoints: ['Rules beat randomness', 'Discipline beats genius', 'Process over impulse'],
-          image: { icon: 'Crosshair', animation: 'float', color: '#3b82f6' },
-          task: {
-            type: 'multiple_choice',
-            config: {
-              question: 'What matters more for investing success?',
-              options: ['High IQ', 'Following a disciplined process', 'Insider information', 'Luck'],
-              correctIndex: 1
-            },
-            feedback: { correct: '🎯 Direct hit! Discipline beats brilliance every time.', incorrect: 'The genius missed again. Discipline and process beat raw intelligence.' }
-          }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 8: The Growth Mindset
-    {
-      id: 'day2_lesson8',
-      dayNumber: 2,
-      lessonNumber: 8,
-      title: 'The Growth Mindset',
-      description: 'Turn losses into lessons.',
-      objectives: [
-        {
-          id: 'day2_l8_obj1',
-          title: 'The Knowledge Race',
-          content: 'A race track appears. But it\'s not about speed. It\'s about learning. The Race Master says: "Every loss is a lesson. Every mistake is a teacher. The investor who stops learning stops earning." Fixed mindset: "I failed, I\'m done." Growth mindset: "I failed, what can I learn?" Winners see setbacks as setups for comebacks.',
-          keyPoints: ['Failures are lessons', 'Never stop learning', 'Growth mindset wins'],
-          image: { icon: 'GraduationCap', animation: 'pulse', color: '#10b981' },
-          task: {
-            type: 'multiple_choice',
-            config: {
-              question: 'You made a bad investment and lost money. What\'s the best response?',
-              options: ['Give up investing forever', 'Blame the market', 'Analyze what went wrong and learn', 'Pretend it never happened'],
-              correctIndex: 2
-            },
-            feedback: { correct: '🏎️ You pull ahead! Every loss is tuition in the school of investing.', incorrect: 'The race isn\'t about never falling. It\'s about learning from every fall.' }
-          }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 9: Calculate Every Step
-    {
-      id: 'day2_lesson9',
-      dayNumber: 2,
-      lessonNumber: 9,
-      title: 'Calculate Every Step',
-      description: 'Plan your moves like a chess master.',
-      objectives: [
-        {
-          id: 'day2_l9_obj1',
-          title: 'The Mind Lock Puzzle',
-          content: 'A complex lock with multiple symbols. Each decision unlocks one symbol. The Lock Master says: "Random guessing = endless failure. Calculated moves = certain success." Before every investment, calculate: Entry point, Exit point, Maximum loss you\'ll accept, Expected return. Plan the trade, trade the plan.',
-          keyPoints: ['Plan every move', 'Know your exit before entry', 'Calculate risk vs reward'],
-          image: { icon: 'Lock', animation: 'float', color: '#8b5cf6' },
-          task: {
-            type: 'multiple_choice',
-            config: {
-              question: 'Before making any investment, what should you calculate first?',
-              options: ['How much you could brag about', 'Entry, exit, and risk levels', 'What others are buying', 'The company\'s logo design'],
-              correctIndex: 1
-            },
-            feedback: { correct: '🔐 Lock opened! You think like a strategic investor.', incorrect: 'The lock stays shut. Plan your entry, exit, and risk before every trade.' }
-          }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 10: The Day of Mastery
-    {
-      id: 'day2_lesson10',
-      dayNumber: 2,
-      lessonNumber: 10,
-      title: 'The Day of Mastery',
-      description: 'Final test: Prove your mindset transformation.',
-      objectives: [
-        {
-          id: 'day2_l10_obj1',
-          title: 'The Final Precision Test',
-          content: 'You stand at the Temple\'s inner chamber. The Guardian returns: "You\'ve learned the lessons. Now prove them." The path to investing success isn\'t about finding the next hot stock. It\'s about mastering yourself: your emotions, your discipline, your patience, your learning. The mindset IS the strategy.',
-          keyPoints: ['Master yourself first', 'Mindset is the strategy', 'You are ready'],
-          image: { icon: 'Trophy', animation: 'pulse', color: '#ffd166' },
-          task: {
-            type: 'multiple_choice',
-            config: {
-              question: 'What is the most important thing you learned today?',
-              options: ['How to pick winning stocks', 'Quick trading techniques', 'The right mindset is the foundation of success', 'How to time the market'],
-              correctIndex: 2
-            },
-            feedback: { correct: '🏆 MASTERY ACHIEVED! You\'ve unlocked the investor\'s mindset. The real journey begins now.', incorrect: 'The Guardian gives you another chance. Remember: mindset is everything.' }
-          }
-        }
-      ],
-      estimatedMinutes: 3
+      estimatedMinutes: 5
     }
   ],
   test: {
     id: 'day2_test',
     dayNumber: 2,
-    title: 'The Mindset Challenge',
-    description: 'Test your investor mindset transformation',
+    title: 'Day 2 Challenge',
+    description: 'Test your knowledge of trading platforms and tools',
     questions: [
       {
         id: 'day2_q1',
         type: 'multiple_choice',
         config: {
-          question: 'What does a successful investor focus on more than price?',
-          options: ['Trading volume', 'Value', 'Headlines', 'Other investors\' opinions'],
+          question: 'Which chart type shows the most detailed price information?',
+          options: ['Line chart', 'Candlestick chart', 'Bar chart', 'Area chart'],
           correctIndex: 1
         },
-        feedback: { correct: 'Value is what matters!', incorrect: 'Remember: Price is what you pay, value is what you get.' },
-        points: 20
+        feedback: { correct: 'Candlesticks show OHLC plus buyer/seller control!', incorrect: 'Candlesticks show open, high, low, close and sentiment.' },
+        points: 25
       },
       {
         id: 'day2_q2',
         type: 'true_false',
         config: {
-          statement: 'When everyone is panicking and selling, the best investors stay calm and think logically.',
+          statement: 'Higher timeframes give stronger and more reliable trading signals.',
           correctAnswer: true,
-          explanation: 'Emotional control separates winners from losers.'
+          explanation: 'Higher timeframes filter out noise and show clearer trends.'
         },
-        feedback: { correct: 'Calm under pressure wins!', incorrect: 'Panic selling is usually the worst decision.' },
-        points: 20
+        feedback: { correct: 'Higher TF = stronger signals!', incorrect: 'Higher timeframes are more reliable than lower ones.' },
+        points: 25
       },
       {
         id: 'day2_q3',
         type: 'multiple_choice',
         config: {
-          question: 'What builds true wealth over time?',
-          options: ['One big bet', 'Consistent small gains that compound', 'Day trading', 'Following hot tips'],
+          question: 'What is a stop loss order used for?',
+          options: ['To maximize profits', 'To limit potential losses', 'To increase position size', 'To delay trade execution'],
           correctIndex: 1
         },
-        feedback: { correct: 'Compounding is the 8th wonder of the world!', incorrect: 'Small, consistent gains compound into massive wealth.' },
-        points: 20
+        feedback: { correct: 'Stop loss protects your capital!', incorrect: 'Stop loss limits your potential losses.' },
+        points: 25
       },
       {
         id: 'day2_q4',
         type: 'multiple_choice',
         config: {
-          question: 'What should you do when you make a bad investment?',
-          options: ['Give up', 'Blame others', 'Analyze and learn from it', 'Ignore it'],
-          correctIndex: 2
+          question: 'Which timeframe is best for scalping?',
+          options: ['1 week', '1 day', '4 hours', '1-5 minutes'],
+          correctIndex: 3
         },
-        feedback: { correct: 'Every loss is a lesson!', incorrect: 'Growth mindset: Learn from every mistake.' },
-        points: 20
-      },
-      {
-        id: 'day2_q5',
-        type: 'multiple_choice',
-        config: {
-          question: 'What is more important than intelligence in investing?',
-          options: ['Luck', 'Discipline', 'Insider tips', 'Speed'],
-          correctIndex: 1
-        },
-        feedback: { correct: 'Discipline beats brilliance!', incorrect: 'Disciplined process beats random genius.' },
-        points: 20
+        feedback: { correct: '1-5 minute charts are used for scalping!', incorrect: 'Scalping uses very short timeframes like 1-5 minutes.' },
+        points: 25
       }
     ],
-    passingScore: 70,
+    passingScore: 75,
     estimatedMinutes: 5
   },
   rewards: {
-    badge: { id: 'mind_master', name: 'Mind Master', icon: '🧠', description: 'Mastered the investor mindset' },
-    xp: 150,
+    badge: { id: 'chart_explorer', name: 'Chart Explorer', icon: '📊', description: 'Mastered trading platforms and tools' },
+    xp: 100,
     unlocks: ['day_3']
   }
 };
