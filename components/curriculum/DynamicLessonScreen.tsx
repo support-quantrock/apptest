@@ -132,6 +132,7 @@ export const DynamicLessonScreen = ({
             objectiveNumber={objectiveIndex + 1}
             onNext={goToNextScreen}
             dayNumber={dayNumber}
+            lessonNumber={lessonNumber}
           />
         );
 

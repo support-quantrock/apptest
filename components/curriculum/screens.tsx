@@ -15,7 +15,7 @@ import {
   PulsingElement,
   FloatingElement,
 } from './shared';
-import { StoryScene } from './StoryScenes';
+import { StoryScene, KeyPointsScene } from './StoryScenes';
 
 // ==================== INTRO SCREEN ====================
 
@@ -47,14 +47,14 @@ export const IntroScreen = ({
       <FadeInElement>
         <View style={styles.objectiveBadge}>
           <Text style={styles.objectiveBadgeText}>
-            {isStoryDay ? `المهمة ${objectiveNumber}` : `OBJECTIVE ${objectiveNumber}/${totalObjectives}`}
+            {isStoryDay ? `MISSION ${objectiveNumber}` : `OBJECTIVE ${objectiveNumber}/${totalObjectives}`}
           </Text>
         </View>
       </FadeInElement>
 
       {/* Lesson title */}
       <SlideInElement delay={100}>
-        <Text style={[styles.lessonTitle, isStoryDay && styles.rtlText]}>{lessonTitle}</Text>
+        <Text style={styles.lessonTitle}>{lessonTitle}</Text>
       </SlideInElement>
 
       {/* Story Scene for Day 2, or Animated icon for other days */}
@@ -70,7 +70,7 @@ export const IntroScreen = ({
 
       {/* Objective title */}
       <SlideInElement delay={300}>
-        <Text style={[styles.objectiveTitle, isStoryDay && styles.rtlText]}>{objective.title}</Text>
+        <Text style={styles.objectiveTitle}>{objective.title}</Text>
       </SlideInElement>
 
       {/* Brief intro - hide for story day since guardian shows the message */}
@@ -86,7 +86,7 @@ export const IntroScreen = ({
       <SlideInElement delay={isStoryDay ? 400 : 500}>
         <TouchableOpacity style={styles.primaryButton} onPress={onNext}>
           <Text style={styles.primaryButtonText}>
-            {isStoryDay ? 'ابدأ' : 'START LEARNING'}
+            {isStoryDay ? 'START' : 'START LEARNING'}
           </Text>
           <ChevronRight size={20} color="#fff" />
         </TouchableOpacity>
@@ -102,6 +102,7 @@ interface ContentScreenProps {
   objectiveNumber: number;
   onNext: () => void;
   dayNumber?: number;
+  lessonNumber?: number;
 }
 
 export const ContentScreen = ({
@@ -109,9 +110,35 @@ export const ContentScreen = ({
   objectiveNumber,
   onNext,
   dayNumber = 1,
+  lessonNumber = 1,
 }: ContentScreenProps) => {
   const isStoryDay = dayNumber === 2;
 
+  // For Day 2 (Story Day), show only key points with beautiful animated design
+  if (isStoryDay) {
+    return (
+      <LessonLayout>
+        {/* Animated Key Points Scene */}
+        {objective.keyPoints && objective.keyPoints.length > 0 && (
+          <KeyPointsScene
+            keyPoints={objective.keyPoints}
+            lessonNumber={lessonNumber}
+            title={objective.title}
+          />
+        )}
+
+        {/* Continue button */}
+        <SlideInElement delay={600}>
+          <TouchableOpacity style={styles.primaryButton} onPress={onNext}>
+            <Text style={styles.primaryButtonText}>CONTINUE TO CHALLENGE</Text>
+            <ChevronRight size={20} color="#fff" />
+          </TouchableOpacity>
+        </SlideInElement>
+      </LessonLayout>
+    );
+  }
+
+  // Standard content screen for other days
   return (
     <LessonLayout>
       {/* Small icon */}
@@ -123,22 +150,20 @@ export const ContentScreen = ({
 
       {/* Title */}
       <SlideInElement delay={100}>
-        <Text style={[styles.contentTitle, isStoryDay && styles.rtlText]}>{objective.title}</Text>
+        <Text style={styles.contentTitle}>{objective.title}</Text>
       </SlideInElement>
 
       {/* Main content */}
       <SlideInElement delay={200}>
-        <Text style={[styles.contentBody, isStoryDay && styles.rtlText]}>{objective.content}</Text>
+        <Text style={styles.contentBody}>{objective.content}</Text>
       </SlideInElement>
 
       {/* Key points */}
       {objective.keyPoints && objective.keyPoints.length > 0 && (
         <SlideInElement delay={300}>
           <View style={styles.keyPointsSection}>
-            <Text style={[styles.keyPointsTitle, isStoryDay && styles.rtlText]}>
-              {isStoryDay ? 'النقاط الرئيسية' : 'Key Points'}
-            </Text>
-            <KeyPointsDisplay points={objective.keyPoints} isRtl={isStoryDay} />
+            <Text style={styles.keyPointsTitle}>Key Points</Text>
+            <KeyPointsDisplay points={objective.keyPoints} />
           </View>
         </SlideInElement>
       )}
@@ -146,9 +171,7 @@ export const ContentScreen = ({
       {/* Continue button */}
       <SlideInElement delay={400}>
         <TouchableOpacity style={styles.primaryButton} onPress={onNext}>
-          <Text style={styles.primaryButtonText}>
-            {isStoryDay ? 'متابعة' : 'CONTINUE'}
-          </Text>
+          <Text style={styles.primaryButtonText}>CONTINUE</Text>
           <ChevronRight size={20} color="#fff" />
         </TouchableOpacity>
       </SlideInElement>

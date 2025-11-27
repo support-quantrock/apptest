@@ -265,344 +265,344 @@ const day1: CurriculumDay = {
   }
 };
 
-// ==================== DAY 2 - يوم العقلية (The Mindset Day) ====================
+// ==================== DAY 2 - The Mindset Day ====================
 const day2: CurriculumDay = {
   dayNumber: 2,
-  title: 'يوم العقلية',
+  title: 'The Mindset Day',
   emoji: '🧠',
-  missionRank: 'المستوى 2 – سيد العقلية',
+  missionRank: 'Level 2 – Mind Master',
   theme: 'basics',
   lessons: [
-    // الدرس 1 — بوابة التحوّل العقلي (Master Lock)
+    // Lesson 1 — The Gate of Transformation (Master Lock)
     {
       id: 'day2_lesson1',
       dayNumber: 2,
       lessonNumber: 1,
-      title: 'بوابة التحوّل العقلي',
-      description: 'تصل إلى بوابة حجرية ضخمة... لفتحها يجب أن تفهم أول قانون للاستثمار.',
+      title: 'The Gate of Transformation',
+      description: 'You arrive at a massive stone gate... To open it, you must understand the first law of investing.',
       objectives: [
         {
           id: 'day2_l1_obj1',
-          title: 'افتح بوابة عقلية المستثمر',
-          content: 'تصل إلى بوابة حجرية ضخمة مكتوب عليها: "لا يدخل هذا العالم إلا من يفكر كمستثمر." يظهر "حارس العقلية" ويقول: "لفتح هذه البوابة… يجب أن تفهم أول قانون للاستثمار."',
-          keyPoints: ['المستثمر يفكر في المدى الطويل لا اللحظة الحالية', 'الانضباط أهم من الذكاء', 'العقلية الصحيحة أهم من أي استراتيجية'],
+          title: 'Unlock the Investor Mindset',
+          content: 'You arrive at a massive stone gate with an inscription: "Only those who think like investors may enter." The Mindset Guardian appears and says: "To open this gate... you must understand the first law of investing."',
+          keyPoints: ['Investors think long-term, not short-term', 'Discipline matters more than intelligence', 'The right mindset beats any strategy'],
           image: { icon: 'Lock', animation: 'pulse', color: '#5b5fff' },
           task: {
             type: 'master_lock',
             config: {
               questions: [
                 {
-                  question: 'المستثمر يفضل:',
+                  question: 'An investor prefers:',
                   options: [
-                    { text: 'الربح السريع', correct: false, digit: 0 },
-                    { text: 'النمو الطويل', correct: true, digit: 3 }
+                    { text: 'Quick profits', correct: false, digit: 0 },
+                    { text: 'Long-term growth', correct: true, digit: 3 }
                   ]
                 },
                 {
-                  question: 'أهم عنصر في العقلية:',
+                  question: 'Most important mindset element:',
                   options: [
-                    { text: 'الطمع', correct: false, digit: 0 },
-                    { text: 'الانضباط', correct: true, digit: 7 }
+                    { text: 'Greed', correct: false, digit: 0 },
+                    { text: 'Discipline', correct: true, digit: 7 }
                   ]
                 },
                 {
-                  question: 'المستثمر يرى…',
+                  question: 'An investor sees…',
                   options: [
-                    { text: 'القيمة', correct: true, digit: 1 },
-                    { text: 'السعر فقط', correct: false, digit: 0 }
+                    { text: 'Value', correct: true, digit: 1 },
+                    { text: 'Only price', correct: false, digit: 0 }
                   ]
                 }
               ],
               correctCode: '371',
-              instruction: 'أجب على 3 أسئلة لفتح القفل'
+              instruction: 'Answer 3 questions to unlock the gate'
             },
-            feedback: { correct: '🔓 أحسنت! فتحت البوابة. +10 qcoin', incorrect: 'حاول مرة أخرى لفتح القفل' }
+            feedback: { correct: '🔓 Well done! Gate unlocked. +10 qcoin', incorrect: 'Try again to unlock the gate' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 2 — عقلية القيمة (Arrow Precision)
+    // Lesson 2 — The Value Mindset (Arrow Precision)
     {
       id: 'day2_lesson2',
       dayNumber: 2,
       lessonNumber: 2,
-      title: 'عقلية القيمة',
-      description: 'اضرب هدف المستثمر الحقيقي.',
+      title: 'The Value Mindset',
+      description: 'Hit the true investor\'s target.',
       objectives: [
         {
           id: 'day2_l2_obj1',
-          title: 'اكتشف القيمة الحقيقية',
-          content: 'تظهر ثلاث ألواح للرماية: السعر — الشهرة — القيمة. الصوت: "اضرب هدف المستثمر الحقيقي."',
-          keyPoints: ['المستثمر يسأل: ما القيمة؟ وليس ما السعر؟', 'السعر يتغير… القيمة تبقى', 'أكبر المستثمرين في العالم يتبعون نهج القيمة'],
+          title: 'Discover True Value',
+          content: 'Three archery targets appear: Price — Hype — Value. The voice says: "Hit the target of the true investor."',
+          keyPoints: ['Investors ask: What\'s the value? Not: What\'s the price?', 'Price changes... Value remains', 'The world\'s greatest investors follow value investing'],
           image: { icon: 'Target', animation: 'float', color: '#ffd166' },
           task: {
             type: 'arrow_precision',
             config: {
               targets: [
-                { id: 'price', label: 'القيمة = السعر الحالي', correct: false },
-                { id: 'value', label: 'القيمة = ما تحصل عليه مقابل ما تدفعه', correct: true },
-                { id: 'hype', label: 'القيمة = الشهرة', correct: false }
+                { id: 'price', label: 'Value = Current price', correct: false },
+                { id: 'value', label: 'Value = What you get for what you pay', correct: true },
+                { id: 'hype', label: 'Value = Popularity', correct: false }
               ],
-              instruction: 'اختر اللوح الصحيح'
+              instruction: 'Choose the correct target'
             },
-            feedback: { correct: '🎯 أصبت الهدف! +8 qcoin - شارة: صائد القيمة', incorrect: 'القيمة هي ما تحصل عليه مقابل ما تدفعه' }
+            feedback: { correct: '🎯 Bullseye! +8 qcoin - Badge: Value Hunter', incorrect: 'Value is what you get for what you pay' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 3 — رؤية الصورة الكبيرة (Puzzle Reveal)
+    // Lesson 3 — Seeing the Big Picture (Puzzle Reveal)
     {
       id: 'day2_lesson3',
       dayNumber: 2,
       lessonNumber: 3,
-      title: 'رؤية الصورة الكبيرة',
-      description: 'صورة كبيرة مخفية خلف قطع لغز… كل إجابة تكشف قطعة.',
+      title: 'Seeing the Big Picture',
+      description: 'A big picture is hidden behind puzzle pieces... Each answer reveals a piece.',
       objectives: [
         {
           id: 'day2_l3_obj1',
-          title: 'اكشف الصورة الكاملة',
-          content: 'صورة كبيرة مخفية خلف 6 قطع لغز… كل إجابة صحيحة تكشف قطعة.',
-          keyPoints: ['المستثمر المحترف يرى الاتجاه، وليس يومًا واحدًا', 'التفاصيل قصيرة المدى مضللة', 'الصورة الكبيرة = فهم الاتجاه الحقيقي'],
+          title: 'Reveal the Complete Picture',
+          content: 'A big picture is hidden behind puzzle pieces... Each correct answer reveals a piece.',
+          keyPoints: ['Professional investors see the trend, not just one day', 'Short-term details are misleading', 'The big picture = understanding the true direction'],
           image: { icon: 'Puzzle', animation: 'pulse', color: '#22c55e' },
           task: {
             type: 'puzzle_reveal',
             config: {
               questions: [
                 {
-                  question: 'ما الأهم؟',
-                  options: ['حركة يوم واحد', 'الاتجاه الطويل'],
+                  question: 'What matters most?',
+                  options: ['One day\'s movement', 'The long-term trend'],
                   correctIndex: 1
                 },
                 {
-                  question: 'المستثمر المحترف…',
-                  options: ['يطارد الأخبار العاجلة', 'يدرس الاتجاه العام'],
+                  question: 'A professional investor...',
+                  options: ['Chases breaking news', 'Studies the overall trend'],
                   correctIndex: 1
                 }
               ],
               totalPieces: 2,
-              instruction: 'أجب لكشف قطع اللغز'
+              instruction: 'Answer to reveal puzzle pieces'
             },
-            feedback: { correct: '🧩 اكتملت الصورة! +6 qcoin - شارة: صاحب الرؤية الشاملة', incorrect: 'ركز على الاتجاه العام' }
+            feedback: { correct: '🧩 Picture complete! +6 qcoin - Badge: Big Picture Thinker', incorrect: 'Focus on the overall trend' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 4 — السيطرة على المشاعر (Time Attack)
+    // Lesson 4 — Controlling Emotions (Time Attack)
     {
       id: 'day2_lesson4',
       dayNumber: 2,
       lessonNumber: 4,
-      title: 'السيطرة على المشاعر',
-      description: 'أقوى مستثمر هو من يهزم مشاعره.',
+      title: 'Controlling Emotions',
+      description: 'The strongest investor is one who conquers their emotions.',
       objectives: [
         {
           id: 'day2_l4_obj1',
-          title: 'تحكم في مشاعرك',
-          content: 'مؤقت 9 ثوانٍ يبدأ العد. الصوت: "أقوى مستثمر هو من يهزم مشاعره."',
-          keyPoints: ['الخوف = بيع مبكر', 'الطمع = شراء متأخر', 'التحكم في المشاعر = نصف الاحتراف'],
+          title: 'Master Your Emotions',
+          content: 'A 9-second timer begins counting down. The voice says: "The strongest investor is one who conquers their emotions."',
+          keyPoints: ['Fear = selling too early', 'Greed = buying too late', 'Emotional control = half of mastery'],
           image: { icon: 'Timer', animation: 'pulse', color: '#ef4444' },
           task: {
             type: 'time_attack',
             config: {
-              question: 'ما هو أخطر شعور على المستثمر؟',
-              options: ['الجشع', 'الملل', 'الغرور'],
+              question: 'What is the most dangerous emotion for an investor?',
+              options: ['Greed', 'Boredom', 'Arrogance'],
               correctIndex: 0,
               timeLimit: 9,
-              instruction: 'أجب قبل انتهاء الوقت!'
+              instruction: 'Answer before time runs out!'
             },
-            feedback: { correct: '⚡ سريع ودقيق! +9 qcoin - شارة: متحكم بالمشاعر', incorrect: 'الجشع هو أخطر شعور على المستثمر' }
+            feedback: { correct: '⚡ Fast and accurate! +9 qcoin - Badge: Emotion Controller', incorrect: 'Greed is the most dangerous emotion for an investor' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 5 — قوة التراكم (Build Mode)
+    // Lesson 5 — The Power of Compounding (Build Mode)
     {
       id: 'day2_lesson5',
       dayNumber: 2,
       lessonNumber: 5,
-      title: 'قوة التراكم',
-      description: 'برج مضيء يظهر أمامك… كل إجابة صحيحة تضيف لبنة جديدة.',
+      title: 'The Power of Compounding',
+      description: 'A glowing tower appears before you... Each correct answer adds a new block.',
       objectives: [
         {
           id: 'day2_l5_obj1',
-          title: 'ابنِ برج النجاح',
-          content: 'برج مضيء يظهر أمامك… كل إجابة صحيحة تضيف لبنة جديدة.',
-          keyPoints: ['التراكم = أعظم سلاح للمستثمر', 'مبالغ صغيرة + وقت = ثروة كبيرة', 'لا تحتاج مبلغًا ضخمًا… تحتاج وقتًا'],
+          title: 'Build the Tower of Success',
+          content: 'A glowing tower appears before you... Each correct answer adds a new block.',
+          keyPoints: ['Compounding = The investor\'s greatest weapon', 'Small amounts + time = great wealth', 'You don\'t need a huge sum... You need time'],
           image: { icon: 'Building', animation: 'float', color: '#5b5fff' },
           task: {
             type: 'build_mode',
             config: {
               questions: [
                 {
-                  question: 'التراكم يحتاج:',
-                  options: ['وقت', 'سرعة', 'ضربة حظ'],
+                  question: 'Compounding requires:',
+                  options: ['Time', 'Speed', 'A lucky break'],
                   correctIndex: 0,
-                  blockLabel: 'الوقت'
+                  blockLabel: 'Time'
                 },
                 {
-                  question: 'الاستثمار المتراكم يعني:',
-                  options: ['أرباح تعيد بناء نفسها', 'خسائر متكررة'],
+                  question: 'Compound investing means:',
+                  options: ['Profits that rebuild themselves', 'Repeated losses'],
                   correctIndex: 0,
-                  blockLabel: 'النمو'
+                  blockLabel: 'Growth'
                 }
               ],
-              instruction: 'ابنِ البرج بإجاباتك الصحيحة'
+              instruction: 'Build the tower with your correct answers'
             },
-            feedback: { correct: '🏗️ برج رائع! +7 qcoin - شارة: سيد التراكم', incorrect: 'التراكم يحتاج وقت وصبر' }
+            feedback: { correct: '🏗️ Amazing tower! +7 qcoin - Badge: Compounding Master', incorrect: 'Compounding requires time and patience' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 6 — لا تطارد الفرص (Mystery Box)
+    // Lesson 6 — Don't Chase Opportunities (Mystery Box)
     {
       id: 'day2_lesson6',
       dayNumber: 2,
       lessonNumber: 6,
-      title: 'لا تطارد الفرص',
-      description: 'اختر الطريق الذي يسلكه المستثمر الحقيقي.',
+      title: 'Don\'t Chase Opportunities',
+      description: 'Choose the path that a true investor takes.',
       objectives: [
         {
           id: 'day2_l6_obj1',
-          title: 'اختر الفرصة المناسبة',
-          content: 'صندوقان: "فرصة لامعة" — "فرصة مناسبة لك". الصوت: "اختر الطريق الذي يسلكه المستثمر الحقيقي."',
-          keyPoints: ['ليس كل فرصة "لامعة" مناسبة', 'مطاردة الفرص = خسائر', 'اختيار الفرصة المناسبة لشخصيتك أهم من الربح الكبير'],
+          title: 'Choose the Right Opportunity',
+          content: 'Two boxes appear: "Shiny opportunity" — "Opportunity right for you". The voice says: "Choose the path that a true investor takes."',
+          keyPoints: ['Not every "shiny" opportunity is right for you', 'Chasing opportunities = losses', 'Choosing the right opportunity for your personality matters more than big profits'],
           image: { icon: 'Gift', animation: 'pulse', color: '#ffd166' },
           task: {
             type: 'mystery_box',
             config: {
               boxes: [
-                { id: 'fast', label: 'أفضل فرصة هي الأسرع', correct: false },
-                { id: 'suitable', label: 'أفضل فرصة هي الأنسب لك', correct: true }
+                { id: 'fast', label: 'The best opportunity is the fastest one', correct: false },
+                { id: 'suitable', label: 'The best opportunity is the one right for you', correct: true }
               ],
-              instruction: 'افتح الصندوق الصحيح'
+              instruction: 'Open the correct box'
             },
-            feedback: { correct: '🎁 اختيار حكيم! +6 qcoin - شارة: مُصفّي الفرص', incorrect: 'أفضل فرصة هي الأنسب لك، ليست الأسرع' }
+            feedback: { correct: '🎁 Wise choice! +6 qcoin - Badge: Opportunity Filter', incorrect: 'The best opportunity is the one right for you, not the fastest' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 7 — الانضباط قبل الذكاء (Shoot & Hit)
+    // Lesson 7 — Discipline Before Intelligence (Shoot & Hit)
     {
       id: 'day2_lesson7',
       dayNumber: 2,
       lessonNumber: 7,
-      title: 'الانضباط قبل الذكاء',
-      description: 'اضرب الذي يصنع المستثمر الحقيقي.',
+      title: 'Discipline Before Intelligence',
+      description: 'Hit what makes a true investor.',
       objectives: [
         {
           id: 'day2_l7_obj1',
-          title: 'اكتشف سر النجاح',
-          content: 'ثلاث أهداف: "ذكاء" — "حظ" — "انضباط". الصوت: "اضرب الذي يصنع المستثمر الحقيقي."',
-          keyPoints: ['الانضباط = الالتزام بالخطة', 'المستثمر الذكي بلا انضباط = خاسر', 'المستثمر المتوسط مع انضباط = رابح'],
+          title: 'Discover the Secret to Success',
+          content: 'Three targets appear: "Intelligence" — "Luck" — "Discipline". The voice says: "Hit what makes a true investor."',
+          keyPoints: ['Discipline = Sticking to the plan', 'A smart investor without discipline = loser', 'An average investor with discipline = winner'],
           image: { icon: 'Crosshair', animation: 'float', color: '#22c55e' },
           task: {
             type: 'shoot_hit',
             config: {
               targets: [
-                { id: 'intelligence', label: 'الذكاء', correct: false },
-                { id: 'discipline', label: 'الانضباط أهم من الذكاء', correct: true },
-                { id: 'luck', label: 'الحظ', correct: false }
+                { id: 'intelligence', label: 'Intelligence', correct: false },
+                { id: 'discipline', label: 'Discipline is more important than intelligence', correct: true },
+                { id: 'luck', label: 'Luck', correct: false }
               ],
-              instruction: 'اضرب الهدف الصحيح'
+              instruction: 'Hit the correct target'
             },
-            feedback: { correct: '🎯 إصابة دقيقة! +8 qcoin - شارة: المستثمر المنضبط', incorrect: 'الانضباط هو الذي يصنع المستثمر الحقيقي' }
+            feedback: { correct: '🎯 Perfect hit! +8 qcoin - Badge: Disciplined Investor', incorrect: 'Discipline is what makes a true investor' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 8 — عقلية النمو (Knowledge Race)
+    // Lesson 8 — Growth Mindset (Knowledge Race)
     {
       id: 'day2_lesson8',
       dayNumber: 2,
       lessonNumber: 8,
-      title: 'عقلية النمو',
-      description: 'التعلم هو الوقود… انطلق!',
+      title: 'Growth Mindset',
+      description: 'Learning is the fuel... Go!',
       objectives: [
         {
           id: 'day2_l8_obj1',
-          title: 'سباق المعرفة',
-          content: 'سيارة سباق تنتظر… الصوت: "التعلم هو الوقود… انطلق!"',
-          keyPoints: ['كل خسارة = درس', 'كل ربح = نتيجة', 'التعلم المستمر = أقوى سلاح'],
+          title: 'Knowledge Race',
+          content: 'A race car awaits... The voice says: "Learning is the fuel... Go!"',
+          keyPoints: ['Every loss = a lesson', 'Every win = a result', 'Continuous learning = the strongest weapon'],
           image: { icon: 'GraduationCap', animation: 'pulse', color: '#5b5fff' },
           task: {
             type: 'knowledge_race',
             config: {
               questions: [
                 {
-                  question: 'أي جملة صحيحة؟',
-                  options: ['الخسارة درس', 'الخسارة فشل', 'الخسارة نهاية الطريق'],
+                  question: 'Which statement is correct?',
+                  options: ['A loss is a lesson', 'A loss is failure', 'A loss is the end of the road'],
                   correctIndex: 0
                 }
               ],
-              instruction: 'أجب لتتقدم في السباق'
+              instruction: 'Answer to advance in the race'
             },
-            feedback: { correct: '🏎️ فزت بالسباق! +7 qcoin - شارة: عقلية النمو', incorrect: 'الخسارة درس وليست نهاية الطريق' }
+            feedback: { correct: '🏎️ You won the race! +7 qcoin - Badge: Growth Mindset', incorrect: 'A loss is a lesson, not the end of the road' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 9 — المستثمر يحسب الخطوة (Mind Lock)
+    // Lesson 9 — The Investor Calculates Each Step (Mind Lock)
     {
       id: 'day2_lesson9',
       dayNumber: 2,
       lessonNumber: 9,
-      title: 'المستثمر يحسب الخطوة',
-      description: 'قفل ذهني يحتاج 3 رموز… كل رمز = معلومة.',
+      title: 'Calculate Every Step',
+      description: 'A mental lock needs codes... Each code = information.',
       objectives: [
         {
           id: 'day2_l9_obj1',
-          title: 'افتح قفل العقل',
-          content: 'قفل ذهني يحتاج رموز… كل رمز = معلومة.',
-          keyPoints: ['القرار الاستثماري يحتاج دراسة', 'التخمين = خسارة', 'المعلومات = قوة'],
+          title: 'Unlock the Mind',
+          content: 'A mental lock needs codes... Each code = information.',
+          keyPoints: ['Investment decisions require research', 'Guessing = loss', 'Information = power'],
           image: { icon: 'Brain', animation: 'float', color: '#ffd166' },
           task: {
             type: 'mind_lock',
             config: {
               options: [
-                { id: 'research', label: 'دراسة الأصل قبل شرائه', correct: true },
-                { id: 'follow', label: 'الشراء لأن "الناس اشترت"', correct: false }
+                { id: 'research', label: 'Research the asset before buying it', correct: true },
+                { id: 'follow', label: 'Buy because "everyone else bought"', correct: false }
               ],
-              instruction: 'اختر الخطوة الصحيحة'
+              instruction: 'Choose the correct step'
             },
-            feedback: { correct: '🧠 عقل حاد! +10 qcoin - شارة: المُفكّر المحسوب', incorrect: 'ادرس قبل أن تقرر' }
+            feedback: { correct: '🧠 Sharp mind! +10 qcoin - Badge: Calculated Thinker', incorrect: 'Research before you decide' }
           }
         }
       ],
       estimatedMinutes: 3
     },
-    // الدرس 10 — اختبار الاحتراف (Final Precision)
+    // Lesson 10 — The Mastery Test (Final Precision)
     {
       id: 'day2_lesson10',
       dayNumber: 2,
       lessonNumber: 10,
-      title: 'اختبار الاحتراف',
-      description: 'لقد تعلمت الأساس… أثبت جاهزيتك.',
+      title: 'The Mastery Test',
+      description: 'You\'ve learned the foundation... Prove your readiness.',
       objectives: [
         {
           id: 'day2_l10_obj1',
-          title: 'الاختبار النهائي',
-          content: 'غرفة اختبار بيضاء بالكامل… الصوت: "لقد تعلمت الأساس… أثبت جاهزيتك."',
-          keyPoints: ['الانضباط', 'القيمة', 'الصورة الكبيرة', 'السيطرة على المشاعر', 'النمو المستمر'],
+          title: 'The Final Test',
+          content: 'An all-white test room... The voice says: "You\'ve learned the foundation... Prove your readiness."',
+          keyPoints: ['Discipline', 'Value', 'The Big Picture', 'Emotional Control', 'Continuous Growth'],
           image: { icon: 'Trophy', animation: 'pulse', color: '#22c55e' },
           task: {
             type: 'final_precision',
             config: {
               targets: [
-                { id: 'now', label: 'أربح الآن وقلق لاحقًا', correct: false },
-                { id: 'years', label: 'استثمر لسنوات، لا لساعات', correct: true },
-                { id: 'emotion', label: 'دع العاطفة تقودك', correct: false }
+                { id: 'now', label: 'Profit now, worry later', correct: false },
+                { id: 'years', label: 'Invest for years, not hours', correct: true },
+                { id: 'emotion', label: 'Let emotions guide you', correct: false }
               ],
-              instruction: 'اختر الجملة الصحيحة'
+              instruction: 'Choose the correct statement'
             },
-            feedback: { correct: '🏆 مبروك! أتممت يوم العقلية! +15 qcoin - شارة: الإتقان', incorrect: 'استثمر لسنوات، لا لساعات' }
+            feedback: { correct: '🏆 Congratulations! You completed The Mindset Day! +15 qcoin - Badge: Mastery', incorrect: 'Invest for years, not hours' }
           }
         }
       ],
@@ -612,62 +612,62 @@ const day2: CurriculumDay = {
   test: {
     id: 'day2_test',
     dayNumber: 2,
-    title: 'اختبار يوم العقلية',
-    description: 'اختبر فهمك لعقلية المستثمر الناجح',
+    title: 'The Mindset Day Test',
+    description: 'Test your understanding of the successful investor mindset',
     questions: [
       {
         id: 'day2_q1',
         type: 'multiple_choice',
         config: {
-          question: 'ما أهم عنصر في عقلية المستثمر الناجح؟',
-          options: ['الذكاء', 'الحظ', 'الانضباط', 'السرعة'],
+          question: 'What is the most important element in a successful investor\'s mindset?',
+          options: ['Intelligence', 'Luck', 'Discipline', 'Speed'],
           correctIndex: 2
         },
-        feedback: { correct: 'الانضباط هو مفتاح النجاح!', incorrect: 'الانضباط أهم من الذكاء في الاستثمار.' },
+        feedback: { correct: 'Discipline is the key to success!', incorrect: 'Discipline is more important than intelligence in investing.' },
         points: 20
       },
       {
         id: 'day2_q2',
         type: 'true_false',
         config: {
-          statement: 'المستثمر الناجح يركز على القيمة وليس السعر فقط.',
+          statement: 'A successful investor focuses on value, not just price.',
           correctAnswer: true,
-          explanation: 'القيمة هي ما تحصل عليه مقابل ما تدفعه.'
+          explanation: 'Value is what you get for what you pay.'
         },
-        feedback: { correct: 'صحيح! القيمة أهم من السعر.', incorrect: 'المستثمر الناجح يركز على القيمة الحقيقية.' },
+        feedback: { correct: 'Correct! Value is more important than price.', incorrect: 'A successful investor focuses on true value.' },
         points: 20
       },
       {
         id: 'day2_q3',
         type: 'multiple_choice',
         config: {
-          question: 'ما هو أخطر شعور على المستثمر؟',
-          options: ['الصبر', 'الجشع', 'الحذر', 'التفكير'],
+          question: 'What is the most dangerous emotion for an investor?',
+          options: ['Patience', 'Greed', 'Caution', 'Thinking'],
           correctIndex: 1
         },
-        feedback: { correct: 'الجشع يؤدي لقرارات متهورة!', incorrect: 'الجشع هو أخطر عدو للمستثمر.' },
+        feedback: { correct: 'Greed leads to reckless decisions!', incorrect: 'Greed is the investor\'s worst enemy.' },
         points: 20
       },
       {
         id: 'day2_q4',
         type: 'multiple_choice',
         config: {
-          question: 'قوة التراكم تعتمد على:',
-          options: ['الحظ السريع', 'الوقت والصبر', 'المبالغ الكبيرة فقط', 'المخاطرة العالية'],
+          question: 'The power of compounding depends on:',
+          options: ['Quick luck', 'Time and patience', 'Large sums only', 'High risk'],
           correctIndex: 1
         },
-        feedback: { correct: 'الوقت هو أعظم حليف للمستثمر!', incorrect: 'التراكم يحتاج وقت وصبر.' },
+        feedback: { correct: 'Time is the investor\'s greatest ally!', incorrect: 'Compounding requires time and patience.' },
         points: 20
       },
       {
         id: 'day2_q5',
         type: 'true_false',
         config: {
-          statement: 'المستثمر الناجح يدرس قبل أن يقرر ولا يتبع القطيع.',
+          statement: 'A successful investor researches before deciding and doesn\'t follow the herd.',
           correctAnswer: true,
-          explanation: 'البحث والدراسة أساس القرار الصحيح.'
+          explanation: 'Research and study are the foundation of the right decision.'
         },
-        feedback: { correct: 'صحيح! ادرس قبل أن تقرر.', incorrect: 'لا تشتري لأن الناس اشترت - ادرس أولاً.' },
+        feedback: { correct: 'Correct! Research before you decide.', incorrect: 'Don\'t buy because everyone else bought - research first.' },
         points: 20
       }
     ],
@@ -675,7 +675,7 @@ const day2: CurriculumDay = {
     estimatedMinutes: 5
   },
   rewards: {
-    badge: { id: 'mind_master', name: 'سيد العقلية', icon: '🧠', description: 'أتقنت عقلية المستثمر الناجح' },
+    badge: { id: 'mind_master', name: 'Mind Master', icon: '🧠', description: 'Mastered the successful investor mindset' },
     xp: 150,
     unlocks: ['day_3']
   }

@@ -215,12 +215,12 @@ export const GateScene = () => {
 
         {/* Gate inscription */}
         <View style={styles.inscription}>
-          <Text style={styles.inscriptionText}>بوابة المستثمر</Text>
+          <Text style={styles.inscriptionText}>Investor's Gate</Text>
         </View>
       </Animated.View>
 
       <Guardian
-        message="لفتح هذه البوابة... يجب أن تفهم أول قانون للاستثمار"
+        message="To open this gate... you must understand the first law of investing"
         color="#5b5fff"
         icon="Shield"
       />
@@ -251,16 +251,16 @@ export const TargetRangeScene = () => {
       <Animated.View style={[styles.targetsContainer, { opacity: enterAnim }]}>
         <View style={[styles.target, styles.targetLeft]}>
           <View style={styles.targetRing} />
-          <Text style={styles.targetLabel}>السعر</Text>
+          <Text style={styles.targetLabel}>Price</Text>
         </View>
         <View style={[styles.target, styles.targetCenter]}>
           <View style={[styles.targetRing, styles.targetRingGold]} />
           <LucideIcons.Star size={24} color="#ffd166" />
-          <Text style={[styles.targetLabel, styles.targetLabelGold]}>القيمة</Text>
+          <Text style={[styles.targetLabel, styles.targetLabelGold]}>Value</Text>
         </View>
         <View style={[styles.target, styles.targetRight]}>
           <View style={styles.targetRing} />
-          <Text style={styles.targetLabel}>الشهرة</Text>
+          <Text style={styles.targetLabel}>Hype</Text>
         </View>
       </Animated.View>
 
@@ -270,7 +270,7 @@ export const TargetRangeScene = () => {
       </Animated.View>
 
       <Guardian
-        message="اضرب هدف المستثمر الحقيقي"
+        message="Hit the target of the true investor"
         color="#ffd166"
         icon="Target"
       />
@@ -329,7 +329,7 @@ export const PuzzleScene = () => {
       </View>
 
       <Guardian
-        message="كل إجابة صحيحة تكشف قطعة من الصورة"
+        message="Each correct answer reveals a piece of the picture"
         color="#22c55e"
         icon="Puzzle"
       />
@@ -373,7 +373,7 @@ export const TimeAttackScene = () => {
         </Animated.View>
         <View style={styles.timerLabel}>
           <LucideIcons.Timer size={20} color={timerColor} />
-          <Text style={[styles.timerLabelText, { color: timerColor }]}>ثواني</Text>
+          <Text style={[styles.timerLabelText, { color: timerColor }]}>seconds</Text>
         </View>
       </Animated.View>
 
@@ -384,7 +384,7 @@ export const TimeAttackScene = () => {
       </View>
 
       <Guardian
-        message="أقوى مستثمر هو من يهزم مشاعره"
+        message="The strongest investor is one who conquers their emotions"
         color="#ef4444"
         icon="Timer"
       />
@@ -436,12 +436,12 @@ export const BuildModeScene = () => {
 
         {/* Foundation */}
         <View style={styles.towerFoundation}>
-          <Text style={styles.foundationText}>التراكم</Text>
+          <Text style={styles.foundationText}>Compounding</Text>
         </View>
       </View>
 
       <Guardian
-        message="كل إجابة صحيحة تضيف لبنة جديدة"
+        message="Each correct answer adds a new block"
         color="#5b5fff"
         icon="Building"
       />
@@ -479,20 +479,20 @@ export const MysteryBoxScene = () => {
         <Animated.View style={[styles.mysteryBox, { transform: [{ translateX: shake1 }] }]}>
           <LinearGradient colors={['#ffd166', '#f59e0b']} style={styles.boxGradient}>
             <LucideIcons.Sparkles size={28} color="#fff" />
-            <Text style={styles.boxLabel}>فرصة لامعة</Text>
+            <Text style={styles.boxLabel}>Shiny Opportunity</Text>
           </LinearGradient>
         </Animated.View>
 
         <Animated.View style={[styles.mysteryBox, { transform: [{ translateX: shake2 }] }]}>
           <LinearGradient colors={['#22c55e', '#16a34a']} style={styles.boxGradient}>
             <LucideIcons.Heart size={28} color="#fff" />
-            <Text style={styles.boxLabel}>فرصة مناسبة</Text>
+            <Text style={styles.boxLabel}>Right Opportunity</Text>
           </LinearGradient>
         </Animated.View>
       </Animated.View>
 
       <Guardian
-        message="اختر الطريق الذي يسلكه المستثمر الحقيقي"
+        message="Choose the path that a true investor takes"
         color="#ffd166"
         icon="Gift"
       />
@@ -523,17 +523,17 @@ export const ShootHitScene = () => {
       <Animated.View style={[styles.shootTargetsContainer, { opacity: enterAnim }]}>
         <View style={styles.shootTarget}>
           <LucideIcons.Brain size={24} color="#8c92b5" />
-          <Text style={styles.shootTargetLabel}>الذكاء</Text>
+          <Text style={styles.shootTargetLabel}>Intelligence</Text>
         </View>
 
         <Animated.View style={[styles.shootTarget, styles.shootTargetMain, { transform: [{ scale: targetScale }] }]}>
           <LucideIcons.CheckCircle size={28} color="#22c55e" />
-          <Text style={[styles.shootTargetLabel, styles.shootTargetLabelMain]}>الانضباط</Text>
+          <Text style={[styles.shootTargetLabel, styles.shootTargetLabelMain]}>Discipline</Text>
         </Animated.View>
 
         <View style={styles.shootTarget}>
           <LucideIcons.Dice4 size={24} color="#8c92b5" />
-          <Text style={styles.shootTargetLabel}>الحظ</Text>
+          <Text style={styles.shootTargetLabel}>Luck</Text>
         </View>
       </Animated.View>
 
@@ -543,7 +543,7 @@ export const ShootHitScene = () => {
       </View>
 
       <Guardian
-        message="اضرب الذي يصنع المستثمر الحقيقي"
+        message="Hit what makes a true investor"
         color="#22c55e"
         icon="Crosshair"
       />
@@ -589,7 +589,7 @@ export const KnowledgeRaceScene = () => {
       </Animated.View>
 
       <Guardian
-        message="التعلم هو الوقود... انطلق!"
+        message="Learning is the fuel... Go!"
         color="#5b5fff"
         icon="GraduationCap"
       />
@@ -640,7 +640,7 @@ export const MindLockScene = () => {
       </Animated.View>
 
       <Guardian
-        message="كل رمز = معلومة... افتح قفل العقل"
+        message="Each code = information... Unlock the mind"
         color="#ffd166"
         icon="Brain"
       />
@@ -701,14 +701,167 @@ export const FinalPrecisionScene = () => {
           );
         })}
 
-        <Text style={styles.finalTitle}>اختبار الاحتراف</Text>
+        <Text style={styles.finalTitle}>The Mastery Test</Text>
       </Animated.View>
 
       <Guardian
-        message="لقد تعلمت الأساس... أثبت جاهزيتك"
+        message="You've learned the foundation... Prove your readiness"
         color="#22c55e"
         icon="Trophy"
       />
+    </View>
+  );
+};
+
+// ==================== KEY POINTS SCENE (Content Screen) ====================
+
+// Icon mapping for each lesson's key points
+const lessonKeyPointIcons: Record<number, string[]> = {
+  1: ['TrendingUp', 'Shield', 'Lightbulb'],
+  2: ['DollarSign', 'Scale', 'Trophy'],
+  3: ['Eye', 'TrendingUp', 'Target'],
+  4: ['Heart', 'AlertTriangle', 'Brain'],
+  5: ['Clock', 'Coins', 'Building'],
+  6: ['Sparkles', 'Heart', 'Filter'],
+  7: ['CheckCircle', 'Brain', 'Award'],
+  8: ['BookOpen', 'TrendingUp', 'Zap'],
+  9: ['Search', 'FileText', 'Shield'],
+  10: ['CheckCircle', 'Eye', 'Brain', 'Heart', 'TrendingUp'],
+};
+
+// Color themes for each lesson
+const lessonColors: Record<number, { primary: string; secondary: string; gradient: [string, string, string] }> = {
+  1: { primary: '#5b5fff', secondary: '#9bafff', gradient: ['#0a0e2e', '#1a1f4a', '#0a0e2e'] },
+  2: { primary: '#ffd166', secondary: '#ffe4a0', gradient: ['#1a1a0a', '#0a0e1e', '#1a1a0a'] },
+  3: { primary: '#22c55e', secondary: '#86efac', gradient: ['#0a1a0a', '#0a0e1e', '#0a1a0a'] },
+  4: { primary: '#ef4444', secondary: '#fca5a5', gradient: ['#1a0a0a', '#0a0e1e', '#1a0a0a'] },
+  5: { primary: '#5b5fff', secondary: '#9bafff', gradient: ['#0a0e2e', '#1a1f4a', '#0a0e2e'] },
+  6: { primary: '#ffd166', secondary: '#ffe4a0', gradient: ['#1a1a0a', '#0a0e1e', '#1a1a0a'] },
+  7: { primary: '#22c55e', secondary: '#86efac', gradient: ['#0a1a0a', '#0a0e1e', '#0a1a0a'] },
+  8: { primary: '#5b5fff', secondary: '#9bafff', gradient: ['#0a0e2e', '#1a1f4a', '#0a0e2e'] },
+  9: { primary: '#ffd166', secondary: '#ffe4a0', gradient: ['#1a1a0a', '#0a0e1e', '#1a1a0a'] },
+  10: { primary: '#22c55e', secondary: '#86efac', gradient: ['#0a1a0a', '#0a0e1e', '#1a0a1a'] },
+};
+
+interface KeyPointCardProps {
+  point: string;
+  index: number;
+  icon: string;
+  color: string;
+  totalPoints: number;
+}
+
+const KeyPointCard = ({ point, index, icon, color, totalPoints }: KeyPointCardProps) => {
+  const enterAnim = useEnterAnimation(index * 200);
+  const floatAnim = useLoopAnimation(2500, index * 300);
+  const glowAnim = useLoopAnimation(2000, index * 200);
+
+  const IconComponent = (LucideIcons as Record<string, React.ComponentType<{ size?: number; color?: string }>>)[icon] || LucideIcons.Star;
+
+  const translateY = floatAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -8],
+  });
+
+  const glowOpacity = glowAnim.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0.2, 0.5, 0.2],
+  });
+
+  const scale = enterAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.8, 1],
+  });
+
+  return (
+    <Animated.View
+      style={[
+        styles.keyPointCard,
+        {
+          opacity: enterAnim,
+          transform: [{ scale }, { translateY }],
+        },
+      ]}
+    >
+      {/* Glow effect */}
+      <Animated.View
+        style={[
+          styles.keyPointGlow,
+          { backgroundColor: color, opacity: glowOpacity },
+        ]}
+      />
+
+      {/* Icon container */}
+      <View style={[styles.keyPointIconContainer, { backgroundColor: `${color}20`, borderColor: `${color}40` }]}>
+        <IconComponent size={28} color={color} />
+      </View>
+
+      {/* Point number badge */}
+      <View style={[styles.keyPointBadge, { backgroundColor: color }]}>
+        <Text style={styles.keyPointBadgeText}>{index + 1}</Text>
+      </View>
+
+      {/* Text content */}
+      <Text style={styles.keyPointCardText}>{point}</Text>
+
+      {/* Decorative line */}
+      <View style={[styles.keyPointLine, { backgroundColor: `${color}30` }]} />
+    </Animated.View>
+  );
+};
+
+interface KeyPointsSceneProps {
+  keyPoints: string[];
+  lessonNumber: number;
+  title: string;
+}
+
+export const KeyPointsScene = ({ keyPoints, lessonNumber, title }: KeyPointsSceneProps) => {
+  const colors = lessonColors[lessonNumber] || lessonColors[1];
+  const icons = lessonKeyPointIcons[lessonNumber] || ['Star', 'Star', 'Star'];
+  const titleAnim = useEnterAnimation(0);
+  const subtitleAnim = useEnterAnimation(100);
+
+  return (
+    <View style={styles.keyPointsSceneContainer}>
+      <LinearGradient
+        colors={colors.gradient}
+        style={StyleSheet.absoluteFill}
+      />
+      <Particles color={colors.primary} count={12} />
+
+      {/* Header */}
+      <View style={styles.keyPointsHeader}>
+        <Animated.View style={{ opacity: titleAnim }}>
+          <Text style={[styles.keyPointsSceneTitle, { color: colors.primary }]}>
+            Key Points
+          </Text>
+        </Animated.View>
+        <Animated.View style={{ opacity: subtitleAnim }}>
+          <Text style={styles.keyPointsSceneSubtitle}>{title}</Text>
+        </Animated.View>
+      </View>
+
+      {/* Key Points Cards */}
+      <View style={styles.keyPointsCardsContainer}>
+        {keyPoints.map((point, index) => (
+          <KeyPointCard
+            key={index}
+            point={point}
+            index={index}
+            icon={icons[index] || 'Star'}
+            color={colors.primary}
+            totalPoints={keyPoints.length}
+          />
+        ))}
+      </View>
+
+      {/* Bottom decoration */}
+      <View style={styles.keyPointsBottomDecor}>
+        <View style={[styles.decorDot, { backgroundColor: colors.primary }]} />
+        <View style={[styles.decorLine, { backgroundColor: `${colors.primary}40` }]} />
+        <View style={[styles.decorDot, { backgroundColor: colors.primary }]} />
+      </View>
     </View>
   );
 };
@@ -1167,6 +1320,109 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     marginTop: 16,
+  },
+
+  // Key Points Scene Styles
+  keyPointsSceneContainer: {
+    width: '100%',
+    minHeight: 400,
+    borderRadius: 20,
+    overflow: 'hidden',
+    paddingVertical: 24,
+    paddingHorizontal: 16,
+  },
+  keyPointsHeader: {
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  keyPointsSceneTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  keyPointsSceneSubtitle: {
+    fontSize: 14,
+    color: '#8c92b5',
+    textAlign: 'center',
+  },
+  keyPointsCardsContainer: {
+    gap: 16,
+  },
+  keyPointCard: {
+    backgroundColor: 'rgba(20, 25, 45, 0.9)',
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.08)',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  keyPointGlow: {
+    position: 'absolute',
+    top: -20,
+    right: -20,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+  },
+  keyPointIconContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+  },
+  keyPointBadge: {
+    position: 'absolute',
+    top: -6,
+    left: -6,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  keyPointBadgeText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  keyPointCardText: {
+    flex: 1,
+    fontSize: 15,
+    lineHeight: 24,
+    color: '#f5f7ff',
+    textAlign: 'left',
+  },
+  keyPointLine: {
+    position: 'absolute',
+    bottom: 0,
+    left: 16,
+    right: 16,
+    height: 2,
+    borderRadius: 1,
+  },
+  keyPointsBottomDecor: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 24,
+    gap: 12,
+  },
+  decorDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+  },
+  decorLine: {
+    width: 60,
+    height: 2,
+    borderRadius: 1,
   },
 });
 
