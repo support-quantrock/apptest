@@ -9,6 +9,7 @@ import {
   Animated,
   Easing,
   Dimensions,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as LucideIcons from 'lucide-react-native';
@@ -729,6 +730,72 @@ const lessonKeyPointIcons: Record<number, string[]> = {
   10: ['CheckCircle', 'Eye', 'Brain', 'Heart', 'TrendingUp'],
 };
 
+// Image URLs for each lesson's key points (stock images related to investing/trading)
+const lessonKeyPointImages: Record<number, string[]> = {
+  // Lesson 1: The Gate of Transformation - Investor mindset
+  1: [
+    'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop', // Stock chart long-term
+    'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop', // Discipline/focus
+    'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=300&fit=crop', // Mindset/brain strategy
+  ],
+  // Lesson 2: The Value Mindset - Value investing
+  2: [
+    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop', // Value analysis
+    'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop', // Price vs value scale
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop', // Warren Buffett style investing
+  ],
+  // Lesson 3: Seeing the Big Picture - Long-term trends
+  3: [
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop', // Big picture analytics
+    'https://images.unsplash.com/photo-1612178537253-bccd437b730e?w=400&h=300&fit=crop', // Trend analysis
+    'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=300&fit=crop', // Direction/compass
+  ],
+  // Lesson 4: Controlling Emotions - Psychology
+  4: [
+    'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400&h=300&fit=crop', // Fear concept
+    'https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=400&h=300&fit=crop', // Greed/money
+    'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=300&fit=crop', // Control/meditation
+  ],
+  // Lesson 5: Power of Compounding - Growth
+  5: [
+    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', // Time/clock
+    'https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?w=400&h=300&fit=crop', // Coins stacking
+    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop', // Building wealth
+  ],
+  // Lesson 6: Don't Chase Opportunities
+  6: [
+    'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=300&fit=crop', // Shiny opportunity
+    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=300&fit=crop', // Right choice
+    'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop', // Careful decision
+  ],
+  // Lesson 7: Discipline Before Intelligence
+  7: [
+    'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&h=300&fit=crop', // Planning/discipline
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop', // Smart vs disciplined
+    'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=300&fit=crop', // Success/winning
+  ],
+  // Lesson 8: Growth Mindset - Learning
+  8: [
+    'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=300&fit=crop', // Learning from loss
+    'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop', // Victory/result
+    'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop', // Continuous learning
+  ],
+  // Lesson 9: Calculate Every Step - Research
+  9: [
+    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop', // Research/analysis
+    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop', // Data/information
+    'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=400&h=300&fit=crop', // Knowledge power
+  ],
+  // Lesson 10: The Mastery Test - All concepts
+  10: [
+    'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&h=300&fit=crop', // Discipline
+    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop', // Value
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop', // Big picture
+    'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=300&fit=crop', // Emotional control
+    'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop', // Growth
+  ],
+};
+
 // Color themes for each lesson
 const lessonColors: Record<number, { primary: string; secondary: string; gradient: [string, string, string] }> = {
   1: { primary: '#5b5fff', secondary: '#9bafff', gradient: ['#0a0e2e', '#1a1f4a', '#0a0e2e'] },
@@ -749,63 +816,106 @@ interface KeyPointCardProps {
   icon: string;
   color: string;
   totalPoints: number;
+  imageUrl?: string;
 }
 
-const KeyPointCard = ({ point, index, icon, color, totalPoints }: KeyPointCardProps) => {
-  const enterAnim = useEnterAnimation(index * 200);
-  const floatAnim = useLoopAnimation(2500, index * 300);
+const KeyPointCard = ({ point, index, icon, color, totalPoints, imageUrl }: KeyPointCardProps) => {
+  const enterAnim = useEnterAnimation(index * 250);
+  const floatAnim = useLoopAnimation(3000, index * 400);
   const glowAnim = useLoopAnimation(2000, index * 200);
+  const shimmerAnim = useLoopAnimation(2500, index * 150);
 
   const IconComponent = (LucideIcons as Record<string, React.ComponentType<{ size?: number; color?: string }>>)[icon] || LucideIcons.Star;
 
   const translateY = floatAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, -8],
+    outputRange: [0, -6],
   });
 
   const glowOpacity = glowAnim.interpolate({
     inputRange: [0, 0.5, 1],
-    outputRange: [0.2, 0.5, 0.2],
+    outputRange: [0.15, 0.4, 0.15],
+  });
+
+  const shimmerOpacity = shimmerAnim.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0.3, 0.7, 0.3],
   });
 
   const scale = enterAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.8, 1],
+    outputRange: [0.85, 1],
   });
 
   return (
     <Animated.View
       style={[
-        styles.keyPointCard,
+        styles.keyPointCardWithImage,
         {
           opacity: enterAnim,
           transform: [{ scale }, { translateY }],
         },
       ]}
     >
-      {/* Glow effect */}
+      {/* Background glow effect */}
       <Animated.View
         style={[
-          styles.keyPointGlow,
+          styles.keyPointGlowLarge,
           { backgroundColor: color, opacity: glowOpacity },
         ]}
       />
 
-      {/* Icon container */}
-      <View style={[styles.keyPointIconContainer, { backgroundColor: `${color}20`, borderColor: `${color}40` }]}>
-        <IconComponent size={28} color={color} />
+      {/* Image section */}
+      {imageUrl && (
+        <View style={styles.keyPointImageContainer}>
+          <Image
+            source={{ uri: imageUrl }}
+            style={styles.keyPointImage}
+            resizeMode="cover"
+          />
+          {/* Image overlay gradient */}
+          <LinearGradient
+            colors={['transparent', 'rgba(20, 25, 45, 0.8)', 'rgba(20, 25, 45, 0.95)']}
+            style={styles.keyPointImageOverlay}
+          />
+          {/* Shimmer effect on image */}
+          <Animated.View
+            style={[
+              styles.keyPointImageShimmer,
+              { opacity: shimmerOpacity },
+            ]}
+          >
+            <LinearGradient
+              colors={['transparent', `${color}30`, 'transparent']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+            />
+          </Animated.View>
+        </View>
+      )}
+
+      {/* Content section */}
+      <View style={styles.keyPointContentSection}>
+        {/* Icon and badge row */}
+        <View style={styles.keyPointHeaderRow}>
+          <View style={[styles.keyPointIconContainerSmall, { backgroundColor: `${color}25`, borderColor: `${color}50` }]}>
+            <IconComponent size={22} color={color} />
+          </View>
+          <View style={[styles.keyPointBadgeSmall, { backgroundColor: color }]}>
+            <Text style={styles.keyPointBadgeTextSmall}>{index + 1}</Text>
+          </View>
+        </View>
+
+        {/* Text content */}
+        <Text style={styles.keyPointCardTextWithImage}>{point}</Text>
+
+        {/* Decorative accent line */}
+        <View style={[styles.keyPointAccentLine, { backgroundColor: color }]} />
       </View>
 
-      {/* Point number badge */}
-      <View style={[styles.keyPointBadge, { backgroundColor: color }]}>
-        <Text style={styles.keyPointBadgeText}>{index + 1}</Text>
-      </View>
-
-      {/* Text content */}
-      <Text style={styles.keyPointCardText}>{point}</Text>
-
-      {/* Decorative line */}
-      <View style={[styles.keyPointLine, { backgroundColor: `${color}30` }]} />
+      {/* Border glow */}
+      <View style={[styles.keyPointBorderGlow, { borderColor: `${color}40` }]} />
     </Animated.View>
   );
 };
@@ -819,8 +929,15 @@ interface KeyPointsSceneProps {
 export const KeyPointsScene = ({ keyPoints, lessonNumber, title }: KeyPointsSceneProps) => {
   const colors = lessonColors[lessonNumber] || lessonColors[1];
   const icons = lessonKeyPointIcons[lessonNumber] || ['Star', 'Star', 'Star'];
+  const images = lessonKeyPointImages[lessonNumber] || [];
   const titleAnim = useEnterAnimation(0);
   const subtitleAnim = useEnterAnimation(100);
+  const decorAnim = useLoopAnimation(3000);
+
+  const decorScale = decorAnim.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [1, 1.2, 1],
+  });
 
   return (
     <View style={styles.keyPointsSceneContainer}>
@@ -828,22 +945,26 @@ export const KeyPointsScene = ({ keyPoints, lessonNumber, title }: KeyPointsScen
         colors={colors.gradient}
         style={StyleSheet.absoluteFill}
       />
-      <Particles color={colors.primary} count={12} />
+      <Particles color={colors.primary} count={15} />
 
       {/* Header */}
       <View style={styles.keyPointsHeader}>
         <Animated.View style={{ opacity: titleAnim }}>
-          <Text style={[styles.keyPointsSceneTitle, { color: colors.primary }]}>
-            Key Points
-          </Text>
+          <View style={styles.keyPointsTitleRow}>
+            <LucideIcons.Sparkles size={22} color={colors.primary} />
+            <Text style={[styles.keyPointsSceneTitle, { color: colors.primary }]}>
+              Key Points
+            </Text>
+            <LucideIcons.Sparkles size={22} color={colors.primary} />
+          </View>
         </Animated.View>
         <Animated.View style={{ opacity: subtitleAnim }}>
           <Text style={styles.keyPointsSceneSubtitle}>{title}</Text>
         </Animated.View>
       </View>
 
-      {/* Key Points Cards */}
-      <View style={styles.keyPointsCardsContainer}>
+      {/* Key Points Cards with Images */}
+      <View style={styles.keyPointsCardsContainerWithImages}>
         {keyPoints.map((point, index) => (
           <KeyPointCard
             key={index}
@@ -852,15 +973,16 @@ export const KeyPointsScene = ({ keyPoints, lessonNumber, title }: KeyPointsScen
             icon={icons[index] || 'Star'}
             color={colors.primary}
             totalPoints={keyPoints.length}
+            imageUrl={images[index]}
           />
         ))}
       </View>
 
-      {/* Bottom decoration */}
+      {/* Bottom decoration with animation */}
       <View style={styles.keyPointsBottomDecor}>
-        <View style={[styles.decorDot, { backgroundColor: colors.primary }]} />
+        <Animated.View style={[styles.decorDot, { backgroundColor: colors.primary, transform: [{ scale: decorScale }] }]} />
         <View style={[styles.decorLine, { backgroundColor: `${colors.primary}40` }]} />
-        <View style={[styles.decorDot, { backgroundColor: colors.primary }]} />
+        <Animated.View style={[styles.decorDot, { backgroundColor: colors.primary, transform: [{ scale: decorScale }] }]} />
       </View>
     </View>
   );
@@ -1329,17 +1451,22 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: 'hidden',
     paddingVertical: 24,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
   },
   keyPointsHeader: {
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 20,
+  },
+  keyPointsTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 8,
   },
   keyPointsSceneTitle: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: 8,
   },
   keyPointsSceneSubtitle: {
     fontSize: 14,
@@ -1348,6 +1475,9 @@ const styles = StyleSheet.create({
   },
   keyPointsCardsContainer: {
     gap: 16,
+  },
+  keyPointsCardsContainerWithImages: {
+    gap: 20,
   },
   keyPointCard: {
     backgroundColor: 'rgba(20, 25, 45, 0.9)',
@@ -1361,6 +1491,100 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
   },
+  // New image-enhanced card styles
+  keyPointCardWithImage: {
+    backgroundColor: 'rgba(20, 25, 45, 0.95)',
+    borderRadius: 20,
+    overflow: 'hidden',
+    position: 'relative',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.08)',
+  },
+  keyPointGlowLarge: {
+    position: 'absolute',
+    top: -40,
+    right: -40,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+  },
+  keyPointImageContainer: {
+    width: '100%',
+    height: 140,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  keyPointImage: {
+    width: '100%',
+    height: '100%',
+  },
+  keyPointImageOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 80,
+  },
+  keyPointImageShimmer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  keyPointContentSection: {
+    padding: 16,
+    paddingTop: 12,
+  },
+  keyPointHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  keyPointIconContainerSmall: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+  },
+  keyPointBadgeSmall: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  keyPointBadgeTextSmall: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  keyPointCardTextWithImage: {
+    fontSize: 15,
+    lineHeight: 24,
+    color: '#f5f7ff',
+    textAlign: 'left',
+    marginBottom: 12,
+  },
+  keyPointAccentLine: {
+    width: 50,
+    height: 3,
+    borderRadius: 2,
+  },
+  keyPointBorderGlow: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 20,
+    borderWidth: 1,
+    pointerEvents: 'none',
+  },
+  // Legacy styles kept for compatibility
   keyPointGlow: {
     position: 'absolute',
     top: -20,
