@@ -22,9 +22,9 @@ export const tradingCurriculum: TradingCurriculum = {
   name: '28-Day Trading Challenge',
   version: '1.0.0',
   totalDays: 28,
-  lessonsPerDay: 3,
+  defaultLessonsPerDay: 3,
   testsPerDay: 1,
-  objectivesPerLesson: 3,
+  defaultObjectivesPerLesson: 3,
   days: [...week1Days, ...week2Days, ...week3Days, ...week4Days],
 };
 
@@ -63,18 +63,16 @@ export function getCurriculumObjective(
 }
 
 /**
- * Map 10 screens to 3 objectives
- * Screens 1-3: Objective 1 (Intro -> Content -> Task)
- * Screens 4-6: Objective 2 (Intro -> Content -> Task)
- * Screens 7-9: Objective 3 (Intro -> Content -> Task)
- * Screen 10: Summary
+ * Map screens to objectives dynamically based on objective count
+ * Each objective gets 3 screens: Intro -> Content -> Task
+ * Plus 1 summary screen at the end
  */
-export function mapScreensToObjectives(): ScreenConfig[] {
+export function mapScreensToObjectives(objectiveCount: number = 3): ScreenConfig[] {
   const screenTypes: ScreenType[] = ['intro', 'content', 'task'];
   const configs: ScreenConfig[] = [];
 
-  // Screens 0-8: Map to 3 objectives (3 screens each)
-  for (let obj = 0; obj < 3; obj++) {
+  // Map each objective to 3 screens
+  for (let obj = 0; obj < objectiveCount; obj++) {
     for (let screen = 0; screen < 3; screen++) {
       configs.push({
         screenIndex: obj * 3 + screen,
@@ -84,9 +82,9 @@ export function mapScreensToObjectives(): ScreenConfig[] {
     }
   }
 
-  // Screen 9: Summary
+  // Final screen: Summary
   configs.push({
-    screenIndex: 9,
+    screenIndex: objectiveCount * 3,
     objectiveIndex: -1, // N/A for summary
     type: 'summary',
   });
@@ -97,9 +95,16 @@ export function mapScreensToObjectives(): ScreenConfig[] {
 /**
  * Get screen configuration for a specific screen index
  */
-export function getScreenConfig(screenIndex: number): ScreenConfig {
-  const configs = mapScreensToObjectives();
+export function getScreenConfig(screenIndex: number, objectiveCount: number = 3): ScreenConfig {
+  const configs = mapScreensToObjectives(objectiveCount);
   return configs[screenIndex] || configs[0];
+}
+
+/**
+ * Calculate total screens for a lesson based on objective count
+ */
+export function getTotalScreens(objectiveCount: number): number {
+  return objectiveCount * 3 + 1; // 3 screens per objective + 1 summary
 }
 
 /**
@@ -156,15 +161,19 @@ export function getDailyTest(dayNumber: number): DailyTest | undefined {
   // If test exists, return it
   if (day.test) return day.test;
 
-  // Generate a default test from lesson objectives (one question per lesson)
-  const questions = day.lessons.map((lesson, lessonIdx) => {
+  // Generate a default test from lesson objectives (one question per lesson, max 5)
+  const lessonCount = day.lessons.length;
+  const questionsToTake = Math.min(lessonCount, 5); // Cap at 5 questions
+  const pointsPerQuestion = Math.floor(100 / questionsToTake);
+
+  const questions = day.lessons.slice(0, questionsToTake).map((lesson, lessonIdx) => {
     const obj = lesson.objectives[0]; // Use first objective from each lesson
     return {
       id: `day${dayNumber}_auto_q${lessonIdx + 1}`,
       type: obj.task.type,
       config: obj.task.config,
       feedback: obj.task.feedback,
-      points: Math.floor(100 / 3)
+      points: pointsPerQuestion
     };
   });
 
@@ -175,7 +184,7 @@ export function getDailyTest(dayNumber: number): DailyTest | undefined {
     description: `Test your knowledge from Day ${dayNumber}: ${day.title}`,
     questions: questions as DailyTest['questions'],
     passingScore: 70,
-    estimatedMinutes: 5
+    estimatedMinutes: Math.max(5, questionsToTake * 2) // ~2 min per question
   };
 }
 

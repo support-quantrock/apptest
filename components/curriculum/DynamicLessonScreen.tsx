@@ -8,6 +8,7 @@ import {
   getCurriculumLesson,
   getScreenConfig,
   mapScreensToObjectives,
+  getTotalScreens,
 } from '../../data/curriculum';
 import type { CurriculumLesson, Objective, ScreenConfig } from '../../types/curriculum';
 
@@ -38,15 +39,18 @@ export const DynamicLessonScreen = ({
 }: DynamicLessonScreenProps) => {
   const lesson = getCurriculumLesson(dayNumber, lessonNumber);
 
-  const [state, setState] = useState<LessonState>({
-    currentScreen: 0,
-    completedObjectives: [false, false, false],
-    taskResults: [null, null, null],
-  });
+  // Calculate dynamic values based on lesson objectives
+  const objectiveCount = lesson?.objectives.length || 3;
+  const totalScreens = getTotalScreens(objectiveCount);
 
-  const screenConfigs = mapScreensToObjectives();
-  const currentConfig = getScreenConfig(state.currentScreen);
-  const totalScreens = 10;
+  const [state, setState] = useState<LessonState>(() => ({
+    currentScreen: 0,
+    completedObjectives: new Array(objectiveCount).fill(false),
+    taskResults: new Array(objectiveCount).fill(null),
+  }));
+
+  const screenConfigs = mapScreensToObjectives(objectiveCount);
+  const currentConfig = getScreenConfig(state.currentScreen, objectiveCount);
 
   // Navigation handlers
   const goToNextScreen = useCallback(() => {
@@ -113,7 +117,7 @@ export const DynamicLessonScreen = ({
           <IntroScreen
             objective={objective}
             objectiveNumber={objectiveIndex + 1}
-            totalObjectives={3}
+            totalObjectives={objectiveCount}
             lessonTitle={lesson.title}
             onNext={goToNextScreen}
           />
