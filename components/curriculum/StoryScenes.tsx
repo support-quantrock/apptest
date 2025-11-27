@@ -730,69 +730,69 @@ const lessonKeyPointIcons: Record<number, string[]> = {
   10: ['CheckCircle', 'Eye', 'Brain', 'Heart', 'TrendingUp'],
 };
 
-// Image URLs for each lesson's key points (stock images related to investing/trading)
+// AI-generated cartoon images for each lesson's key points using Pollinations.ai
 const lessonKeyPointImages: Record<number, string[]> = {
   // Lesson 1: The Gate of Transformation - Investor mindset
   1: [
-    'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop', // Stock chart long-term
-    'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop', // Discipline/focus
-    'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=400&h=300&fit=crop', // Mindset/brain strategy
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20investor%20looking%20through%20telescope%20at%20distant%20mountain%20peak%20with%20upward%20stock%20chart%20long%20term%20vision%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=101',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20disciplined%20person%20following%20checklist%20plan%20organized%20focused%20investment%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=102',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20glowing%20brain%20with%20gears%20lightbulb%20positive%20mindset%20success%20thinking%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=103',
   ],
   // Lesson 2: The Value Mindset - Value investing
   2: [
-    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop', // Value analysis
-    'https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=400&h=300&fit=crop', // Price vs value scale
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop', // Warren Buffett style investing
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20golden%20scale%20balancing%20diamond%20gem%20value%20versus%20price%20tag%20investment%20concept%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=201',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20fluctuating%20price%20waves%20on%20top%20stable%20value%20foundation%20rock%20solid%20base%20investing%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=202',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20wise%20investor%20character%20with%20magnifying%20glass%20analyzing%20stocks%20value%20investing%20warren%20buffett%20style%20flat%20design%20gold%20colors?width=400&height=300&seed=203',
   ],
   // Lesson 3: Seeing the Big Picture - Long-term trends
   3: [
-    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop', // Big picture analytics
-    'https://images.unsplash.com/photo-1612178537253-bccd437b730e?w=400&h=300&fit=crop', // Trend analysis
-    'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=300&fit=crop', // Direction/compass
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20person%20standing%20on%20mountain%20top%20viewing%20full%20landscape%20panorama%20seeing%20trends%20big%20picture%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=301',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20person%20above%20maze%20seeing%20clear%20path%20to%20exit%20bird%20eye%20view%20perspective%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=302',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20compass%20with%20wide%20map%20showing%20direction%20navigation%20true%20path%20investing%20journey%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=303',
   ],
   // Lesson 4: Controlling Emotions - Psychology
   4: [
-    'https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400&h=300&fit=crop', // Fear concept
-    'https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?w=400&h=300&fit=crop', // Greed/money
-    'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=300&fit=crop', // Control/meditation
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20scared%20investor%20running%20away%20from%20small%20dip%20in%20stock%20chart%20fear%20selling%20too%20early%20panic%20flat%20design%20red%20colors?width=400&height=300&seed=401',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20greedy%20person%20chasing%20rocket%20that%20already%20launched%20too%20late%20buying%20high%20fomo%20flat%20design%20red%20colors?width=400&height=300&seed=402',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20zen%20calm%20investor%20meditating%20peacefully%20while%20stock%20charts%20fluctuate%20around%20emotional%20control%20flat%20design%20red%20colors?width=400&height=300&seed=403',
   ],
   // Lesson 5: Power of Compounding - Growth
   5: [
-    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop', // Time/clock
-    'https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?w=400&h=300&fit=crop', // Coins stacking
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop', // Building wealth
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20snowball%20rolling%20downhill%20getting%20bigger%20compound%20growth%20effect%20wealth%20building%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=501',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20small%20coins%20growing%20into%20mountain%20of%20gold%20over%20timeline%20wealth%20accumulation%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=502',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20hourglass%20with%20coins%20multiplying%20inside%20time%20is%20money%20patient%20investing%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=503',
   ],
   // Lesson 6: Don't Chase Opportunities
   6: [
-    'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=300&fit=crop', // Shiny opportunity
-    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=300&fit=crop', // Right choice
-    'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop', // Careful decision
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20glittering%20gold%20trap%20versus%20simple%20door%20with%20warm%20light%20right%20opportunity%20wisdom%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=601',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20person%20chasing%20butterflies%20missing%20beautiful%20flower%20garden%20nearby%20wrong%20priorities%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=602',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20puzzle%20piece%20finding%20perfect%20match%20right%20fit%20opportunity%20personality%20match%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=603',
   ],
   // Lesson 7: Discipline Before Intelligence
   7: [
-    'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&h=300&fit=crop', // Planning/discipline
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop', // Smart vs disciplined
-    'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400&h=300&fit=crop', // Success/winning
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20focused%20person%20following%20roadmap%20step%20by%20step%20discipline%20planning%20consistency%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=701',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20genius%20scattered%20papers%20chaos%20failing%20without%20discipline%20smart%20but%20disorganized%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=702',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20regular%20person%20crossing%20finish%20line%20winning%20trophy%20methodical%20disciplined%20approach%20success%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=703',
   ],
   // Lesson 8: Growth Mindset - Learning
   8: [
-    'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=300&fit=crop', // Learning from loss
-    'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop', // Victory/result
-    'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop', // Continuous learning
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20person%20falling%20down%20but%20collecting%20books%20knowledge%20learning%20from%20failure%20lessons%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=801',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20trophy%20being%20built%20brick%20by%20brick%20step%20by%20step%20achievement%20progress%20results%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=802',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20brain%20character%20lifting%20weights%20exercising%20getting%20stronger%20continuous%20learning%20growth%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=803',
   ],
   // Lesson 9: Calculate Every Step - Research
   9: [
-    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop', // Research/analysis
-    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop', // Data/information
-    'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=400&h=300&fit=crop', // Knowledge power
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20detective%20investor%20with%20magnifying%20glass%20analyzing%20stock%20charts%20research%20investigation%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=901',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20dice%20gambling%20with%20big%20red%20X%20mark%20guessing%20equals%20loss%20no%20gambling%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=902',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20superhero%20powered%20by%20data%20books%20information%20knowledge%20is%20power%20strength%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=903',
   ],
   // Lesson 10: The Mastery Test - All concepts
   10: [
-    'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&h=300&fit=crop', // Discipline
-    'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=300&fit=crop', // Value
-    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop', // Big picture
-    'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=400&h=300&fit=crop', // Emotional control
-    'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop', // Growth
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20checklist%20with%20green%20checkmarks%20discipline%20organized%20planning%20success%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=1001',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20shining%20diamond%20gem%20representing%20true%20value%20precious%20investing%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=1002',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20eagle%20flying%20high%20with%20panoramic%20view%20big%20picture%20perspective%20vision%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=1003',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20balanced%20scale%20with%20heart%20and%20brain%20emotional%20control%20balance%20wisdom%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=1004',
+    'https://image.pollinations.ai/prompt/cartoon%20illustration%20plant%20growing%20through%20stages%20seedling%20to%20tree%20continuous%20growth%20progress%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=1005',
   ],
 };
 
