@@ -7,7 +7,7 @@ import { ChallengeInfoModal } from './ChallengeInfoModal';
 import { tradingCurriculum, getCurriculumDay } from '../data/curriculum';
 
 const TOTAL_DAYS = 28;
-const LESSONS_PER_DAY = 4; // 3 lessons + 1 daily test
+const DEFAULT_LESSONS_PER_DAY = 3; // Default if no curriculum data (actual count comes from curriculum)
 
 const ICON_CONFIG = {
   completedIcon: {
@@ -53,9 +53,12 @@ export default function LearningChallenge() {
     const generatedDays = [];
     for (let day = 1; day <= TOTAL_DAYS; day++) {
       const curriculumDay = getCurriculumDay(day);
+      // Get lesson count from curriculum data, default to 3 if not available
+      const lessonCount = curriculumDay?.lessons.length || DEFAULT_LESSONS_PER_DAY;
+      const totalItems = lessonCount + 1; // lessons + 1 test
       const lessons = [];
-      for (let lesson = 1; lesson <= LESSONS_PER_DAY; lesson++) {
-        const isTest = lesson === 4; // 4th item is the daily test
+      for (let lesson = 1; lesson <= totalItems; lesson++) {
+        const isTest = lesson === totalItems; // Last item is the daily test
         // All lessons and tests are unlocked for testing
         lessons.push({
           id: lesson,
@@ -68,6 +71,7 @@ export default function LearningChallenge() {
       generatedDays.push({
         day,
         lessons,
+        lessonCount, // Store for use in renderLesson
         title: curriculumDay?.title || `Day ${day}`,
         emoji: curriculumDay?.emoji || '📚',
         theme: curriculumDay?.theme || 'basics',
@@ -78,23 +82,21 @@ export default function LearningChallenge() {
 
   const days = generateDays();
 
-  const renderLesson = (lessonData: any, dayNumber: number, lessonIndex: number) => {
+  const renderLesson = (lessonData: any, dayNumber: number, lessonIndex: number, totalItems: number) => {
     // Odd days (1, 3, 5...) go right to left, Even days (2, 4, 6...) go left to right
     const isOddDay = dayNumber % 2 === 1;
-    const isSecondIcon = lessonIndex === 1;
-    const isThirdIcon = lessonIndex === 2;
-    const isFourthIcon = lessonIndex === 3;
-    const isLastLesson = lessonIndex === LESSONS_PER_DAY - 1;
+    const isLastLesson = lessonIndex === totalItems - 1;
     const isTest = lessonData.isTest;
 
-    // Adjusted padding for 4 items per day (3 lessons + 1 test) with zigzag pattern
-    let extraPadding = {};
-    if (isSecondIcon) {
-      extraPadding = isOddDay ? { paddingRight: '15%' } : { paddingLeft: '15%' };
-    } else if (isThirdIcon) {
-      extraPadding = isOddDay ? { paddingRight: '35%' } : { paddingLeft: '35%' };
-    } else if (isFourthIcon) {
-      extraPadding = isOddDay ? { paddingRight: '55%' } : { paddingLeft: '55%' };
+    // Dynamic zigzag padding calculation based on total items
+    // First item has no extra padding, last item has maximum padding (60%)
+    const maxPadding = 60;
+    const paddingStep = totalItems > 1 ? maxPadding / (totalItems - 1) : 0;
+    const paddingPercent = `${Math.round(lessonIndex * paddingStep)}%`;
+
+    let extraPadding: { paddingRight?: string; paddingLeft?: string } = {};
+    if (lessonIndex > 0) {
+      extraPadding = isOddDay ? { paddingRight: paddingPercent } : { paddingLeft: paddingPercent };
     }
 
     const lesson = lessonData;
@@ -269,7 +271,7 @@ export default function LearningChallenge() {
             <View style={styles.dayLine} />
 
             <View style={styles.lessonsContainer}>
-              {dayData.lessons.map((lesson, index) => renderLesson(lesson, dayData.day, index))}
+              {dayData.lessons.map((lesson, index) => renderLesson(lesson, dayData.day, index, dayData.lessons.length))}
             </View>
           </View>
         ))}

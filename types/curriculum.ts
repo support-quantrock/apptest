@@ -13,7 +13,18 @@ export type TaskType =
   | 'price_prediction'
   | 'chart_interaction'
   | 'simulation'
-  | 'fill_blank';
+  | 'fill_blank'
+  // New game types for Day 2 Mindset Day
+  | 'master_lock'
+  | 'arrow_precision'
+  | 'puzzle_reveal'
+  | 'time_attack'
+  | 'build_mode'
+  | 'mystery_box'
+  | 'shoot_hit'
+  | 'knowledge_race'
+  | 'mind_lock'
+  | 'final_precision';
 
 export interface CoinFlipConfig {
   instruction: string;
@@ -111,6 +122,117 @@ export interface FillBlankConfig {
   instruction: string;
 }
 
+// ==================== NEW GAME CONFIG TYPES (Day 2 Mindset Day) ====================
+
+export interface MasterLockQuestion {
+  question: string;
+  options: Array<{ text: string; correct: boolean; digit: number }>;
+}
+
+export interface MasterLockConfig {
+  questions: MasterLockQuestion[];
+  correctCode: string;
+  instruction: string;
+}
+
+export interface ArrowPrecisionTarget {
+  id: string;
+  label: string;
+  correct: boolean;
+}
+
+export interface ArrowPrecisionConfig {
+  targets: ArrowPrecisionTarget[];
+  instruction: string;
+}
+
+export interface PuzzleRevealQuestion {
+  question: string;
+  options: string[];
+  correctIndex: number;
+}
+
+export interface PuzzleRevealConfig {
+  questions: PuzzleRevealQuestion[];
+  totalPieces: number;
+  instruction: string;
+}
+
+export interface TimeAttackConfig {
+  question: string;
+  options: string[];
+  correctIndex: number;
+  timeLimit: number;
+  instruction: string;
+}
+
+export interface BuildModeQuestion {
+  question: string;
+  options: string[];
+  correctIndex: number;
+  blockLabel: string;
+}
+
+export interface BuildModeConfig {
+  questions: BuildModeQuestion[];
+  instruction: string;
+}
+
+export interface MysteryBoxOption {
+  id: string;
+  label: string;
+  correct: boolean;
+}
+
+export interface MysteryBoxConfig {
+  boxes: MysteryBoxOption[];
+  instruction: string;
+}
+
+export interface ShootHitTarget {
+  id: string;
+  label: string;
+  correct: boolean;
+}
+
+export interface ShootHitConfig {
+  targets: ShootHitTarget[];
+  instruction: string;
+}
+
+export interface KnowledgeRaceQuestion {
+  question: string;
+  options: string[];
+  correctIndex: number;
+}
+
+export interface KnowledgeRaceConfig {
+  questions: KnowledgeRaceQuestion[];
+  instruction: string;
+}
+
+export interface MindLockOption {
+  id: string;
+  label: string;
+  correct: boolean;
+}
+
+export interface MindLockConfig {
+  options: MindLockOption[];
+  instruction: string;
+}
+
+export interface FinalPrecisionTarget {
+  id: string;
+  label: string;
+  correct: boolean;
+}
+
+export interface FinalPrecisionConfig {
+  targets: FinalPrecisionTarget[];
+  instruction: string;
+}
+
 export type TaskConfig =
   | CoinFlipConfig
   | MultipleChoiceConfig
@@ -122,7 +244,18 @@ export type TaskConfig =
   | PricePredictionConfig
   | ChartInteractionConfig
   | SimulationConfig
-  | FillBlankConfig;
+  | FillBlankConfig
+  // New game configs for Day 2 Mindset Day
+  | MasterLockConfig
+  | ArrowPrecisionConfig
+  | PuzzleRevealConfig
+  | TimeAttackConfig
+  | BuildModeConfig
+  | MysteryBoxConfig
+  | ShootHitConfig
+  | KnowledgeRaceConfig
+  | MindLockConfig
+  | FinalPrecisionConfig;
 
 // ==================== OBJECTIVE & LESSON TYPES ====================
 
@@ -158,7 +291,7 @@ export interface CurriculumLesson {
   lessonNumber: number;
   title: string;
   description?: string;
-  objectives: [Objective, Objective, Objective]; // Always exactly 3
+  objectives: Objective[]; // Flexible array - can be 1-3+ objectives per lesson
   estimatedMinutes: number;
 }
 
@@ -203,7 +336,7 @@ export interface CurriculumDay {
   emoji: string;
   missionRank: string;
   theme: 'basics' | 'indicators' | 'multi_market' | 'advanced';
-  lessons: [CurriculumLesson, CurriculumLesson, CurriculumLesson]; // Always exactly 3
+  lessons: CurriculumLesson[]; // Flexible array - can be 3-10+ lessons per day
   test?: DailyTest; // Daily test/challenge (optional - auto-generated if not provided)
   rewards: DayReward;
 }
@@ -215,9 +348,9 @@ export interface TradingCurriculum {
   name: string;
   version: string;
   totalDays: 28;
-  lessonsPerDay: 3;
+  defaultLessonsPerDay: 3; // Default, but days can override with variable lengths
   testsPerDay: 1;
-  objectivesPerLesson: 3;
+  defaultObjectivesPerLesson: 3; // Default, but lessons can override with variable lengths
   days: CurriculumDay[];
 }
 

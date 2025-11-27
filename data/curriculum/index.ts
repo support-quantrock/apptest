@@ -22,9 +22,9 @@ export const tradingCurriculum: TradingCurriculum = {
   name: '28-Day Trading Challenge',
   version: '1.0.0',
   totalDays: 28,
-  lessonsPerDay: 3,
+  defaultLessonsPerDay: 3,
   testsPerDay: 1,
-  objectivesPerLesson: 3,
+  defaultObjectivesPerLesson: 3,
   days: [...week1Days, ...week2Days, ...week3Days, ...week4Days],
 };
 
@@ -63,18 +63,18 @@ export function getCurriculumObjective(
 }
 
 /**
- * Map 10 screens to 3 objectives
- * Screens 1-3: Objective 1 (Intro -> Content -> Task)
- * Screens 4-6: Objective 2 (Intro -> Content -> Task)
- * Screens 7-9: Objective 3 (Intro -> Content -> Task)
- * Screen 10: Summary
+ * Map screens to objectives dynamically based on objective count
+ * Each objective gets 3 screens: Intro -> Content -> Task
+ * Final screen is Summary
+ *
+ * @param objectiveCount - Number of objectives in the lesson (default: 3)
  */
-export function mapScreensToObjectives(): ScreenConfig[] {
+export function mapScreensToObjectives(objectiveCount: number = 3): ScreenConfig[] {
   const screenTypes: ScreenType[] = ['intro', 'content', 'task'];
   const configs: ScreenConfig[] = [];
 
-  // Screens 0-8: Map to 3 objectives (3 screens each)
-  for (let obj = 0; obj < 3; obj++) {
+  // Map each objective to 3 screens
+  for (let obj = 0; obj < objectiveCount; obj++) {
     for (let screen = 0; screen < 3; screen++) {
       configs.push({
         screenIndex: obj * 3 + screen,
@@ -84,9 +84,9 @@ export function mapScreensToObjectives(): ScreenConfig[] {
     }
   }
 
-  // Screen 9: Summary
+  // Add Summary screen at the end
   configs.push({
-    screenIndex: 9,
+    screenIndex: objectiveCount * 3,
     objectiveIndex: -1, // N/A for summary
     type: 'summary',
   });
@@ -96,10 +96,21 @@ export function mapScreensToObjectives(): ScreenConfig[] {
 
 /**
  * Get screen configuration for a specific screen index
+ * @param screenIndex - The current screen index
+ * @param objectiveCount - Number of objectives in the lesson (default: 3)
  */
-export function getScreenConfig(screenIndex: number): ScreenConfig {
-  const configs = mapScreensToObjectives();
+export function getScreenConfig(screenIndex: number, objectiveCount: number = 3): ScreenConfig {
+  const configs = mapScreensToObjectives(objectiveCount);
   return configs[screenIndex] || configs[0];
+}
+
+/**
+ * Calculate total screens for a lesson based on objective count
+ * Each objective has 3 screens (intro, content, task) + 1 summary screen
+ * @param objectiveCount - Number of objectives in the lesson
+ */
+export function getTotalScreens(objectiveCount: number): number {
+  return objectiveCount * 3 + 1; // 3 screens per objective + 1 summary
 }
 
 /**

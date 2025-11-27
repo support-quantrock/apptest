@@ -265,251 +265,418 @@ const day1: CurriculumDay = {
   }
 };
 
-// ==================== DAY 2 ====================
+// ==================== DAY 2 - يوم العقلية (The Mindset Day) ====================
 const day2: CurriculumDay = {
   dayNumber: 2,
-  title: 'Trading Platforms & Tools',
-  emoji: '🛠️',
-  missionRank: 'Level 2 – Chart Explorer',
+  title: 'يوم العقلية',
+  emoji: '🧠',
+  missionRank: 'Level 2 – Mind Master',
   theme: 'basics',
   lessons: [
+    // الدرس 1 — بوابة التحوّل العقلي (Master Lock)
     {
       id: 'day2_lesson1',
       dayNumber: 2,
       lessonNumber: 1,
-      title: 'Understanding Charts',
-      description: 'Learn to read the visual language of trading.',
+      title: 'بوابة التحوّل العقلي',
+      description: 'تصل إلى بوابة حجرية ضخمة... لفتحها يجب أن تفهم أول قانون للاستثمار.',
       objectives: [
         {
           id: 'day2_l1_obj1',
-          title: 'Learn Candlesticks, Line Charts & Bar Charts',
-          content: 'Charts visualize price movement. Line charts show only closing prices (simple). Bar charts show open, high, low, close. Candlestick charts are most detailed and popular - they show who\'s winning: buyers or sellers.',
-          keyPoints: ['Line: Simple, closing prices only', 'Bar: OHLC data', 'Candlestick: Most detailed, shows sentiment'],
-          image: { icon: 'CandlestickChart', animation: 'none', color: '#5b5fff' },
+          title: 'افتح بوابة عقلية المستثمر',
+          content: 'تصل إلى بوابة حجرية ضخمة مكتوب عليها: "لا يدخل هذا العالم إلا من يفكر كمستثمر." يظهر "حارس العقلية" ويقول: "لفتح هذه البوابة… يجب أن تفهم أول قانون للاستثمار."',
+          keyPoints: ['المستثمر يفكر في المدى الطويل لا اللحظة الحالية', 'الانضباط أهم من الذكاء', 'العقلية الصحيحة أهم من أي استراتيجية'],
+          image: { icon: 'Lock', animation: 'pulse', color: '#5b5fff' },
           task: {
-            type: 'multiple_choice',
+            type: 'master_lock',
             config: {
-              question: 'Which chart type shows the most information about price action?',
-              options: ['Line chart', 'Bar chart', 'Candlestick chart', 'Pie chart'],
-              correctIndex: 2
+              questions: [
+                {
+                  question: 'المستثمر يفضل:',
+                  options: [
+                    { text: 'الربح السريع', correct: false, digit: 0 },
+                    { text: 'النمو الطويل', correct: true, digit: 3 }
+                  ]
+                },
+                {
+                  question: 'أهم عنصر في العقلية:',
+                  options: [
+                    { text: 'الطمع', correct: false, digit: 0 },
+                    { text: 'الانضباط', correct: true, digit: 7 }
+                  ]
+                },
+                {
+                  question: 'المستثمر يرى…',
+                  options: [
+                    { text: 'القيمة', correct: true, digit: 1 },
+                    { text: 'السعر فقط', correct: false, digit: 0 }
+                  ]
+                }
+              ],
+              correctCode: '371',
+              instruction: 'أجب على 3 أسئلة لفتح القفل'
             },
-            feedback: { correct: 'Candlesticks show open, high, low, close AND buyer/seller control!', incorrect: 'Candlestick charts are the most informative for traders.' }
-          }
-        },
-        {
-          id: 'day2_l1_obj2',
-          title: 'Understand Chart Timeframes',
-          content: 'Timeframes define how much time each candle represents. 1m/5m/15m for scalping, 1H/4H for swing trading, 1D/1W for long-term. Rule: Higher timeframe = stronger signal.',
-          keyPoints: ['1m-15m: Scalping', '1H-4H: Swing trading', '1D-1W: Position trading', 'Higher TF = Stronger signals'],
-          image: { icon: 'Clock', animation: 'float', color: '#22c55e' },
-          task: {
-            type: 'sorting',
-            config: {
-              items: ['1 minute', '4 hours', '1 day', '1 week'],
-              instruction: 'Sort timeframes from WEAKEST to STRONGEST signals',
-              correctOrder: ['1 minute', '4 hours', '1 day', '1 week']
-            },
-            feedback: { correct: 'Higher timeframes give more reliable signals!', incorrect: 'Lower timeframes = more noise, Higher = stronger signals.' }
-          }
-        },
-        {
-          id: 'day2_l1_obj3',
-          title: 'Master Chart Navigation',
-          content: 'You must learn to: Zoom in/out, Scroll back in time, Toggle indicators, Change chart type, Switch between assets. This is your "battlefield navigation" for trading.',
-          keyPoints: ['Zoom to see detail vs big picture', 'Scroll to see history', 'Switch assets to find opportunities'],
-          image: { icon: 'Move', animation: 'none', color: '#f59e0b' },
-          task: {
-            type: 'true_false',
-            config: {
-              statement: 'Looking at historical price data can help you understand how an asset typically behaves.',
-              correctAnswer: true,
-              explanation: 'History often rhymes - patterns tend to repeat.'
-            },
-            feedback: { correct: 'Historical analysis is crucial for trading!', incorrect: 'History helps identify patterns and typical behavior.' }
+            feedback: { correct: '🔓 أحسنت! فتحت البوابة. +10 qcoin', incorrect: 'حاول مرة أخرى لفتح القفل' }
           }
         }
       ],
-      estimatedMinutes: 5
+      estimatedMinutes: 3
     },
+    // الدرس 2 — عقلية القيمة (Arrow Precision)
     {
       id: 'day2_lesson2',
       dayNumber: 2,
       lessonNumber: 2,
-      title: 'Brokers & Exchanges',
-      description: 'Understand how to access the markets.',
+      title: 'عقلية القيمة',
+      description: 'اضرب هدف المستثمر الحقيقي.',
       objectives: [
         {
           id: 'day2_l2_obj1',
-          title: 'Understand How Brokers Work',
-          content: 'A broker is your gateway to financial markets. They provide: Platform, Charts, Order execution, Leverage, and Deposit/withdrawal systems. Check for: Regulation, Spreads, Execution speed.',
-          keyPoints: ['Brokers connect you to markets', 'Regulation = safety', 'Spreads = your trading cost'],
-          image: { icon: 'Building2', animation: 'none', color: '#5b5fff' },
+          title: 'اكتشف القيمة الحقيقية',
+          content: 'تظهر ثلاث ألواح للرماية: السعر — الشهرة — القيمة. الصوت: "اضرب هدف المستثمر الحقيقي."',
+          keyPoints: ['المستثمر يسأل: ما القيمة؟ وليس ما السعر؟', 'السعر يتغير… القيمة تبقى', 'أكبر المستثمرين في العالم يتبعون نهج القيمة'],
+          image: { icon: 'Target', animation: 'float', color: '#ffd166' },
           task: {
-            type: 'multiple_choice',
+            type: 'arrow_precision',
             config: {
-              question: 'What is the MOST important feature to check when choosing a broker?',
-              options: ['Colorful interface', 'Regulation and safety', 'Free gifts', 'Lowest deposit'],
-              correctIndex: 1
+              targets: [
+                { id: 'price', label: 'القيمة = السعر الحالي', correct: false },
+                { id: 'value', label: 'القيمة = ما تحصل عليه مقابل ما تدفعه', correct: true },
+                { id: 'hype', label: 'القيمة = الشهرة', correct: false }
+              ],
+              instruction: 'اختر اللوح الصحيح'
             },
-            feedback: { correct: 'Regulation protects your funds!', incorrect: 'Always check if a broker is regulated - your money\'s safety comes first.' }
-          }
-        },
-        {
-          id: 'day2_l2_obj2',
-          title: 'Learn About Spreads, Leverage & Fees',
-          content: 'Spread: difference between buy & sell price (your cost). Leverage: multiplies your buying power (2x, 10x, 100x). Fees: commissions, overnight swaps. Trading without understanding these = guaranteed losses.',
-          keyPoints: ['Spread = cost per trade', 'Leverage = borrowed power (risky!)', 'Fees eat into profits'],
-          image: { icon: 'Percent', animation: 'pulse', color: '#ef4444' },
-          task: {
-            type: 'true_false',
-            config: {
-              statement: 'Higher leverage always means better trading results.',
-              correctAnswer: false,
-              explanation: 'Higher leverage = higher risk. It amplifies both gains AND losses.'
-            },
-            feedback: { correct: 'Leverage is a double-edged sword!', incorrect: 'Wrong! Leverage amplifies losses too - very dangerous for beginners.' }
-          }
-        },
-        {
-          id: 'day2_l2_obj3',
-          title: 'Choose the Right Account Type',
-          content: 'Account types include: Standard, ECN (lower spreads), Islamic (swap-free), and Demo. Always start with Demo account - practice before risking real money.',
-          keyPoints: ['Demo = practice with fake money', 'Standard = normal trading', 'ECN = lower spreads, commission-based'],
-          image: { icon: 'Wallet', animation: 'none', color: '#22c55e' },
-          task: {
-            type: 'multiple_choice',
-            config: {
-              question: 'Which account type should a beginner start with?',
-              options: ['ECN account', 'Demo account', 'VIP account', 'Margin account'],
-              correctIndex: 1
-            },
-            feedback: { correct: 'Demo accounts let you learn risk-free!', incorrect: 'Always start with Demo - practice without risking real money.' }
+            feedback: { correct: '🎯 أصبت الهدف! +8 qcoin - شارة: Value Hunter', incorrect: 'القيمة هي ما تحصل عليه مقابل ما تدفعه' }
           }
         }
       ],
-      estimatedMinutes: 5
+      estimatedMinutes: 3
     },
+    // الدرس 3 — رؤية الصورة الكبيرة (Puzzle Reveal)
     {
       id: 'day2_lesson3',
       dayNumber: 2,
       lessonNumber: 3,
-      title: 'Order Types',
-      description: 'Master the different ways to enter and exit trades.',
+      title: 'رؤية الصورة الكبيرة',
+      description: 'صورة كبيرة مخفية خلف قطع لغز… كل إجابة تكشف قطعة.',
       objectives: [
         {
           id: 'day2_l3_obj1',
-          title: 'Learn Market, Limit & Stop Orders',
-          content: 'Market order: instant execution at current price. Limit order: execute at your chosen price or better. Stop order: triggers when price reaches your level. Each has its use case.',
-          keyPoints: ['Market = instant, current price', 'Limit = your price or better', 'Stop = triggers at your level'],
-          image: { icon: 'ListOrdered', animation: 'float', color: '#5b5fff' },
+          title: 'اكشف الصورة الكاملة',
+          content: 'صورة كبيرة مخفية خلف 6 قطع لغز… كل إجابة صحيحة تكشف قطعة.',
+          keyPoints: ['المستثمر المحترف يرى الاتجاه، وليس يومًا واحدًا', 'التفاصيل قصيرة المدى مضللة', 'الصورة الكبيرة = فهم الاتجاه الحقيقي'],
+          image: { icon: 'Puzzle', animation: 'pulse', color: '#22c55e' },
           task: {
-            type: 'matching',
+            type: 'puzzle_reveal',
             config: {
-              pairs: [
-                { left: 'Market Order', right: 'Buy/sell immediately at current price' },
-                { left: 'Limit Order', right: 'Buy/sell at a specific price or better' },
-                { left: 'Stop Order', right: 'Triggers when price reaches a level' }
+              questions: [
+                {
+                  question: 'ما الأهم؟',
+                  options: ['حركة يوم واحد', 'الاتجاه الطويل'],
+                  correctIndex: 1
+                },
+                {
+                  question: 'المستثمر المحترف…',
+                  options: ['يطارد الأخبار العاجلة', 'يدرس الاتجاه العام'],
+                  correctIndex: 1
+                }
               ],
-              instruction: 'Match each order type to its description'
+              totalPieces: 2,
+              instruction: 'أجب لكشف قطع اللغز'
             },
-            feedback: { correct: 'You understand order types!', incorrect: 'Market=instant, Limit=specific price, Stop=triggers at level.' }
-          }
-        },
-        {
-          id: 'day2_l3_obj2',
-          title: 'Understand Buy vs Sell Orders',
-          content: 'Buy = expecting price to rise (going "long"). Sell = expecting price to fall (going "short"). Traders can profit in BOTH directions - up AND down markets.',
-          keyPoints: ['Buy (Long) = profit when price rises', 'Sell (Short) = profit when price falls', 'You can make money in any direction'],
-          image: { icon: 'ArrowUpDown', animation: 'pulse', color: '#22c55e' },
-          task: {
-            type: 'price_prediction',
-            config: {
-              scenario: 'You believe Tesla stock will drop after bad earnings news.',
-              question: 'What order should you place to profit?',
-              options: ['UP', 'DOWN', 'SIDEWAYS'],
-              correctAnswer: 'DOWN',
-              explanation: 'Selling (shorting) profits when price falls.'
-            },
-            feedback: { correct: 'Sell to profit from falling prices!', incorrect: 'To profit from falling prices, you SELL (go short).' }
-          }
-        },
-        {
-          id: 'day2_l3_obj3',
-          title: 'Learn Stop Loss & Take Profit',
-          content: 'SL (Stop Loss): automatically closes trade to limit losses. TP (Take Profit): automatically closes trade to lock in gains. You are NOT a real trader until you always use stop loss.',
-          keyPoints: ['Stop Loss = protection', 'Take Profit = lock gains', 'NEVER trade without SL'],
-          image: { icon: 'Shield', animation: 'pulse', color: '#ef4444' },
-          task: {
-            type: 'true_false',
-            config: {
-              statement: 'Professional traders always use stop loss orders to protect their capital.',
-              correctAnswer: true,
-              explanation: 'Stop loss is non-negotiable for professionals.'
-            },
-            feedback: { correct: 'Stop loss is essential - never trade without it!', incorrect: 'All pros use stop loss - it\'s rule #1 of risk management.' }
+            feedback: { correct: '🧩 اكتملت الصورة! +6 qcoin - شارة: Big Picture Thinker', incorrect: 'ركز على الاتجاه العام' }
           }
         }
       ],
-      estimatedMinutes: 5
+      estimatedMinutes: 3
+    },
+    // الدرس 4 — السيطرة على المشاعر (Time Attack)
+    {
+      id: 'day2_lesson4',
+      dayNumber: 2,
+      lessonNumber: 4,
+      title: 'السيطرة على المشاعر',
+      description: 'أقوى مستثمر هو من يهزم مشاعره.',
+      objectives: [
+        {
+          id: 'day2_l4_obj1',
+          title: 'تحكم في مشاعرك',
+          content: 'مؤقت 9 ثوانٍ يبدأ العد. الصوت: "أقوى مستثمر هو من يهزم مشاعره."',
+          keyPoints: ['الخوف = بيع مبكر', 'الطمع = شراء متأخر', 'التحكم في المشاعر = نصف الاحتراف'],
+          image: { icon: 'Timer', animation: 'pulse', color: '#ef4444' },
+          task: {
+            type: 'time_attack',
+            config: {
+              question: 'ما هو أخطر شعور على المستثمر؟',
+              options: ['الجشع', 'الملل', 'الغرور'],
+              correctIndex: 0,
+              timeLimit: 9,
+              instruction: 'أجب قبل انتهاء الوقت!'
+            },
+            feedback: { correct: '⚡ سريع ودقيق! +9 qcoin - شارة: Emotion Controller', incorrect: 'الجشع هو أخطر شعور على المستثمر' }
+          }
+        }
+      ],
+      estimatedMinutes: 3
+    },
+    // الدرس 5 — قوة التراكم (Build Mode)
+    {
+      id: 'day2_lesson5',
+      dayNumber: 2,
+      lessonNumber: 5,
+      title: 'قوة التراكم',
+      description: 'برج مضيء يظهر أمامك… كل إجابة صحيحة تضيف لبنة جديدة.',
+      objectives: [
+        {
+          id: 'day2_l5_obj1',
+          title: 'ابنِ برج النجاح',
+          content: 'برج مضيء يظهر أمامك… كل إجابة صحيحة تضيف لبنة جديدة.',
+          keyPoints: ['التراكم = أعظم سلاح للمستثمر', 'مبالغ صغيرة + وقت = ثروة كبيرة', 'لا تحتاج مبلغًا ضخمًا… تحتاج وقتًا'],
+          image: { icon: 'Building', animation: 'float', color: '#5b5fff' },
+          task: {
+            type: 'build_mode',
+            config: {
+              questions: [
+                {
+                  question: 'التراكم يحتاج:',
+                  options: ['وقت', 'سرعة', 'ضربة حظ'],
+                  correctIndex: 0,
+                  blockLabel: 'الوقت'
+                },
+                {
+                  question: 'الاستثمار المتراكم يعني:',
+                  options: ['أرباح تعيد بناء نفسها', 'خسائر متكررة'],
+                  correctIndex: 0,
+                  blockLabel: 'النمو'
+                }
+              ],
+              instruction: 'ابنِ البرج بإجاباتك الصحيحة'
+            },
+            feedback: { correct: '🏗️ برج رائع! +7 qcoin - شارة: Compound Master', incorrect: 'التراكم يحتاج وقت وصبر' }
+          }
+        }
+      ],
+      estimatedMinutes: 3
+    },
+    // الدرس 6 — لا تطارد الفرص (Mystery Box)
+    {
+      id: 'day2_lesson6',
+      dayNumber: 2,
+      lessonNumber: 6,
+      title: 'لا تطارد الفرص',
+      description: 'اختر الطريق الذي يسلكه المستثمر الحقيقي.',
+      objectives: [
+        {
+          id: 'day2_l6_obj1',
+          title: 'اختر الفرصة المناسبة',
+          content: 'صندوقان: "فرصة لامعة" — "فرصة مناسبة لك". الصوت: "اختر الطريق الذي يسلكه المستثمر الحقيقي."',
+          keyPoints: ['ليس كل فرصة "لامعة" مناسبة', 'مطاردة الفرص = خسائر', 'اختيار الفرصة المناسبة لشخصيتك أهم من الربح الكبير'],
+          image: { icon: 'Gift', animation: 'pulse', color: '#ffd166' },
+          task: {
+            type: 'mystery_box',
+            config: {
+              boxes: [
+                { id: 'fast', label: 'أفضل فرصة هي الأسرع', correct: false },
+                { id: 'suitable', label: 'أفضل فرصة هي الأنسب لك', correct: true }
+              ],
+              instruction: 'افتح الصندوق الصحيح'
+            },
+            feedback: { correct: '🎁 اختيار حكيم! +6 qcoin - شارة: Opportunity Filter', incorrect: 'أفضل فرصة هي الأنسب لك، ليست الأسرع' }
+          }
+        }
+      ],
+      estimatedMinutes: 3
+    },
+    // الدرس 7 — الانضباط قبل الذكاء (Shoot & Hit)
+    {
+      id: 'day2_lesson7',
+      dayNumber: 2,
+      lessonNumber: 7,
+      title: 'الانضباط قبل الذكاء',
+      description: 'اضرب الذي يصنع المستثمر الحقيقي.',
+      objectives: [
+        {
+          id: 'day2_l7_obj1',
+          title: 'اكتشف سر النجاح',
+          content: 'ثلاث أهداف: "ذكاء" — "حظ" — "انضباط". الصوت: "اضرب الذي يصنع المستثمر الحقيقي."',
+          keyPoints: ['الانضباط = الالتزام بالخطة', 'المستثمر الذكي بلا انضباط = خاسر', 'المستثمر المتوسط مع انضباط = رابح'],
+          image: { icon: 'Crosshair', animation: 'float', color: '#22c55e' },
+          task: {
+            type: 'shoot_hit',
+            config: {
+              targets: [
+                { id: 'intelligence', label: 'الذكاء', correct: false },
+                { id: 'discipline', label: 'الانضباط أهم من الذكاء', correct: true },
+                { id: 'luck', label: 'الحظ', correct: false }
+              ],
+              instruction: 'اضرب الهدف الصحيح'
+            },
+            feedback: { correct: '🎯 إصابة دقيقة! +8 qcoin - شارة: Disciplined Investor', incorrect: 'الانضباط هو الذي يصنع المستثمر الحقيقي' }
+          }
+        }
+      ],
+      estimatedMinutes: 3
+    },
+    // الدرس 8 — عقلية النمو (Knowledge Race)
+    {
+      id: 'day2_lesson8',
+      dayNumber: 2,
+      lessonNumber: 8,
+      title: 'عقلية النمو',
+      description: 'التعلم هو الوقود… انطلق!',
+      objectives: [
+        {
+          id: 'day2_l8_obj1',
+          title: 'سباق المعرفة',
+          content: 'سيارة سباق تنتظر… الصوت: "التعلم هو الوقود… انطلق!"',
+          keyPoints: ['كل خسارة = درس', 'كل ربح = نتيجة', 'التعلم المستمر = أقوى سلاح'],
+          image: { icon: 'GraduationCap', animation: 'pulse', color: '#5b5fff' },
+          task: {
+            type: 'knowledge_race',
+            config: {
+              questions: [
+                {
+                  question: 'أي جملة صحيحة؟',
+                  options: ['الخسارة درس', 'الخسارة فشل', 'الخسارة نهاية الطريق'],
+                  correctIndex: 0
+                }
+              ],
+              instruction: 'أجب لتتقدم في السباق'
+            },
+            feedback: { correct: '🏎️ فزت بالسباق! +7 qcoin - شارة: Growth Mind', incorrect: 'الخسارة درس وليست نهاية الطريق' }
+          }
+        }
+      ],
+      estimatedMinutes: 3
+    },
+    // الدرس 9 — المستثمر يحسب الخطوة (Mind Lock)
+    {
+      id: 'day2_lesson9',
+      dayNumber: 2,
+      lessonNumber: 9,
+      title: 'المستثمر يحسب الخطوة',
+      description: 'قفل ذهني يحتاج 3 رموز… كل رمز = معلومة.',
+      objectives: [
+        {
+          id: 'day2_l9_obj1',
+          title: 'افتح قفل العقل',
+          content: 'قفل ذهني يحتاج رموز… كل رمز = معلومة.',
+          keyPoints: ['القرار الاستثماري يحتاج دراسة', 'التخمين = خسارة', 'المعلومات = قوة'],
+          image: { icon: 'Brain', animation: 'float', color: '#ffd166' },
+          task: {
+            type: 'mind_lock',
+            config: {
+              options: [
+                { id: 'research', label: 'دراسة الأصل قبل شرائه', correct: true },
+                { id: 'follow', label: 'الشراء لأن "الناس اشترت"', correct: false }
+              ],
+              instruction: 'اختر الخطوة الصحيحة'
+            },
+            feedback: { correct: '🧠 عقل حاد! +10 qcoin - شارة: Calculated Thinker', incorrect: 'ادرس قبل أن تقرر' }
+          }
+        }
+      ],
+      estimatedMinutes: 3
+    },
+    // الدرس 10 — اختبار الاحتراف (Final Precision)
+    {
+      id: 'day2_lesson10',
+      dayNumber: 2,
+      lessonNumber: 10,
+      title: 'اختبار الاحتراف',
+      description: 'لقد تعلمت الأساس… أثبت جاهزيتك.',
+      objectives: [
+        {
+          id: 'day2_l10_obj1',
+          title: 'الاختبار النهائي',
+          content: 'غرفة اختبار بيضاء بالكامل… الصوت: "لقد تعلمت الأساس… أثبت جاهزيتك."',
+          keyPoints: ['الانضباط', 'القيمة', 'الصورة الكبيرة', 'السيطرة على المشاعر', 'النمو المستمر'],
+          image: { icon: 'Trophy', animation: 'pulse', color: '#22c55e' },
+          task: {
+            type: 'final_precision',
+            config: {
+              targets: [
+                { id: 'now', label: 'أربح الآن وقلق لاحقًا', correct: false },
+                { id: 'years', label: 'استثمر لسنوات، لا لساعات', correct: true },
+                { id: 'emotion', label: 'دع العاطفة تقودك', correct: false }
+              ],
+              instruction: 'اختر الجملة الصحيحة'
+            },
+            feedback: { correct: '🏆 مبروك! أتممت يوم العقلية! +15 qcoin - شارة: Mastery Achieved', incorrect: 'استثمر لسنوات، لا لساعات' }
+          }
+        }
+      ],
+      estimatedMinutes: 3
     }
   ],
   test: {
     id: 'day2_test',
     dayNumber: 2,
-    title: 'Day 2 Challenge',
-    description: 'Test your knowledge of trading platforms and tools',
+    title: 'اختبار يوم العقلية',
+    description: 'اختبر فهمك لعقلية المستثمر الناجح',
     questions: [
       {
         id: 'day2_q1',
         type: 'multiple_choice',
         config: {
-          question: 'Which chart type shows the most detailed price information?',
-          options: ['Line chart', 'Candlestick chart', 'Bar chart', 'Area chart'],
-          correctIndex: 1
+          question: 'ما أهم عنصر في عقلية المستثمر الناجح؟',
+          options: ['الذكاء', 'الحظ', 'الانضباط', 'السرعة'],
+          correctIndex: 2
         },
-        feedback: { correct: 'Candlesticks show OHLC plus buyer/seller control!', incorrect: 'Candlesticks show open, high, low, close and sentiment.' },
-        points: 25
+        feedback: { correct: 'الانضباط هو مفتاح النجاح!', incorrect: 'الانضباط أهم من الذكاء في الاستثمار.' },
+        points: 20
       },
       {
         id: 'day2_q2',
         type: 'true_false',
         config: {
-          statement: 'Higher timeframes give stronger and more reliable trading signals.',
+          statement: 'المستثمر الناجح يركز على القيمة وليس السعر فقط.',
           correctAnswer: true,
-          explanation: 'Higher timeframes filter out noise and show clearer trends.'
+          explanation: 'القيمة هي ما تحصل عليه مقابل ما تدفعه.'
         },
-        feedback: { correct: 'Higher TF = stronger signals!', incorrect: 'Higher timeframes are more reliable than lower ones.' },
-        points: 25
+        feedback: { correct: 'صحيح! القيمة أهم من السعر.', incorrect: 'المستثمر الناجح يركز على القيمة الحقيقية.' },
+        points: 20
       },
       {
         id: 'day2_q3',
         type: 'multiple_choice',
         config: {
-          question: 'What is a stop loss order used for?',
-          options: ['To maximize profits', 'To limit potential losses', 'To increase position size', 'To delay trade execution'],
+          question: 'ما هو أخطر شعور على المستثمر؟',
+          options: ['الصبر', 'الجشع', 'الحذر', 'التفكير'],
           correctIndex: 1
         },
-        feedback: { correct: 'Stop loss protects your capital!', incorrect: 'Stop loss limits your potential losses.' },
-        points: 25
+        feedback: { correct: 'الجشع يؤدي لقرارات متهورة!', incorrect: 'الجشع هو أخطر عدو للمستثمر.' },
+        points: 20
       },
       {
         id: 'day2_q4',
         type: 'multiple_choice',
         config: {
-          question: 'Which timeframe is best for scalping?',
-          options: ['1 week', '1 day', '4 hours', '1-5 minutes'],
-          correctIndex: 3
+          question: 'قوة التراكم تعتمد على:',
+          options: ['الحظ السريع', 'الوقت والصبر', 'المبالغ الكبيرة فقط', 'المخاطرة العالية'],
+          correctIndex: 1
         },
-        feedback: { correct: '1-5 minute charts are used for scalping!', incorrect: 'Scalping uses very short timeframes like 1-5 minutes.' },
-        points: 25
+        feedback: { correct: 'الوقت هو أعظم حليف للمستثمر!', incorrect: 'التراكم يحتاج وقت وصبر.' },
+        points: 20
+      },
+      {
+        id: 'day2_q5',
+        type: 'true_false',
+        config: {
+          statement: 'المستثمر الناجح يدرس قبل أن يقرر ولا يتبع القطيع.',
+          correctAnswer: true,
+          explanation: 'البحث والدراسة أساس القرار الصحيح.'
+        },
+        feedback: { correct: 'صحيح! ادرس قبل أن تقرر.', incorrect: 'لا تشتري لأن الناس اشترت - ادرس أولاً.' },
+        points: 20
       }
     ],
-    passingScore: 75,
+    passingScore: 70,
     estimatedMinutes: 5
   },
   rewards: {
-    badge: { id: 'chart_explorer', name: 'Chart Explorer', icon: '📊', description: 'Mastered trading platforms and tools' },
-    xp: 100,
+    badge: { id: 'mind_master', name: 'Mind Master', icon: '🧠', description: 'أتقنت عقلية المستثمر الناجح' },
+    xp: 150,
     unlocks: ['day_3']
   }
 };

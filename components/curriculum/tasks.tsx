@@ -25,6 +25,17 @@ import type {
   ChartInteractionConfig,
   SimulationConfig,
   FillBlankConfig,
+  // New game types for Day 2 Mindset Day
+  MasterLockConfig,
+  ArrowPrecisionConfig,
+  PuzzleRevealConfig,
+  TimeAttackConfig,
+  BuildModeConfig,
+  MysteryBoxConfig,
+  ShootHitConfig,
+  KnowledgeRaceConfig,
+  MindLockConfig,
+  FinalPrecisionConfig,
 } from '../../types/curriculum';
 
 import {
@@ -1113,6 +1124,934 @@ export const FillBlankTask = ({
   );
 };
 
+// ==================== 12. MASTER LOCK TASK (Day 2 Game 1) ====================
+
+export const MasterLockTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<MasterLockConfig>) => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [code, setCode] = useState<string[]>([]);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const unlockAnim = useRef(new Animated.Value(0)).current;
+  const shakeAnim = useRef(new Animated.Value(0)).current;
+
+  const handleAnswer = (digit: number, correct: boolean) => {
+    if (correct) {
+      const newCode = [...code, digit.toString()];
+      setCode(newCode);
+
+      if (currentQuestion < config.questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        // All questions answered correctly - unlock!
+        setIsUnlocked(true);
+        Animated.spring(unlockAnim, {
+          toValue: 1,
+          friction: 3,
+          useNativeDriver: true,
+        }).start();
+
+        setTimeout(() => {
+          setShowFeedback(true);
+          setTimeout(() => {
+            onComplete({ correct: true, response: newCode.join('') });
+          }, 2000);
+        }, 1000);
+      }
+    } else {
+      // Wrong answer - shake animation
+      Animated.sequence([
+        Animated.timing(shakeAnim, { toValue: 10, duration: 50, useNativeDriver: true }),
+        Animated.timing(shakeAnim, { toValue: -10, duration: 50, useNativeDriver: true }),
+        Animated.timing(shakeAnim, { toValue: 10, duration: 50, useNativeDriver: true }),
+        Animated.timing(shakeAnim, { toValue: 0, duration: 50, useNativeDriver: true }),
+      ]).start();
+    }
+  };
+
+  const currentQ = config.questions[currentQuestion];
+  const lockScale = unlockAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 1.2],
+  });
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🔐 MASTER LOCK" icon="Lock" />
+
+      {/* Lock Display */}
+      <Animated.View style={[styles.lockContainer, { transform: [{ translateX: shakeAnim }, { scale: lockScale }] }]}>
+        <View style={styles.lockBody}>
+          <View style={styles.codeDisplay}>
+            {[0, 1, 2].map((i) => (
+              <View key={i} style={[styles.codeDigit, code[i] && styles.codeDigitFilled]}>
+                <Text style={styles.codeDigitText}>{code[i] || '?'}</Text>
+              </View>
+            ))}
+          </View>
+          {isUnlocked && (
+            <View style={styles.unlockBadge}>
+              <DynamicIcon name="Unlock" size={32} color="#22c55e" />
+            </View>
+          )}
+        </View>
+      </Animated.View>
+
+      {!isUnlocked && currentQ && (
+        <View style={styles.questionSection}>
+          <Text style={styles.arabicQuestion}>{currentQ.question}</Text>
+          <View style={styles.optionsGrid}>
+            {currentQ.options.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.lockOption}
+                onPress={() => handleAnswer(option.digit, option.correct)}
+              >
+                <Text style={styles.lockOptionText}>{option.text}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      )}
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={true}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 13. ARROW PRECISION TASK (Day 2 Game 2) ====================
+
+export const ArrowPrecisionTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<ArrowPrecisionConfig>) => {
+  const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [arrowPosition, setArrowPosition] = useState<number | null>(null);
+  const arrowAnim = useRef(new Animated.Value(0)).current;
+
+  const handleTargetSelect = (targetId: string, index: number) => {
+    if (showFeedback) return;
+
+    setSelectedTarget(targetId);
+    setArrowPosition(index);
+
+    // Arrow flying animation
+    Animated.sequence([
+      Animated.timing(arrowAnim, {
+        toValue: 1,
+        duration: 500,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setShowFeedback(true);
+      const target = config.targets.find(t => t.id === targetId);
+      setTimeout(() => {
+        onComplete({ correct: target?.correct || false, response: targetId });
+      }, 2000);
+    });
+  };
+
+  const arrowTranslate = arrowAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -150],
+  });
+
+  const isCorrect = selectedTarget ? config.targets.find(t => t.id === selectedTarget)?.correct : false;
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🎯 ARROW PRECISION" icon="Target" />
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+
+      {/* Targets */}
+      <View style={styles.targetsRow}>
+        {config.targets.map((target, index) => (
+          <TouchableOpacity
+            key={target.id}
+            style={[
+              styles.archeryTarget,
+              selectedTarget === target.id && styles.archeryTargetSelected,
+              showFeedback && target.correct && styles.archeryTargetCorrect,
+              showFeedback && selectedTarget === target.id && !target.correct && styles.archeryTargetIncorrect,
+            ]}
+            onPress={() => handleTargetSelect(target.id, index)}
+            disabled={showFeedback}
+          >
+            <View style={styles.targetRings}>
+              <View style={styles.targetOuter} />
+              <View style={styles.targetMiddle} />
+              <View style={styles.targetInner} />
+            </View>
+            <Text style={styles.targetLabel}>{target.label}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      {/* Arrow */}
+      {arrowPosition !== null && (
+        <Animated.View style={[styles.arrowContainer, { transform: [{ translateY: arrowTranslate }] }]}>
+          <DynamicIcon name="ArrowUp" size={48} color="#ffd166" />
+        </Animated.View>
+      )}
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={isCorrect || false}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 14. PUZZLE REVEAL TASK (Day 2 Game 3) ====================
+
+export const PuzzleRevealTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<PuzzleRevealConfig>) => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [revealedPieces, setRevealedPieces] = useState<boolean[]>(Array(config.totalPieces).fill(false));
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [allRevealed, setAllRevealed] = useState(false);
+
+  const handleAnswer = (selectedIndex: number) => {
+    const isCorrect = selectedIndex === config.questions[currentQuestion].correctIndex;
+
+    if (isCorrect) {
+      const newRevealed = [...revealedPieces];
+      newRevealed[currentQuestion] = true;
+      setRevealedPieces(newRevealed);
+
+      if (currentQuestion < config.questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        setAllRevealed(true);
+        setShowFeedback(true);
+        setTimeout(() => {
+          onComplete({ correct: true, response: 'puzzle_complete' });
+        }, 2000);
+      }
+    }
+  };
+
+  const currentQ = config.questions[currentQuestion];
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🧩 PUZZLE REVEAL" icon="Puzzle" />
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+
+      {/* Puzzle Grid */}
+      <View style={styles.puzzleGrid}>
+        {Array(config.totalPieces).fill(0).map((_, index) => (
+          <View
+            key={index}
+            style={[
+              styles.puzzlePiece,
+              revealedPieces[index] && styles.puzzlePieceRevealed,
+            ]}
+          >
+            {revealedPieces[index] ? (
+              <DynamicIcon name="CheckCircle" size={24} color="#22c55e" />
+            ) : (
+              <Text style={styles.puzzlePieceText}>?</Text>
+            )}
+          </View>
+        ))}
+      </View>
+
+      {!allRevealed && currentQ && (
+        <View style={styles.questionSection}>
+          <Text style={styles.arabicQuestion}>{currentQ.question}</Text>
+          <View style={styles.optionsContainer}>
+            {currentQ.options.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.puzzleOption}
+                onPress={() => handleAnswer(index)}
+              >
+                <Text style={styles.puzzleOptionText}>{option}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      )}
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={true}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 15. TIME ATTACK TASK (Day 2 Game 4) ====================
+
+export const TimeAttackTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<TimeAttackConfig>) => {
+  const [timeLeft, setTimeLeft] = useState(config.timeLimit);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
+  const timerAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    if (showFeedback || timedOut) return;
+
+    Animated.timing(timerAnim, {
+      toValue: 0,
+      duration: config.timeLimit * 1000,
+      useNativeDriver: false,
+    }).start();
+
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setTimedOut(true);
+          setShowFeedback(true);
+          setTimeout(() => {
+            onComplete({ correct: false, response: 'timeout' });
+          }, 2000);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSelect = (index: number) => {
+    if (showFeedback || timedOut) return;
+
+    setSelectedIndex(index);
+    setShowFeedback(true);
+
+    const isCorrect = index === config.correctIndex;
+    setTimeout(() => {
+      onComplete({ correct: isCorrect, response: config.options[index] });
+    }, 2000);
+  };
+
+  const timerWidth = timerAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0%', '100%'],
+  });
+
+  const timerColor = timeLeft > 3 ? '#22c55e' : '#ef4444';
+  const isCorrect = selectedIndex === config.correctIndex;
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="⏱️ TIME ATTACK" icon="Timer" />
+
+      {/* Timer Bar */}
+      <View style={styles.timerBarContainer}>
+        <Animated.View style={[styles.timerBar, { width: timerWidth, backgroundColor: timerColor }]} />
+        <Text style={styles.timerText}>{timeLeft}s</Text>
+      </View>
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+      <Text style={styles.arabicQuestion}>{config.question}</Text>
+
+      <View style={styles.optionsContainer}>
+        {config.options.map((option, index) => (
+          <TouchableOpacity
+            key={index}
+            style={[
+              styles.timeAttackOption,
+              selectedIndex === index && styles.timeAttackOptionSelected,
+              showFeedback && index === config.correctIndex && styles.timeAttackOptionCorrect,
+              showFeedback && selectedIndex === index && !isCorrect && styles.timeAttackOptionIncorrect,
+            ]}
+            onPress={() => handleSelect(index)}
+            disabled={showFeedback || timedOut}
+          >
+            <Text style={styles.timeAttackOptionText}>{option}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={isCorrect || false}
+          correctMessage={feedback.correct}
+          incorrectMessage={timedOut ? 'انتهى الوقت!' : feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 16. BUILD MODE TASK (Day 2 Game 5) ====================
+
+export const BuildModeTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<BuildModeConfig>) => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [tower, setTower] = useState<string[]>([]);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const blockAnim = useRef(new Animated.Value(0)).current;
+
+  const handleAnswer = (selectedIndex: number) => {
+    const question = config.questions[currentQuestion];
+    const isCorrect = selectedIndex === question.correctIndex;
+
+    if (isCorrect) {
+      // Add block with animation
+      Animated.sequence([
+        Animated.timing(blockAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
+        Animated.timing(blockAnim, { toValue: 0, duration: 0, useNativeDriver: true }),
+      ]).start();
+
+      const newTower = [...tower, question.blockLabel];
+      setTower(newTower);
+
+      if (currentQuestion < config.questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        setShowFeedback(true);
+        setTimeout(() => {
+          onComplete({ correct: true, response: newTower });
+        }, 2000);
+      }
+    }
+  };
+
+  const currentQ = config.questions[currentQuestion];
+  const blockTranslate = blockAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-50, 0],
+  });
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🏗️ BUILD MODE" icon="Building" />
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+
+      {/* Tower Display */}
+      <View style={styles.towerContainer}>
+        {tower.map((block, index) => (
+          <Animated.View
+            key={index}
+            style={[
+              styles.towerBlock,
+              index === tower.length - 1 && { transform: [{ translateY: blockTranslate }] },
+            ]}
+          >
+            <Text style={styles.towerBlockText}>{block}</Text>
+          </Animated.View>
+        ))}
+        {tower.length === 0 && (
+          <View style={styles.towerBase}>
+            <Text style={styles.towerBaseText}>ابدأ البناء!</Text>
+          </View>
+        )}
+      </View>
+
+      {!showFeedback && currentQ && (
+        <View style={styles.questionSection}>
+          <Text style={styles.arabicQuestion}>{currentQ.question}</Text>
+          <View style={styles.optionsContainer}>
+            {currentQ.options.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.buildOption}
+                onPress={() => handleAnswer(index)}
+              >
+                <Text style={styles.buildOptionText}>{option}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      )}
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={true}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 17. MYSTERY BOX TASK (Day 2 Game 6) ====================
+
+export const MysteryBoxTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<MysteryBoxConfig>) => {
+  const [selectedBox, setSelectedBox] = useState<string | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
+  const boxAnim = useRef(new Animated.Value(0)).current;
+
+  const handleBoxSelect = (boxId: string) => {
+    if (showFeedback || isOpening) return;
+
+    setSelectedBox(boxId);
+    setIsOpening(true);
+
+    // Box opening animation
+    Animated.timing(boxAnim, {
+      toValue: 1,
+      duration: 800,
+      easing: Easing.out(Easing.back(1.5)),
+      useNativeDriver: true,
+    }).start(() => {
+      setShowFeedback(true);
+      const box = config.boxes.find(b => b.id === boxId);
+      setTimeout(() => {
+        onComplete({ correct: box?.correct || false, response: boxId });
+      }, 2000);
+    });
+  };
+
+  const lidRotate = boxAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '-110deg'],
+  });
+
+  const isCorrect = selectedBox ? config.boxes.find(b => b.id === selectedBox)?.correct : false;
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🎁 MYSTERY BOX" icon="Gift" />
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+
+      <View style={styles.boxesRow}>
+        {config.boxes.map((box) => (
+          <TouchableOpacity
+            key={box.id}
+            style={[
+              styles.mysteryBox,
+              selectedBox === box.id && styles.mysteryBoxSelected,
+              showFeedback && box.correct && styles.mysteryBoxCorrect,
+              showFeedback && selectedBox === box.id && !box.correct && styles.mysteryBoxIncorrect,
+            ]}
+            onPress={() => handleBoxSelect(box.id)}
+            disabled={showFeedback || isOpening}
+          >
+            {selectedBox === box.id && (
+              <Animated.View style={[styles.boxLid, { transform: [{ rotateX: lidRotate }] }]}>
+                <DynamicIcon name="Gift" size={24} color="#ffd166" />
+              </Animated.View>
+            )}
+            <View style={styles.boxBody}>
+              <Text style={styles.boxLabel}>{box.label}</Text>
+            </View>
+            {showFeedback && selectedBox === box.id && (
+              <View style={styles.boxResult}>
+                <DynamicIcon
+                  name={box.correct ? 'CheckCircle' : 'XCircle'}
+                  size={32}
+                  color={box.correct ? '#22c55e' : '#ef4444'}
+                />
+              </View>
+            )}
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={isCorrect || false}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 18. SHOOT & HIT TASK (Day 2 Game 7) ====================
+
+export const ShootHitTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<ShootHitConfig>) => {
+  const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const hitAnim = useRef(new Animated.Value(0)).current;
+  const targetAnims = useRef(config.targets.map(() => new Animated.Value(0))).current;
+
+  useEffect(() => {
+    // Animate targets moving
+    config.targets.forEach((_, index) => {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(targetAnims[index], {
+            toValue: 1,
+            duration: 1500 + index * 300,
+            useNativeDriver: true,
+          }),
+          Animated.timing(targetAnims[index], {
+            toValue: 0,
+            duration: 1500 + index * 300,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    });
+  }, []);
+
+  const handleShoot = (targetId: string) => {
+    if (showFeedback) return;
+
+    setSelectedTarget(targetId);
+
+    // Hit animation
+    Animated.sequence([
+      Animated.timing(hitAnim, { toValue: 1, duration: 200, useNativeDriver: true }),
+      Animated.timing(hitAnim, { toValue: 0, duration: 200, useNativeDriver: true }),
+    ]).start(() => {
+      setShowFeedback(true);
+      const target = config.targets.find(t => t.id === targetId);
+      setTimeout(() => {
+        onComplete({ correct: target?.correct || false, response: targetId });
+      }, 2000);
+    });
+  };
+
+  const isCorrect = selectedTarget ? config.targets.find(t => t.id === selectedTarget)?.correct : false;
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🎯 SHOOT & HIT" icon="Crosshair" />
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+
+      <View style={styles.shootingRange}>
+        {config.targets.map((target, index) => {
+          const translateX = targetAnims[index].interpolate({
+            inputRange: [0, 1],
+            outputRange: [-30, 30],
+          });
+
+          return (
+            <Animated.View
+              key={target.id}
+              style={[styles.shootTarget, { transform: [{ translateX }] }]}
+            >
+              <TouchableOpacity
+                style={[
+                  styles.shootTargetInner,
+                  selectedTarget === target.id && styles.shootTargetHit,
+                  showFeedback && target.correct && styles.shootTargetCorrect,
+                  showFeedback && selectedTarget === target.id && !target.correct && styles.shootTargetIncorrect,
+                ]}
+                onPress={() => handleShoot(target.id)}
+                disabled={showFeedback}
+              >
+                <DynamicIcon name="Target" size={32} color="#fff" />
+                <Text style={styles.shootTargetText}>{target.label}</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          );
+        })}
+      </View>
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={isCorrect || false}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 19. KNOWLEDGE RACE TASK (Day 2 Game 8) ====================
+
+export const KnowledgeRaceTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<KnowledgeRaceConfig>) => {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const carAnim = useRef(new Animated.Value(0)).current;
+
+  const handleAnswer = (selectedIndex: number) => {
+    const question = config.questions[currentQuestion];
+    const isCorrect = selectedIndex === question.correctIndex;
+
+    if (isCorrect) {
+      const newProgress = progress + 1;
+      setProgress(newProgress);
+
+      // Move car animation
+      Animated.spring(carAnim, {
+        toValue: newProgress / config.questions.length,
+        friction: 5,
+        useNativeDriver: false,
+      }).start();
+
+      if (currentQuestion < config.questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        setShowFeedback(true);
+        setTimeout(() => {
+          onComplete({ correct: true, response: 'race_complete' });
+        }, 2000);
+      }
+    }
+  };
+
+  const currentQ = config.questions[currentQuestion];
+  const carPosition = carAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0%', '85%'],
+  });
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🏎️ KNOWLEDGE RACE" icon="Car" />
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+
+      {/* Race Track */}
+      <View style={styles.raceTrack}>
+        <View style={styles.trackLine} />
+        <Animated.View style={[styles.raceCar, { left: carPosition }]}>
+          <Text style={styles.raceCarEmoji}>🏎️</Text>
+        </Animated.View>
+        <View style={styles.finishLine}>
+          <Text style={styles.finishEmoji}>🏁</Text>
+        </View>
+      </View>
+
+      <Text style={styles.progressText}>
+        {progress} / {config.questions.length}
+      </Text>
+
+      {!showFeedback && currentQ && (
+        <View style={styles.questionSection}>
+          <Text style={styles.arabicQuestion}>{currentQ.question}</Text>
+          <View style={styles.optionsContainer}>
+            {currentQ.options.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.raceOption}
+                onPress={() => handleAnswer(index)}
+              >
+                <Text style={styles.raceOptionText}>{option}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      )}
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={true}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 20. MIND LOCK TASK (Day 2 Game 9) ====================
+
+export const MindLockTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<MindLockConfig>) => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const unlockAnim = useRef(new Animated.Value(0)).current;
+
+  const handleSelect = (optionId: string) => {
+    if (showFeedback) return;
+
+    setSelectedOption(optionId);
+    const option = config.options.find(o => o.id === optionId);
+
+    if (option?.correct) {
+      Animated.spring(unlockAnim, {
+        toValue: 1,
+        friction: 3,
+        useNativeDriver: true,
+      }).start();
+    }
+
+    setShowFeedback(true);
+    setTimeout(() => {
+      onComplete({ correct: option?.correct || false, response: optionId });
+    }, 2000);
+  };
+
+  const isCorrect = selectedOption ? config.options.find(o => o.id === selectedOption)?.correct : false;
+  const lockRotate = unlockAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '45deg'],
+  });
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🧠 MIND LOCK" icon="Brain" />
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+
+      {/* Mind Lock Display */}
+      <Animated.View style={[styles.mindLockContainer, { transform: [{ rotate: lockRotate }] }]}>
+        <View style={styles.mindLockInner}>
+          <DynamicIcon
+            name={isCorrect && showFeedback ? 'Unlock' : 'Lock'}
+            size={48}
+            color={isCorrect && showFeedback ? '#22c55e' : '#5b5fff'}
+          />
+        </View>
+      </Animated.View>
+
+      <View style={styles.optionsContainer}>
+        {config.options.map((option) => (
+          <TouchableOpacity
+            key={option.id}
+            style={[
+              styles.mindLockOption,
+              selectedOption === option.id && styles.mindLockOptionSelected,
+              showFeedback && option.correct && styles.mindLockOptionCorrect,
+              showFeedback && selectedOption === option.id && !option.correct && styles.mindLockOptionIncorrect,
+            ]}
+            onPress={() => handleSelect(option.id)}
+            disabled={showFeedback}
+          >
+            <Text style={styles.mindLockOptionText}>{option.label}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={isCorrect || false}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
+// ==================== 21. FINAL PRECISION TASK (Day 2 Game 10) ====================
+
+export const FinalPrecisionTask = ({
+  config,
+  onComplete,
+  feedback,
+}: TaskComponentProps<FinalPrecisionConfig>) => {
+  const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, { toValue: 1.05, duration: 800, useNativeDriver: true }),
+        Animated.timing(pulseAnim, { toValue: 1, duration: 800, useNativeDriver: true }),
+      ])
+    ).start();
+  }, []);
+
+  const handleSelect = (targetId: string) => {
+    if (showFeedback) return;
+
+    setSelectedTarget(targetId);
+    setShowFeedback(true);
+
+    const target = config.targets.find(t => t.id === targetId);
+    setTimeout(() => {
+      onComplete({ correct: target?.correct || false, response: targetId });
+    }, 2000);
+  };
+
+  const isCorrect = selectedTarget ? config.targets.find(t => t.id === selectedTarget)?.correct : false;
+
+  return (
+    <View style={styles.taskWrapper}>
+      <GameHeader title="🎯 FINAL PRECISION" icon="Trophy" />
+
+      <Text style={styles.arabicInstruction}>{config.instruction}</Text>
+
+      <View style={styles.finalTargetsContainer}>
+        {config.targets.map((target) => (
+          <Animated.View
+            key={target.id}
+            style={[
+              styles.finalTargetWrapper,
+              target.correct && !showFeedback && { transform: [{ scale: pulseAnim }] },
+            ]}
+          >
+            <TouchableOpacity
+              style={[
+                styles.finalTarget,
+                selectedTarget === target.id && styles.finalTargetSelected,
+                showFeedback && target.correct && styles.finalTargetCorrect,
+                showFeedback && selectedTarget === target.id && !target.correct && styles.finalTargetIncorrect,
+              ]}
+              onPress={() => handleSelect(target.id)}
+              disabled={showFeedback}
+            >
+              <Text style={styles.finalTargetText}>{target.label}</Text>
+              {showFeedback && target.correct && (
+                <DynamicIcon name="CheckCircle" size={24} color="#22c55e" />
+              )}
+              {showFeedback && selectedTarget === target.id && !target.correct && (
+                <DynamicIcon name="XCircle" size={24} color="#ef4444" />
+              )}
+            </TouchableOpacity>
+          </Animated.View>
+        ))}
+      </View>
+
+      {showFeedback && (
+        <TaskFeedbackDisplay
+          isCorrect={isCorrect || false}
+          correctMessage={feedback.correct}
+          incorrectMessage={feedback.incorrect}
+        />
+      )}
+    </View>
+  );
+};
+
 // ==================== TASK TYPE MAP ====================
 
 export const taskComponentMap: Record<
@@ -1130,6 +2069,17 @@ export const taskComponentMap: Record<
   chart_interaction: ChartInteractionTask,
   simulation: SimulationTask,
   fill_blank: FillBlankTask,
+  // New games for Day 2 Mindset Day
+  master_lock: MasterLockTask,
+  arrow_precision: ArrowPrecisionTask,
+  puzzle_reveal: PuzzleRevealTask,
+  time_attack: TimeAttackTask,
+  build_mode: BuildModeTask,
+  mystery_box: MysteryBoxTask,
+  shoot_hit: ShootHitTask,
+  knowledge_race: KnowledgeRaceTask,
+  mind_lock: MindLockTask,
+  final_precision: FinalPrecisionTask,
 };
 
 // ==================== STYLES ====================
@@ -1688,6 +2638,501 @@ const styles = StyleSheet.create({
   optionChipTextUsed: {
     color: '#8c92b5',
   },
+
+  // ==================== NEW GAME STYLES (Day 2 Mindset Day) ====================
+
+  // Arabic text styles
+  arabicQuestion: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#f5f7ff',
+    textAlign: 'right',
+    marginBottom: 16,
+    lineHeight: 28,
+  },
+  arabicInstruction: {
+    fontSize: 14,
+    color: '#c3c7e6',
+    textAlign: 'right',
+    marginBottom: 20,
+    lineHeight: 22,
+  },
+
+  // Master Lock styles
+  lockContainer: {
+    alignItems: 'center',
+    marginBottom: 24,
+  },
+  lockBody: {
+    backgroundColor: 'rgba(91, 95, 255, 0.2)',
+    padding: 24,
+    borderRadius: 20,
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#5b5fff',
+  },
+  codeDisplay: {
+    flexDirection: 'row',
+    gap: 12,
+    marginBottom: 16,
+  },
+  codeDigit: {
+    width: 50,
+    height: 60,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#3a3acc',
+  },
+  codeDigitFilled: {
+    backgroundColor: 'rgba(34, 197, 94, 0.3)',
+    borderColor: '#22c55e',
+  },
+  codeDigitText: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#f5f7ff',
+  },
+  unlockBadge: {
+    marginTop: 16,
+  },
+  questionSection: {
+    width: '100%',
+  },
+  optionsGrid: {
+    gap: 12,
+  },
+  lockOption: {
+    backgroundColor: 'rgba(91, 95, 255, 0.15)',
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(91, 95, 255, 0.3)',
+  },
+  lockOptionText: {
+    fontSize: 16,
+    color: '#f5f7ff',
+    textAlign: 'right',
+  },
+
+  // Arrow Precision styles
+  targetsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 24,
+  },
+  archeryTarget: {
+    alignItems: 'center',
+    padding: 16,
+  },
+  archeryTargetSelected: {
+    transform: [{ scale: 1.1 }],
+  },
+  archeryTargetCorrect: {
+    opacity: 1,
+  },
+  archeryTargetIncorrect: {
+    opacity: 0.5,
+  },
+  targetRings: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  targetOuter: {
+    position: 'absolute',
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#ef4444',
+  },
+  targetMiddle: {
+    position: 'absolute',
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    backgroundColor: '#ffd166',
+  },
+  targetInner: {
+    position: 'absolute',
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#22c55e',
+  },
+  targetLabel: {
+    marginTop: 8,
+    fontSize: 14,
+    color: '#f5f7ff',
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  arrowContainer: {
+    position: 'absolute',
+    bottom: 100,
+    alignSelf: 'center',
+  },
+
+  // Puzzle Reveal styles
+  puzzleGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    justifyContent: 'center',
+    marginBottom: 24,
+  },
+  puzzlePiece: {
+    width: 80,
+    height: 80,
+    backgroundColor: 'rgba(91, 95, 255, 0.2)',
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#3a3acc',
+  },
+  puzzlePieceRevealed: {
+    backgroundColor: 'rgba(34, 197, 94, 0.3)',
+    borderColor: '#22c55e',
+  },
+  puzzlePieceText: {
+    fontSize: 24,
+    color: '#8c92b5',
+  },
+  puzzleOption: {
+    backgroundColor: 'rgba(91, 95, 255, 0.15)',
+    padding: 14,
+    borderRadius: 12,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(91, 95, 255, 0.3)',
+  },
+  puzzleOptionText: {
+    fontSize: 16,
+    color: '#f5f7ff',
+    textAlign: 'right',
+  },
+
+  // Time Attack styles
+  timerBarContainer: {
+    height: 40,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: 20,
+    marginBottom: 20,
+    overflow: 'hidden',
+    justifyContent: 'center',
+  },
+  timerBar: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    height: '100%',
+    borderRadius: 20,
+  },
+  timerText: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#fff',
+    textAlign: 'center',
+  },
+  timeAttackOption: {
+    backgroundColor: 'rgba(91, 95, 255, 0.15)',
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 12,
+    borderWidth: 2,
+    borderColor: 'rgba(91, 95, 255, 0.3)',
+  },
+  timeAttackOptionSelected: {
+    borderColor: '#5b5fff',
+  },
+  timeAttackOptionCorrect: {
+    backgroundColor: 'rgba(34, 197, 94, 0.3)',
+    borderColor: '#22c55e',
+  },
+  timeAttackOptionIncorrect: {
+    backgroundColor: 'rgba(239, 68, 68, 0.3)',
+    borderColor: '#ef4444',
+  },
+  timeAttackOptionText: {
+    fontSize: 16,
+    color: '#f5f7ff',
+    textAlign: 'right',
+  },
+
+  // Build Mode styles
+  towerContainer: {
+    minHeight: 200,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: 24,
+    paddingTop: 20,
+  },
+  towerBlock: {
+    backgroundColor: 'rgba(91, 95, 255, 0.3)',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginBottom: 4,
+    borderWidth: 2,
+    borderColor: '#5b5fff',
+    minWidth: 150,
+  },
+  towerBlockText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#f5f7ff',
+    textAlign: 'center',
+  },
+  towerBase: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+    borderRadius: 8,
+    borderStyle: 'dashed',
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
+  },
+  towerBaseText: {
+    fontSize: 14,
+    color: '#8c92b5',
+    textAlign: 'center',
+  },
+  buildOption: {
+    backgroundColor: 'rgba(91, 95, 255, 0.15)',
+    padding: 14,
+    borderRadius: 12,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(91, 95, 255, 0.3)',
+  },
+  buildOptionText: {
+    fontSize: 16,
+    color: '#f5f7ff',
+    textAlign: 'right',
+  },
+
+  // Mystery Box styles
+  boxesRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 24,
+  },
+  mysteryBox: {
+    width: 140,
+    height: 160,
+    backgroundColor: 'rgba(91, 95, 255, 0.2)',
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#5b5fff',
+    position: 'relative',
+  },
+  mysteryBoxSelected: {
+    borderColor: '#ffd166',
+    borderWidth: 3,
+  },
+  mysteryBoxCorrect: {
+    backgroundColor: 'rgba(34, 197, 94, 0.3)',
+    borderColor: '#22c55e',
+  },
+  mysteryBoxIncorrect: {
+    backgroundColor: 'rgba(239, 68, 68, 0.3)',
+    borderColor: '#ef4444',
+  },
+  boxLid: {
+    position: 'absolute',
+    top: 0,
+    width: '100%',
+    height: 40,
+    backgroundColor: 'rgba(91, 95, 255, 0.4)',
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  boxBody: {
+    padding: 16,
+  },
+  boxLabel: {
+    fontSize: 12,
+    color: '#f5f7ff',
+    textAlign: 'center',
+    lineHeight: 18,
+  },
+  boxResult: {
+    position: 'absolute',
+    bottom: 16,
+  },
+
+  // Shoot & Hit styles
+  shootingRange: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 24,
+    minHeight: 150,
+  },
+  shootTarget: {
+    alignItems: 'center',
+  },
+  shootTargetInner: {
+    backgroundColor: 'rgba(91, 95, 255, 0.3)',
+    padding: 16,
+    borderRadius: 50,
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#5b5fff',
+  },
+  shootTargetHit: {
+    transform: [{ scale: 0.95 }],
+  },
+  shootTargetCorrect: {
+    backgroundColor: 'rgba(34, 197, 94, 0.3)',
+    borderColor: '#22c55e',
+  },
+  shootTargetIncorrect: {
+    backgroundColor: 'rgba(239, 68, 68, 0.3)',
+    borderColor: '#ef4444',
+  },
+  shootTargetText: {
+    marginTop: 8,
+    fontSize: 12,
+    color: '#f5f7ff',
+    textAlign: 'center',
+    maxWidth: 80,
+  },
+
+  // Knowledge Race styles
+  raceTrack: {
+    height: 60,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: 30,
+    marginBottom: 20,
+    position: 'relative',
+    justifyContent: 'center',
+  },
+  trackLine: {
+    position: 'absolute',
+    left: 30,
+    right: 30,
+    height: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 2,
+  },
+  raceCar: {
+    position: 'absolute',
+    bottom: 10,
+  },
+  raceCarEmoji: {
+    fontSize: 32,
+  },
+  finishLine: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10,
+  },
+  finishEmoji: {
+    fontSize: 32,
+  },
+  progressText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#f5f7ff',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  raceOption: {
+    backgroundColor: 'rgba(91, 95, 255, 0.15)',
+    padding: 14,
+    borderRadius: 12,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(91, 95, 255, 0.3)',
+  },
+  raceOptionText: {
+    fontSize: 16,
+    color: '#f5f7ff',
+    textAlign: 'right',
+  },
+
+  // Mind Lock styles
+  mindLockContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 24,
+  },
+  mindLockInner: {
+    backgroundColor: 'rgba(91, 95, 255, 0.2)',
+    padding: 32,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: '#5b5fff',
+  },
+  mindLockOption: {
+    backgroundColor: 'rgba(91, 95, 255, 0.15)',
+    padding: 16,
+    borderRadius: 12,
+    marginBottom: 12,
+    borderWidth: 2,
+    borderColor: 'rgba(91, 95, 255, 0.3)',
+  },
+  mindLockOptionSelected: {
+    borderColor: '#5b5fff',
+  },
+  mindLockOptionCorrect: {
+    backgroundColor: 'rgba(34, 197, 94, 0.3)',
+    borderColor: '#22c55e',
+  },
+  mindLockOptionIncorrect: {
+    backgroundColor: 'rgba(239, 68, 68, 0.3)',
+    borderColor: '#ef4444',
+  },
+  mindLockOptionText: {
+    fontSize: 16,
+    color: '#f5f7ff',
+    textAlign: 'right',
+  },
+
+  // Final Precision styles
+  finalTargetsContainer: {
+    gap: 12,
+  },
+  finalTargetWrapper: {
+    width: '100%',
+  },
+  finalTarget: {
+    backgroundColor: 'rgba(91, 95, 255, 0.15)',
+    padding: 18,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: 'rgba(91, 95, 255, 0.3)',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  finalTargetSelected: {
+    borderColor: '#5b5fff',
+  },
+  finalTargetCorrect: {
+    backgroundColor: 'rgba(34, 197, 94, 0.3)',
+    borderColor: '#22c55e',
+  },
+  finalTargetIncorrect: {
+    backgroundColor: 'rgba(239, 68, 68, 0.3)',
+    borderColor: '#ef4444',
+  },
+  finalTargetText: {
+    fontSize: 16,
+    color: '#f5f7ff',
+    textAlign: 'right',
+    flex: 1,
+  },
 });
 
 export default {
@@ -1702,5 +3147,16 @@ export default {
   ChartInteractionTask,
   SimulationTask,
   FillBlankTask,
+  // New games for Day 2 Mindset Day
+  MasterLockTask,
+  ArrowPrecisionTask,
+  PuzzleRevealTask,
+  TimeAttackTask,
+  BuildModeTask,
+  MysteryBoxTask,
+  ShootHitTask,
+  KnowledgeRaceTask,
+  MindLockTask,
+  FinalPrecisionTask,
   taskComponentMap,
 };
