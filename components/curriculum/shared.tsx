@@ -339,18 +339,19 @@ export const TaskFeedbackDisplay = ({
 
 interface KeyPointsDisplayProps {
   points: string[];
+  isRtl?: boolean;
 }
 
-export const KeyPointsDisplay = ({ points }: KeyPointsDisplayProps) => {
+export const KeyPointsDisplay = ({ points, isRtl = false }: KeyPointsDisplayProps) => {
   if (!points || points.length === 0) return null;
 
   return (
     <View style={styles.keyPointsContainer}>
       {points.map((point, index) => (
-        <SlideInElement key={index} delay={index * 100}>
-          <View style={styles.keyPointItem}>
-            <View style={styles.keyPointBullet} />
-            <Text style={styles.keyPointText}>{point}</Text>
+        <SlideInElement key={index} delay={index * 100} direction={isRtl ? 'right' : 'left'}>
+          <View style={[styles.keyPointItem, isRtl && styles.keyPointItemRtl]}>
+            <View style={[styles.keyPointBullet, isRtl && styles.keyPointBulletRtl]} />
+            <Text style={[styles.keyPointText, isRtl && styles.keyPointTextRtl]}>{point}</Text>
           </View>
         </SlideInElement>
       ))}
@@ -512,6 +513,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     color: '#c3c7e6',
+  },
+  // RTL styles for Arabic
+  keyPointItemRtl: {
+    flexDirection: 'row-reverse',
+  },
+  keyPointBulletRtl: {
+    marginTop: 7,
+  },
+  keyPointTextRtl: {
+    textAlign: 'right',
   },
 
   // Progress indicator styles
