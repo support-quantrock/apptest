@@ -4,7 +4,7 @@ import type { CurriculumDay } from '../../types/curriculum';
 // ==================== DAY 1 ====================
 const day1: CurriculumDay = {
   dayNumber: 1,
-  title: 'Welcome to the Marketplace',
+  title: 'How to Start the Challenge in the Quantrook Portfolio',
   emoji: '🏪',
   missionRank: 'Level 1 – Rookie Trader',
   theme: 'basics',
@@ -268,7 +268,7 @@ const day1: CurriculumDay = {
 // ==================== DAY 2 - The Mindset Day ====================
 const day2: CurriculumDay = {
   dayNumber: 2,
-  title: 'The Mindset Day',
+  title: 'How to Think Like an Investor + How to Become a Lifelong Professional Investor (The Mastery Day)',
   emoji: '🧠',
   missionRank: 'Level 2 – Mind Master',
   theme: 'basics',
@@ -629,7 +629,7 @@ const day2: CurriculumDay = {
 // ==================== DAY 3 ====================
 const day3: CurriculumDay = {
   dayNumber: 3,
-  title: 'Candlesticks Mastery I',
+  title: 'Money Rules: Saving, Investing, and Building Wealth',
   emoji: '🕯️',
   missionRank: 'Level 3 – Candle Tamer',
   theme: 'basics',
@@ -824,7 +824,7 @@ const day3: CurriculumDay = {
 // ==================== DAY 4 ====================
 const day4: CurriculumDay = {
   dayNumber: 4,
-  title: 'Candlestick Mastery II',
+  title: 'Financial Markets: Stocks, Bonds, Options, Futures, Margin Trading, Trader Types, Brokers & Regulators',
   emoji: '🎯',
   missionRank: 'Level 4 – Pattern Hunter',
   theme: 'basics',
@@ -1025,7 +1025,7 @@ const day4: CurriculumDay = {
 // ==================== DAY 5 ====================
 const day5: CurriculumDay = {
   dayNumber: 5,
-  title: 'Support & Resistance',
+  title: 'Commodity & Metal Markets (Gold, Silver, Oil)',
   emoji: '🏰',
   missionRank: 'Level 5 – Zone Master',
   theme: 'basics',
@@ -1220,7 +1220,7 @@ const day5: CurriculumDay = {
 // ==================== DAY 6 ====================
 const day6: CurriculumDay = {
   dayNumber: 6,
-  title: 'Trendlines & Channels',
+  title: 'Global Currency Markets (Forex)',
   emoji: '📐',
   missionRank: 'Level 6 – Trend Rider',
   theme: 'basics',
@@ -1422,7 +1422,7 @@ const day6: CurriculumDay = {
 // ==================== DAY 7 ====================
 const day7: CurriculumDay = {
   dayNumber: 7,
-  title: 'Week 1 Challenge Test',
+  title: 'Financial Derivatives',
   emoji: '🏆',
   missionRank: 'Level 7 – Apprentice Trader',
   theme: 'basics',

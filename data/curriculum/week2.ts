@@ -4,7 +4,7 @@ import type { CurriculumDay } from '../../types/curriculum';
 // ==================== DAY 8 ====================
 const day8: CurriculumDay = {
   dayNumber: 8,
-  title: 'Moving Averages',
+  title: 'Cryptocurrencies & Blockchain + Tokenizing Real-World Assets (RWA)',
   emoji: '📊',
   missionRank: 'Level 8 – Indicator Novice',
   theme: 'indicators',
@@ -206,7 +206,7 @@ const day8: CurriculumDay = {
 // ==================== DAY 9 ====================
 const day9: CurriculumDay = {
   dayNumber: 9,
-  title: 'RSI: Strength Meter',
+  title: 'Understanding Web3, DeFi, and the Future of Money',
   emoji: '📈',
   missionRank: 'Level 9 – Momentum Reader',
   theme: 'indicators',
@@ -400,7 +400,7 @@ const day9: CurriculumDay = {
 // ==================== DAY 10 ====================
 const day10: CurriculumDay = {
   dayNumber: 10,
-  title: 'MACD Mastery',
+  title: 'Risk Management & Financial Discipline',
   emoji: '📉',
   missionRank: 'Level 10 – Wave Analyzer',
   theme: 'indicators',
@@ -597,7 +597,7 @@ const day10: CurriculumDay = {
 // ==================== DAY 11 ====================
 const day11: CurriculumDay = {
   dayNumber: 11,
-  title: 'Volume Analysis',
+  title: 'Investor & Trader Psychology (Behavioral Finance)',
   emoji: '📊',
   missionRank: 'Level 11 – Market Pulse Reader',
   theme: 'indicators',
@@ -789,7 +789,7 @@ const day11: CurriculumDay = {
 // ==================== DAY 12 ====================
 const day12: CurriculumDay = {
   dayNumber: 12,
-  title: 'Risk Management I',
+  title: 'Economic Analysis',
   emoji: '🛡️',
   missionRank: 'Level 12 – Risk Commander',
   theme: 'indicators',
@@ -982,7 +982,7 @@ const day12: CurriculumDay = {
 // ==================== DAY 13 ====================
 const day13: CurriculumDay = {
   dayNumber: 13,
-  title: 'Risk Management II',
+  title: 'Fundamental Analysis',
   emoji: '💰',
   missionRank: 'Level 13 – Capital Guardian',
   theme: 'indicators',
@@ -1186,7 +1186,7 @@ const day13: CurriculumDay = {
 // ==================== DAY 14 ====================
 const day14: CurriculumDay = {
   dayNumber: 14,
-  title: 'Week 2 Challenge Test',
+  title: 'Financial Analysis',
   emoji: '🎯',
   missionRank: 'Level 14 – Indicator Specialist',
   theme: 'indicators',

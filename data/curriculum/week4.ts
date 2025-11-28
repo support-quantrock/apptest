@@ -6,7 +6,7 @@ import type { CurriculumDay } from '../../types/curriculum';
 
 const day22: CurriculumDay = {
   dayNumber: 22,
-  title: 'Forex Trading II',
+  title: 'Automation in Investing: Bots & Robo-Advisors',
   emoji: '💹',
   missionRank: 'Forex Master',
   theme: 'advanced',
@@ -311,7 +311,7 @@ const day22: CurriculumDay = {
 
 const day23: CurriculumDay = {
   dayNumber: 23,
-  title: 'Indices Trading',
+  title: 'Trading & Investment Strategies (Arbitrage, Momentum, Reversal, Swing)',
   emoji: '📊',
   missionRank: 'Index Trader',
   theme: 'advanced',
@@ -622,7 +622,7 @@ const day23: CurriculumDay = {
 
 const day24: CurriculumDay = {
   dayNumber: 24,
-  title: 'Advanced Chart Patterns',
+  title: 'How to Use Quantrook to Select Stocks',
   emoji: '🎯',
   missionRank: 'Pattern Hunter',
   theme: 'advanced',
@@ -926,7 +926,7 @@ const day24: CurriculumDay = {
 
 const day25: CurriculumDay = {
   dayNumber: 25,
-  title: 'Trading Psychology',
+  title: 'Building a Smart Portfolio & Asset Diversification',
   emoji: '🧠',
   missionRank: 'Mind Master',
   theme: 'advanced',
@@ -1247,7 +1247,7 @@ const day25: CurriculumDay = {
 
 const day26: CurriculumDay = {
   dayNumber: 26,
-  title: 'Building Your Trading System',
+  title: 'Financial Freedom & Building Your Investment Goals',
   emoji: '⚙️',
   missionRank: 'System Builder',
   theme: 'advanced',
@@ -1552,7 +1552,7 @@ const day26: CurriculumDay = {
 
 const day27: CurriculumDay = {
   dayNumber: 27,
-  title: 'Portfolio Management',
+  title: 'Violations & Prohibited Practices in Financial Markets',
   emoji: '📁',
   missionRank: 'Portfolio Pro',
   theme: 'advanced',
@@ -1857,7 +1857,7 @@ const day27: CurriculumDay = {
 
 const day28: CurriculumDay = {
   dayNumber: 28,
-  title: 'Final Challenge',
+  title: '⚡ Final Day: Practical Application + Case Study + Final Exam',
   emoji: '🏆',
   missionRank: 'Trading Master',
   theme: 'advanced',

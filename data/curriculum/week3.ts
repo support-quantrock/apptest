@@ -4,7 +4,7 @@ import type { CurriculumDay } from '../../types/curriculum';
 // ==================== DAY 15 ====================
 const day15: CurriculumDay = {
   dayNumber: 15,
-  title: 'Stock Trading Basics',
+  title: 'Technical Analysis',
   emoji: '📈',
   missionRank: 'Level 15 – Equity Explorer',
   theme: 'multi_market',
@@ -208,7 +208,7 @@ const day15: CurriculumDay = {
 // ==================== DAY 16 ====================
 const day16: CurriculumDay = {
   dayNumber: 16,
-  title: 'Gold (XAU/USD)',
+  title: 'Quantitative Analysis',
   emoji: '🪙',
   missionRank: 'Level 16 – Metal Master',
   theme: 'multi_market',
@@ -408,7 +408,7 @@ const day16: CurriculumDay = {
 // ==================== DAY 17 ====================
 const day17: CurriculumDay = {
   dayNumber: 17,
-  title: 'Oil Trading',
+  title: 'Investing in ETFs & REITs',
   emoji: '🛢️',
   missionRank: 'Level 17 – Energy Trader',
   theme: 'multi_market',
@@ -604,7 +604,7 @@ const day17: CurriculumDay = {
 // ==================== DAY 18 ====================
 const day18: CurriculumDay = {
   dayNumber: 18,
-  title: 'Crypto Trading I',
+  title: 'Hedge Funds, Investment Funds & Family Offices',
   emoji: '₿',
   missionRank: 'Level 18 – Digital Asset Explorer',
   theme: 'multi_market',
@@ -796,7 +796,7 @@ const day18: CurriculumDay = {
 // ==================== DAY 19 ====================
 const day19: CurriculumDay = {
   dayNumber: 19,
-  title: 'Crypto Trading II',
+  title: 'Fixed Income',
   emoji: '🚀',
   missionRank: 'Level 19 – Crypto Specialist',
   theme: 'multi_market',
@@ -997,7 +997,7 @@ const day19: CurriculumDay = {
 // ==================== DAY 20 ====================
 const day20: CurriculumDay = {
   dayNumber: 20,
-  title: 'Forex Trading I',
+  title: 'Sustainability & ESG Investing',
   emoji: '💱',
   missionRank: 'Level 20 – Currency Hunter',
   theme: 'multi_market',
@@ -1202,7 +1202,7 @@ const day20: CurriculumDay = {
 // ==================== DAY 21 ====================
 const day21: CurriculumDay = {
   dayNumber: 21,
-  title: 'Week 3 Challenge Test',
+  title: 'Artificial Intelligence in Trading & Analysis',
   emoji: '🌍',
   missionRank: 'Level 21 – Multi-Market Trader',
   theme: 'multi_market',
