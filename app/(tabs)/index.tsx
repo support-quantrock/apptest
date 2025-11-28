@@ -91,7 +91,7 @@ export default function HomeScreen() {
 
           <View style={styles.badgeTopRow}>
             <View style={[styles.badge, { borderColor: '#22c55e', backgroundColor: 'rgba(34, 197, 94, 0.2)' }]}>
-              <Text style={[styles.badgeText, { color: '#22c55e' }]}>Free</Text>
+              <Text style={[styles.badgeText, { color: '#22c55e' }]}>Beginners</Text>
             </View>
           </View>
 
@@ -109,8 +109,9 @@ export default function HomeScreen() {
 
             <View style={styles.profileTitleContainer}>
               <Text style={styles.profileTitle}>Learn Challenge</Text>
+              <Text style={styles.profileSubtitleSmall}>Free Simulator Training  (Optional)</Text>
               <Text style={styles.profileSubtitle}>
-                Beginners – Free Simulator Training. Practice trading with zero risk through a 28-day program with daily lessons and exercises.
+                Designed for beginners who want to build a solid foundation in trading and gradually develop essential investment skills. It's ideal for newcomers, university students, and even high-school learners who wish to practice trading safely through a free, risk-free virtual portfolio simulator.
               </Text>
             </View>
           </View>
@@ -216,7 +217,7 @@ export default function HomeScreen() {
 
           <View style={styles.badgeTopRow}>
             <View style={[styles.badge, { borderColor: '#a78bfa', backgroundColor: 'rgba(167, 139, 250, 0.2)' }]}>
-              <Text style={[styles.badgeText, { color: '#a78bfa' }]}>Pro</Text>
+              <Text style={[styles.badgeText, { color: '#a78bfa' }]}>Qualified</Text>
             </View>
           </View>
 
@@ -234,36 +235,52 @@ export default function HomeScreen() {
 
             <View style={styles.profileTitleContainer}>
               <Text style={styles.profileTitle}>Invest Challenge</Text>
+              <Text style={styles.profileSubtitleSmall}>Exclusively for Premium Pro Members</Text>
               <Text style={styles.profileSubtitle}>
-                Premium Pro Members only. Manage a $100K virtual portfolio with real monetary rewards and professional-level competition.
+                Designed for qualifieds users, professionals, and Premium members, it offers real financial prizes within an advanced simulation environment that mimics the strategies of investors and hedge funds, without any actual risk. Participants manage a virtual portfolio of up to $100,000 to trade in a 100% realistic market for 28 days
               </Text>
             </View>
           </View>
 
-          <View style={styles.bottomRow}>
-            <View style={styles.infoGrid}>
-              <View style={styles.infoRow}>
-                <View style={styles.infoItem}>
-                  <Calendar size={18} color="#a78bfa" strokeWidth={2} />
-                  <Text style={styles.infoLabel}>Duration:</Text>
-                  <Text style={styles.infoValue}>28 Days</Text>
+          <View style={styles.rewardsSection}>
+            <Text style={styles.rewardsTitle}>🎁 Rewards & Benefits:</Text>
+            <View style={styles.rewardsGrid}>
+              <View style={styles.rewardsColumn}>
+                <View style={styles.rewardItem}>
+                  <Text style={styles.rewardIcon}>💰</Text>
+                  <Text style={styles.rewardText}>Cash prize up to $1,000</Text>
                 </View>
-                <View style={styles.infoItem}>
-                  <TrendingUp size={18} color="#a78bfa" strokeWidth={2} />
-                  <Text style={styles.infoLabel}>Portfolio:</Text>
-                  <Text style={styles.infoValue}>$100K</Text>
+                <View style={styles.rewardItem}>
+                  <Text style={styles.rewardIcon}>🔓</Text>
+                  <Text style={styles.rewardText}>Full access to all features</Text>
+                </View>
+                <View style={styles.rewardItem}>
+                  <Text style={styles.rewardIcon}>🏆</Text>
+                  <Text style={styles.rewardText}>Name on Leaderboard</Text>
                 </View>
               </View>
-              <View style={styles.infoRow}>
-                <View style={styles.infoItem}>
-                  <Award size={18} color="#a78bfa" strokeWidth={2} />
-                  <Text style={styles.infoLabel}>Prize:</Text>
-                  <Text style={styles.infoValue}>$1,000</Text>
+              <View style={styles.rewardsColumn}>
+                <View style={styles.rewardItem}>
+                  <Text style={styles.rewardIcon}>🧠</Text>
+                  <Text style={styles.rewardText}>Investor Personality Assessment</Text>
                 </View>
-                <View style={styles.infoItem}>
-                  <Target size={18} color="#a78bfa" strokeWidth={2} />
-                  <Text style={styles.infoLabel}>Profit Target:</Text>
-                  <Text style={styles.infoValue}>6%+</Text>
+                <View style={styles.rewardItem}>
+                  <Text style={styles.rewardIcon}>📜</Text>
+                  <Text style={styles.rewardText}>Quantrock Certificate</Text>
+                </View>
+                <View style={styles.rewardItem}>
+                  <Text style={styles.rewardIcon}>⭐</Text>
+                  <Text style={styles.rewardText}>Premium upgrade</Text>
+                </View>
+              </View>
+              <View style={styles.rewardsColumn}>
+                <View style={styles.rewardItem}>
+                  <Text style={styles.rewardIcon}>📚</Text>
+                  <Text style={styles.rewardText}>500+ lessons</Text>
+                </View>
+                <View style={styles.rewardItem}>
+                  <Text style={styles.rewardIcon}>🎯</Text>
+                  <Text style={styles.rewardText}>28 days of skill challenges</Text>
                 </View>
               </View>
             </View>
@@ -740,6 +757,13 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     letterSpacing: 0.1,
   },
+  profileSubtitleSmall: {
+    fontSize: 10,
+    color: '#a78bfa',
+    fontWeight: '600',
+    marginBottom: 4,
+    letterSpacing: 0.1,
+  },
   visitButton: {
     backgroundColor: 'rgba(34, 197, 94, 0.2)',
     borderWidth: 2,
@@ -826,5 +850,35 @@ const styles = StyleSheet.create({
     color: '#cbd5e1',
     lineHeight: 20,
     letterSpacing: 0.2,
+  },
+  rewardsSection: {
+    marginTop: 8,
+  },
+  rewardsTitle: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#fff',
+    marginBottom: 12,
+  },
+  rewardsGrid: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  rewardsColumn: {
+    flex: 1,
+    gap: 10,
+  },
+  rewardItem: {
+    alignItems: 'center',
+    gap: 4,
+  },
+  rewardIcon: {
+    fontSize: 20,
+  },
+  rewardText: {
+    fontSize: 9,
+    color: '#cbd5e1',
+    textAlign: 'center',
+    lineHeight: 12,
   },
 });
