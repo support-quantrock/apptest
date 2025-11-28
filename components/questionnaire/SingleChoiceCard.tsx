@@ -10,15 +10,17 @@ interface Option {
 
 interface SingleChoiceCardProps {
   title: string;
+  subtitle?: string;
   options: Option[];
   onSelect: (value: string) => void;
   selectedValue?: string | null;
 }
 
-export default function SingleChoiceCard({ title, options, onSelect, selectedValue }: SingleChoiceCardProps) {
+export default function SingleChoiceCard({ title, subtitle, options, onSelect, selectedValue }: SingleChoiceCardProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, !subtitle && styles.titleNoSubtitle]}>{title}</Text>
+      {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
       <View style={styles.optionsContainer}>
         {options.map((option, index) => (
           <Animated.View
@@ -63,8 +65,19 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1f2937',
     textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: 8,
     lineHeight: 34,
+  },
+  titleNoSubtitle: {
+    marginBottom: 32,
+  },
+  subtitle: {
+    fontSize: 13,
+    fontWeight: '400',
+    color: '#6b7280',
+    textAlign: 'center',
+    marginBottom: 24,
+    lineHeight: 18,
   },
   optionsContainer: {
     gap: 12,

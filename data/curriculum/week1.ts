@@ -273,13 +273,13 @@ const day2: CurriculumDay = {
   missionRank: 'Level 2 – Mind Master',
   theme: 'basics',
   lessons: [
-    // Lesson 1 — The Gate of Transformation (Master Lock)
+    // Lesson 1 — Mindset & Value (Merged: Gate of Transformation + Value Mindset)
     {
       id: 'day2_lesson1',
       dayNumber: 2,
       lessonNumber: 1,
-      title: 'The Gate of Transformation',
-      description: 'You arrive at a massive stone gate... To open it, you must understand the first law of investing.',
+      title: 'Mindset & Value',
+      description: 'Open the gate and discover the true meaning of value.',
       objectives: [
         {
           id: 'day2_l1_obj1',
@@ -318,20 +318,9 @@ const day2: CurriculumDay = {
             },
             feedback: { correct: '🔓 Well done! Gate unlocked. +10 qcoin', incorrect: 'Try again to unlock the gate' }
           }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 2 — The Value Mindset (Arrow Precision)
-    {
-      id: 'day2_lesson2',
-      dayNumber: 2,
-      lessonNumber: 2,
-      title: 'The Value Mindset',
-      description: 'Hit the true investor\'s target.',
-      objectives: [
+        },
         {
-          id: 'day2_l2_obj1',
+          id: 'day2_l1_obj2',
           title: 'Discover True Value',
           content: 'Three archery targets appear: Price — Hype — Value. The voice says: "Hit the target of the true investor."',
           keyPoints: ['Investors ask: What\'s the value? Not: What\'s the price?', 'Price changes... Value remains', 'The world\'s greatest investors follow value investing'],
@@ -350,18 +339,18 @@ const day2: CurriculumDay = {
           }
         }
       ],
-      estimatedMinutes: 3
+      estimatedMinutes: 5
     },
-    // Lesson 3 — Seeing the Big Picture (Puzzle Reveal)
+    // Lesson 2 — Big Picture & Emotions (Merged: Seeing the Big Picture + Controlling Emotions)
     {
-      id: 'day2_lesson3',
+      id: 'day2_lesson2',
       dayNumber: 2,
-      lessonNumber: 3,
-      title: 'Seeing the Big Picture',
-      description: 'A big picture is hidden behind puzzle pieces... Each answer reveals a piece.',
+      lessonNumber: 2,
+      title: 'Big Picture & Emotions',
+      description: 'See the complete picture and master your emotions.',
       objectives: [
         {
-          id: 'day2_l3_obj1',
+          id: 'day2_l2_obj1',
           title: 'Reveal the Complete Picture',
           content: 'A big picture is hidden behind puzzle pieces... Each correct answer reveals a piece.',
           keyPoints: ['Professional investors see the trend, not just one day', 'Short-term details are misleading', 'The big picture = understanding the true direction'],
@@ -386,20 +375,9 @@ const day2: CurriculumDay = {
             },
             feedback: { correct: '🧩 Picture complete! +6 qcoin - Badge: Big Picture Thinker', incorrect: 'Focus on the overall trend' }
           }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 4 — Controlling Emotions (Time Attack)
-    {
-      id: 'day2_lesson4',
-      dayNumber: 2,
-      lessonNumber: 4,
-      title: 'Controlling Emotions',
-      description: 'The strongest investor is one who conquers their emotions.',
-      objectives: [
+        },
         {
-          id: 'day2_l4_obj1',
+          id: 'day2_l2_obj2',
           title: 'Master Your Emotions',
           content: 'A 9-second timer begins counting down. The voice says: "The strongest investor is one who conquers their emotions."',
           keyPoints: ['Fear = selling too early', 'Greed = buying too late', 'Emotional control = half of mastery'],
@@ -417,18 +395,18 @@ const day2: CurriculumDay = {
           }
         }
       ],
-      estimatedMinutes: 3
+      estimatedMinutes: 5
     },
-    // Lesson 5 — The Power of Compounding (Build Mode)
+    // Lesson 3 — Compounding & Opportunities (Merged: Power of Compounding + Don't Chase Opportunities)
     {
-      id: 'day2_lesson5',
+      id: 'day2_lesson3',
       dayNumber: 2,
-      lessonNumber: 5,
-      title: 'The Power of Compounding',
-      description: 'A glowing tower appears before you... Each correct answer adds a new block.',
+      lessonNumber: 3,
+      title: 'Compounding & Opportunities',
+      description: 'Build wealth through compounding and choose the right opportunities.',
       objectives: [
         {
-          id: 'day2_l5_obj1',
+          id: 'day2_l3_obj1',
           title: 'Build the Tower of Success',
           content: 'A glowing tower appears before you... Each correct answer adds a new block.',
           keyPoints: ['Compounding = The investor\'s greatest weapon', 'Small amounts + time = great wealth', 'You don\'t need a huge sum... You need time'],
@@ -454,20 +432,9 @@ const day2: CurriculumDay = {
             },
             feedback: { correct: '🏗️ Amazing tower! +7 qcoin - Badge: Compounding Master', incorrect: 'Compounding requires time and patience' }
           }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 6 — Don't Chase Opportunities (Mystery Box)
-    {
-      id: 'day2_lesson6',
-      dayNumber: 2,
-      lessonNumber: 6,
-      title: 'Don\'t Chase Opportunities',
-      description: 'Choose the path that a true investor takes.',
-      objectives: [
+        },
         {
-          id: 'day2_l6_obj1',
+          id: 'day2_l3_obj2',
           title: 'Choose the Right Opportunity',
           content: 'Two boxes appear: "Shiny opportunity" — "Opportunity right for you". The voice says: "Choose the path that a true investor takes."',
           keyPoints: ['Not every "shiny" opportunity is right for you', 'Chasing opportunities = losses', 'Choosing the right opportunity for your personality matters more than big profits'],
@@ -485,18 +452,18 @@ const day2: CurriculumDay = {
           }
         }
       ],
-      estimatedMinutes: 3
+      estimatedMinutes: 5
     },
-    // Lesson 7 — Discipline Before Intelligence (Shoot & Hit)
+    // Lesson 4 — Discipline & Growth (Merged: Discipline Before Intelligence + Growth Mindset)
     {
-      id: 'day2_lesson7',
+      id: 'day2_lesson4',
       dayNumber: 2,
-      lessonNumber: 7,
-      title: 'Discipline Before Intelligence',
-      description: 'Hit what makes a true investor.',
+      lessonNumber: 4,
+      title: 'Discipline & Growth',
+      description: 'Discover the power of discipline and continuous learning.',
       objectives: [
         {
-          id: 'day2_l7_obj1',
+          id: 'day2_l4_obj1',
           title: 'Discover the Secret to Success',
           content: 'Three targets appear: "Intelligence" — "Luck" — "Discipline". The voice says: "Hit what makes a true investor."',
           keyPoints: ['Discipline = Sticking to the plan', 'A smart investor without discipline = loser', 'An average investor with discipline = winner'],
@@ -513,20 +480,9 @@ const day2: CurriculumDay = {
             },
             feedback: { correct: '🎯 Perfect hit! +8 qcoin - Badge: Disciplined Investor', incorrect: 'Discipline is what makes a true investor' }
           }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 8 — Growth Mindset (Knowledge Race)
-    {
-      id: 'day2_lesson8',
-      dayNumber: 2,
-      lessonNumber: 8,
-      title: 'Growth Mindset',
-      description: 'Learning is the fuel... Go!',
-      objectives: [
+        },
         {
-          id: 'day2_l8_obj1',
+          id: 'day2_l4_obj2',
           title: 'Knowledge Race',
           content: 'A race car awaits... The voice says: "Learning is the fuel... Go!"',
           keyPoints: ['Every loss = a lesson', 'Every win = a result', 'Continuous learning = the strongest weapon'],
@@ -547,18 +503,18 @@ const day2: CurriculumDay = {
           }
         }
       ],
-      estimatedMinutes: 3
+      estimatedMinutes: 5
     },
-    // Lesson 9 — The Investor Calculates Each Step (Mind Lock)
+    // Lesson 5 — Research & Mastery (Merged: Calculate Every Step + The Mastery Test)
     {
-      id: 'day2_lesson9',
+      id: 'day2_lesson5',
       dayNumber: 2,
-      lessonNumber: 9,
-      title: 'Calculate Every Step',
-      description: 'A mental lock needs codes... Each code = information.',
+      lessonNumber: 5,
+      title: 'Research & Mastery',
+      description: 'Calculate every step and prove your mastery.',
       objectives: [
         {
-          id: 'day2_l9_obj1',
+          id: 'day2_l5_obj1',
           title: 'Unlock the Mind',
           content: 'A mental lock needs codes... Each code = information.',
           keyPoints: ['Investment decisions require research', 'Guessing = loss', 'Information = power'],
@@ -574,20 +530,9 @@ const day2: CurriculumDay = {
             },
             feedback: { correct: '🧠 Sharp mind! +10 qcoin - Badge: Calculated Thinker', incorrect: 'Research before you decide' }
           }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 10 — The Mastery Test (Final Precision)
-    {
-      id: 'day2_lesson10',
-      dayNumber: 2,
-      lessonNumber: 10,
-      title: 'The Mastery Test',
-      description: 'You\'ve learned the foundation... Prove your readiness.',
-      objectives: [
+        },
         {
-          id: 'day2_l10_obj1',
+          id: 'day2_l5_obj2',
           title: 'The Final Test',
           content: 'An all-white test room... The voice says: "You\'ve learned the foundation... Prove your readiness."',
           keyPoints: ['Discipline', 'Value', 'The Big Picture', 'Emotional Control', 'Continuous Growth'],
@@ -606,7 +551,7 @@ const day2: CurriculumDay = {
           }
         }
       ],
-      estimatedMinutes: 3
+      estimatedMinutes: 5
     }
   ],
   test: {

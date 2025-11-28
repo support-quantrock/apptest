@@ -716,78 +716,73 @@ export const FinalPrecisionScene = () => {
 
 // ==================== KEY POINTS SCENE (Content Screen) ====================
 
-// Icon mapping for each lesson's key points
+// Icon mapping for each merged lesson's key points (now 5 lessons with 2 objectives each)
 const lessonKeyPointIcons: Record<number, string[]> = {
-  1: ['TrendingUp', 'Shield', 'Lightbulb'],
-  2: ['DollarSign', 'Scale', 'Trophy'],
-  3: ['Eye', 'TrendingUp', 'Target'],
-  4: ['Heart', 'AlertTriangle', 'Brain'],
-  5: ['Clock', 'Coins', 'Building'],
-  6: ['Sparkles', 'Heart', 'Filter'],
-  7: ['CheckCircle', 'Brain', 'Award'],
-  8: ['BookOpen', 'TrendingUp', 'Zap'],
-  9: ['Search', 'FileText', 'Shield'],
-  10: ['CheckCircle', 'Eye', 'Brain', 'Heart', 'TrendingUp'],
+  // Lesson 1: Mindset & Value (obj1: 3 points, obj2: 3 points)
+  1: ['TrendingUp', 'Shield', 'Lightbulb', 'DollarSign', 'Scale', 'Trophy'],
+  // Lesson 2: Big Picture & Emotions (obj1: 3 points, obj2: 3 points)
+  2: ['Eye', 'TrendingUp', 'Target', 'Heart', 'AlertTriangle', 'Brain'],
+  // Lesson 3: Compounding & Opportunities (obj1: 3 points, obj2: 3 points)
+  3: ['Clock', 'Coins', 'Building', 'Sparkles', 'Heart', 'Filter'],
+  // Lesson 4: Discipline & Growth (obj1: 3 points, obj2: 3 points)
+  4: ['CheckCircle', 'Brain', 'Award', 'BookOpen', 'TrendingUp', 'Zap'],
+  // Lesson 5: Research & Mastery (obj1: 3 points, obj2: 5 points)
+  5: ['Search', 'FileText', 'Shield', 'CheckCircle', 'Eye', 'Brain', 'Heart', 'TrendingUp'],
 };
 
-// AI-generated cartoon images for each lesson's key points using Pollinations.ai
+// AI-generated cartoon images for each merged lesson's key points using Pollinations.ai
 const lessonKeyPointImages: Record<number, string[]> = {
-  // Lesson 1: The Gate of Transformation - Investor mindset
+  // Lesson 1: Mindset & Value (merged from old lessons 1+2)
   1: [
+    // Objective 1: Investor Mindset
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20investor%20looking%20through%20telescope%20at%20distant%20mountain%20peak%20with%20upward%20stock%20chart%20long%20term%20vision%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=101',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20disciplined%20person%20following%20checklist%20plan%20organized%20focused%20investment%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=102',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20glowing%20brain%20with%20gears%20lightbulb%20positive%20mindset%20success%20thinking%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=103',
-  ],
-  // Lesson 2: The Value Mindset - Value investing
-  2: [
+    // Objective 2: True Value
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20golden%20scale%20balancing%20diamond%20gem%20value%20versus%20price%20tag%20investment%20concept%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=201',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20fluctuating%20price%20waves%20on%20top%20stable%20value%20foundation%20rock%20solid%20base%20investing%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=202',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20wise%20investor%20character%20with%20magnifying%20glass%20analyzing%20stocks%20value%20investing%20warren%20buffett%20style%20flat%20design%20gold%20colors?width=400&height=300&seed=203',
   ],
-  // Lesson 3: Seeing the Big Picture - Long-term trends
-  3: [
+  // Lesson 2: Big Picture & Emotions (merged from old lessons 3+4)
+  2: [
+    // Objective 1: Big Picture
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20person%20standing%20on%20mountain%20top%20viewing%20full%20landscape%20panorama%20seeing%20trends%20big%20picture%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=301',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20person%20above%20maze%20seeing%20clear%20path%20to%20exit%20bird%20eye%20view%20perspective%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=302',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20compass%20with%20wide%20map%20showing%20direction%20navigation%20true%20path%20investing%20journey%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=303',
-  ],
-  // Lesson 4: Controlling Emotions - Psychology
-  4: [
+    // Objective 2: Emotions
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20scared%20investor%20running%20away%20from%20small%20dip%20in%20stock%20chart%20fear%20selling%20too%20early%20panic%20flat%20design%20red%20colors?width=400&height=300&seed=401',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20greedy%20person%20chasing%20rocket%20that%20already%20launched%20too%20late%20buying%20high%20fomo%20flat%20design%20red%20colors?width=400&height=300&seed=402',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20zen%20calm%20investor%20meditating%20peacefully%20while%20stock%20charts%20fluctuate%20around%20emotional%20control%20flat%20design%20red%20colors?width=400&height=300&seed=403',
   ],
-  // Lesson 5: Power of Compounding - Growth
-  5: [
+  // Lesson 3: Compounding & Opportunities (merged from old lessons 5+6)
+  3: [
+    // Objective 1: Compounding
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20snowball%20rolling%20downhill%20getting%20bigger%20compound%20growth%20effect%20wealth%20building%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=501',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20small%20coins%20growing%20into%20mountain%20of%20gold%20over%20timeline%20wealth%20accumulation%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=502',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20hourglass%20with%20coins%20multiplying%20inside%20time%20is%20money%20patient%20investing%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=503',
-  ],
-  // Lesson 6: Don't Chase Opportunities
-  6: [
+    // Objective 2: Opportunities
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20glittering%20gold%20trap%20versus%20simple%20door%20with%20warm%20light%20right%20opportunity%20wisdom%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=601',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20person%20chasing%20butterflies%20missing%20beautiful%20flower%20garden%20nearby%20wrong%20priorities%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=602',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20puzzle%20piece%20finding%20perfect%20match%20right%20fit%20opportunity%20personality%20match%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=603',
   ],
-  // Lesson 7: Discipline Before Intelligence
-  7: [
+  // Lesson 4: Discipline & Growth (merged from old lessons 7+8)
+  4: [
+    // Objective 1: Discipline
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20focused%20person%20following%20roadmap%20step%20by%20step%20discipline%20planning%20consistency%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=701',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20genius%20scattered%20papers%20chaos%20failing%20without%20discipline%20smart%20but%20disorganized%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=702',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20regular%20person%20crossing%20finish%20line%20winning%20trophy%20methodical%20disciplined%20approach%20success%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=703',
-  ],
-  // Lesson 8: Growth Mindset - Learning
-  8: [
+    // Objective 2: Growth
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20person%20falling%20down%20but%20collecting%20books%20knowledge%20learning%20from%20failure%20lessons%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=801',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20trophy%20being%20built%20brick%20by%20brick%20step%20by%20step%20achievement%20progress%20results%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=802',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20brain%20character%20lifting%20weights%20exercising%20getting%20stronger%20continuous%20learning%20growth%20flat%20design%20vibrant%20blue%20purple%20colors?width=400&height=300&seed=803',
   ],
-  // Lesson 9: Calculate Every Step - Research
-  9: [
+  // Lesson 5: Research & Mastery (merged from old lessons 9+10)
+  5: [
+    // Objective 1: Research
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20detective%20investor%20with%20magnifying%20glass%20analyzing%20stock%20charts%20research%20investigation%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=901',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20dice%20gambling%20with%20big%20red%20X%20mark%20guessing%20equals%20loss%20no%20gambling%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=902',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20superhero%20powered%20by%20data%20books%20information%20knowledge%20is%20power%20strength%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=903',
-  ],
-  // Lesson 10: The Mastery Test - All concepts
-  10: [
+    // Objective 2: Mastery
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20checklist%20with%20green%20checkmarks%20discipline%20organized%20planning%20success%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=1001',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20shining%20diamond%20gem%20representing%20true%20value%20precious%20investing%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=1002',
     'https://image.pollinations.ai/prompt/cartoon%20illustration%20eagle%20flying%20high%20with%20panoramic%20view%20big%20picture%20perspective%20vision%20flat%20design%20vibrant%20green%20colors?width=400&height=300&seed=1003',
@@ -796,18 +791,13 @@ const lessonKeyPointImages: Record<number, string[]> = {
   ],
 };
 
-// Color themes for each lesson
+// Color themes for each merged lesson (5 lessons)
 const lessonColors: Record<number, { primary: string; secondary: string; gradient: [string, string, string] }> = {
   1: { primary: '#5b5fff', secondary: '#9bafff', gradient: ['#0a0e2e', '#1a1f4a', '#0a0e2e'] },
-  2: { primary: '#ffd166', secondary: '#ffe4a0', gradient: ['#1a1a0a', '#0a0e1e', '#1a1a0a'] },
-  3: { primary: '#22c55e', secondary: '#86efac', gradient: ['#0a1a0a', '#0a0e1e', '#0a1a0a'] },
-  4: { primary: '#ef4444', secondary: '#fca5a5', gradient: ['#1a0a0a', '#0a0e1e', '#1a0a0a'] },
-  5: { primary: '#5b5fff', secondary: '#9bafff', gradient: ['#0a0e2e', '#1a1f4a', '#0a0e2e'] },
-  6: { primary: '#ffd166', secondary: '#ffe4a0', gradient: ['#1a1a0a', '#0a0e1e', '#1a1a0a'] },
-  7: { primary: '#22c55e', secondary: '#86efac', gradient: ['#0a1a0a', '#0a0e1e', '#0a1a0a'] },
-  8: { primary: '#5b5fff', secondary: '#9bafff', gradient: ['#0a0e2e', '#1a1f4a', '#0a0e2e'] },
-  9: { primary: '#ffd166', secondary: '#ffe4a0', gradient: ['#1a1a0a', '#0a0e1e', '#1a1a0a'] },
-  10: { primary: '#22c55e', secondary: '#86efac', gradient: ['#0a1a0a', '#0a0e1e', '#1a0a1a'] },
+  2: { primary: '#22c55e', secondary: '#86efac', gradient: ['#0a1a0a', '#0a0e1e', '#0a1a0a'] },
+  3: { primary: '#5b5fff', secondary: '#9bafff', gradient: ['#0a0e2e', '#1a1f4a', '#0a0e2e'] },
+  4: { primary: '#22c55e', secondary: '#86efac', gradient: ['#0a1a0a', '#0a0e1e', '#0a1a0a'] },
+  5: { primary: '#ffd166', secondary: '#ffe4a0', gradient: ['#1a1a0a', '#0a0e1e', '#1a1a0a'] },
 };
 
 interface KeyPointCardProps {
@@ -1027,17 +1017,13 @@ export const StoryScene = ({ lessonNumber, dayNumber }: StorySceneProps) => {
   // Only show story scenes for Day 2
   if (dayNumber !== 2) return null;
 
+  // Merged lessons: 5 lessons with combined themes
   switch (lessonNumber) {
-    case 1: return <GateScene />;
-    case 2: return <TargetRangeScene />;
-    case 3: return <PuzzleScene />;
-    case 4: return <TimeAttackScene />;
-    case 5: return <BuildModeScene />;
-    case 6: return <MysteryBoxScene />;
-    case 7: return <ShootHitScene />;
-    case 8: return <KnowledgeRaceScene />;
-    case 9: return <MindLockScene />;
-    case 10: return <FinalPrecisionScene />;
+    case 1: return <GateScene />;        // Mindset & Value (Gate + Target)
+    case 2: return <PuzzleScene />;      // Big Picture & Emotions (Puzzle + Timer)
+    case 3: return <BuildModeScene />;   // Compounding & Opportunities (Build + Mystery)
+    case 4: return <ShootHitScene />;    // Discipline & Growth (Shoot + Race)
+    case 5: return <FinalPrecisionScene />; // Research & Mastery (Mind + Final)
     default: return null;
   }
 };

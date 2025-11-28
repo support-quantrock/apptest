@@ -7,6 +7,7 @@ import {
   ScrollView,
   Share,
   Platform,
+  Modal,
 } from 'react-native';
 import { router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -20,7 +21,7 @@ import Animated, {
   withSpring,
   interpolate,
 } from 'react-native-reanimated';
-import { Share2, Trophy, TrendingUp, Shield, Zap, ChevronRight } from 'lucide-react-native';
+import { Share2, Trophy, TrendingUp, Shield, Zap, ChevronRight, Info, X } from 'lucide-react-native';
 import { useQuestionnaire, QuestionnaireAnswers } from '@/context/QuestionnaireContext';
 
 // Scoring calculation functions
@@ -242,6 +243,43 @@ const getSuggestedPortfolio = (
   return { size: '$10k – $25k', color: '#3b82f6' };
 };
 
+// Animated Growth Emoji Component
+const AnimatedGrowthEmoji = ({ style }: { style?: any }) => {
+  const scale = useSharedValue(1);
+  const translateY = useSharedValue(0);
+
+  useEffect(() => {
+    // Pulsing scale animation
+    scale.value = withDelay(
+      500,
+      withSpring(1.1, { damping: 2, stiffness: 80 }, () => {
+        scale.value = withSpring(1, { damping: 2, stiffness: 80 });
+      })
+    );
+
+    // Continuous subtle bounce animation
+    const startBounce = () => {
+      translateY.value = withTiming(-8, { duration: 1000 }, () => {
+        translateY.value = withTiming(0, { duration: 1000 }, () => {
+          startBounce();
+        });
+      });
+    };
+    startBounce();
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { scale: scale.value },
+      { translateY: translateY.value },
+    ],
+  }));
+
+  return (
+    <Animated.Text style={[style, animatedStyle]}>📈</Animated.Text>
+  );
+};
+
 // Animated Progress Circle Component
 const AnimatedCircle = ({ score, maxScore, color, delay = 0 }: { score: number; maxScore: number; color: string; delay?: number }) => {
   const progress = useSharedValue(0);
@@ -264,9 +302,105 @@ const AnimatedCircle = ({ score, maxScore, color, delay = 0 }: { score: number; 
   );
 };
 
+// Info content for each category
+const INFO_CONTENT = {
+  personality: {
+    title: 'Investment Personality Types',
+    items: [
+      { emoji: '🛡️', label: 'Conservative Investor', color: '#22c55e', description: 'Prefers stability and capital preservation over high returns. Avoids volatile investments.' },
+      { emoji: '⚖️', label: 'Balanced Investor', color: '#3b82f6', description: 'Seeks a mix of growth and stability. Accepts moderate risk for better returns.' },
+      { emoji: '📈', label: 'Growth Investor', color: '#8b5cf6', description: 'Focuses on capital appreciation. Comfortable with market volatility for higher potential gains.' },
+      { emoji: '🚀', label: 'Aggressive Trader', color: '#ef4444', description: 'Seeks maximum returns. Willing to take significant risks and actively trade positions.' },
+    ],
+  },
+  literacy: {
+    title: 'Financial Literacy Levels',
+    items: [
+      { emoji: '🌱', label: 'Beginner', color: '#f59e0b', description: 'New to investing. Learning the basics of financial markets and investment concepts.' },
+      { emoji: '📚', label: 'Intermediate', color: '#3b82f6', description: 'Understands core investment principles. Familiar with different asset classes and strategies.' },
+      { emoji: '🎓', label: 'Advanced', color: '#22c55e', description: 'Expert knowledge of markets. Can analyze investments and build diversified portfolios.' },
+    ],
+  },
+  strength: {
+    title: 'Financial Strength Levels',
+    items: [
+      { emoji: '⚠️', label: 'Weak', color: '#ef4444', description: 'Limited financial buffer. Should focus on building emergency savings before investing.' },
+      { emoji: '💪', label: 'Moderate', color: '#f59e0b', description: 'Stable income with manageable debts. Can start investing with caution.' },
+      { emoji: '💎', label: 'Strong', color: '#22c55e', description: 'Solid financial foundation. Well-positioned to invest and take calculated risks.' },
+    ],
+  },
+  readiness: {
+    title: 'Challenge Readiness Levels',
+    items: [
+      { emoji: '📚', label: 'Needs Learning', color: '#f59e0b', description: 'Should start with educational resources and small demo portfolios to build skills.' },
+      { emoji: '🎯', label: 'Investment Ready', color: '#3b82f6', description: 'Has the knowledge and mindset to start investing with moderate portfolio sizes.' },
+      { emoji: '🏆', label: 'Full Challenge Ready', color: '#22c55e', description: 'Prepared for advanced trading challenges with larger portfolio sizes.' },
+    ],
+  },
+};
+
+// Info Modal Component
+const InfoModal = ({
+  visible,
+  onClose,
+  category
+}: {
+  visible: boolean;
+  onClose: () => void;
+  category: keyof typeof INFO_CONTENT | null;
+}) => {
+  if (!category) return null;
+  const content = INFO_CONTENT[category];
+
+  return (
+    <Modal
+      visible={visible}
+      transparent
+      animationType="fade"
+      onRequestClose={onClose}
+    >
+      <View style={styles.modalOverlay}>
+        <View style={styles.modalContent}>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalTitle}>{content.title}</Text>
+            <TouchableOpacity onPress={onClose} style={styles.modalCloseButton}>
+              <X size={24} color="#6b7280" />
+            </TouchableOpacity>
+          </View>
+          <ScrollView style={styles.modalScroll} showsVerticalScrollIndicator={false}>
+            {content.items.map((item, index) => (
+              <View key={index} style={styles.modalItem}>
+                <View style={[styles.modalItemIcon, { backgroundColor: item.color + '20' }]}>
+                  <Text style={styles.modalItemEmoji}>{item.emoji}</Text>
+                </View>
+                <View style={styles.modalItemContent}>
+                  <Text style={[styles.modalItemLabel, { color: item.color }]}>{item.label}</Text>
+                  <Text style={styles.modalItemDescription}>{item.description}</Text>
+                </View>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      </View>
+    </Modal>
+  );
+};
+
 export default function InvestorResults() {
   const { answers } = useQuestionnaire();
   const [showContent, setShowContent] = useState(false);
+  const [infoModalVisible, setInfoModalVisible] = useState(false);
+  const [selectedInfoCategory, setSelectedInfoCategory] = useState<keyof typeof INFO_CONTENT | null>(null);
+
+  const openInfoModal = (category: keyof typeof INFO_CONTENT) => {
+    setSelectedInfoCategory(category);
+    setInfoModalVisible(true);
+  };
+
+  const closeInfoModal = () => {
+    setInfoModalVisible(false);
+    setSelectedInfoCategory(null);
+  };
 
   const personality = calculateInvestorPersonality(answers);
   const literacy = calculateFinancialLiteracy(answers);
@@ -328,7 +462,17 @@ Start your investment journey with Quantrock!
               colors={[personality.color + '40', personality.color + '20']}
               style={styles.mainCard}
             >
-              <Text style={styles.mainEmoji}>{personality.emoji}</Text>
+              <TouchableOpacity
+                style={styles.infoIconButton}
+                onPress={() => openInfoModal('personality')}
+              >
+                <Info size={20} color="rgba(255,255,255,0.7)" />
+              </TouchableOpacity>
+              {personality.label === 'Growth Investor' ? (
+                <AnimatedGrowthEmoji style={styles.mainEmoji} />
+              ) : (
+                <Text style={styles.mainEmoji}>{personality.emoji}</Text>
+              )}
               <Text style={[styles.mainLabel, { color: personality.color }]}>{personality.label}</Text>
               <View style={styles.mainScoreContainer}>
                 <Text style={styles.mainScoreValue}>{personality.score}</Text>
@@ -343,6 +487,12 @@ Start your investment journey with Quantrock!
             <View style={styles.cardsGrid}>
               {/* Financial Literacy */}
               <Animated.View entering={FadeInDown.delay(600).springify()} style={styles.scoreCard}>
+                <TouchableOpacity
+                  style={styles.scoreCardInfoButton}
+                  onPress={() => openInfoModal('literacy')}
+                >
+                  <Info size={16} color="rgba(255,255,255,0.5)" />
+                </TouchableOpacity>
                 <View style={[styles.cardIconContainer, { backgroundColor: literacy.color + '30' }]}>
                   <Text style={styles.cardEmoji}>{literacy.emoji}</Text>
                 </View>
@@ -353,6 +503,12 @@ Start your investment journey with Quantrock!
 
               {/* Financial Strength */}
               <Animated.View entering={FadeInDown.delay(800).springify()} style={styles.scoreCard}>
+                <TouchableOpacity
+                  style={styles.scoreCardInfoButton}
+                  onPress={() => openInfoModal('strength')}
+                >
+                  <Info size={16} color="rgba(255,255,255,0.5)" />
+                </TouchableOpacity>
                 <View style={[styles.cardIconContainer, { backgroundColor: strength.color + '30' }]}>
                   <Text style={styles.cardEmoji}>{strength.emoji}</Text>
                 </View>
@@ -363,6 +519,12 @@ Start your investment journey with Quantrock!
 
               {/* Challenge Readiness */}
               <Animated.View entering={FadeInDown.delay(1000).springify()} style={styles.scoreCard}>
+                <TouchableOpacity
+                  style={styles.scoreCardInfoButton}
+                  onPress={() => openInfoModal('readiness')}
+                >
+                  <Info size={16} color="rgba(255,255,255,0.5)" />
+                </TouchableOpacity>
                 <View style={[styles.cardIconContainer, { backgroundColor: readiness.color + '30' }]}>
                   <Text style={styles.cardEmoji}>{readiness.emoji}</Text>
                 </View>
@@ -447,6 +609,13 @@ Start your investment journey with Quantrock!
           <View style={{ height: 40 }} />
         </ScrollView>
       </LinearGradient>
+
+      {/* Info Modal */}
+      <InfoModal
+        visible={infoModalVisible}
+        onClose={closeInfoModal}
+        category={selectedInfoCategory}
+      />
     </View>
   );
 }
@@ -665,5 +834,96 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     textAlign: 'right',
+  },
+  infoIconButton: {
+    position: 'absolute',
+    top: 16,
+    right: 16,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+  },
+  scoreCardInfoButton: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    width: '100%',
+    maxHeight: '80%',
+    overflow: 'hidden',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1f2937',
+    flex: 1,
+  },
+  modalCloseButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#f3f4f6',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalScroll: {
+    padding: 20,
+  },
+  modalItem: {
+    flexDirection: 'row',
+    marginBottom: 16,
+    gap: 14,
+  },
+  modalItemIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalItemEmoji: {
+    fontSize: 24,
+  },
+  modalItemContent: {
+    flex: 1,
+  },
+  modalItemLabel: {
+    fontSize: 16,
+    fontWeight: '700',
+    marginBottom: 4,
+  },
+  modalItemDescription: {
+    fontSize: 14,
+    color: '#6b7280',
+    lineHeight: 20,
   },
 });

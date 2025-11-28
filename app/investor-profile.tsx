@@ -437,6 +437,7 @@ export default function InvestorProfile() {
         return (
           <SingleChoiceCard
             title="What is your preferred demo portfolio size?"
+            subtitle="We recommend choosing a trial amount close to what you plan to invest later"
             options={[
               { label: '$1,000', value: '1k', icon: '💵' },
               { label: '$10,000', value: '10k', icon: '💰' },
