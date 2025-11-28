@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Timer, Check, GraduationCap, ChevronDown, Search, Star, Bell, User, Zap, Calendar, TrendingUp, Award, Target, DollarSign, Unlock, Trophy, Brain, FileText, BookOpen } from 'lucide-react-native';
+import { Timer, Check, GraduationCap, ChevronDown, Search, Star, Bell, User, Zap, Calendar, TrendingUp, Award, Target, DollarSign, Unlock, Trophy, Brain, FileText, BookOpen, Crown } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
@@ -116,30 +116,27 @@ export default function HomeScreen() {
             </Text>
           </View>
 
-          <View style={styles.bottomRow}>
-            <View style={styles.infoGrid}>
-              <View style={styles.infoRow}>
-                <View style={styles.infoItem}>
-                  <Calendar size={18} color="#22c55e" strokeWidth={2} />
-                  <Text style={styles.infoLabel}>Duration:</Text>
-                  <Text style={styles.infoValue}>28 Days</Text>
+          <View style={styles.rewardsSectionBordered}>
+            <Text style={styles.rewardsTitleBorderedGreen}>Rewards & Benefits:</Text>
+            <View style={styles.rewardsGridTwo}>
+              <View style={styles.rewardsColumnTwo}>
+                <View style={styles.rewardItemRow}>
+                  <Crown size={16} color="#22c55e" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Premium upgrade</Text>
                 </View>
-                <View style={styles.infoItem}>
-                  <TrendingUp size={18} color="#22c55e" strokeWidth={2} />
-                  <Text style={styles.infoLabel}>Profit Target:</Text>
-                  <Text style={styles.infoValue}>6%</Text>
+                <View style={styles.rewardItemRow}>
+                  <Trophy size={16} color="#22c55e" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Name on Leaderboard</Text>
                 </View>
               </View>
-              <View style={styles.infoRow}>
-                <View style={styles.infoItem}>
-                  <Award size={18} color="#22c55e" strokeWidth={2} />
-                  <Text style={styles.infoLabel}>Min Trades:</Text>
-                  <Text style={styles.infoValue}>30</Text>
+              <View style={styles.rewardsColumnTwo}>
+                <View style={styles.rewardItemRow}>
+                  <Calendar size={16} color="#22c55e" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>28 days of skill challenges</Text>
                 </View>
-                <View style={styles.infoItem}>
-                  <Target size={18} color="#22c55e" strokeWidth={2} />
-                  <Text style={styles.infoLabel}>Daily Loss:</Text>
-                  <Text style={styles.infoValue}>5% Max</Text>
+                <View style={styles.rewardItemRow}>
+                  <Brain size={16} color="#22c55e" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Investor Personality Assessment</Text>
                 </View>
               </View>
             </View>
@@ -947,6 +944,20 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(167, 139, 250, 0.4)',
     borderRadius: 8,
     backgroundColor: 'rgba(167, 139, 250, 0.1)',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    alignSelf: 'flex-start',
+  },
+  rewardsTitleBorderedGreen: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#fff',
+    marginBottom: 12,
+    textAlign: 'left',
+    borderWidth: 1,
+    borderColor: 'rgba(34, 197, 94, 0.4)',
+    borderRadius: 8,
+    backgroundColor: 'rgba(34, 197, 94, 0.1)',
     paddingVertical: 8,
     paddingHorizontal: 12,
     alignSelf: 'flex-start',
