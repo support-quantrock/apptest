@@ -56,7 +56,7 @@ const calculateInvestorPersonality = (answers: QuestionnaireAnswers): { score: n
   if (score <= 10) {
     label = 'Conservative Investor';
     color = '#22c55e';
-    emoji = '🛡️';
+    emoji = '🏦';
   } else if (score <= 20) {
     label = 'Balanced Investor';
     color = '#3b82f6';
@@ -64,11 +64,11 @@ const calculateInvestorPersonality = (answers: QuestionnaireAnswers): { score: n
   } else if (score <= 30) {
     label = 'Growth Investor';
     color = '#8b5cf6';
-    emoji = '📈';
+    emoji = '🌱';
   } else {
     label = 'Aggressive Trader';
     color = '#ef4444';
-    emoji = '🚀';
+    emoji = '⚡';
   }
 
   return { score, label, color, emoji };
@@ -77,11 +77,11 @@ const calculateInvestorPersonality = (answers: QuestionnaireAnswers): { score: n
 const calculateFinancialLiteracy = (answers: QuestionnaireAnswers): { score: number; label: string; color: string; emoji: string } => {
   let score = 0;
 
-  // Q10 - Investment knowledge
+  // Q10 - Investment knowledge (max 12 points)
   if (answers.investmentKnowledge === 'nothing') score += 0;
-  else if (answers.investmentKnowledge === 'little') score += 5;
-  else if (answers.investmentKnowledge === 'good') score += 10;
-  else if (answers.investmentKnowledge === 'expert') score += 15;
+  else if (answers.investmentKnowledge === 'little') score += 4;
+  else if (answers.investmentKnowledge === 'good') score += 8;
+  else if (answers.investmentKnowledge === 'expert') score += 12;
 
   // Q11 - Asset classes (max 10 points)
   const assetClasses = answers.assetClasses || [];
@@ -90,21 +90,23 @@ const calculateFinancialLiteracy = (answers: QuestionnaireAnswers): { score: num
     score += Math.min(assetPoints, 10);
   }
 
-  // Q25 - Passive income knowledge (1-5 scale, 1=best, 5=worst)
+  // Q25 - Passive income knowledge (1-5 scale, 1=best, 5=worst, max 4 points)
   const passiveKnowledge = answers.passiveIncomeKnowledge;
-  if (passiveKnowledge === 1) score += 7;
-  else if (passiveKnowledge === 2) score += 5;
-  else if (passiveKnowledge === 3) score += 3;
-  else if (passiveKnowledge === 4) score += 0;
+  if (passiveKnowledge === 1) score += 4;
+  else if (passiveKnowledge === 2) score += 3;
+  else if (passiveKnowledge === 3) score += 2;
+  else if (passiveKnowledge === 4) score += 1;
   else if (passiveKnowledge === 5) score += 0;
 
-  // Q24 - Investment readiness (1-5 scale, 1=best, 5=worst)
+  // Q24 - Investment readiness (1-5 scale, 1=best, 5=worst, max 4 points)
   const readiness = answers.investmentReadiness;
-  if (readiness === 1) score += 8;
-  else if (readiness === 2) score += 5;
-  else if (readiness === 3) score += 3;
+  if (readiness === 1) score += 4;
+  else if (readiness === 2) score += 3;
+  else if (readiness === 3) score += 2;
   else if (readiness === 4) score += 1;
   else if (readiness === 5) score += 0;
+
+  // Total max: 12 + 10 + 4 + 4 = 30
 
   let label = '';
   let color = '';
@@ -130,18 +132,18 @@ const calculateFinancialLiteracy = (answers: QuestionnaireAnswers): { score: num
 const calculateFinancialStrength = (answers: QuestionnaireAnswers): { score: number; label: string; color: string; emoji: string } => {
   let score = 0;
 
-  // Q4 - Monthly income
+  // Q4 - Monthly income (max 6 points)
   if (answers.monthlyIncome === '<5k') score += 0;
   else if (answers.monthlyIncome === '5k-10k') score += 2;
-  else if (answers.monthlyIncome === '10k-25k') score += 3;
-  else if (answers.monthlyIncome === '>25k') score += 5;
+  else if (answers.monthlyIncome === '10k-25k') score += 4;
+  else if (answers.monthlyIncome === '>25k') score += 6;
 
-  // Q5 - Income stability
+  // Q5 - Income stability (max 4 points)
   if (answers.incomeStability === 'not_stable') score += 0;
   else if (answers.incomeStability === 'stable') score += 2;
-  else if (answers.incomeStability === 'very_stable') score += 3;
+  else if (answers.incomeStability === 'very_stable') score += 4;
 
-  // Q7 - Debts (take worst case)
+  // Q7 - Debts (max 5 points)
   const debts = answers.currentDebts || [];
   if (debts.includes('no_debts')) {
     score += 5;
@@ -152,6 +154,8 @@ const calculateFinancialStrength = (answers: QuestionnaireAnswers): { score: num
   } else if (debts.includes('mortgage')) {
     score += 3;
   }
+
+  // Total max: 6 + 4 + 5 = 15
 
   let label = '';
   let color = '';
@@ -177,37 +181,40 @@ const calculateFinancialStrength = (answers: QuestionnaireAnswers): { score: num
 const calculateChallengeReadiness = (answers: QuestionnaireAnswers): { score: number; label: string; color: string; emoji: string; portfolioRange: string } => {
   let score = 0;
 
-  // Q22 - Quantrock goal
+  // Q22 - Quantrock goal (max 4 points)
   if (answers.quantrockGoal === 'challenge') score += 4;
   else if (answers.quantrockGoal === 'prepare_trading') score += 3;
   else if (answers.quantrockGoal === 'test_strategy') score += 2;
   else if (answers.quantrockGoal === 'learn') score += 1;
 
-  // Q23 - Preferred portfolio size
+  // Q23 - Preferred portfolio size (max 7 points)
   if (answers.preferredPortfolioSize === '1k') score += 0;
   else if (answers.preferredPortfolioSize === '10k') score += 2;
   else if (answers.preferredPortfolioSize === '25k') score += 4;
-  else if (answers.preferredPortfolioSize === '50k') score += 7;
-  else if (answers.preferredPortfolioSize === '100k') score += 10;
+  else if (answers.preferredPortfolioSize === '50k') score += 5;
+  else if (answers.preferredPortfolioSize === '100k') score += 7;
 
-  // Q24 - Investment readiness (1-5 scale)
+  // Q24 - Investment readiness (1-5 scale, max 4 points)
   const readiness = answers.investmentReadiness;
-  if (readiness === 1) score += 3;
-  else if (readiness === 2) score += 2;
-  else if (readiness === 3) score += 1;
+  if (readiness === 1) score += 4;
+  else if (readiness === 2) score += 3;
+  else if (readiness === 3) score += 2;
+  else if (readiness === 4) score += 1;
   else score += 0;
+
+  // Total max: 4 + 7 + 4 = 15
 
   let label = '';
   let color = '';
   let emoji = '';
   let portfolioRange = '';
 
-  if (score <= 3) {
+  if (score <= 5) {
     label = 'Needs Learning';
     color = '#f59e0b';
     emoji = '📚';
     portfolioRange = '$1k – $25k';
-  } else if (score <= 7) {
+  } else if (score <= 10) {
     label = 'Investment Ready';
     color = '#3b82f6';
     emoji = '🎯';
@@ -243,40 +250,79 @@ const getSuggestedPortfolio = (
   return { size: '$10k – $25k', color: '#3b82f6' };
 };
 
-// Animated Growth Emoji Component
-const AnimatedGrowthEmoji = ({ style }: { style?: any }) => {
+// Animated Personality Emoji Component
+const AnimatedPersonalityEmoji = ({ emoji, type, style }: { emoji: string; type: string; style?: any }) => {
   const scale = useSharedValue(1);
   const translateY = useSharedValue(0);
+  const rotate = useSharedValue(0);
 
   useEffect(() => {
-    // Pulsing scale animation
+    // Initial pulse animation
     scale.value = withDelay(
       500,
-      withSpring(1.1, { damping: 2, stiffness: 80 }, () => {
-        scale.value = withSpring(1, { damping: 2, stiffness: 80 });
+      withSpring(1.15, { damping: 3, stiffness: 100 }, () => {
+        scale.value = withSpring(1, { damping: 3, stiffness: 100 });
       })
     );
 
-    // Continuous subtle bounce animation
-    const startBounce = () => {
-      translateY.value = withTiming(-8, { duration: 1000 }, () => {
-        translateY.value = withTiming(0, { duration: 1000 }, () => {
-          startBounce();
+    // Different animations based on personality type
+    if (type === 'Conservative Investor') {
+      // Gentle pulse - stable and calm
+      const pulse = () => {
+        scale.value = withTiming(1.05, { duration: 1500 }, () => {
+          scale.value = withTiming(1, { duration: 1500 }, () => {
+            pulse();
+          });
         });
-      });
-    };
-    startBounce();
-  }, []);
+      };
+      pulse();
+    } else if (type === 'Balanced Investor') {
+      // Subtle tilt back and forth - balanced
+      const tilt = () => {
+        rotate.value = withTiming(0.1, { duration: 1200 }, () => {
+          rotate.value = withTiming(-0.1, { duration: 1200 }, () => {
+            tilt();
+          });
+        });
+      };
+      tilt();
+    } else if (type === 'Growth Investor') {
+      // Upward bounce - growth
+      const bounce = () => {
+        translateY.value = withTiming(-10, { duration: 800 }, () => {
+          translateY.value = withTiming(0, { duration: 800 }, () => {
+            bounce();
+          });
+        });
+      };
+      bounce();
+    } else if (type === 'Aggressive Trader') {
+      // Energetic shake and scale - aggressive
+      const shake = () => {
+        translateY.value = withTiming(-6, { duration: 300 }, () => {
+          scale.value = withTiming(1.1, { duration: 300 }, () => {
+            translateY.value = withTiming(0, { duration: 300 }, () => {
+              scale.value = withTiming(1, { duration: 300 }, () => {
+                setTimeout(() => shake(), 500);
+              });
+            });
+          });
+        });
+      };
+      shake();
+    }
+  }, [type]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [
       { scale: scale.value },
       { translateY: translateY.value },
+      { rotate: `${rotate.value}rad` },
     ],
   }));
 
   return (
-    <Animated.Text style={[style, animatedStyle]}>📈</Animated.Text>
+    <Animated.Text style={[style, animatedStyle]}>{emoji}</Animated.Text>
   );
 };
 
@@ -307,10 +353,10 @@ const INFO_CONTENT = {
   personality: {
     title: 'Investment Personality Types',
     items: [
-      { emoji: '🛡️', label: 'Conservative Investor', color: '#22c55e', description: 'Prefers stability and capital preservation over high returns. Avoids volatile investments.' },
+      { emoji: '🏦', label: 'Conservative Investor', color: '#22c55e', description: 'Prefers stability and capital preservation over high returns. Avoids volatile investments.' },
       { emoji: '⚖️', label: 'Balanced Investor', color: '#3b82f6', description: 'Seeks a mix of growth and stability. Accepts moderate risk for better returns.' },
-      { emoji: '📈', label: 'Growth Investor', color: '#8b5cf6', description: 'Focuses on capital appreciation. Comfortable with market volatility for higher potential gains.' },
-      { emoji: '🚀', label: 'Aggressive Trader', color: '#ef4444', description: 'Seeks maximum returns. Willing to take significant risks and actively trade positions.' },
+      { emoji: '🌱', label: 'Growth Investor', color: '#8b5cf6', description: 'Focuses on capital appreciation. Comfortable with market volatility for higher potential gains.' },
+      { emoji: '⚡', label: 'Aggressive Trader', color: '#ef4444', description: 'Seeks maximum returns. Willing to take significant risks and actively trade positions.' },
     ],
   },
   literacy: {
@@ -468,11 +514,11 @@ Start your investment journey with Quantrock!
               >
                 <Info size={20} color="rgba(255,255,255,0.7)" />
               </TouchableOpacity>
-              {personality.label === 'Growth Investor' ? (
-                <AnimatedGrowthEmoji style={styles.mainEmoji} />
-              ) : (
-                <Text style={styles.mainEmoji}>{personality.emoji}</Text>
-              )}
+              <AnimatedPersonalityEmoji
+                emoji={personality.emoji}
+                type={personality.label}
+                style={styles.mainEmoji}
+              />
               <Text style={[styles.mainLabel, { color: personality.color }]}>{personality.label}</Text>
               <View style={styles.mainScoreContainer}>
                 <Text style={styles.mainScoreValue}>{personality.score}</Text>
@@ -530,7 +576,7 @@ Start your investment journey with Quantrock!
                 </View>
                 <Text style={styles.cardTitle}>Challenge Readiness</Text>
                 <Text style={[styles.cardLabel, { color: readiness.color }]}>{readiness.label}</Text>
-                <AnimatedCircle score={readiness.score} maxScore={10} color={readiness.color} delay={1200} />
+                <AnimatedCircle score={readiness.score} maxScore={15} color={readiness.color} delay={1200} />
               </Animated.View>
             </View>
           )}
@@ -600,7 +646,7 @@ Start your investment journey with Quantrock!
               <View style={styles.breakdownItem}>
                 <Text style={styles.breakdownLabel}>Challenge Readiness</Text>
                 <Text style={[styles.breakdownValue, { color: readiness.color }]}>
-                  {readiness.score}/10 • {readiness.label}
+                  {readiness.score}/15 • {readiness.label}
                 </Text>
               </View>
             </Animated.View>
