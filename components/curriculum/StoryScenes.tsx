@@ -820,10 +820,13 @@ interface KeyPointCardProps {
 }
 
 const KeyPointCard = ({ point, index, icon, color, totalPoints, imageUrl }: KeyPointCardProps) => {
+  const [imageLoading, setImageLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
   const enterAnim = useEnterAnimation(index * 250);
   const floatAnim = useLoopAnimation(3000, index * 400);
   const glowAnim = useLoopAnimation(2000, index * 200);
   const shimmerAnim = useLoopAnimation(2500, index * 150);
+  const loadingPulse = useLoopAnimation(1500, 0);
 
   const IconComponent = (LucideIcons as Record<string, React.ComponentType<{ size?: number; color?: string }>>)[icon] || LucideIcons.Star;
 
@@ -840,6 +843,11 @@ const KeyPointCard = ({ point, index, icon, color, totalPoints, imageUrl }: KeyP
   const shimmerOpacity = shimmerAnim.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: [0.3, 0.7, 0.3],
+  });
+
+  const loadingOpacity = loadingPulse.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0.3, 0.6, 0.3],
   });
 
   const scale = enterAnim.interpolate({
@@ -866,32 +874,52 @@ const KeyPointCard = ({ point, index, icon, color, totalPoints, imageUrl }: KeyP
       />
 
       {/* Image section */}
-      {imageUrl && (
+      {imageUrl && !imageError && (
         <View style={styles.keyPointImageContainer}>
+          {/* Loading placeholder */}
+          {imageLoading && (
+            <Animated.View
+              style={[
+                styles.keyPointImagePlaceholder,
+                { backgroundColor: color, opacity: loadingOpacity }
+              ]}
+            >
+              <LucideIcons.ImageIcon size={32} color="#ffffff80" />
+            </Animated.View>
+          )}
           <Image
             source={{ uri: imageUrl }}
-            style={styles.keyPointImage}
+            style={[styles.keyPointImage, imageLoading && { opacity: 0 }]}
             resizeMode="cover"
+            onLoad={() => setImageLoading(false)}
+            onError={() => {
+              setImageLoading(false);
+              setImageError(true);
+            }}
           />
           {/* Image overlay gradient */}
-          <LinearGradient
-            colors={['transparent', 'rgba(20, 25, 45, 0.8)', 'rgba(20, 25, 45, 0.95)']}
-            style={styles.keyPointImageOverlay}
-          />
-          {/* Shimmer effect on image */}
-          <Animated.View
-            style={[
-              styles.keyPointImageShimmer,
-              { opacity: shimmerOpacity },
-            ]}
-          >
+          {!imageLoading && (
             <LinearGradient
-              colors={['transparent', `${color}30`, 'transparent']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={StyleSheet.absoluteFill}
+              colors={['transparent', 'rgba(20, 25, 45, 0.8)', 'rgba(20, 25, 45, 0.95)']}
+              style={styles.keyPointImageOverlay}
             />
-          </Animated.View>
+          )}
+          {/* Shimmer effect on image */}
+          {!imageLoading && (
+            <Animated.View
+              style={[
+                styles.keyPointImageShimmer,
+                { opacity: shimmerOpacity },
+              ]}
+            >
+              <LinearGradient
+                colors={['transparent', `${color}30`, 'transparent']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+            </Animated.View>
+          )}
         </View>
       )}
 
@@ -1517,6 +1545,15 @@ const styles = StyleSheet.create({
   keyPointImage: {
     width: '100%',
     height: '100%',
+  },
+  keyPointImagePlaceholder: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   keyPointImageOverlay: {
     position: 'absolute',
