@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Timer, Check, GraduationCap, ChevronDown, Search, Star, Bell, User, Zap } from 'lucide-react-native';
+import { Timer, Check, GraduationCap, ChevronDown, Search, Star, Bell, User, Zap, Calendar, TrendingUp, Award, Target } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
@@ -80,127 +80,128 @@ export default function HomeScreen() {
 
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainer}>
 
-      <View style={styles.card}>
+      <View style={styles.profileCard}>
         <LinearGradient
           colors={['#065f46', '#064e3b']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
-          style={styles.gradientCard}>
-          <View style={[styles.iconContainer, styles.iconContainerGreen]}>
-            <Timer size={28} color="#22c55e" strokeWidth={2} />
+          style={styles.profileGradient}>
+
+          <View style={styles.glowBorder} />
+
+          <View style={styles.badgeTopRow}>
+            <View style={[styles.badge, { borderColor: '#22c55e', backgroundColor: 'rgba(34, 197, 94, 0.2)' }]}>
+              <Text style={[styles.badgeText, { color: '#22c55e' }]}>Free</Text>
+            </View>
           </View>
 
-          <Text style={styles.cardTitle}>Learn Challenge</Text>
-          <Text style={[styles.cardSubtitle, styles.cardSubtitleGreen]}>Beginners – Free Simulator Training</Text>
-
-          <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
-            The Learn Challenge is an optional program designed specifically for new users who want to understand the fundamentals of trading and develop essential investment skills step by step. It is ideal for beginners, university students, and high-school learners who wish to practice trading with zero financial risk through a free virtual simulation account.
-            {'\n\n'}
-            The challenge runs for 28 days of hands-on trading practice and includes daily interactive lessons and exercises that help you strengthen your skills and build a solid investment foundation — all within a safe training environment that closely mirrors real market behavior.
-            {'\n\n'}
-            This challenge is the perfect starting point for beginners, with the flexibility to move directly to the Invest Challenge at any time.
-          </Text>
-
-          <View style={[styles.highlightBox, styles.highlightBoxGreen]}>
-            <Text style={styles.highlightTitle}>🎁 Monthly Prizes</Text>
-            <Text style={[styles.highlightText, { marginBottom: 12 }]}>
-              The winner is announced on the first day of every month and receives:
-            </Text>
-            <View style={styles.highlightItem}>
-              <Check size={16} color="#22c55e" strokeWidth={3} />
-              <Text style={styles.highlightText}>Their name listed on the monthly Leaderboard</Text>
+          <View style={styles.topRow}>
+            <View style={styles.avatarContainerColumn}>
+              <View style={[styles.avatarContainer, { borderColor: '#22c55e' }]}>
+                <View style={styles.avatarIconWrapper}>
+                  <Timer size={32} color="#22c55e" strokeWidth={2} />
+                </View>
+              </View>
+              <TouchableOpacity style={[styles.visitButton, { borderColor: '#22c55e', backgroundColor: 'rgba(34, 197, 94, 0.2)' }]} onPress={() => { setSt(1); router.push('/challenge-signup?mode=free'); }}>
+                <Text style={styles.visitButtonText}>Join</Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.highlightItem}>
-              <Check size={16} color="#22c55e" strokeWidth={3} />
-              <Text style={styles.highlightText}>One month of free Premium subscription</Text>
+
+            <View style={styles.profileTitleContainer}>
+              <Text style={styles.profileTitle}>Learn Challenge</Text>
+              <Text style={styles.profileSubtitle}>
+                Beginners – Free Simulator Training. Practice trading with zero risk through a 28-day program with daily lessons and exercises.
+              </Text>
             </View>
-            <View style={styles.highlightItem}>
-              <Check size={16} color="#22c55e" strokeWidth={3} />
-              <Text style={styles.highlightText}>Direct nomination to the next stage: the Investment Challenge</Text>
+          </View>
+
+          <View style={styles.bottomRow}>
+            <View style={styles.infoGrid}>
+              <View style={styles.infoRow}>
+                <View style={styles.infoItem}>
+                  <Calendar size={18} color="#22c55e" strokeWidth={2} />
+                  <Text style={styles.infoLabel}>Duration:</Text>
+                  <Text style={styles.infoValue}>28 Days</Text>
+                </View>
+                <View style={styles.infoItem}>
+                  <TrendingUp size={18} color="#22c55e" strokeWidth={2} />
+                  <Text style={styles.infoLabel}>Profit Target:</Text>
+                  <Text style={styles.infoValue}>6%</Text>
+                </View>
+              </View>
+              <View style={styles.infoRow}>
+                <View style={styles.infoItem}>
+                  <Award size={18} color="#22c55e" strokeWidth={2} />
+                  <Text style={styles.infoLabel}>Min Trades:</Text>
+                  <Text style={styles.infoValue}>30</Text>
+                </View>
+                <View style={styles.infoItem}>
+                  <Target size={18} color="#22c55e" strokeWidth={2} />
+                  <Text style={styles.infoLabel}>Daily Loss:</Text>
+                  <Text style={styles.infoValue}>5% Max</Text>
+                </View>
+              </View>
             </View>
           </View>
 
           <TouchableOpacity
-            style={styles.expandButton}
+            style={styles.expandButtonCenter}
             onPress={() => setIsFirstCardExpanded(!isFirstCardExpanded)}>
-            <Text style={styles.expandButtonText}>📚Challenge Rules:</Text>
             <Animated.View style={firstArrowAnimatedStyle}>
-              <ChevronDown size={24} color="#22c55e" strokeWidth={2} />
+              <ChevronDown size={24} color="#fff" strokeWidth={2} />
             </Animated.View>
           </TouchableOpacity>
 
           <Animated.View style={firstCardAnimatedStyle}>
-            <View style={styles.featuresList}>
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Start anytime</Text>
+            <View style={styles.expandedCardDetails}>
+              <Text style={styles.detailsTitle}>Challenge Rules</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Start anytime</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>28-day duration (can continue indefinitely)
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>28-day duration (can continue indefinitely)</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Complete 28 days of daily skill lessons
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Complete 28 days of daily skill lessons</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>70%+ success rate in daily exercises
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>70%+ success rate in daily exercises</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Daily loss limit: 5%
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Daily loss limit: 5%</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Total loss limit: 10%
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Total loss limit: 10%</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Target profit threshold: 6%
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Target profit threshold: 6%</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Maximum asset weight: 10%
-
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Maximum asset weight: 10%</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Minimum trades: 30
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Minimum trades: 30</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Allowed assets: S&P 500 stocks / Gold / EUR/USD / Bitcoin
-                </Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Allowed assets: S&P 500 stocks / Gold / EUR/USD / Bitcoin</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#22c55e" strokeWidth={3} />
-                <Text style={styles.featureText}>Account leverage: 1:1</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Account leverage: 1:1</Text>
               </View>
             </View>
           </Animated.View>
 
-          <TouchableOpacity style={[styles.button, styles.buttonGreen]} onPress={() => { setSt(1); router.push('/challenge-signup?mode=free'); }}>
-            <Text style={styles.buttonText}>Start Learning Challenge</Text>
-          </TouchableOpacity>
         </LinearGradient>
       </View>
 
@@ -671,5 +672,173 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginLeft: 8,
     fontWeight: '500',
+  },
+  profileCard: {
+    marginBottom: 24,
+    borderRadius: 24,
+    overflow: 'hidden',
+    elevation: 12,
+    shadowColor: '#22c55e',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
+  },
+  profileGradient: {
+    padding: 16,
+    borderRadius: 24,
+    position: 'relative',
+  },
+  glowBorder: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 24,
+    borderWidth: 2,
+    borderColor: 'rgba(34, 197, 94, 0.5)',
+  },
+  badgeTopRow: {
+    marginBottom: 12,
+    alignItems: 'center',
+  },
+  badge: {
+    borderWidth: 1.5,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 16,
+  },
+  badgeText: {
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 0.3,
+  },
+  topRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+    marginBottom: 16,
+  },
+  avatarContainerColumn: {
+    alignItems: 'center',
+    gap: 8,
+  },
+  avatarContainer: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#22c55e',
+  },
+  avatarIconWrapper: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#1e293b',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profileTitleContainer: {
+    flex: 1,
+  },
+  profileTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#fff',
+    letterSpacing: 0.3,
+    marginBottom: 6,
+  },
+  profileSubtitle: {
+    fontSize: 11,
+    color: '#cbd5e1',
+    lineHeight: 16,
+    letterSpacing: 0.1,
+  },
+  visitButton: {
+    backgroundColor: 'rgba(34, 197, 94, 0.2)',
+    borderWidth: 2,
+    borderColor: '#22c55e',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  visitButtonText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#fff',
+    letterSpacing: 0.3,
+  },
+  bottomRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  infoGrid: {
+    flex: 1,
+    gap: 10,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  infoItem: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  infoLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#fff',
+  },
+  infoValue: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#cbd5e1',
+  },
+  expandButtonCenter: {
+    paddingVertical: 16,
+    marginTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255, 255, 255, 0.1)',
+    alignItems: 'center',
+  },
+  expandedCardDetails: {
+    marginTop: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  detailsTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#fff',
+    marginBottom: 12,
+    letterSpacing: 0.3,
+  },
+  detailItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 8,
+    gap: 10,
+  },
+  bulletPoint: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#22c55e',
+    marginTop: 6,
+  },
+  detailText: {
+    flex: 1,
+    fontSize: 13,
+    color: '#cbd5e1',
+    lineHeight: 20,
+    letterSpacing: 0.2,
   },
 });
