@@ -205,146 +205,132 @@ export default function HomeScreen() {
         </LinearGradient>
       </View>
 
-      <View style={styles.card}>
+      <View style={[styles.profileCard, { shadowColor: '#a78bfa' }]}>
         <LinearGradient
           colors={['#7c3aed', '#4c1d95']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
-          style={styles.gradientCard}>
-          <View style={[styles.iconContainer, styles.iconContainerPurple]}>
-            <Zap size={28} color="#a78bfa" strokeWidth={2} />
+          style={styles.profileGradient}>
+
+          <View style={[styles.glowBorder, { borderColor: 'rgba(167, 139, 250, 0.5)' }]} />
+
+          <View style={styles.badgeTopRow}>
+            <View style={[styles.badge, { borderColor: '#a78bfa', backgroundColor: 'rgba(167, 139, 250, 0.2)' }]}>
+              <Text style={[styles.badgeText, { color: '#a78bfa' }]}>Pro</Text>
+            </View>
           </View>
 
-          <Text style={styles.cardTitle}>Invest Challenge</Text>
-          <Text style={[styles.cardSubtitle, styles.cardSubtitlePurple]}>Qualified & Exclusively for Premium Pro Members</Text>
-
-          <Text style={[styles.cardDescription, styles.cardDescriptionWhite]}>
-            The Invest Challenge is an advanced, professional-level competition designed for qualified users and Premium Pro members, featuring real monetary rewards. It is tailored for experienced traders who want to enhance their investment capabilities through a high-fidelity simulation that replicates the strategies and workflows of professional investors and hedge funds — without any actual financial risk.
-            {'\n\n'}
-            Participants manage a $100,000 virtual portfolio in a market environment that mimics real-world conditions 100%, over a 28-day period. Performance is evaluated across several key criteria, including risk management, execution quality, trading discipline, and practical investment skills.
-          </Text>
-
-          <View style={[styles.benefitsBox, styles.benefitsBoxPurple]}>
-            <Text style={styles.benefitsTitle}>🎁 Monthly Prizes:</Text>
-            <Text style={[styles.benefitText, { marginBottom: 12 }]}>
-              The winner is announced on the first day of each month and receives:
-            </Text>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>A $1,000 cash prize</Text>
-            </View>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Their name listed on the Leaderboard</Text>
-            </View>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>One month of free Premium subscription</Text>
-            </View>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>One year of free access to a professional course from Capital Academy</Text>
+          <View style={styles.topRow}>
+            <View style={styles.avatarContainerColumn}>
+              <View style={[styles.avatarContainer, { borderColor: '#a78bfa' }]}>
+                <View style={styles.avatarIconWrapper}>
+                  <Zap size={32} color="#a78bfa" strokeWidth={2} />
+                </View>
+              </View>
+              <TouchableOpacity style={[styles.visitButton, { borderColor: '#a78bfa', backgroundColor: 'rgba(167, 139, 250, 0.2)' }]} onPress={() => { setSt(2); router.push('/challenge-signup'); }}>
+                <Text style={styles.visitButtonText}>Join</Text>
+              </TouchableOpacity>
             </View>
 
-            <Text style={[styles.benefitsTitle, { marginTop: 16 }]}>📌 Premium Pro Membership Benefits</Text>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Direct access to the Investment Challenge</Text>
+            <View style={styles.profileTitleContainer}>
+              <Text style={styles.profileTitle}>Invest Challenge</Text>
+              <Text style={styles.profileSubtitle}>
+                Premium Pro Members only. Manage a $100K virtual portfolio with real monetary rewards and professional-level competition.
+              </Text>
             </View>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Real-time analysis of global banks' recommendations</Text>
-            </View>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Tracking of hedge funds' and top politicians' trades</Text>
-            </View>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Smart Money Flow – Insight into institutional money movements</Text>
-            </View>
-            <View style={styles.benefitItem}>
-              <Check size={16} color="#a78bfa" strokeWidth={3} />
-              <Text style={styles.benefitText}>Comprehensive performance analytics highlighting your strengths and weaknesses</Text>
+          </View>
+
+          <View style={styles.bottomRow}>
+            <View style={styles.infoGrid}>
+              <View style={styles.infoRow}>
+                <View style={styles.infoItem}>
+                  <Calendar size={18} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.infoLabel}>Duration:</Text>
+                  <Text style={styles.infoValue}>28 Days</Text>
+                </View>
+                <View style={styles.infoItem}>
+                  <TrendingUp size={18} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.infoLabel}>Portfolio:</Text>
+                  <Text style={styles.infoValue}>$100K</Text>
+                </View>
+              </View>
+              <View style={styles.infoRow}>
+                <View style={styles.infoItem}>
+                  <Award size={18} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.infoLabel}>Prize:</Text>
+                  <Text style={styles.infoValue}>$1,000</Text>
+                </View>
+                <View style={styles.infoItem}>
+                  <Target size={18} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.infoLabel}>Profit Target:</Text>
+                  <Text style={styles.infoValue}>6%+</Text>
+                </View>
+              </View>
             </View>
           </View>
 
           <TouchableOpacity
-            style={styles.expandButton}
+            style={styles.expandButtonCenter}
             onPress={() => setIsThirdCardExpanded(!isThirdCardExpanded)}>
-            <Text style={styles.expandButtonText}>📚 Challenge Rules:</Text>
             <Animated.View style={thirdArrowAnimatedStyle}>
-              <ChevronDown size={24} color="#a78bfa" strokeWidth={2} />
+              <ChevronDown size={24} color="#fff" strokeWidth={2} />
             </Animated.View>
           </TouchableOpacity>
 
           <Animated.View style={thirdCardAnimatedStyle}>
-            <View style={styles.featuresList}>
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>You can start at any time.</Text>
+            <View style={styles.expandedCardDetails}>
+              <Text style={styles.detailsTitle}>Challenge Rules</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Start anytime</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Challenge duration: 28 days, and it continues for an unlimited period.</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>28-day duration (can continue indefinitely)</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Complete 28 days of daily skill lessons.</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Complete 28 days of daily skill lessons</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Achieve a 70% or higher success rate in the daily exercises.</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>70%+ success rate in daily exercises</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Daily loss limit: 5%</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Daily loss limit: 5%</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Total loss limit: 10%</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Total loss limit: 10%</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Target profit threshold: Exceed 6%</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Target profit threshold: 6%+</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Maximum weight of any single asset: 10%</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Maximum asset weight: 10%</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Minimum number of trades: 30 trades</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Minimum trades: 30</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Allowed Assets: S&P 500 stocks / Gold / EUR/USD / Bitcoin</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Allowed assets: S&P 500 stocks / Gold / EUR/USD / Bitcoin</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Account Leverage: 1:1</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Account leverage: 1:1</Text>
               </View>
-
-              <View style={styles.featureItem}>
-                <Check size={20} color="#a78bfa" strokeWidth={3} />
-                <Text style={styles.featureText}>Everyone can participate multiple times, while the winner is allowed to rejoin after 90 days.</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Winner can rejoin after 90 days</Text>
               </View>
             </View>
           </Animated.View>
 
-          <TouchableOpacity style={[styles.button, styles.buttonPurple]} onPress={() => { setSt(2); router.push('/challenge-signup'); }}>
-            <Text style={styles.buttonText}>Start Investment Challenge</Text>
-          </TouchableOpacity>
         </LinearGradient>
       </View>
 
