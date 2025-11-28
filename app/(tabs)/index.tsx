@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Timer, Check, GraduationCap, ChevronDown, Search, Star, Bell, User, Zap, Calendar, TrendingUp, Award, Target } from 'lucide-react-native';
+import { Timer, Check, GraduationCap, ChevronDown, Search, Star, Bell, User, Zap, Calendar, TrendingUp, Award, Target, DollarSign, Unlock, Trophy, Brain, FileText, BookOpen } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
@@ -91,7 +91,7 @@ export default function HomeScreen() {
 
           <View style={styles.badgeTopRow}>
             <View style={[styles.badge, { borderColor: '#22c55e', backgroundColor: 'rgba(34, 197, 94, 0.2)' }]}>
-              <Text style={[styles.badgeText, { color: '#22c55e' }]}>Beginners</Text>
+              <Text style={[styles.badgeText, { color: '#ffffff' }]}>Beginners</Text>
             </View>
           </View>
 
@@ -102,18 +102,18 @@ export default function HomeScreen() {
                   <Timer size={32} color="#22c55e" strokeWidth={2} />
                 </View>
               </View>
-              <TouchableOpacity style={[styles.visitButton, { borderColor: '#22c55e', backgroundColor: 'rgba(34, 197, 94, 0.2)' }]} onPress={() => { setSt(1); router.push('/challenge-signup?mode=free'); }}>
-                <Text style={styles.visitButtonText}>Join</Text>
-              </TouchableOpacity>
             </View>
 
             <View style={styles.profileTitleContainer}>
               <Text style={styles.profileTitle}>Learn Challenge</Text>
               <Text style={styles.profileSubtitleSmall}>Free Simulator Training  (Optional)</Text>
-              <Text style={styles.profileSubtitle}>
-                Designed for beginners who want to build a solid foundation in trading and gradually develop essential investment skills. It's ideal for newcomers, university students, and even high-school learners who wish to practice trading safely through a free, risk-free virtual portfolio simulator.
-              </Text>
             </View>
+          </View>
+
+          <View style={styles.descriptionSection}>
+            <Text style={styles.profileSubtitle}>
+              Designed for beginners who want to build a solid foundation in trading and gradually develop essential investment skills. It's ideal for newcomers, university students, and even high-school learners who wish to practice trading safely through a free, risk-free virtual portfolio simulator.
+            </Text>
           </View>
 
           <View style={styles.bottomRow}>
@@ -155,7 +155,22 @@ export default function HomeScreen() {
 
           <Animated.View style={firstCardAnimatedStyle}>
             <View style={styles.expandedCardDetails}>
-              <Text style={styles.detailsTitle}>Challenge Rules</Text>
+              <Text style={styles.detailsTitle}>Monthly Prizes</Text>
+              <Text style={styles.detailSubtitle}>The winner is announced on the first day of every month and receives:</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Their name listed on the monthly Leaderboard</Text>
+              </View>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>One month of free Premium subscription</Text>
+              </View>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
+                <Text style={styles.detailText}>Direct nomination to the next stage: the Investment Challenge</Text>
+              </View>
+
+              <Text style={[styles.detailsTitle, { marginTop: 16 }]}>Challenge Rules</Text>
               <View style={styles.detailItem}>
                 <View style={[styles.bulletPoint, { backgroundColor: '#22c55e' }]} />
                 <Text style={styles.detailText}>Start anytime</Text>
@@ -203,6 +218,10 @@ export default function HomeScreen() {
             </View>
           </Animated.View>
 
+          <TouchableOpacity style={[styles.joinButtonBottom, { borderColor: '#22c55e', backgroundColor: 'rgba(34, 197, 94, 0.2)' }]} onPress={() => { setSt(1); router.push('/challenge-signup?mode=free'); }}>
+            <Text style={styles.joinButtonBottomText}>Start Learning Challenge</Text>
+          </TouchableOpacity>
+
         </LinearGradient>
       </View>
 
@@ -217,7 +236,7 @@ export default function HomeScreen() {
 
           <View style={styles.badgeTopRow}>
             <View style={[styles.badge, { borderColor: '#a78bfa', backgroundColor: 'rgba(167, 139, 250, 0.2)' }]}>
-              <Text style={[styles.badgeText, { color: '#a78bfa' }]}>Qualified</Text>
+              <Text style={[styles.badgeText, { color: '#ffffff' }]}>Qualified</Text>
             </View>
           </View>
 
@@ -228,59 +247,57 @@ export default function HomeScreen() {
                   <Zap size={32} color="#a78bfa" strokeWidth={2} />
                 </View>
               </View>
-              <TouchableOpacity style={[styles.visitButton, { borderColor: '#a78bfa', backgroundColor: 'rgba(167, 139, 250, 0.2)' }]} onPress={() => { setSt(2); router.push('/challenge-signup'); }}>
-                <Text style={styles.visitButtonText}>Join</Text>
-              </TouchableOpacity>
             </View>
 
             <View style={styles.profileTitleContainer}>
               <Text style={styles.profileTitle}>Invest Challenge</Text>
               <Text style={styles.profileSubtitleSmall}>Exclusively for Premium Pro Members</Text>
-              <Text style={styles.profileSubtitle}>
-                Designed for qualifieds users, professionals, and Premium members, it offers real financial prizes within an advanced simulation environment that mimics the strategies of investors and hedge funds, without any actual risk. Participants manage a virtual portfolio of up to $100,000 to trade in a 100% realistic market for 28 days
-              </Text>
             </View>
           </View>
 
-          <View style={styles.rewardsSection}>
-            <Text style={styles.rewardsTitle}>🎁 Rewards & Benefits:</Text>
-            <View style={styles.rewardsGrid}>
-              <View style={styles.rewardsColumn}>
-                <View style={styles.rewardItem}>
-                  <Text style={styles.rewardIcon}>💰</Text>
-                  <Text style={styles.rewardText}>Cash prize up to $1,000</Text>
+          <View style={styles.descriptionSection}>
+            <Text style={styles.profileSubtitle}>
+              Designed for qualifieds users, professionals, and Premium members, it offers real financial prizes within an advanced simulation environment that mimics the strategies of investors and hedge funds, without any actual risk. Participants manage a virtual portfolio of up to $100,000 to trade in a 100% realistic market for 28 days
+            </Text>
+          </View>
+
+          <View style={styles.rewardsSectionBordered}>
+            <Text style={styles.rewardsTitleBordered}>Rewards & Benefits:</Text>
+            <View style={styles.rewardsGridTwo}>
+              <View style={styles.rewardsColumnTwo}>
+                <View style={styles.rewardItemRow}>
+                  <DollarSign size={16} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Cash prize up to $1,000</Text>
                 </View>
-                <View style={styles.rewardItem}>
-                  <Text style={styles.rewardIcon}>🔓</Text>
-                  <Text style={styles.rewardText}>Full access to all features</Text>
+                <View style={styles.rewardItemRow}>
+                  <Unlock size={16} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Full access to all features</Text>
                 </View>
-                <View style={styles.rewardItem}>
-                  <Text style={styles.rewardIcon}>🏆</Text>
-                  <Text style={styles.rewardText}>Name on Leaderboard</Text>
+                <View style={styles.rewardItemRow}>
+                  <Trophy size={16} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Name on Leaderboard</Text>
                 </View>
-              </View>
-              <View style={styles.rewardsColumn}>
-                <View style={styles.rewardItem}>
-                  <Text style={styles.rewardIcon}>🧠</Text>
-                  <Text style={styles.rewardText}>Investor Personality Assessment</Text>
-                </View>
-                <View style={styles.rewardItem}>
-                  <Text style={styles.rewardIcon}>📜</Text>
-                  <Text style={styles.rewardText}>Quantrock Certificate</Text>
-                </View>
-                <View style={styles.rewardItem}>
-                  <Text style={styles.rewardIcon}>⭐</Text>
-                  <Text style={styles.rewardText}>Premium upgrade</Text>
+                <View style={styles.rewardItemRow}>
+                  <Brain size={16} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Investor Personality Assessment</Text>
                 </View>
               </View>
-              <View style={styles.rewardsColumn}>
-                <View style={styles.rewardItem}>
-                  <Text style={styles.rewardIcon}>📚</Text>
-                  <Text style={styles.rewardText}>500+ lessons</Text>
+              <View style={styles.rewardsColumnTwo}>
+                <View style={styles.rewardItemRow}>
+                  <FileText size={16} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Quantrock Certificate</Text>
                 </View>
-                <View style={styles.rewardItem}>
-                  <Text style={styles.rewardIcon}>🎯</Text>
-                  <Text style={styles.rewardText}>28 days of skill challenges</Text>
+                <View style={styles.rewardItemRow}>
+                  <Star size={16} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>Premium upgrade</Text>
+                </View>
+                <View style={styles.rewardItemRow}>
+                  <BookOpen size={16} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>500+ lessons</Text>
+                </View>
+                <View style={styles.rewardItemRow}>
+                  <Target size={16} color="#a78bfa" strokeWidth={2} />
+                  <Text style={styles.rewardTextRow}>28 days of skill challenges</Text>
                 </View>
               </View>
             </View>
@@ -296,7 +313,29 @@ export default function HomeScreen() {
 
           <Animated.View style={thirdCardAnimatedStyle}>
             <View style={styles.expandedCardDetails}>
-              <Text style={styles.detailsTitle}>Challenge Rules</Text>
+              <Text style={styles.detailsTitle}>Premium Pro Membership Benefits</Text>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Direct access to the Investment Challenge</Text>
+              </View>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Real-time analysis of global banks' recommendations</Text>
+              </View>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Tracking of hedge funds' and top politicians' trades</Text>
+              </View>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Smart Money Flow – Insight into institutional money movements</Text>
+              </View>
+              <View style={styles.detailItem}>
+                <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
+                <Text style={styles.detailText}>Comprehensive performance analytics highlighting your strengths and weaknesses</Text>
+              </View>
+
+              <Text style={[styles.detailsTitle, { marginTop: 16 }]}>Challenge Rules</Text>
               <View style={styles.detailItem}>
                 <View style={[styles.bulletPoint, { backgroundColor: '#a78bfa' }]} />
                 <Text style={styles.detailText}>Start anytime</Text>
@@ -347,6 +386,10 @@ export default function HomeScreen() {
               </View>
             </View>
           </Animated.View>
+
+          <TouchableOpacity style={[styles.joinButtonBottom, { borderColor: '#a78bfa', backgroundColor: 'rgba(167, 139, 250, 0.2)' }]} onPress={() => { setSt(2); router.push('/challenge-signup'); }}>
+            <Text style={styles.joinButtonBottomText}>Start Investment Challenge</Text>
+          </TouchableOpacity>
 
         </LinearGradient>
       </View>
@@ -752,10 +795,15 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   profileSubtitle: {
-    fontSize: 11,
+    fontSize: 14,
     color: '#cbd5e1',
-    lineHeight: 16,
+    lineHeight: 20,
     letterSpacing: 0.1,
+  },
+  descriptionSection: {
+    paddingHorizontal: 16,
+    marginTop: 8,
+    marginBottom: 4,
   },
   profileSubtitleSmall: {
     fontSize: 10,
@@ -779,6 +827,23 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#fff',
     letterSpacing: 0.3,
+  },
+  joinButtonBottom: {
+    borderWidth: 2,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 16,
+    marginHorizontal: 16,
+    marginBottom: 8,
+  },
+  joinButtonBottomText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#fff',
+    letterSpacing: 0.5,
   },
   bottomRow: {
     flexDirection: 'row',
@@ -831,6 +896,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     letterSpacing: 0.3,
   },
+  detailSubtitle: {
+    fontSize: 12,
+    color: '#cbd5e1',
+    marginBottom: 12,
+    lineHeight: 18,
+  },
   detailItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -853,12 +924,29 @@ const styles = StyleSheet.create({
   },
   rewardsSection: {
     marginTop: 8,
+    paddingHorizontal: 16,
+  },
+  rewardsSectionBordered: {
+    marginTop: 8,
+    marginHorizontal: 16,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(167, 139, 250, 0.4)',
+    borderRadius: 12,
+    backgroundColor: 'rgba(167, 139, 250, 0.1)',
   },
   rewardsTitle: {
     fontSize: 13,
     fontWeight: '700',
     color: '#fff',
     marginBottom: 12,
+  },
+  rewardsTitleBordered: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#fff',
+    marginBottom: 12,
+    textAlign: 'center',
   },
   rewardsGrid: {
     flexDirection: 'row',
@@ -880,5 +968,24 @@ const styles = StyleSheet.create({
     color: '#cbd5e1',
     textAlign: 'center',
     lineHeight: 12,
+  },
+  rewardsGridTwo: {
+    flexDirection: 'row',
+    gap: 16,
+  },
+  rewardsColumnTwo: {
+    flex: 1,
+    gap: 8,
+  },
+  rewardItemRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  rewardTextRow: {
+    fontSize: 10,
+    color: '#cbd5e1',
+    flex: 1,
+    lineHeight: 14,
   },
 });

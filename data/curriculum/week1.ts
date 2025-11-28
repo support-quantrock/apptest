@@ -265,362 +265,224 @@ const day1: CurriculumDay = {
   }
 };
 
-// ==================== DAY 2 - The Mindset Day ====================
+// ==================== DAY 2 - Entering the Investor's Gate ====================
 const day2: CurriculumDay = {
   dayNumber: 2,
   title: 'How to Think Like an Investor + How to Become a Lifelong Professional Investor (The Mastery Day)',
-  emoji: '🧠',
-  missionRank: 'Level 2 – Mind Master',
+  emoji: '🚪',
+  missionRank: 'Level 2 – Gate Opener',
   theme: 'basics',
   lessons: [
-    // Lesson 1 — Mindset & Value (Merged: Gate of Transformation + Value Mindset)
+    // Lesson 1 — The Gate Awakens (Story + Content Screens)
     {
       id: 'day2_lesson1',
       dayNumber: 2,
       lessonNumber: 1,
-      title: 'Mindset & Value',
-      description: 'Open the gate and discover the true meaning of value.',
+      title: 'Entering the Investor\'s Gate',
+      description: 'Begin your journey through the magical gate to the world of investing.',
       objectives: [
         {
           id: 'day2_l1_obj1',
-          title: 'Unlock the Investor Mindset',
-          content: 'You arrive at a massive stone gate with an inscription: "Only those who think like investors may enter." The Mindset Guardian appears and says: "To open this gate... you must understand the first law of investing."',
-          keyPoints: ['Investors think long-term, not short-term', 'Discipline matters more than intelligence', 'The right mindset beats any strategy'],
-          image: { icon: 'Lock', animation: 'pulse', color: '#5b5fff' },
+          title: 'The Gate Awakens',
+          content: 'You walk along a glowing path inside a magical cartoon forest. The wind shimmers with golden sparkles… suddenly the ground shakes and a massive ancient stone gate rises, covered in blue glowing runes that pulse like a heartbeat.\n\nA tiny, adorable guardian appears — round head, long beard, sparkly eyes — holding a lantern glowing with warm golden light.\n\nHe raises the lantern toward you and says:\n\n"Only those who let go of the consumer mindset may enter the world of investing."\n\nAs he speaks, the runes on the gate rearrange themselves into three symbols:\n\n💸 Spending\n💰 Saving\n📈 Investing\n\nOnly one begins to shine… the path of the investor.',
+          keyPoints: ['The consumer mindset keeps you trapped', 'The investor mindset opens new doors', 'Your journey to financial freedom begins here'],
+          image: { icon: 'Castle', animation: 'pulse', color: '#3b82f6' },
           task: {
-            type: 'master_lock',
+            type: 'story_continue',
             config: {
-              questions: [
-                {
-                  question: 'An investor prefers:',
-                  options: [
-                    { text: 'Quick profits', correct: false, digit: 0 },
-                    { text: 'Long-term growth', correct: true, digit: 3 }
-                  ]
-                },
-                {
-                  question: 'Most important mindset element:',
-                  options: [
-                    { text: 'Greed', correct: false, digit: 0 },
-                    { text: 'Discipline', correct: true, digit: 7 }
-                  ]
-                },
-                {
-                  question: 'An investor sees…',
-                  options: [
-                    { text: 'Value', correct: true, digit: 1 },
-                    { text: 'Only price', correct: false, digit: 0 }
-                  ]
-                }
-              ],
-              correctCode: '371',
-              instruction: 'Answer 3 questions to unlock the gate'
+              instruction: 'Tap to continue your journey...'
             },
-            feedback: { correct: '🔓 Well done! Gate unlocked. +10 qcoin', incorrect: 'Try again to unlock the gate' }
+            feedback: { correct: 'The gate awaits...', incorrect: '' }
           }
         },
         {
           id: 'day2_l1_obj2',
-          title: 'Discover True Value',
-          content: 'Three archery targets appear: Price — Hype — Value. The voice says: "Hit the target of the true investor."',
-          keyPoints: ['Investors ask: What\'s the value? Not: What\'s the price?', 'Price changes... Value remains', 'The world\'s greatest investors follow value investing'],
-          image: { icon: 'Target', animation: 'float', color: '#ffd166' },
+          title: 'The Consumer Mindset',
+          content: 'The consumer mindset focuses on the now. It follows emotions, not logic.\n\nHere\'s how it behaves:\n\n🔴 Instant Gratification\nBuys things immediately for temporary happiness.\n\n🔴 Emotional Spending\nFeels excited → buys.\nFeels stressed → buys.\nFeels bored → buys.\n\n🔴 Short-Term Thinking\n"What can I enjoy today?" not "What will this become tomorrow?"\n\n🔴 Money Outflow Pattern\nMoney comes in → gets spent → disappears → repeat cycle.\n\nThis mindset creates comfort today but stress tomorrow.',
+          keyPoints: ['Instant gratification traps you', 'Emotional spending drains wealth', 'Short-term thinking limits growth'],
+          image: { icon: 'ShoppingCart', animation: 'float', color: '#ef4444' },
           task: {
-            type: 'arrow_precision',
+            type: 'story_continue',
             config: {
-              targets: [
-                { id: 'price', label: 'Value = Current price', correct: false },
-                { id: 'value', label: 'Value = What you get for what you pay', correct: true },
-                { id: 'hype', label: 'Value = Popularity', correct: false }
-              ],
-              instruction: 'Choose the correct target'
+              instruction: 'Tap to learn the opposite mindset...'
             },
-            feedback: { correct: '🎯 Bullseye! +8 qcoin - Badge: Value Hunter', incorrect: 'Value is what you get for what you pay' }
+            feedback: { correct: 'Now discover the investor mindset...', incorrect: '' }
+          }
+        },
+        {
+          id: 'day2_l1_obj3',
+          title: 'The Investor Mindset',
+          content: 'The investor mindset is the opposite. It focuses on growth, not pleasure.\n\n🟢 Long-Term Thinking\nPlans for months or years ahead.\n\n🟢 Value Hunting\nAsks: "What is this worth?"\nNot: "How shiny is it?"\n\n🟢 Logic Over Emotion\nDecisions come from analysis, not moods.\n\n🟢 Wealth Creation Pattern\nMoney comes in → saved → invested → grows → multiplies.\n\nThis mindset creates freedom tomorrow even if it sacrifices pleasure today.',
+          keyPoints: ['Long-term thinking builds wealth', 'Value hunting finds real opportunities', 'Logic beats emotion in investing'],
+          image: { icon: 'TrendingUp', animation: 'float', color: '#22c55e' },
+          task: {
+            type: 'story_continue',
+            config: {
+              instruction: 'Tap to understand the shift...'
+            },
+            feedback: { correct: 'The transformation begins...', incorrect: '' }
+          }
+        },
+        {
+          id: 'day2_l1_obj4',
+          title: 'The Shift Moment',
+          content: 'The shift from consumer to investor happens with one mindset upgrade:\n\n❌ Consumer Question\n"What can I buy right now?"\n\n✔ Investor Question\n"What can this become over time?"\n\nThis shift changes your life because:\n\n💡 You stop chasing pleasure\n💡 You start building wealth\n💡 You stop reacting\n💡 You start planning\n💡 You stop wasting\n💡 You start investing\n\nThis shift is the true entrance to financial freedom.',
+          keyPoints: ['One question changes everything', 'Stop chasing, start building', 'This is the entrance to financial freedom'],
+          image: { icon: 'Brain', animation: 'pulse', color: '#8b5cf6' },
+          task: {
+            type: 'story_continue',
+            config: {
+              instruction: 'Tap to test your understanding...'
+            },
+            feedback: { correct: 'Time to prove yourself!', incorrect: '' }
           }
         }
       ],
       estimatedMinutes: 5
     },
-    // Lesson 2 — Big Picture & Emotions (Merged: Seeing the Big Picture + Controlling Emotions)
+    // Lesson 2 — Game & Questions
     {
       id: 'day2_lesson2',
       dayNumber: 2,
       lessonNumber: 2,
-      title: 'Big Picture & Emotions',
-      description: 'See the complete picture and master your emotions.',
+      title: 'Choose the Right Mindset',
+      description: 'Test your understanding of the investor mindset.',
       objectives: [
         {
           id: 'day2_l2_obj1',
-          title: 'Reveal the Complete Picture',
-          content: 'A big picture is hidden behind puzzle pieces... Each correct answer reveals a piece.',
-          keyPoints: ['Professional investors see the trend, not just one day', 'Short-term details are misleading', 'The big picture = understanding the true direction'],
-          image: { icon: 'Puzzle', animation: 'pulse', color: '#22c55e' },
+          title: 'Pop the Right Balloon',
+          content: 'Three floating cartoon balloons appear before you. Each one represents a different approach to money. Only one shows the true investor mindset.\n\n🎈 A: "Buy something right after payday!"\n🎈 B: "Spend everything and save later!"\n🎈 C: "Invest before spending!"\n\nTap the balloon that shows the investor mindset.',
+          keyPoints: ['Investors prioritize investing first', 'Spending first is the consumer trap', 'Pay yourself first'],
+          image: { icon: 'Target', animation: 'pulse', color: '#f59e0b' },
           task: {
-            type: 'puzzle_reveal',
+            type: 'multiple_choice',
             config: {
-              questions: [
-                {
-                  question: 'What matters most?',
-                  options: ['One day\'s movement', 'The long-term trend'],
-                  correctIndex: 1
-                },
-                {
-                  question: 'A professional investor...',
-                  options: ['Chases breaking news', 'Studies the overall trend'],
-                  correctIndex: 1
-                }
-              ],
-              totalPieces: 2,
-              instruction: 'Answer to reveal puzzle pieces'
+              question: 'Which mindset should you follow?',
+              options: ['Buy something right after payday!', 'Spend everything and save later!', 'Invest before spending!'],
+              correctIndex: 2
             },
-            feedback: { correct: '🧩 Picture complete! +6 qcoin - Badge: Big Picture Thinker', incorrect: 'Focus on the overall trend' }
+            feedback: { correct: '🎈 POP! Golden sparks fly! You chose wisely!', incorrect: 'Remember: Investors put money to work BEFORE spending.' }
           }
         },
         {
           id: 'day2_l2_obj2',
-          title: 'Master Your Emotions',
-          content: 'A 9-second timer begins counting down. The voice says: "The strongest investor is one who conquers their emotions."',
-          keyPoints: ['Fear = selling too early', 'Greed = buying too late', 'Emotional control = half of mastery'],
-          image: { icon: 'Timer', animation: 'pulse', color: '#ef4444' },
+          title: 'The Power Question',
+          content: 'The guardian asks you a simple but powerful question:\n\n"Is long-term thinking more powerful than short-term spending?"\n\nThink carefully about what you\'ve learned...',
+          keyPoints: ['Long-term thinking compounds wealth', 'Short-term spending depletes resources', 'Time is the investor\'s greatest ally'],
+          image: { icon: 'HelpCircle', animation: 'float', color: '#3b82f6' },
           task: {
-            type: 'time_attack',
+            type: 'true_false',
             config: {
-              question: 'What is the most dangerous emotion for an investor?',
-              options: ['Greed', 'Boredom', 'Arrogance'],
-              correctIndex: 0,
-              timeLimit: 9,
-              instruction: 'Answer before time runs out!'
+              statement: 'Long-term thinking is more powerful than short-term spending.',
+              correctAnswer: true,
+              explanation: 'Long-term thinking allows your money to compound and grow exponentially over time.'
             },
-            feedback: { correct: '⚡ Fast and accurate! +9 qcoin - Badge: Emotion Controller', incorrect: 'Greed is the most dangerous emotion for an investor' }
+            feedback: { correct: '✨ Correct! Long-term thinking is the investor\'s superpower!', incorrect: 'Remember: Time + patience = exponential growth.' }
           }
         }
       ],
-      estimatedMinutes: 5
+      estimatedMinutes: 3
     },
-    // Lesson 3 — Compounding & Opportunities (Merged: Power of Compounding + Don't Chase Opportunities)
+    // Lesson 3 — Mission & Reward
     {
       id: 'day2_lesson3',
       dayNumber: 2,
       lessonNumber: 3,
-      title: 'Compounding & Opportunities',
-      description: 'Build wealth through compounding and choose the right opportunities.',
+      title: 'Your First Investor Mission',
+      description: 'Complete your mission to unlock the gate.',
       objectives: [
         {
           id: 'day2_l3_obj1',
-          title: 'Build the Tower of Success',
-          content: 'A glowing tower appears before you... Each correct answer adds a new block.',
-          keyPoints: ['Compounding = The investor\'s greatest weapon', 'Small amounts + time = great wealth', 'You don\'t need a huge sum... You need time'],
-          image: { icon: 'Building', animation: 'float', color: '#5b5fff' },
+          title: 'Choose Your Action',
+          content: 'The guardian presents you with your first mission:\n\n⭐ "Which action will help you MOST to start thinking like an investor?"\n\nChoose wisely — this will determine if the gate opens for you.',
+          keyPoints: ['Actions define your mindset', 'Small habits create big changes', 'Start with one powerful habit'],
+          image: { icon: 'Sparkles', animation: 'pulse', color: '#ffd166' },
           task: {
-            type: 'build_mode',
+            type: 'multiple_choice',
             config: {
-              questions: [
-                {
-                  question: 'Compounding requires:',
-                  options: ['Time', 'Speed', 'A lucky break'],
-                  correctIndex: 0,
-                  blockLabel: 'Time'
-                },
-                {
-                  question: 'Compound investing means:',
-                  options: ['Profits that rebuild themselves', 'Repeated losses'],
-                  correctIndex: 0,
-                  blockLabel: 'Growth'
-                }
-              ],
-              instruction: 'Build the tower with your correct answers'
+              question: 'Which action will help you MOST to start thinking like an investor?',
+              options: ['Set aside money BEFORE spending', 'Buy something every payday', 'Decide emotionally when shopping', 'Focus only on today\'s satisfaction'],
+              correctIndex: 0
             },
-            feedback: { correct: '🏗️ Amazing tower! +7 qcoin - Badge: Compounding Master', incorrect: 'Compounding requires time and patience' }
+            feedback: { correct: '🌟 Perfect choice! Pay yourself first is the golden rule!', incorrect: 'The investor\'s first rule: Set aside money BEFORE spending anything else.' }
           }
         },
         {
           id: 'day2_l3_obj2',
-          title: 'Choose the Right Opportunity',
-          content: 'Two boxes appear: "Shiny opportunity" — "Opportunity right for you". The voice says: "Choose the path that a true investor takes."',
-          keyPoints: ['Not every "shiny" opportunity is right for you', 'Chasing opportunities = losses', 'Choosing the right opportunity for your personality matters more than big profits'],
-          image: { icon: 'Gift', animation: 'pulse', color: '#ffd166' },
-          task: {
-            type: 'mystery_box',
-            config: {
-              boxes: [
-                { id: 'fast', label: 'The best opportunity is the fastest one', correct: false },
-                { id: 'suitable', label: 'The best opportunity is the one right for you', correct: true }
-              ],
-              instruction: 'Open the correct box'
-            },
-            feedback: { correct: '🎁 Wise choice! +6 qcoin - Badge: Opportunity Filter', incorrect: 'The best opportunity is the one right for you, not the fastest' }
-          }
-        }
-      ],
-      estimatedMinutes: 5
-    },
-    // Lesson 4 — Discipline & Growth (Merged: Discipline Before Intelligence + Growth Mindset)
-    {
-      id: 'day2_lesson4',
-      dayNumber: 2,
-      lessonNumber: 4,
-      title: 'Discipline & Growth',
-      description: 'Discover the power of discipline and continuous learning.',
-      objectives: [
-        {
-          id: 'day2_l4_obj1',
-          title: 'Discover the Secret to Success',
-          content: 'Three targets appear: "Intelligence" — "Luck" — "Discipline". The voice says: "Hit what makes a true investor."',
-          keyPoints: ['Discipline = Sticking to the plan', 'A smart investor without discipline = loser', 'An average investor with discipline = winner'],
-          image: { icon: 'Crosshair', animation: 'float', color: '#22c55e' },
-          task: {
-            type: 'shoot_hit',
-            config: {
-              targets: [
-                { id: 'intelligence', label: 'Intelligence', correct: false },
-                { id: 'discipline', label: 'Discipline is more important than intelligence', correct: true },
-                { id: 'luck', label: 'Luck', correct: false }
-              ],
-              instruction: 'Hit the correct target'
-            },
-            feedback: { correct: '🎯 Perfect hit! +8 qcoin - Badge: Disciplined Investor', incorrect: 'Discipline is what makes a true investor' }
-          }
-        },
-        {
-          id: 'day2_l4_obj2',
-          title: 'Knowledge Race',
-          content: 'A race car awaits... The voice says: "Learning is the fuel... Go!"',
-          keyPoints: ['Every loss = a lesson', 'Every win = a result', 'Continuous learning = the strongest weapon'],
-          image: { icon: 'GraduationCap', animation: 'pulse', color: '#5b5fff' },
-          task: {
-            type: 'knowledge_race',
-            config: {
-              questions: [
-                {
-                  question: 'Which statement is correct?',
-                  options: ['A loss is a lesson', 'A loss is failure', 'A loss is the end of the road'],
-                  correctIndex: 0
-                }
-              ],
-              instruction: 'Answer to advance in the race'
-            },
-            feedback: { correct: '🏎️ You won the race! +7 qcoin - Badge: Growth Mindset', incorrect: 'A loss is a lesson, not the end of the road' }
-          }
-        }
-      ],
-      estimatedMinutes: 5
-    },
-    // Lesson 5 — Research & Mastery (Merged: Calculate Every Step + The Mastery Test)
-    {
-      id: 'day2_lesson5',
-      dayNumber: 2,
-      lessonNumber: 5,
-      title: 'Research & Mastery',
-      description: 'Calculate every step and prove your mastery.',
-      objectives: [
-        {
-          id: 'day2_l5_obj1',
-          title: 'Unlock the Mind',
-          content: 'A mental lock needs codes... Each code = information.',
-          keyPoints: ['Investment decisions require research', 'Guessing = loss', 'Information = power'],
-          image: { icon: 'Brain', animation: 'float', color: '#ffd166' },
-          task: {
-            type: 'mind_lock',
-            config: {
-              options: [
-                { id: 'research', label: 'Research the asset before buying it', correct: true },
-                { id: 'follow', label: 'Buy because "everyone else bought"', correct: false }
-              ],
-              instruction: 'Choose the correct step'
-            },
-            feedback: { correct: '🧠 Sharp mind! +10 qcoin - Badge: Calculated Thinker', incorrect: 'Research before you decide' }
-          }
-        },
-        {
-          id: 'day2_l5_obj2',
-          title: 'The Final Test',
-          content: 'An all-white test room... The voice says: "You\'ve learned the foundation... Prove your readiness."',
-          keyPoints: ['Discipline', 'Value', 'The Big Picture', 'Emotional Control', 'Continuous Growth'],
+          title: 'The Gate Opens',
+          content: '🎉 The ancient gate begins to glow brighter... The runes pulse with golden light... And slowly, majestically, the gate swings open!\n\nThe guardian smiles and hands you a glowing badge:\n\n🏅 "Gate Opener"\n\nYou have proven you understand the investor mindset. Welcome to the world of investing!\n\n+10 qcoin added to your account!',
+          keyPoints: ['You\'ve taken the first step', 'The investor mindset is now yours', 'Your journey has begun'],
           image: { icon: 'Trophy', animation: 'pulse', color: '#22c55e' },
           task: {
-            type: 'final_precision',
+            type: 'celebration',
             config: {
-              targets: [
-                { id: 'now', label: 'Profit now, worry later', correct: false },
-                { id: 'years', label: 'Invest for years, not hours', correct: true },
-                { id: 'emotion', label: 'Let emotions guide you', correct: false }
-              ],
-              instruction: 'Choose the correct statement'
+              reward: '+10 qcoin',
+              badge: 'Gate Opener',
+              message: 'Welcome to the world of investing!'
             },
-            feedback: { correct: '🏆 Congratulations! You completed The Mindset Day! +15 qcoin - Badge: Mastery', incorrect: 'Invest for years, not hours' }
+            feedback: { correct: '🏆 Congratulations! Badge: Gate Opener unlocked!', incorrect: '' }
           }
         }
       ],
-      estimatedMinutes: 5
+      estimatedMinutes: 3
     }
   ],
   test: {
     id: 'day2_test',
     dayNumber: 2,
-    title: 'The Mindset Day Test',
-    description: 'Test your understanding of the successful investor mindset',
+    title: 'The Investor\'s Gate Test',
+    description: 'Prove you understand the investor mindset',
     questions: [
       {
         id: 'day2_q1',
         type: 'multiple_choice',
         config: {
-          question: 'What is the most important element in a successful investor\'s mindset?',
-          options: ['Intelligence', 'Luck', 'Discipline', 'Speed'],
-          correctIndex: 2
+          question: 'What is the main difference between consumer and investor mindset?',
+          options: ['Speed of decisions', 'Short-term vs long-term thinking', 'Amount of money', 'Type of products'],
+          correctIndex: 1
         },
-        feedback: { correct: 'Discipline is the key to success!', incorrect: 'Discipline is more important than intelligence in investing.' },
-        points: 20
+        feedback: { correct: 'The investor thinks long-term!', incorrect: 'Investors focus on long-term growth, consumers on short-term pleasure.' },
+        points: 25
       },
       {
         id: 'day2_q2',
         type: 'true_false',
         config: {
-          statement: 'A successful investor focuses on value, not just price.',
+          statement: 'An investor should set aside money BEFORE spending on other things.',
           correctAnswer: true,
-          explanation: 'Value is what you get for what you pay.'
+          explanation: 'Pay yourself first is the golden rule of wealth building.'
         },
-        feedback: { correct: 'Correct! Value is more important than price.', incorrect: 'A successful investor focuses on true value.' },
-        points: 20
+        feedback: { correct: 'Pay yourself first!', incorrect: 'Always invest before spending.' },
+        points: 25
       },
       {
         id: 'day2_q3',
         type: 'multiple_choice',
         config: {
-          question: 'What is the most dangerous emotion for an investor?',
-          options: ['Patience', 'Greed', 'Caution', 'Thinking'],
+          question: 'What question does an investor ask?',
+          options: ['What can I buy right now?', 'What can this become over time?', 'How shiny is it?', 'Is everyone else buying it?'],
           correctIndex: 1
         },
-        feedback: { correct: 'Greed leads to reckless decisions!', incorrect: 'Greed is the investor\'s worst enemy.' },
-        points: 20
+        feedback: { correct: 'Investors think about future value!', incorrect: 'The investor question: What can this become over time?' },
+        points: 25
       },
       {
         id: 'day2_q4',
         type: 'multiple_choice',
         config: {
-          question: 'The power of compounding depends on:',
-          options: ['Quick luck', 'Time and patience', 'Large sums only', 'High risk'],
+          question: 'The consumer money pattern is:',
+          options: ['Money → Save → Invest → Grow', 'Money → Spend → Disappear → Repeat', 'Money → Analyze → Decide → Profit', 'Money → Plan → Build → Freedom'],
           correctIndex: 1
         },
-        feedback: { correct: 'Time is the investor\'s greatest ally!', incorrect: 'Compounding requires time and patience.' },
-        points: 20
-      },
-      {
-        id: 'day2_q5',
-        type: 'true_false',
-        config: {
-          statement: 'A successful investor researches before deciding and doesn\'t follow the herd.',
-          correctAnswer: true,
-          explanation: 'Research and study are the foundation of the right decision.'
-        },
-        feedback: { correct: 'Correct! Research before you decide.', incorrect: 'Don\'t buy because everyone else bought - research first.' },
-        points: 20
+        feedback: { correct: 'Consumers spend and repeat the cycle!', incorrect: 'The consumer trap: Money in → Spend → Gone → Repeat.' },
+        points: 25
       }
     ],
-    passingScore: 70,
+    passingScore: 75,
     estimatedMinutes: 5
   },
   rewards: {
-    badge: { id: 'mind_master', name: 'Mind Master', icon: '🧠', description: 'Mastered the successful investor mindset' },
+    badge: { id: 'gate_opener', name: 'Gate Opener', icon: '🚪', description: 'Entered the world of investing by mastering the investor mindset' },
     xp: 150,
     unlocks: ['day_3']
   }
