@@ -268,12 +268,12 @@ const day1: CurriculumDay = {
 // ==================== DAY 2 - Entering the Investor's Gate ====================
 const day2: CurriculumDay = {
   dayNumber: 2,
-  title: 'How to Think Like an Investor + How to Become a Lifelong Professional Investor (The Mastery Day)',
+  title: 'Entering the Investor\'s Gate',
   emoji: '🚪',
   missionRank: 'Level 2 – Gate Opener',
   theme: 'basics',
   lessons: [
-    // Lesson 1 — The Gate Awakens (Story + Content Screens)
+    // Lesson 1 — Complete Day 2 Journey (Story + Content + Game + Question + Mission + Reward)
     {
       id: 'day2_lesson1',
       dayNumber: 2,
@@ -281,10 +281,11 @@ const day2: CurriculumDay = {
       title: 'Entering the Investor\'s Gate',
       description: 'Begin your journey through the magical gate to the world of investing.',
       objectives: [
+        // 🟦 1) STORY SCREEN — "The Gate Awakens"
         {
           id: 'day2_l1_obj1',
           title: 'The Gate Awakens',
-          content: 'You walk along a glowing path inside a magical cartoon forest. The wind shimmers with golden sparkles… suddenly the ground shakes and a massive ancient stone gate rises, covered in blue glowing runes that pulse like a heartbeat.\n\nA tiny, adorable guardian appears — round head, long beard, sparkly eyes — holding a lantern glowing with warm golden light.\n\nHe raises the lantern toward you and says:\n\n"Only those who let go of the consumer mindset may enter the world of investing."\n\nAs he speaks, the runes on the gate rearrange themselves into three symbols:\n\n💸 Spending\n💰 Saving\n📈 Investing\n\nOnly one begins to shine… the path of the investor.',
+          content: 'You walk along a glowing path inside a magical cartoon forest.\nThe wind shimmers with golden sparkles… suddenly the ground shakes and a massive ancient stone gate rises, covered in blue glowing runes that pulse like a heartbeat.\n\nA tiny, adorable guardian appears — round head, long beard, sparkly eyes — holding a lantern glowing with warm golden light.\n\nHe raises the lantern toward you and says:\n\n"Only those who let go of the consumer mindset may enter the world of investing."\n\nAs he speaks, the runes on the gate rearrange themselves into three symbols:\n\n💸 Spending\n💰 Saving\n📈 Investing\n\nOnly one begins to shine… the path of the investor.',
           keyPoints: ['The consumer mindset keeps you trapped', 'The investor mindset opens new doors', 'Your journey to financial freedom begins here'],
           image: { icon: 'Castle', animation: 'pulse', color: '#3b82f6' },
           task: {
@@ -295,10 +296,11 @@ const day2: CurriculumDay = {
             feedback: { correct: 'The gate awaits...', incorrect: '' }
           }
         },
+        // 🟩 2) CONTENT SCREEN A — Consumer Mindset
         {
           id: 'day2_l1_obj2',
-          title: 'The Consumer Mindset',
-          content: 'The consumer mindset focuses on the now. It follows emotions, not logic.\n\nHere\'s how it behaves:\n\n🔴 Instant Gratification\nBuys things immediately for temporary happiness.\n\n🔴 Emotional Spending\nFeels excited → buys.\nFeels stressed → buys.\nFeels bored → buys.\n\n🔴 Short-Term Thinking\n"What can I enjoy today?" not "What will this become tomorrow?"\n\n🔴 Money Outflow Pattern\nMoney comes in → gets spent → disappears → repeat cycle.\n\nThis mindset creates comfort today but stress tomorrow.',
+          title: 'Consumer Mindset',
+          content: 'The consumer mindset focuses on the now.\nIt follows emotions, not logic.\n\nHere\'s how it behaves:\n\n🔴 Instant Gratification\nBuys things immediately for temporary happiness.\n\n🔴 Emotional Spending\nFeels excited → buys.\nFeels stressed → buys.\nFeels bored → buys.\n\n🔴 Short-Term Thinking\n"What can I enjoy today?" not "What will this become tomorrow?"\n\n🔴 Money Outflow Pattern\nMoney comes in → gets spent → disappears → repeat cycle.\n\nThis mindset creates comfort today but stress tomorrow.',
           keyPoints: ['Instant gratification traps you', 'Emotional spending drains wealth', 'Short-term thinking limits growth'],
           image: { icon: 'ShoppingCart', animation: 'float', color: '#ef4444' },
           task: {
@@ -309,10 +311,11 @@ const day2: CurriculumDay = {
             feedback: { correct: 'Now discover the investor mindset...', incorrect: '' }
           }
         },
+        // 🟩 2) CONTENT SCREEN B — Investor Mindset
         {
           id: 'day2_l1_obj3',
-          title: 'The Investor Mindset',
-          content: 'The investor mindset is the opposite. It focuses on growth, not pleasure.\n\n🟢 Long-Term Thinking\nPlans for months or years ahead.\n\n🟢 Value Hunting\nAsks: "What is this worth?"\nNot: "How shiny is it?"\n\n🟢 Logic Over Emotion\nDecisions come from analysis, not moods.\n\n🟢 Wealth Creation Pattern\nMoney comes in → saved → invested → grows → multiplies.\n\nThis mindset creates freedom tomorrow even if it sacrifices pleasure today.',
+          title: 'Investor Mindset',
+          content: 'The investor mindset is the opposite.\nIt focuses on growth, not pleasure.\n\n🟢 Long-Term Thinking\nPlans for months or years ahead.\n\n🟢 Value Hunting\nAsks: "What is this worth?"\nNot: "How shiny is it?"\n\n🟢 Logic Over Emotion\nDecisions come from analysis, not moods.\n\n🟢 Wealth Creation Pattern\nMoney comes in → saved → invested → grows → multiplies.\n\nThis mindset creates freedom tomorrow even if it sacrifices pleasure today.',
           keyPoints: ['Long-term thinking builds wealth', 'Value hunting finds real opportunities', 'Logic beats emotion in investing'],
           image: { icon: 'TrendingUp', animation: 'float', color: '#22c55e' },
           task: {
@@ -323,6 +326,7 @@ const day2: CurriculumDay = {
             feedback: { correct: 'The transformation begins...', incorrect: '' }
           }
         },
+        // 🟩 2) CONTENT SCREEN C — The Shift Moment
         {
           id: 'day2_l1_obj4',
           title: 'The Shift Moment',
@@ -336,22 +340,12 @@ const day2: CurriculumDay = {
             },
             feedback: { correct: 'Time to prove yourself!', incorrect: '' }
           }
-        }
-      ],
-      estimatedMinutes: 5
-    },
-    // Lesson 2 — Game & Questions
-    {
-      id: 'day2_lesson2',
-      dayNumber: 2,
-      lessonNumber: 2,
-      title: 'Choose the Right Mindset',
-      description: 'Test your understanding of the investor mindset.',
-      objectives: [
+        },
+        // 🟨 3) GAME SCREEN — Choose the Right Mindset
         {
-          id: 'day2_l2_obj1',
-          title: 'Pop the Right Balloon',
-          content: 'Three floating cartoon balloons appear before you. Each one represents a different approach to money. Only one shows the true investor mindset.\n\n🎈 A: "Buy something right after payday!"\n🎈 B: "Spend everything and save later!"\n🎈 C: "Invest before spending!"\n\nTap the balloon that shows the investor mindset.',
+          id: 'day2_l1_obj5',
+          title: 'Choose the Right Mindset',
+          content: 'Three floating cartoon balloons appear:\n\n🎈 A: "Buy something right after payday!"\n\n🎈 B: "Spend everything and save later!"\n\n🎈 C: "Invest before spending!" ✔\n\nTap the balloon that shows the investor mindset.\n\nCorrect tap → Balloon pops with golden sparks.',
           keyPoints: ['Investors prioritize investing first', 'Spending first is the consumer trap', 'Pay yourself first'],
           image: { icon: 'Target', animation: 'pulse', color: '#f59e0b' },
           task: {
@@ -364,10 +358,11 @@ const day2: CurriculumDay = {
             feedback: { correct: '🎈 POP! Golden sparks fly! You chose wisely!', incorrect: 'Remember: Investors put money to work BEFORE spending.' }
           }
         },
+        // 🟧 4) QUESTION SCREEN — Yes or No
         {
-          id: 'day2_l2_obj2',
+          id: 'day2_l1_obj6',
           title: 'The Power Question',
-          content: 'The guardian asks you a simple but powerful question:\n\n"Is long-term thinking more powerful than short-term spending?"\n\nThink carefully about what you\'ve learned...',
+          content: 'Is long-term thinking more powerful than short-term spending?\n\n✔ Yes\n❌ No',
           keyPoints: ['Long-term thinking compounds wealth', 'Short-term spending depletes resources', 'Time is the investor\'s greatest ally'],
           image: { icon: 'HelpCircle', animation: 'float', color: '#3b82f6' },
           task: {
@@ -379,22 +374,12 @@ const day2: CurriculumDay = {
             },
             feedback: { correct: '✨ Correct! Long-term thinking is the investor\'s superpower!', incorrect: 'Remember: Time + patience = exponential growth.' }
           }
-        }
-      ],
-      estimatedMinutes: 3
-    },
-    // Lesson 3 — Mission & Reward
-    {
-      id: 'day2_lesson3',
-      dayNumber: 2,
-      lessonNumber: 3,
-      title: 'Your First Investor Mission',
-      description: 'Complete your mission to unlock the gate.',
-      objectives: [
+        },
+        // 🟪 5) MISSION SCREEN — Multiple Choice Mission
         {
-          id: 'day2_l3_obj1',
-          title: 'Choose Your Action',
-          content: 'The guardian presents you with your first mission:\n\n⭐ "Which action will help you MOST to start thinking like an investor?"\n\nChoose wisely — this will determine if the gate opens for you.',
+          id: 'day2_l1_obj7',
+          title: 'Your First Investor Mission',
+          content: '⭐ Mission (Choose One)\n\nWhich action will help you MOST to start thinking like an investor?\n\nA) ✔ Set aside money BEFORE spending\nB) Buy something every payday\nC) Decide emotionally when shopping\nD) Focus only on today\'s satisfaction',
           keyPoints: ['Actions define your mindset', 'Small habits create big changes', 'Start with one powerful habit'],
           image: { icon: 'Sparkles', animation: 'pulse', color: '#ffd166' },
           task: {
@@ -407,10 +392,11 @@ const day2: CurriculumDay = {
             feedback: { correct: '🌟 Perfect choice! Pay yourself first is the golden rule!', incorrect: 'The investor\'s first rule: Set aside money BEFORE spending anything else.' }
           }
         },
+        // 🟥 6) REWARD SCREEN
         {
-          id: 'day2_l3_obj2',
+          id: 'day2_l1_obj8',
           title: 'The Gate Opens',
-          content: '🎉 The ancient gate begins to glow brighter... The runes pulse with golden light... And slowly, majestically, the gate swings open!\n\nThe guardian smiles and hands you a glowing badge:\n\n🏅 "Gate Opener"\n\nYou have proven you understand the investor mindset. Welcome to the world of investing!\n\n+10 qcoin added to your account!',
+          content: '🎉 The ancient gate begins to glow brighter... The runes pulse with golden light... And slowly, majestically, the gate swings open!\n\nThe guardian smiles and hands you a glowing badge:\n\n🏅 Badge Unlocked: Gate Opener\n\nYou have proven you understand the investor mindset. Welcome to the world of investing!\n\n🎉 Reward: +10 qcoin',
           keyPoints: ['You\'ve taken the first step', 'The investor mindset is now yours', 'Your journey has begun'],
           image: { icon: 'Trophy', animation: 'pulse', color: '#22c55e' },
           task: {
@@ -424,7 +410,7 @@ const day2: CurriculumDay = {
           }
         }
       ],
-      estimatedMinutes: 3
+      estimatedMinutes: 10
     }
   ],
   test: {

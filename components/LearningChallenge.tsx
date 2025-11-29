@@ -189,12 +189,12 @@ export default function LearningChallenge() {
     );
   };
 
-  // Get visible days for current calendar page (9 days per page, reversed order)
+  // Get visible days for current calendar page (9 days per page, left to right order)
   const getVisibleDays = () => {
     const startDay = calendarPage * 9 + 1;
     const endDay = Math.min(startDay + 8, TOTAL_DAYS);
     const days = [];
-    for (let i = endDay; i >= startDay; i--) {
+    for (let i = startDay; i <= endDay; i++) {
       days.push(i);
     }
     return days;
@@ -221,17 +221,17 @@ export default function LearningChallenge() {
       <View style={styles.calendarCard}>
         <View style={styles.calendarHeader}>
           <TouchableOpacity
-            style={styles.calendarNavButton}
-            onPress={() => setCalendarPage(Math.min(calendarPage + 1, 2))}
+            style={[styles.calendarNavButton, calendarPage === 0 && styles.calendarNavButtonDisabled]}
+            onPress={() => setCalendarPage(Math.max(calendarPage - 1, 0))}
           >
-            <ChevronRight size={24} color="#5b5fff" strokeWidth={2} />
+            <ChevronLeft size={24} color={calendarPage === 0 ? "#d1d5db" : "#fff"} strokeWidth={2} />
           </TouchableOpacity>
           <Text style={styles.calendarTitle}>Calendar</Text>
           <TouchableOpacity
-            style={[styles.calendarNavButton, styles.calendarNavButtonRight]}
-            onPress={() => setCalendarPage(Math.max(calendarPage - 1, 0))}
+            style={[styles.calendarNavButton, calendarPage === 2 && styles.calendarNavButtonDisabled]}
+            onPress={() => setCalendarPage(Math.min(calendarPage + 1, 2))}
           >
-            <ChevronLeft size={24} color="#d1d5db" strokeWidth={2} />
+            <ChevronRight size={24} color={calendarPage === 2 ? "#d1d5db" : "#fff"} strokeWidth={2} />
           </TouchableOpacity>
         </View>
 
@@ -367,7 +367,7 @@ export default function LearningChallenge() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#0a0a0a',
   },
   // Progress Header Styles
   progressHeader: {
@@ -390,12 +390,12 @@ const styles = StyleSheet.create({
   dayCountText: {
     fontSize: 16,
     fontWeight: '500',
-    color: '#1f2937',
+    color: '#ffffff',
   },
   progressTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#1f2937',
+    color: '#ffffff',
   },
   // Calendar Card Styles
   calendarCard: {
@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  calendarNavButtonRight: {
+  calendarNavButtonDisabled: {
     backgroundColor: '#f3f4f6',
   },
   calendarTitle: {
@@ -501,7 +501,7 @@ const styles = StyleSheet.create({
   challengeTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#1f2937',
+    color: '#ffffff',
     marginBottom: 16,
     flex: 1,
   },
