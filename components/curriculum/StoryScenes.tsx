@@ -730,18 +730,25 @@ const lessonKeyPointIcons: Record<number, string[]> = {
   5: ['Search', 'FileText', 'Shield', 'CheckCircle', 'Eye', 'Brain', 'Heart', 'TrendingUp'],
 };
 
-// AI-generated cartoon images for each merged lesson's key points using Pollinations.ai
-const lessonKeyPointImages: Record<number, string[]> = {
-  // Lesson 1: Mindset & Value (merged from old lessons 1+2)
+// AI-generated cartoon images for each merged lesson's key points
+// Day 2 Lesson 1: Entering the Investor's Gate - Generated with nano-banana (Gemini)
+const lessonKeyPointImages: Record<number, (string | number)[]> = {
+  // Lesson 1: Entering the Investor's Gate (Story + Consumer vs Investor Mindset)
   1: [
-    // Objective 1: Investor Mindset
-    'https://image.pollinations.ai/prompt/cartoon%20illustration%20investor%20looking%20through%20telescope%20at%20distant%20mountain%20peak%20with%20upward%20stock%20chart%20long%20term%20vision%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=101',
-    'https://image.pollinations.ai/prompt/cartoon%20illustration%20disciplined%20person%20following%20checklist%20plan%20organized%20focused%20investment%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=102',
-    'https://image.pollinations.ai/prompt/cartoon%20illustration%20glowing%20brain%20with%20gears%20lightbulb%20positive%20mindset%20success%20thinking%20flat%20design%20vibrant%20blue%20colors?width=400&height=300&seed=103',
-    // Objective 2: True Value
-    'https://image.pollinations.ai/prompt/cartoon%20illustration%20golden%20scale%20balancing%20diamond%20gem%20value%20versus%20price%20tag%20investment%20concept%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=201',
-    'https://image.pollinations.ai/prompt/cartoon%20illustration%20fluctuating%20price%20waves%20on%20top%20stable%20value%20foundation%20rock%20solid%20base%20investing%20flat%20design%20vibrant%20gold%20colors?width=400&height=300&seed=202',
-    'https://image.pollinations.ai/prompt/cartoon%20illustration%20wise%20investor%20character%20with%20magnifying%20glass%20analyzing%20stocks%20value%20investing%20warren%20buffett%20style%20flat%20design%20gold%20colors?width=400&height=300&seed=203',
+    // Objective 1: The Gate Awakens (Story)
+    require('@/assets/images/day2/day2-gate-awakens.png'),
+    // Objective 2: Consumer Mindset
+    require('@/assets/images/day2/day2-consumer-mindset.png'),
+    // Objective 3: Investor Mindset
+    require('@/assets/images/day2/day2-investor-mindset.png'),
+    // Objective 4: The Shift Moment
+    require('@/assets/images/day2/day2-shift-moment.png'),
+    // Lesson 2: Game - Choose the Right Mindset (Balloons)
+    require('@/assets/images/day2/day2-game-balloons.png'),
+    // Lesson 2: Question - Yes or No
+    require('@/assets/images/day2/day2-question-compare.png'),
+    // Lesson 3: Mission - Multiple Choice
+    require('@/assets/images/day2/day2-mission-choices.png'),
   ],
   // Lesson 2: Big Picture & Emotions (merged from old lessons 3+4)
   2: [
@@ -806,7 +813,7 @@ interface KeyPointCardProps {
   icon: string;
   color: string;
   totalPoints: number;
-  imageUrl?: string;
+  imageUrl?: string | number; // string for URL, number for require() result
 }
 
 const KeyPointCard = ({ point, index, icon, color, totalPoints, imageUrl }: KeyPointCardProps) => {
@@ -878,7 +885,7 @@ const KeyPointCard = ({ point, index, icon, color, totalPoints, imageUrl }: KeyP
             </Animated.View>
           )}
           <Image
-            source={{ uri: imageUrl }}
+            source={typeof imageUrl === 'number' ? imageUrl : { uri: imageUrl }}
             style={[styles.keyPointImage, imageLoading && { opacity: 0 }]}
             resizeMode="cover"
             onLoad={() => setImageLoading(false)}
