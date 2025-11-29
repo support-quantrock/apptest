@@ -106,7 +106,7 @@ export default function HomeScreen() {
 
             <View style={styles.profileTitleContainer}>
               <Text style={styles.profileTitle}>Learn Challenge</Text>
-              <Text style={styles.profileSubtitleSmall}>Free Simulator Training  (Optional)</Text>
+              <Text style={[styles.profileSubtitleSmall, { color: '#ffffff' }]}>Free Simulator Training  (Optional)</Text>
             </View>
           </View>
 
@@ -233,7 +233,7 @@ export default function HomeScreen() {
 
           <View style={styles.badgeTopRow}>
             <View style={[styles.badge, { borderColor: '#a78bfa', backgroundColor: 'rgba(167, 139, 250, 0.2)' }]}>
-              <Text style={[styles.badgeText, { color: '#ffffff' }]}>Qualified</Text>
+              <Text style={[styles.badgeText, { color: '#ffffff' }]}>Qualifiers</Text>
             </View>
           </View>
 
@@ -248,7 +248,7 @@ export default function HomeScreen() {
 
             <View style={styles.profileTitleContainer}>
               <Text style={styles.profileTitle}>Invest Challenge</Text>
-              <Text style={styles.profileSubtitleSmall}>Exclusively for Premium Pro Members</Text>
+              <Text style={[styles.profileSubtitleSmall, { color: '#ffffff' }]}>Exclusively for Premium Pro Members</Text>
             </View>
           </View>
 
