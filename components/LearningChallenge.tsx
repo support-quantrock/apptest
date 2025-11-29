@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { BookOpen, CircleCheck as CheckCircle, Crown, Book, ChevronDown, Info } from 'lucide-react-native';
+import { BookOpen, CircleCheck as CheckCircle, Crown, Book, ChevronDown, Info, ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import { router } from 'expo-router';
@@ -29,9 +29,14 @@ const ICON_CONFIG = {
 };
 
 export default function LearningChallenge() {
-  const [selectedDay, setSelectedDay] = useState(1);
+  const [selectedDay, setSelectedDay] = useState(2); // Currently active day
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [expandedDays, setExpandedDays] = useState<Set<number>>(new Set());
+  const [calendarPage, setCalendarPage] = useState(0); // 0 = days 1-9, 1 = days 10-18, 2 = days 19-28
+
+  // Simulated completion status - Day 1 and 5 completed, Day 2 is active
+  const completedDays = [1, 5];
+  const currentDay = 11; // User is on day 11
 
   const handleLessonPress = (dayNumber: number, lessonId: number) => {
     router.push(`/lesson-content?day=${dayNumber}&lesson=${lessonId}`);
@@ -184,37 +189,86 @@ export default function LearningChallenge() {
     );
   };
 
+  // Get visible days for current calendar page (9 days per page, reversed order)
+  const getVisibleDays = () => {
+    const startDay = calendarPage * 9 + 1;
+    const endDay = Math.min(startDay + 8, TOTAL_DAYS);
+    const days = [];
+    for (let i = endDay; i >= startDay; i--) {
+      days.push(i);
+    }
+    return days;
+  };
+
+  const getDayStatus = (day: number) => {
+    if (completedDays.includes(day)) return 'completed';
+    if (day === selectedDay) return 'active';
+    return 'pending';
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-
-          <View style={styles.statsContainer}>
-
-            <View style={styles.statItem}>
-              <Text style={styles.statIcon}>💰</Text>
-              <Text style={styles.statValue}>$2,198</Text>
-            </View>
-          </View>
+      {/* Progress Header */}
+      <View style={styles.progressHeader}>
+        <View style={styles.progressHeaderLeft}>
+          <Text style={styles.dayCountHighlight}>Day {currentDay}</Text>
+          <Text style={styles.dayCountText}> out of {TOTAL_DAYS}</Text>
         </View>
-
+        <Text style={styles.progressTitle}>Your progress</Text>
       </View>
 
-      <View style={styles.progressSection}>
-        <View style={styles.progressBar}>
-          {Array.from({ length: 20 }).map((_, index) => (
-            <View key={index} style={styles.progressBlockContainer}>
-              {index < 1 && (
-                <Text style={styles.activeDayNumber}>{index + 1}</Text>
-              )}
-              <View
+      {/* Calendar Card */}
+      <View style={styles.calendarCard}>
+        <View style={styles.calendarHeader}>
+          <TouchableOpacity
+            style={styles.calendarNavButton}
+            onPress={() => setCalendarPage(Math.min(calendarPage + 1, 2))}
+          >
+            <ChevronRight size={24} color="#5b5fff" strokeWidth={2} />
+          </TouchableOpacity>
+          <Text style={styles.calendarTitle}>Calendar</Text>
+          <TouchableOpacity
+            style={[styles.calendarNavButton, styles.calendarNavButtonRight]}
+            onPress={() => setCalendarPage(Math.max(calendarPage - 1, 0))}
+          >
+            <ChevronLeft size={24} color="#d1d5db" strokeWidth={2} />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.calendarDivider} />
+
+        <View style={styles.calendarDays}>
+          {getVisibleDays().map((day) => {
+            const status = getDayStatus(day);
+            return (
+              <TouchableOpacity
+                key={day}
                 style={[
-                  styles.progressBlock,
-                  index < 1 && styles.progressBlockFilled,
+                  styles.calendarDayBox,
+                  status === 'active' && styles.calendarDayBoxActive,
                 ]}
-              />
-            </View>
-          ))}
+                onPress={() => setSelectedDay(day)}
+              >
+                <Text style={[
+                  styles.calendarDayText,
+                  status === 'active' && styles.calendarDayTextActive,
+                ]}>D{day}</Text>
+                <View style={styles.calendarDayIndicator}>
+                  {status === 'completed' && (
+                    <View style={styles.completedIndicator}>
+                      <CheckCircle size={14} color="#22c55e" strokeWidth={3} fill="#22c55e" />
+                    </View>
+                  )}
+                  {status === 'active' && (
+                    <View style={styles.activeIndicator} />
+                  )}
+                  {status === 'pending' && (
+                    <View style={styles.pendingIndicator} />
+                  )}
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </View>
       </View>
 
@@ -313,22 +367,58 @@ export default function LearningChallenge() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#f8fafc',
   },
-  header: {
+  // Progress Header Styles
+  progressHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 16,
-    backgroundColor: '#000000',
+    paddingTop: 16,
+    paddingBottom: 12,
   },
-  headerLeft: {
+  progressHeaderLeft: {
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: 16,
+    alignItems: 'baseline',
   },
-  iconCircle: {
+  dayCountHighlight: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#5b5fff',
+  },
+  dayCountText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#1f2937',
+  },
+  progressTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1f2937',
+  },
+  // Calendar Card Styles
+  calendarCard: {
+    backgroundColor: '#ffffff',
+    marginHorizontal: 20,
+    borderRadius: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+    marginBottom: 16,
+  },
+  calendarHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 4,
+    marginBottom: 12,
+  },
+  calendarNavButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -336,78 +426,68 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  iconText: {
-    color: '#fff',
-    fontSize: 20,
+  calendarNavButtonRight: {
+    backgroundColor: '#f3f4f6',
+  },
+  calendarTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1f2937',
+  },
+  calendarDivider: {
+    height: 1,
+    backgroundColor: '#e5e7eb',
+    marginBottom: 16,
+  },
+  calendarDays: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 6,
+  },
+  calendarDayBox: {
+    flex: 1,
+    backgroundColor: '#f3f4f6',
+    borderRadius: 10,
+    paddingVertical: 12,
+    alignItems: 'center',
+    minWidth: 32,
+  },
+  calendarDayBoxActive: {
+    backgroundColor: '#ffffff',
+    borderWidth: 2,
+    borderColor: '#5b5fff',
+  },
+  calendarDayText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#6b7280',
+    marginBottom: 6,
+  },
+  calendarDayTextActive: {
+    color: '#5b5fff',
     fontWeight: '700',
   },
-  statsContainer: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  statItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-  },
-  statIcon: {
-    fontSize: 20,
-  },
-  statValue: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#fff',
-  },
-  chartIcon: {
-    width: 48,
-    height: 48,
+  calendarDayIndicator: {
+    height: 14,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  candleStick: {
-    flexDirection: 'row',
-    gap: 4,
-    alignItems: 'flex-end',
+  completedIndicator: {
+    // CheckCircle icon handles the display
   },
-  candle: {
+  activeIndicator: {
     width: 8,
-    borderRadius: 2,
-  },
-  greenCandle: {
-    height: 24,
-    backgroundColor: '#10b981',
-  },
-  redCandle: {
-    height: 32,
-    backgroundColor: '#ef4444',
-  },
-  progressSection: {
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    paddingBottom: 8,
-  },
-  progressBar: {
-    flexDirection: 'row',
-    gap: 4,
-  },
-  progressBlockContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  activeDayNumber: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: '#5b5fff',
-    marginBottom: 4,
-  },
-  progressBlock: {
-    width: '100%',
     height: 8,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 2,
-  },
-  progressBlockFilled: {
+    borderRadius: 4,
     backgroundColor: '#5b5fff',
+  },
+  pendingIndicator: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    borderWidth: 1.5,
+    borderColor: '#d1d5db',
+    backgroundColor: 'transparent',
   },
   challengeHeader: {
     paddingHorizontal: 20,
@@ -421,7 +501,7 @@ const styles = StyleSheet.create({
   challengeTitle: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#fff',
+    color: '#1f2937',
     marginBottom: 16,
     flex: 1,
   },
